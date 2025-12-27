@@ -54,7 +54,7 @@ export function FounderNote() {
                             business. It's my legacy to her, and to you."
                         </p>
                         <p className="text-gold font-bold uppercase tracking-[0.2em]">
-                            — Praveen Pathak, Sovereign Founder
+                            — The Amrit Milk Team
                         </p>
                     </motion.div>
                 </div>
