@@ -1,76 +1,72 @@
 "use client";
 
 import { motion } from "framer-motion";
-import { Button } from "@/components/ui/button";
+import { Section } from "@/components/ui/section";
 
 export function Storyteller() {
     return (
-        <section className="py-32 bg-gradient-to-b from-midnight via-midnight-mid to-midnight relative overflow-hidden">
-            {/* Decorative Skew */}
-            <div className="absolute inset-0 bg-gradient-to-br from-gold/5 to-transparent transform -skew-y-3" />
+        <Section className="bg-creme dark:bg-midnight transition-colors duration-500 overflow-hidden relative">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-[0.03] dark:opacity-[0.05] pointer-events-none">
+                <svg width="100%" height="100%">
+                    <pattern id="pattern-circles" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
+                        <circle cx="2" cy="2" r="1" fill="currentColor" />
+                    </pattern>
+                    <rect width="100%" height="100%" fill="url(#pattern-circles)" />
+                </svg>
+            </div>
 
-            <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                    {/* Left Content */}
-                    <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7 }}
-                    >
-                        <span className="inline-block px-4 py-2 bg-gold/10 border border-gold/30 rounded-full text-gold text-sm font-bold uppercase tracking-wider mb-6">
-                            The Founder's Rite
-                        </span>
-                        <h2 className="text-4xl md:text-6xl font-serif font-bold text-ivory leading-tight mb-6">
-                            Built for My <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gold via-amber-300 to-gold">
-                                Daughter.
-                            </span>
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+                <div className="order-2 lg:order-1 space-y-10">
+                    <div className="space-y-4">
+                        <span className="text-terracotta dark:text-gold font-bold uppercase tracking-[0.3em] text-xs">The Origin</span>
+                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory leading-tight">
+                            A Tale of Two <br />
+                            <span className="text-terracotta italic">Milks.</span>
                         </h2>
-                        <p className="text-xl text-ivory/70 leading-relaxed mb-8">
-                            "When traditional dairy failed her health, I stopped looking for a brand
-                            and started looking for a breed. This is the legacy of the Gir Cow."
-                        </p>
-                        <Button href="/about" variant="glass" size="lg">
-                            Read the Odyssey
-                        </Button>
-                    </motion.div>
+                    </div>
 
-                    {/* Right - Floating Card */}
-                    <motion.div
-                        className="relative"
-                        initial={{ opacity: 0, x: 50, rotate: 0 }}
-                        whileInView={{ opacity: 1, x: 0, rotate: 2 }}
-                        viewport={{ once: true }}
-                        transition={{ duration: 0.7, delay: 0.2 }}
-                    >
-                        <div className="glass p-8 rounded-3xl border border-gold/20 transform rotate-2 hover:rotate-0 transition-transform duration-500">
-                            <h4 className="text-2xl font-bold text-gold mb-4">
-                                Zero Compromise Protocol
-                            </h4>
-                            <p className="text-ivory/70 text-lg leading-relaxed">
-                                Every drop of Sovereign milk is tracked from the cow's heart to your
-                                home's glass bottle. No middle-men. No dilution.
-                            </p>
-                            <div className="mt-6 pt-6 border-t border-glass-border">
-                                <div className="flex items-center gap-4">
-                                    <div className="w-12 h-12 rounded-full bg-gold/20 flex items-center justify-center">
-                                        <span className="text-gold text-xl">🛡️</span>
-                                    </div>
-                                    <div>
-                                        <p className="text-gold font-bold">100% Traceable</p>
-                                        <p className="text-ivory/50 text-sm">From cow to cup</p>
-                                    </div>
-                                </div>
+                    <div className="space-y-8 text-espresso/80 dark:text-ivory/80 text-lg leading-relaxed">
+                        <p>
+                            In 2022, we faced a dilemma. The milk on our tables was no longer 'milk'. It was a cocktail of hormones, urea, and preservatives hidden behind shiny plastic packets.
+                        </p>
+                        <p>
+                            We decided to restart. We didn't just build a supply chain; we restored a legacy. By bringing back the desi Gir Cow, we brought back the health our ancestors took for granted.
+                        </p>
+                        <ul className="space-y-4 pt-4">
+                            {[
+                                "Zero Antibiotics. Guaranteed.",
+                                "Ahimsa Milking (Calf is fed first)",
+                                "No Synthetic Feed. 100% Grass-fed.",
+                                "Sterilized Glass. Always."
+                            ].map(item => (
+                                <li key={item} className="flex items-center gap-4 group">
+                                    <div className="w-1.5 h-1.5 rounded-full bg-terracotta dark:bg-gold group-hover:scale-150 transition-transform"></div>
+                                    <span className="font-medium text-base md:text-lg">{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+                </div>
+
+                <div className="order-1 lg:order-2">
+                    <div className="relative group">
+                        <div className="absolute -inset-4 bg-terracotta/10 dark:bg-gold/10 rounded-[4rem] blur-2xl group-hover:blur-3xl transition-all duration-700"></div>
+                        <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-espresso/5 dark:border-white/5 shadow-2xl">
+                            <img
+                                src="https://images.unsplash.com/photo-1549464936-22442436ce78?q=80&w=2000&auto=format&fit=crop"
+                                alt="Founding Vision"
+                                className="w-full h-full object-cover grayscale opacity-50 dark:opacity-100 hover:scale-110 transition-all duration-700"
+                            />
+                            <div className="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-60"></div>
+                            <div className="absolute bottom-10 left-10 space-y-2">
+                                <p className="text-creme uppercase tracking-widest text-xs font-bold">Lucknow, Uttar Pradesh</p>
+                                <p className="text-ivory font-serif text-2xl">EST. 2022</p>
                             </div>
                         </div>
-
-                        {/* Decorative Elements */}
-                        <div className="absolute -top-4 -right-4 w-24 h-24 bg-gold/10 rounded-full blur-2xl" />
-                        <div className="absolute -bottom-4 -left-4 w-32 h-32 bg-amber-500/10 rounded-full blur-3xl" />
-                    </motion.div>
+                    </div>
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }

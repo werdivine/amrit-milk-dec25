@@ -5,6 +5,8 @@ import { ArrowRight, ShoppingBag, Repeat, Check } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/CartContext";
 import { useState } from "react";
+import { ProductImage } from "@/components/ui/ProductImage";
+
 
 interface ProductCardProps {
     id: string;
@@ -48,8 +50,7 @@ export function ProductCard({ id, title, price, regularPrice, image, description
 
             {/* Image Container */}
             <div className="relative h-80 overflow-hidden bg-midnight-mid/30 flex items-center justify-center p-8">
-                <div className="absolute inset-0 bg-gold/5 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-full blur-3xl scale-150 transform origin-center"></div>
-                <div className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110" style={{ backgroundImage: `url(${image})` }}></div>
+                <ProductImage src={image} alt={title} category={category} id={id} className="w-full h-full" />
             </div>
 
             {/* Content */}
@@ -93,8 +94,8 @@ export function ProductCard({ id, title, price, regularPrice, image, description
                     <button
                         onClick={handleAddToCart}
                         className={`flex-1 px-4 py-2 rounded-full font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 ${added
-                                ? 'bg-green-600 text-white'
-                                : 'bg-gold text-midnight hover:bg-gold/90'
+                            ? 'bg-green-600 text-white'
+                            : 'bg-gold text-midnight hover:bg-gold/90'
                             }`}
                     >
                         {added ? (

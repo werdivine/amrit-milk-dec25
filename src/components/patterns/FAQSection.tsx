@@ -31,7 +31,7 @@ export function FAQSection() {
     const [openIndex, setOpenIndex] = useState<number | null>(0);
 
     return (
-        <section className="py-24 bg-midnight relative overflow-hidden">
+        <section className="py-24 bg-creme dark:bg-midnight relative overflow-hidden transition-colors duration-300">
             <div className="max-w-4xl mx-auto px-6">
                 {/* Section Header */}
                 <motion.div
@@ -40,10 +40,10 @@ export function FAQSection() {
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
                 >
-                    <span className="text-gold font-bold uppercase tracking-[0.3em] text-sm mb-4 block">
+                    <span className="text-terracotta dark:text-gold font-bold uppercase tracking-[0.3em] text-sm mb-4 block transition-colors duration-300">
                         Got Questions?
                     </span>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-ivory">
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory transition-colors duration-300">
                         Frequently Asked
                     </h2>
                 </motion.div>
@@ -53,7 +53,7 @@ export function FAQSection() {
                     {faqs.map((faq, index) => (
                         <motion.div
                             key={index}
-                            className="glass rounded-2xl border border-glass-border overflow-hidden"
+                            className="glass rounded-2xl border border-espresso/5 dark:border-glass-border overflow-hidden bg-white/50 dark:bg-transparent transition-colors duration-300"
                             initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
@@ -63,11 +63,11 @@ export function FAQSection() {
                                 className="w-full px-6 py-5 flex items-center justify-between text-left"
                                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                             >
-                                <span className="text-lg font-medium text-ivory pr-4">
+                                <span className="text-lg font-medium text-espresso dark:text-ivory pr-4 transition-colors duration-300">
                                     {faq.question}
                                 </span>
                                 <ChevronDown
-                                    className={`w-5 h-5 text-gold flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
+                                    className={`w-5 h-5 text-terracotta dark:text-gold flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
                                         }`}
                                 />
                             </button>

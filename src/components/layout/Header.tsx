@@ -5,6 +5,7 @@ import Image from "next/image";
 import { Search, ShoppingBag, User, Menu, X, ChevronDown } from "lucide-react";
 import { useCart } from "@/lib/CartContext";
 import { useState } from "react";
+import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -49,11 +50,11 @@ export function Header() {
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full z-50 bg-midnight/80 backdrop-blur-xl border-b border-white/5 h-20">
+            <header className="fixed top-0 left-0 w-full z-50 bg-creme/90 dark:bg-midnight/80 backdrop-blur-xl border-b border-espresso/5 dark:border-white/5 h-20 transition-all duration-300">
                 <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
                     {/* Mobile Menu Toggle */}
                     <button
-                        className="lg:hidden text-ivory"
+                        className="lg:hidden text-espresso dark:text-ivory"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
                         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -82,82 +83,87 @@ export function Header() {
                             >
                                 <Link
                                     href={link.href}
-                                    className="text-sm font-medium uppercase tracking-widest hover:text-gold transition-colors flex items-center gap-1 py-2"
+                                    className="text-sm font-medium uppercase tracking-widest text-espresso/80 dark:text-ivory/80 hover:text-terracotta dark:hover:text-gold transition-colors flex items-center gap-1 py-2"
                                 >
                                     {link.label}
                                     {link.children && <ChevronDown className="w-3 h-3" />}
                                 </Link>
-                                {link.children && openDropdown === link.label && (
-                                    <div className="absolute top-full left-0 pt-2">
-                                        <div className="glass rounded-xl border border-glass-border py-2 min-w-[180px]">
-                                            {link.children.map((child) => (
-                                                <Link
-                                                    key={child.href}
-                                                    href={child.href}
-                                                    className="block px-4 py-2 text-sm text-ivory/70 hover:text-gold hover:bg-gold/5 transition-all"
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            ))}
+                                {
+                                    link.children && openDropdown === link.label && (
+                                        <div className="absolute top-full left-0 pt-2">
+                                            <div className="glass rounded-xl border border-espresso/10 dark:border-glass-border py-2 min-w-[180px] bg-white/80 dark:bg-black/50 backdrop-blur-xl">
+                                                {link.children.map((child) => (
+                                                    <Link
+                                                        key={child.href}
+                                                        href={child.href}
+                                                        className="block px-4 py-2 text-sm text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold hover:bg-espresso/5 dark:hover:bg-gold/5 transition-all"
+                                                    >
+                                                        {child.label}
+                                                    </Link>
+                                                ))}
+                                            </div>
                                         </div>
-                                    </div>
-                                )}
+                                    )
+                                }
                             </div>
                         ))}
                     </nav>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-6">
-                        <button className="text-ivory/70 hover:text-gold transition-colors hidden md:block">
+                    <div className="flex items-center gap-4">
+                        <ThemeToggle />
+                        <button className="text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold transition-colors hidden md:block">
                             <Search className="w-5 h-5" />
                         </button>
-                        <Link href="/account" className="text-ivory/70 hover:text-gold transition-colors">
+                        <Link href="/account" className="text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold transition-colors">
                             <User className="w-5 h-5" />
                         </Link>
-                        <Link href="/cart" className="text-ivory/70 hover:text-gold transition-colors relative group">
+                        <Link href="/cart" className="text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold transition-colors relative group">
                             <ShoppingBag className="w-5 h-5" />
                             {cartCount > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-gold text-midnight text-[10px] font-bold min-w-[16px] h-4 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform px-1">
+                                <span className="absolute -top-2 -right-2 bg-terracotta dark:bg-gold text-white dark:text-midnight text-[10px] font-bold min-w-[16px] h-4 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform px-1">
                                     {cartCount}
                                 </span>
                             )}
                         </Link>
                     </div>
-                </div>
-            </header>
+                </div >
+            </header >
 
             {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="fixed inset-0 z-40 bg-midnight pt-20">
-                    <nav className="p-6 space-y-4">
-                        {navLinks.map((link) => (
-                            <div key={link.href}>
-                                <Link
-                                    href={link.href}
-                                    className="block text-xl font-medium text-ivory py-3 border-b border-glass-border"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                                {link.children && (
-                                    <div className="pl-4 space-y-2 py-2">
-                                        {link.children.map((child) => (
-                                            <Link
-                                                key={child.href}
-                                                href={child.href}
-                                                className="block text-ivory/60 py-2"
-                                                onClick={() => setMobileMenuOpen(false)}
-                                            >
-                                                {child.label}
-                                            </Link>
-                                        ))}
-                                    </div>
-                                )}
-                            </div>
-                        ))}
-                    </nav>
-                </div>
-            )}
+            {
+                mobileMenuOpen && (
+                    <div className="fixed inset-0 z-40 bg-midnight pt-20">
+                        <nav className="p-6 space-y-4">
+                            {navLinks.map((link) => (
+                                <div key={link.href}>
+                                    <Link
+                                        href={link.href}
+                                        className="block text-xl font-medium text-ivory py-3 border-b border-glass-border"
+                                        onClick={() => setMobileMenuOpen(false)}
+                                    >
+                                        {link.label}
+                                    </Link>
+                                    {link.children && (
+                                        <div className="pl-4 space-y-2 py-2">
+                                            {link.children.map((child) => (
+                                                <Link
+                                                    key={child.href}
+                                                    href={child.href}
+                                                    className="block text-ivory/60 py-2"
+                                                    onClick={() => setMobileMenuOpen(false)}
+                                                >
+                                                    {child.label}
+                                                </Link>
+                                            ))}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </nav>
+                    </div>
+                )
+            }
         </>
     );
 }

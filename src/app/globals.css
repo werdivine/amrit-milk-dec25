@@ -4,9 +4,18 @@
 
 @layer base {
     body {
-        @apply bg-midnight text-ivory;
+        @apply bg-creme text-espresso transition-colors duration-500;
         font-family: 'Inter', sans-serif;
     }
+
+    .light body {
+        @apply bg-creme text-espresso;
+    }
+
+    .dark body {
+        @apply bg-midnight text-ivory;
+    }
+
 
     h1,
     h2,
@@ -210,31 +219,32 @@
     }
 
     ::-webkit-scrollbar-track {
+        background: #f5ebe0;
+    }
+
+    .dark ::-webkit-scrollbar-track {
         background: #0d1b2a;
     }
 
     ::-webkit-scrollbar-thumb {
-        background: #d4af37;
+        background: #d4a373;
         border-radius: 6px;
     }
 
+    .dark ::-webkit-scrollbar-thumb {
+        background: #d4af37;
+    }
+
     ::-webkit-scrollbar-thumb:hover {
+        background: #c49363;
+    }
+
+    .dark ::-webkit-scrollbar-thumb:hover {
         background: #c9a02b;
     }
 }
 
-:root {
-    --foreground-rgb: 254, 251, 233;
-    --background-start-rgb: 13, 27, 42;
-    --background-end-rgb: 13, 27, 42;
-}
 
-body {
-    color: rgb(var(--foreground-rgb));
-    background: linear-gradient(to bottom,
-            transparent,
-            rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
-}
 
 @layer utilities {
     .text-balance {

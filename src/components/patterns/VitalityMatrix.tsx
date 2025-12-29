@@ -1,90 +1,75 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { motion } from "framer-motion";
+import { useState } from "react";
 import { Section } from "@/components/ui/section";
-import { ArrowUpRight, TrendingDown } from "lucide-react";
+import { Button } from "@/components/ui/button";
 
 export function VitalityMatrix() {
-    const [liters, setLiters] = useState(30);
-    const [quality, setQuality] = useState(2.5); // 1 = Industrial, 1.5 = Organic, 2.5 = Sovereign
+    const [liters, setLiters] = useState(2);
 
-    const results = useMemo(() => {
-        const baseScore = liters * quality * 10;
-        const toxins = quality === 2.5 ? -78 : quality === 1.5 ? -40 : 100;
-        const antioxidants = quality === 2.5 ? 240 : quality === 1.5 ? 50 : 0;
-
-        return { score: Math.round(baseScore), toxins, antioxidants };
-    }, [liters, quality]);
+    const monthlyCost = liters * 95 * 30;
+    const commercialCost = liters * 65 * 30;
+    const healthInvestment = monthlyCost - commercialCost;
 
     return (
-        <Section className="bg-gradient-to-br from-midnight to-midnight-mid" id="vitality-matrix">
-            <div className="max-w-7xl mx-auto">
-                <div className="text-center mb-16">
-                    <span className="bg-gold text-midnight px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider mb-4 inline-block">ROI Engine</span>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold mb-4">Your Vitality <span className="text-transparent bg-clip-text bg-gradient-to-r from-ivory to-gold">Matrix.</span></h2>
-                    <p className="text-ivory/60 max-w-xl mx-auto">Calculate the compound interest of real nutrition vs. industrial processed dairy.</p>
-                </div>
+        <Section className="bg-creme-light dark:bg-white/5 transition-colors duration-500">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div className="space-y-8">
+                    <span className="text-terracotta dark:text-gold font-bold uppercase tracking-[0.3em] text-xs">Vitality Matrix</span>
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory leading-tight">
+                        Calculate Your <br />
+                        <span className="text-terracotta">Health ROI.</span>
+                    </h2>
+                    <p className="text-espresso/70 dark:text-ivory/70 text-lg">
+                        Switching to Amrit Sovereign isn't an expense; it's a reallocation of your pharmacy budget. Pure A2 milk prevents long-term inflammation costs.
+                    </p>
 
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-                    <div className="bg-glass-bg border border-glass-border rounded-3xl p-8 backdrop-blur-sm">
-                        <h3 className="text-2xl font-serif font-bold mb-8">Monthly Consumption</h3>
-
-                        <div className="mb-8">
-                            <label className="block text-sm text-ivory/60 mb-4">Liters of Dairy / Month</label>
+                    <div className="space-y-6 bg-white dark:bg-midnight p-8 rounded-[2rem] shadow-soft dark:shadow-none border border-espresso/5 dark:border-white/5 transition-colors">
+                        <div className="space-y-4">
+                            <div className="flex justify-between text-sm font-bold uppercase tracking-widest text-espresso/60 dark:text-ivory/60">
+                                <span>Daily Consumption</span>
+                                <span className="text-terracotta dark:text-gold">{liters} Liters</span>
+                            </div>
                             <input
                                 type="range"
-                                min="5"
-                                max="60"
+                                min="1"
+                                max="10"
+                                step="1"
                                 value={liters}
                                 onChange={(e) => setLiters(parseInt(e.target.value))}
-                                className="w-full h-2 bg-glass-border rounded-lg appearance-none cursor-pointer accent-gold"
+                                className="w-full h-1 bg-espresso/10 dark:bg-white/10 rounded-lg appearance-none cursor-pointer accent-terracotta dark:accent-gold"
                             />
-                            <div className="flex justify-between text-xs font-bold mt-2">
-                                <span>5L</span>
-                                <span className="text-gold text-lg">{liters}L</span>
-                                <span>60L</span>
-                            </div>
                         </div>
 
-                        <div>
-                            <label className="block text-sm text-ivory/60 mb-4">Quality of Source</label>
-                            <select
-                                value={quality}
-                                onChange={(e) => setQuality(parseFloat(e.target.value))}
-                                className="w-full bg-midnight/50 border border-glass-border rounded-xl p-4 text-ivory focus:border-gold outline-none transition-colors appearance-none"
-                            >
-                                <option value="1">Standard Pouch (Industrial)</option>
-                                <option value="1.5">Organic Certified</option>
-                                <option value="2.5">Sovereign A2 (Raw Vedic)</option>
-                            </select>
+                        <div className="pt-6 border-t border-espresso/5 dark:border-white/5 grid grid-cols-2 gap-4">
+                            <div>
+                                <p className="text-[10px] uppercase font-bold text-espresso/40 dark:text-ivory/40">Monthly Sovereign</p>
+                                <p className="text-2xl font-black text-espresso dark:text-ivory">₹{monthlyCost.toLocaleString()}</p>
+                            </div>
+                            <div>
+                                <p className="text-[10px] uppercase font-bold text-espresso/40 dark:text-ivory/40">Pharmacy Hedge</p>
+                                <p className="text-2xl font-black text-terracotta dark:text-gold">₹{healthInvestment.toLocaleString()}</p>
+                            </div>
                         </div>
                     </div>
+                </div>
 
-                    <div className="bg-gold/5 border-l-4 border-gold rounded-r-3xl p-12">
-                        <div className="text-center mb-12">
-                            <span className="block text-xs uppercase tracking-[0.2em] mb-4 text-ivory/50">Projected Vitality Score</span>
-                            <div className="text-8xl font-black text-gold tabular-nums leading-none mb-2">{results.score}</div>
-                            <p className="font-serif text-xl tracking-widest text-ivory opacity-80">
-                                {results.score > 700 ? "SOVEREIGN STATUS" : "SUB-OPTIMAL"}
-                            </p>
+                <div className="bg-espresso dark:bg-midnight p-8 md:p-16 rounded-[4rem] text-center space-y-10 relative overflow-hidden">
+                    <div className="relative z-10 space-y-4">
+                        <h3 className="text-creme dark:text-ivory font-serif text-3xl">Quality Dividend</h3>
+                        <p className="text-creme/60 dark:text-ivory/60 text-sm">
+                            For less than the price of a fancy coffee per day, you secure the insulin sensitivity, bone density, and gut health of your entire family.
+                        </p>
+                        <div className="py-8">
+                            <div className="text-5xl md:text-7xl font-serif font-bold text-terracotta">Worth It.</div>
                         </div>
+                        <Button href="/subscription-hub" size="lg" className="bg-creme text-espresso hover:bg-white transition-all w-full md:w-auto">Start Your Subscription</Button>
+                    </div>
 
-                        <div className="grid grid-cols-2 gap-8 pt-8 border-t border-white/5">
-                            <div>
-                                <span className="block text-sm text-ivory/50 mb-1">Toxin Reduction</span>
-                                <div className="flex items-center gap-2 text-2xl font-bold text-green-400">
-                                    <TrendingDown className="w-5 h-5" />
-                                    {results.toxins > 0 ? `+${results.toxins}%` : `${results.toxins}%`}
-                                </div>
-                            </div>
-                            <div>
-                                <span className="block text-sm text-ivory/50 mb-1">Antioxidant Intake</span>
-                                <div className="flex items-center gap-2 text-2xl font-bold text-gold">
-                                    <ArrowUpRight className="w-5 h-5" />
-                                    {results.antioxidants > 0 ? `+${results.antioxidants}%` : `${results.antioxidants}%`}
-                                </div>
-                            </div>
-                        </div>
+                    {/* Abstract math symbols background */}
+                    <div className="absolute inset-0 opacity-5 pointer-events-none select-none font-black text-9xl flex flex-wrap gap-10 items-center justify-center text-creme">
+                        <span>+</span><span>%</span><span>=</span><span>√</span><span>∑</span>
                     </div>
                 </div>
             </div>

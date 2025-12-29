@@ -4,7 +4,7 @@ import { Facebook, Instagram, Twitter, MessageCircle, MapPin, Phone, Mail } from
 
 export function Footer() {
     return (
-        <footer className="bg-midnight pt-24 pb-12 border-t border-white/5">
+        <footer className="bg-espresso dark:bg-midnight pt-24 pb-12 border-t border-ivory/5 dark:border-white/5 transition-colors duration-300">
             <div className="max-w-7xl mx-auto px-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12 mb-16">
                     {/* Brand */}

@@ -30,18 +30,18 @@ export function VantageGrid() {
     ];
 
     return (
-        <Section className="bg-midnight">
+        <Section className="bg-creme dark:bg-midnight transition-colors duration-300">
             <div className="text-center mb-16">
-                <h2 className="text-4xl font-serif font-bold mb-4">The Sovereign Vantage</h2>
-                <p className="text-ivory/60">Why 500+ families in Lucknow refuse to drink anything else.</p>
+                <h2 className="text-4xl font-serif font-bold mb-4 text-espresso dark:text-ivory transition-colors duration-300">The Sovereign Vantage</h2>
+                <p className="text-espresso/60 dark:text-ivory/60 transition-colors duration-300">Why 500+ families in Lucknow refuse to drink anything else.</p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 {benefits.map((b, i) => (
-                    <div key={i} className="bg-glass-bg border border-glass-border p-8 rounded-2xl hover:bg-glass-border transition-colors group">
-                        <CheckCircle2 className="w-8 h-8 text-gold mb-6 group-hover:scale-110 transition-transform" />
-                        <h3 className="text-xl font-bold mb-3 font-serif">{b.title}</h3>
-                        <p className="text-sm text-ivory/60 leading-relaxed">{b.desc}</p>
+                    <div key={i} className="bg-white/50 dark:bg-glass-bg border border-espresso/10 dark:border-glass-border p-8 rounded-2xl hover:border-terracotta/30 dark:hover:bg-glass-border transition-colors group duration-300">
+                        <CheckCircle2 className="w-8 h-8 text-terracotta dark:text-gold mb-6 group-hover:scale-110 transition-transform duration-300" />
+                        <h3 className="text-xl font-bold mb-3 font-serif text-espresso dark:text-ivory transition-colors duration-300">{b.title}</h3>
+                        <p className="text-sm text-espresso/60 dark:text-ivory/60 leading-relaxed transition-colors duration-300">{b.desc}</p>
                     </div>
                 ))}
             </div>

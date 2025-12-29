@@ -14,11 +14,11 @@ const trustItems = [
 
 export function TrustTicker() {
     return (
-        <section className="w-full bg-midnight-mid border-y border-glass-border py-6 overflow-hidden">
+        <section className="w-full bg-creme-light dark:bg-midnight-mid border-y border-espresso/5 dark:border-glass-border py-6 overflow-hidden transition-colors duration-300">
             <div className="relative">
                 {/* Gradient Overlays */}
-                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-midnight-mid to-transparent z-10" />
-                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-midnight-mid to-transparent z-10" />
+                <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-creme-light dark:from-midnight-mid to-transparent z-10 transition-colors duration-300" />
+                <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-creme-light dark:from-midnight-mid to-transparent z-10 transition-colors duration-300" />
 
                 {/* Scrolling Container */}
                 <motion.div
@@ -39,9 +39,9 @@ export function TrustTicker() {
                         return (
                             <div
                                 key={index}
-                                className="flex items-center gap-3 text-ivory/60 font-medium uppercase tracking-wider text-xs md:text-sm whitespace-nowrap"
+                                className="flex items-center gap-3 text-espresso/60 dark:text-ivory/60 font-medium uppercase tracking-wider text-xs md:text-sm whitespace-nowrap"
                             >
-                                <Icon className="w-5 h-5 text-gold flex-shrink-0" />
+                                <Icon className="w-5 h-5 text-terracotta dark:text-gold flex-shrink-0 transition-colors duration-300" />
                                 <span>{item.text}</span>
                             </div>
                         );

@@ -1,79 +1,65 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Section } from "@/components/ui/section";
+import { Quote } from "lucide-react";
 
 const experts = [
     {
-        name: "Dr. Amit Verma",
-        title: "Gastroenterologist",
-        quote: "The A2 protein structure in Amrit Milk is significantly easier on the human gut compared to commercial A1 milk. I recommend it for patients with mild lactose sensitivity.",
-        initials: "AV"
+        name: "Dr. Aniruddh Sharma",
+        role: "Pediatrician & Nutritionist",
+        quote: "For growing children, A2 milk is the only choice that ensures proper cognitive development without the inflammatory triggers of A1 milk.",
+        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dr1"
     },
     {
-        name: "Suman Rao",
-        title: "Lead Nutritionist",
-        quote: "The micronutrient profile of raw, chilled Gir milk is superior. The presence of Beta-carotene and Omega-3 is noticeably higher due to their hydroponic fodder diet.",
-        initials: "SR"
-    },
-    {
-        name: "Dr. Priya Sharma",
-        title: "Pediatric Specialist",
-        quote: "For growing children, A2 milk provides essential nutrients without the digestive discomfort often associated with regular dairy. It's what I recommend to parents.",
-        initials: "PS"
+        name: "Vaidya Rajeshwari",
+        role: "Ayurvedic Practitioner",
+        quote: "Our ancient texts call Desi Cow Ghee 'Maha-Aushadhi'. Amrit Sovereign preserves this potency by following the Bilona method strictly.",
+        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dr2"
     }
 ];
 
 export function ExpertPanel() {
     return (
-        <section className="py-32 bg-midnight-mid relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-6">
-                {/* Section Header */}
-                <motion.div
-                    className="text-center mb-16"
-                    initial={{ opacity: 0, y: 30 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                >
-                    <span className="text-gold font-bold uppercase tracking-[0.3em] text-sm mb-4 block">
-                        Verified Intelligence
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-ivory">
-                        Expert Endorsements
-                    </h2>
-                </motion.div>
+        <Section className="bg-creme dark:bg-midnight transition-colors duration-500">
+            <div className="space-y-16">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
+                    <div className="space-y-4">
+                        <span className="text-terracotta dark:text-gold font-bold uppercase tracking-[0.3em] text-xs">Medical Trust</span>
+                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory">The Expert <span className="italic">Perspective.</span></h2>
+                    </div>
+                    <p className="max-w-md text-espresso/60 dark:text-ivory/60">
+                        Top healthcare professionals and traditional healers recommend Amrit Sovereign for its uncompromising quality standards.
+                    </p>
+                </div>
 
-                {/* Experts Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-                    {experts.map((expert, index) => (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-10">
+                    {experts.map((expert, i) => (
                         <motion.div
                             key={expert.name}
-                            className="text-center"
-                            initial={{ opacity: 0, y: 40 }}
+                            initial={{ opacity: 0, y: 20 }}
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
-                            transition={{ duration: 0.5, delay: index * 0.15 }}
+                            transition={{ delay: i * 0.1 }}
+                            className="bg-creme-light dark:bg-white/5 p-10 rounded-[3rem] space-y-8 border border-espresso/5 dark:border-white/5 flex flex-col items-center text-center md:items-start md:text-left md:flex-row gap-10 hover:shadow-lifted dark:hover:shadow-none transition-all duration-500"
                         >
-                            {/* Avatar */}
-                            <div className="w-28 h-28 mx-auto mb-6 rounded-full bg-gradient-to-br from-gold to-amber-600 flex items-center justify-center text-midnight text-3xl font-bold shadow-[0_0_30px_rgba(212,175,55,0.3)]">
-                                {expert.initials}
+                            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-terracotta/20 dark:border-gold/20 flex-shrink-0">
+                                <img src={expert.image} alt={expert.name} className="w-full h-full object-cover" />
                             </div>
-
-                            {/* Name & Title */}
-                            <h4 className="text-xl font-bold text-gold mb-2">
-                                {expert.name}
-                            </h4>
-                            <p className="text-ivory/50 text-sm mb-6">
-                                {expert.title}
-                            </p>
-
-                            {/* Quote */}
-                            <p className="text-ivory/80 italic leading-relaxed">
-                                "{expert.quote}"
-                            </p>
+                            <div className="space-y-4">
+                                <Quote className="w-10 h-10 text-terracotta/20 dark:text-gold/20" />
+                                <p className="text-lg text-espresso/80 dark:text-ivory/80 italic leading-relaxed">
+                                    "{expert.quote}"
+                                </p>
+                                <div>
+                                    <h4 className="text-xl font-bold text-espresso dark:text-ivory">{expert.name}</h4>
+                                    <p className="text-xs uppercase tracking-widest text-terracotta dark:text-gold font-bold">{expert.role}</p>
+                                </div>
+                            </div>
                         </motion.div>
                     ))}
                 </div>
             </div>
-        </section>
+        </Section>
     );
 }
