@@ -207,11 +207,119 @@ Use for cooking, drizzle on dal and rice, make Ayurvedic remedies, or practice o
             "No Additives or Preservatives",
             "Traditional Ayurvedic Process"
         ],
-
         research: [
             "Butyric acid in ghee supports gut barrier function",
             "CLA in grass-fed ghee aids fat metabolism",
             "Short-chain fatty acids improve colon health"
+        ]
+    },
+    {
+        id: "oil-mustard",
+        title: "Cold-Pressed Mustard Oil - 1L",
+        price: "₹220",
+        regularPrice: "₹250",
+        image: "/assets/img/oil-bottle.png",
+        category: "Oils",
+        description: "Single-origin cold-pressed kacchi ghani mustard oil. Pungent aroma, rich in Omega-3.",
+        slug: "mustard-oil-1l",
+        sku: "AMRIT-OIL-MUSTARD",
+        badge: "Pure",
+        longDescription: `Experience the raw, pungent power of traditional Kacchi Ghani Mustard Oil. Our mustard oil is cold-pressed from high-quality mustard seeds, ensuring that all the natural nutrients, flavors, and aromas are preserved.
+
+Unlike industrially refined oils that use high heat and chemical solvents, our cold-pressing method keeps the oil's temperature low, maintaining its high smoke point and rich nutritional profile. It's naturally rich in monounsaturated fatty acids (MUFA) and polyunsaturated fatty acids (PUFA), including Omega-3 and Omega-6.
+
+This oil is perfect for traditional Indian cooking, where its unique pungency adds depth to pickles, curries, and marinades. It's also widely used in Ayurvedic practices for body massage, known to improve circulation and skin health.`,
+        benefits: [
+            "Rich in monounsaturated fatty acids (MUFA) for heart health",
+            "Natural antibacterial and antifungal properties",
+            "Helps improve circulation and skin health",
+            "High smoke point (250°C) - ideal for deep frying",
+            "Rich in Omega-3 and Omega-6 fatty acids",
+            "Supports digestion and appetite"
+        ],
+        nutrition: [
+            { label: "Energy", value: "884 kcal per 100ml" },
+            { label: "MUFA", value: "60g per 100ml" },
+            { label: "PUFA", value: "21g per 100ml" },
+            { label: "Vitamin E", value: "Rich in antioxidants" },
+            { label: "Saturated Fat", value: "12g per 100ml" }
+        ],
+        howToUse: [
+            "Perfect for traditional Indian curries and tadka",
+            "Ideal for making pickles (acts as a natural preservative)",
+            "Use for deep frying and sautéing",
+            "Excellent for body and hair massage",
+            "Mix with salt and turmeric for a natural tooth cleaner"
+        ],
+        faqs: [
+            {
+                question: "Is this oil refined?",
+                answer: "No, this is 100% cold-pressed (Kacchi Ghani) oil. We do not use any chemicals, solvents, or high heat in the extraction process."
+            },
+            {
+                question: "Why does mustard oil have a pungent smell?",
+                answer: "The pungency comes from allyl isothiocyanate, a natural compound in mustard seeds that is preserved during cold-pressing. It's a sign of purity and quality."
+            }
+        ],
+        certifications: [
+            "100% Cold-Pressed",
+            "No Chemical Solvents",
+            "Single-Origin Seeds",
+            "Traditional Kacchi Ghani"
+        ]
+    },
+    {
+        id: "paneer-200g",
+        title: "Malai Paneer - 200g",
+        price: "₹80",
+        regularPrice: "₹90",
+        image: "/assets/img/paneer.png",
+        category: "Dairy",
+        description: "Soft, velvety paneer made fresh from A2 milk. High protein, perfect for curries and grilling.",
+        slug: "malai-paneer-200g",
+        sku: "AMRIT-PANEER-200",
+        badge: "Freshly Made",
+        longDescription: `Our Malai Paneer is a revelation in texture and taste. Made fresh daily from pure A2 Desi Gir Cow Milk, it's incredibly soft, velvety, and rich in natural creaminess.
+
+We use traditional methods to curdle the milk, ensuring the paneer remains moist and tender. Unlike mass-produced paneer that can be rubbery and tasteless, our A2 paneer has a delicate dairy sweetness and melts in your mouth.
+
+High in bio-available protein and healthy fats, it's an excellent choice for vegetarians looking for high-quality nutrition. It doesn't crumble easily when cooked, making it perfect for grilling, sautéing, or adding to rich gravies.`,
+        benefits: [
+            "High-quality A2 protein for muscle health",
+            "Rich in bio-available calcium for strong bones",
+            "Soft and creamy texture - no rubbery feel",
+            "Easier to digest than regular A1 paneer",
+            "No preservatives or artificial thickeners",
+            "Made fresh daily"
+        ],
+        nutrition: [
+            { label: "Protein", value: "18-20g per 100g" },
+            { label: "Fat", value: "22-25g per 100g" },
+            { label: "Calcium", value: "200mg per 100g" },
+            { label: "Energy", value: "290 kcal per 100g" }
+        ],
+        howToUse: [
+            "Add to classic curries like Palak Paneer or Matar Paneer",
+            "Grill or pan-sear for a delicious snack",
+            "Crumble into salads or wraps",
+            "Use in paratha fillings",
+            "Enjoy raw with a pinch of black salt and pepper"
+        ],
+        faqs: [
+            {
+                question: "How long does it stay fresh?",
+                answer: "Our paneer is fresh and contains no preservatives. It should be consumed within 3-4 days when kept refrigerated."
+            },
+            {
+                question: "Why is A2 paneer better?",
+                answer: "A2 paneer is made from A2 milk, which is easier on the digestive system and contains superior protein and fat profiles compared to regular A1 milk."
+            }
+        ],
+        certifications: [
+            "Fresh Daily Production",
+            "No Preservatives",
+            "Pure A2 Milk Source",
+            "Traditional Curdling Process"
         ]
     }
 ];
