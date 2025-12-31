@@ -29,8 +29,10 @@ export default buildConfig({
     },
     db: postgresAdapter({
         pool: {
-            connectionString: process.env.DATABASE_URI || '',
+            connectionString: process.env.DATABASE_URI || process.env.POSTGRES_URL || process.env.DATABASE_URL || '',
         },
     }),
+    cors: [process.env.NEXT_PUBLIC_SERVER_URL || ''].filter(Boolean),
+    csrf: [process.env.NEXT_PUBLIC_SERVER_URL || ''].filter(Boolean),
     sharp,
 })
