@@ -62,14 +62,23 @@ export function Header() {
 
                     {/* Logo */}
                     <Link href="/" className="flex items-center gap-3 group">
-                        <Image
-                            src="/assets/img/amrit-logo.png"
-                            alt="Amrit Milk"
-                            width={140}
-                            height={50}
-                            className="h-12 w-auto object-contain"
-                            priority
-                        />
+                        {/* Icon */}
+                        <div className="relative">
+                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M20 2C16 2 12 6 12 12C12 18 20 28 20 38C20 28 28 18 28 12C28 6 24 2 20 2Z" fill="#D4AF37" opacity="0.2" />
+                                <path d="M20 2C16 2 12 6 12 12C12 18 20 28 20 28C20 28 28 18 28 12C28 6 24 2 20 2Z" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
+                                <circle cx="20" cy="13" r="3" fill="#D4AF37" />
+                            </svg>
+                        </div>
+                        {/* Text */}
+                        <div className="flex flex-col">
+                            <span className="text-2xl font-serif font-bold text-espresso dark:text-ivory tracking-tight leading-none">
+                                AMRIT
+                            </span>
+                            <span className="text-[10px] uppercase tracking-[0.2em] text-terracotta dark:text-gold/80 font-medium -mt-0.5">
+                                Affordable milk, rich in taste
+                            </span>
+                        </div>
                     </Link>
 
                     {/* Desktop Nav */}

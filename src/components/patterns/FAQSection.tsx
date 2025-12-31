@@ -70,7 +70,7 @@ export function FAQSection() {
                                     className={`w-5 h-5 text-terracotta dark:text-gold flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
                                         }`}
                                 />
-                            </button>
+                            </motion.div>
                             <motion.div
                                 initial={false}
                                 animate={{
@@ -80,14 +80,14 @@ export function FAQSection() {
                                 transition={{ duration: 0.3 }}
                                 className="overflow-hidden"
                             >
-                                <p className="px-6 pb-5 text-ivory/70 leading-relaxed">
+                                <p className="px-6 pb-5 text-espresso/70 dark:text-ivory/70 leading-relaxed">
                                     {faq.answer}
                                 </p>
                             </motion.div>
                         </motion.div>
                     ))}
-                </div>
             </div>
-        </section>
+        </div>
+        </section >
     );
 }

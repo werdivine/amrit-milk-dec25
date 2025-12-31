@@ -49,9 +49,11 @@ export function ProductCard({ id, title, price, regularPrice, image, description
             )}
 
             {/* Image Container */}
-            <div className="relative h-80 overflow-hidden bg-midnight-mid/30 flex items-center justify-center p-8">
-                <ProductImage src={image} alt={title} category={category} id={id} className="w-full h-full" />
-            </div>
+            <Link href={`/products/${slug}`} className="block">
+                <div className="relative h-80 overflow-hidden bg-midnight-mid/30 flex items-center justify-center p-8 cursor-pointer">
+                    <ProductImage src={image} alt={title} category={category} id={id} className="w-full h-full" />
+                </div>
+            </Link>
 
             {/* Content */}
             <div className="p-6 md:p-8 relative z-20 bg-midnight/40 backdrop-blur-sm -mt-4 border-t border-glass-border">
@@ -63,7 +65,7 @@ export function ProductCard({ id, title, price, regularPrice, image, description
                 )}
 
                 <div className="flex justify-between items-start mb-4">
-                    <div className="flex-1">
+                    <Link href={`/products/${slug}`} className="flex-1 cursor-pointer">
                         <h3 className="text-xl font-serif font-bold mb-2 text-ivory group-hover:text-gold transition-colors line-clamp-2">{title}</h3>
                         <div className="flex items-baseline gap-2">
                             <p className="text-2xl font-bold text-gold">{price}</p>
@@ -71,9 +73,16 @@ export function ProductCard({ id, title, price, regularPrice, image, description
                                 <p className="text-sm text-ivory/40 line-through">{regularPrice}</p>
                             )}
                         </div>
-                    </div>
-                    <button className="text-ivory/50 hover:text-gold transition-colors ml-4">
-                        <ShoppingBag className="w-5 h-5" />
+                    </Link>
+                    <button
+                        onClick={handleAddToCart}
+                        className={`rounded-full p-3 transition-all duration-300 ml-4 ${added
+                            ? 'bg-green-600 text-white'
+                            : 'bg-gold text-midnight hover:bg-gold/90 hover:scale-110'
+                            }`}
+                        title={added ? "Added to cart!" : "Add to cart"}
+                    >
+                        {added ? <Check className="w-5 h-5" /> : <ShoppingBag className="w-5 h-5" />}
                     </button>
                 </div>
 
@@ -88,28 +97,10 @@ export function ProductCard({ id, title, price, regularPrice, image, description
                 )}
 
                 <div className="flex gap-2">
-                    <Button href={`/products/${slug}`} variant="outline" size="sm" className="flex-1 group-hover:bg-gold/10 group-hover:border-gold">
-                        View
+                    <Button href={`/products/${slug}`} variant="outline" size="sm" className="w-full group-hover:bg-gold/10 group-hover:border-gold">
+                        <ArrowRight className="w-4 h-4 mr-2" />
+                        View Details
                     </Button>
-                    <button
-                        onClick={handleAddToCart}
-                        className={`flex-1 px-4 py-2 rounded-full font-bold text-sm transition-all duration-300 flex items-center justify-center gap-2 ${added
-                            ? 'bg-green-600 text-white'
-                            : 'bg-gold text-midnight hover:bg-gold/90'
-                            }`}
-                    >
-                        {added ? (
-                            <>
-                                <Check className="w-4 h-4" />
-                                Added!
-                            </>
-                        ) : (
-                            <>
-                                <ShoppingBag className="w-4 h-4" />
-                                Add to Cart
-                            </>
-                        )}
-                    </button>
                 </div>
             </div>
         </div>
