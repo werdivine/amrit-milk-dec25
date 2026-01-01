@@ -70,7 +70,7 @@ export function FAQSection() {
                                     className={`w-5 h-5 text-terracotta dark:text-gold flex-shrink-0 transition-transform duration-300 ${openIndex === index ? 'rotate-180' : ''
                                         }`}
                                 />
-                            </motion.div>
+                            </button>
                             <motion.div
                                 initial={false}
                                 animate={{
@@ -86,8 +86,8 @@ export function FAQSection() {
                             </motion.div>
                         </motion.div>
                     ))}
+                </div>
             </div>
-        </div>
         </section >
     );
 }
