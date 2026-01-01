@@ -1,13 +1,2 @@
-import type { CollectionConfig } from 'payload'
-
-export const Users: CollectionConfig = {
-    slug: 'users',
-    auth: true,
-    admin: {
-        useAsTitle: 'email',
-    },
-    fields: [
-        // Email added by default
-        // Add more fields as needed
-    ],
-}
+// Stubbed - Payload CMS removed
+export const Users = { slug: 'users' }
