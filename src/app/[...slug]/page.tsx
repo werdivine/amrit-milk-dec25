@@ -8,23 +8,24 @@ import { RenderBlocks } from '@/components/payload/RenderBlocks'
 export const dynamic = 'force-dynamic'
 
 interface PageProps {
-    params: {
+    params: Promise<{
         slug: string[]
-    }
-    searchParams: {
+    }>
+    searchParams: Promise<{
         [key: string]: string | string[] | undefined
-    }
+    }>
 }
 
-export default async function Page({ params, searchParams }: PageProps) {
-    const slug = params.slug?.join('/') || 'home'
+export default async function Page({ params }: PageProps) {
+    const { slug } = await params
+    const slugPath = slug?.join('/') || 'home'
     const payload = await getPayload({ config: configPromise })
 
     const { docs } = await payload.find({
         collection: 'pages',
         where: {
             slug: {
-                equals: slug,
+                equals: slugPath,
             },
         },
     })
