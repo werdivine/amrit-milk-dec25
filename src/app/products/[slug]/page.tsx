@@ -13,9 +13,10 @@ export async function generateStaticParams() {
     }));
 }
 
-export default function ProductPage({ params }: { params: { slug: string } }) {
-    const enrichedProduct = enrichedProducts.find(p => p.slug === params.slug);
-    const basicProduct = products.find(p => p.slug === params.slug);
+export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
+    const { slug } = await params;
+    const enrichedProduct = enrichedProducts.find(p => p.slug === slug);
+    const basicProduct = products.find(p => p.slug === slug);
 
     if (!basicProduct) {
         notFound();
@@ -42,7 +43,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
             {/* Hero Section */}
             <section className="relative pt-32 pb-20 bg-gradient-to-b from-gold/5 to-transparent overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-gold/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
-                
+
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
                         {/* Product Image */}
@@ -170,7 +171,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                     ))}
                                 </div>
                             </div>
-                            
+
                             {/* CTA Card */}
                             <div className="relative group">
                                 <div className="absolute inset-0 bg-gold/20 blur-[100px] rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-1000"></div>
@@ -228,7 +229,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                                         </div>
                                     ))}
                                 </div>
-                                
+
                                 <div className="mt-12 p-6 rounded-2xl bg-gold/5 border border-gold/10 italic text-sm text-ivory/60 text-center">
                                     *Values may vary slightly based on seasonal farm conditions.
                                 </div>
@@ -242,7 +243,7 @@ export default function ProductPage({ params }: { params: { slug: string } }) {
                     <div className="max-w-5xl mx-auto">
                         <div className="relative p-16 md:p-24 rounded-[4rem] bg-gold text-midnight text-center overflow-hidden">
                             <div className="absolute top-0 right-0 -translate-y-1/2 translate-x-1/2 w-96 h-96 bg-white/20 blur-[100px] rounded-full"></div>
-                            
+
                             <div className="relative z-10 space-y-8">
                                 <span className="inline-block px-6 py-2 bg-midnight text-gold rounded-full text-xs font-bold uppercase tracking-widest">Limited Availability</span>
                                 <h2 className="text-5xl md:text-7xl font-serif font-bold leading-tight">Bring the Farm to Your Table.</h2>
