@@ -1,6 +1,6 @@
 import { RootLayout, RootPage } from '@payloadcms/next/layouts'
-import { importMap } from './importMap'
-import config from '../../payload.config'
+import { importMap } from '@/app/(payload)/admin/importMap'
+import config from '@/payload.config'
 
 type Args = {
     params: {
