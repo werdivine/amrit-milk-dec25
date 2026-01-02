@@ -27,6 +27,64 @@
     }
 }
 
+/* Theme-Adaptive Semantic Colors */
+@layer components {
+
+    /* Background Colors */
+    .bg-theme-primary {
+        @apply bg-creme dark:bg-midnight;
+    }
+
+    .bg-theme-secondary {
+        @apply bg-creme-light dark:bg-midnight-mid;
+    }
+
+    .bg-theme-card {
+        @apply bg-white dark:bg-midnight-mid;
+    }
+
+    .bg-theme-elevated {
+        @apply bg-white dark:bg-white/5;
+    }
+
+    /* Text Colors */
+    .text-theme-primary {
+        @apply text-espresso dark:text-ivory;
+    }
+
+    .text-theme-secondary {
+        @apply text-espresso-light dark:text-ivory/80;
+    }
+
+    .text-theme-muted {
+        @apply text-espresso-muted dark:text-ivory/60;
+    }
+
+    .text-theme-accent {
+        @apply text-terracotta dark:text-gold;
+    }
+
+    /* Border Colors */
+    .border-theme-light {
+        @apply border-creme-dark dark:border-white/10;
+    }
+
+    .border-theme-accent {
+        @apply border-terracotta dark:border-gold;
+    }
+
+    /* Glass Effect - Theme Aware */
+    .glass-theme {
+        @apply bg-white/60 dark:bg-white/5 backdrop-blur-xl border border-warmGold/20 dark:border-white/10;
+    }
+
+    /* Card Styles - Theme Aware */
+    .card-theme {
+        @apply bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark;
+    }
+}
+
+
 @layer utilities {
 
     /* Premium Animations */
