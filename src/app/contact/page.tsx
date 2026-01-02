@@ -28,14 +28,14 @@ export default function ContactPage() {
     };
 
     return (
-        <main className="bg-midnight min-h-screen">
+        <main className="bg-theme-primary min-h-screen">
             {/* Hero */}
             <section className="relative py-32 flex items-center justify-center">
-                <div className="absolute inset-0 bg-gradient-radial from-gold/5 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-radial from-terracotta/5 dark:from-gold/5 via-transparent to-transparent" />
                 <div className="relative z-10 text-center max-w-4xl px-6">
-                    <span className="text-gold font-bold uppercase tracking-[0.3em] mb-4 block">Connect</span>
-                    <h1 className="text-5xl md:text-7xl font-serif font-bold text-ivory mb-6">Get in Touch</h1>
-                    <p className="text-xl text-ivory/70 max-w-2xl mx-auto">
+                    <span className="text-theme-accent font-bold uppercase tracking-[0.3em] mb-4 block">Connect</span>
+                    <h1 className="text-5xl md:text-7xl font-serif font-bold text-theme-primary mb-6">Get in Touch</h1>
+                    <p className="text-xl text-theme-secondary max-w-2xl mx-auto">
                         Questions about subscriptions? Want to schedule a farm visit?
                         We're here to help.
                     </p>
@@ -43,7 +43,7 @@ export default function ContactPage() {
             </section>
 
             {/* Contact Cards */}
-            <section className="py-12 border-y border-glass-border bg-midnight-mid">
+            <section className="py-12 border-y border-theme-light bg-theme-secondary">
                 <div className="max-w-6xl mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
                         {contactInfo.map((item) => {
@@ -54,11 +54,11 @@ export default function ContactPage() {
                                     key={item.label}
                                     href={item.href || undefined}
                                     target={item.href?.startsWith('http') ? '_blank' : undefined}
-                                    className="glass p-6 rounded-2xl border border-glass-border hover:border-gold/30 transition-all text-center group cursor-pointer"
+                                    className="glass-theme p-6 rounded-2xl hover:border-terracotta/30 dark:hover:border-gold/30 transition-all text-center group cursor-pointer"
                                 >
-                                    <Icon className="w-8 h-8 text-gold mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                                    <p className="text-ivory/50 text-sm mb-1">{item.label}</p>
-                                    <p className="text-ivory font-medium">{item.value}</p>
+                                    <Icon className="w-8 h-8 text-theme-accent mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                                    <p className="text-theme-muted text-sm mb-1">{item.label}</p>
+                                    <p className="text-theme-primary font-medium">{item.value}</p>
                                 </Wrapper>
                             );
                         })}
@@ -70,45 +70,45 @@ export default function ContactPage() {
             <Section>
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
                     {/* Contact Form */}
-                    <div className="glass p-8 md:p-10 rounded-3xl border border-glass-border">
-                        <h2 className="text-2xl font-bold text-ivory mb-6">Send us a Message</h2>
+                    <div className="glass-theme p-8 md:p-10 rounded-3xl">
+                        <h2 className="text-2xl font-bold text-theme-primary mb-6">Send us a Message</h2>
                         <form onSubmit={handleSubmit} className="space-y-6">
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 <div>
-                                    <label className="block text-ivory/70 text-sm mb-2">Your Name</label>
+                                    <label className="block text-theme-secondary text-sm mb-2">Your Name</label>
                                     <input
                                         type="text"
                                         required
-                                        className="w-full px-4 py-3 bg-midnight/50 border border-glass-border rounded-xl text-ivory focus:border-gold focus:outline-none transition-colors"
+                                        className="w-full px-4 py-3 bg-white/50 dark:bg-midnight/50 border border-theme-light rounded-xl text-theme-primary focus:border-terracotta dark:focus:border-gold focus:outline-none transition-colors"
                                         value={formData.name}
                                         onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                                     />
                                 </div>
                                 <div>
-                                    <label className="block text-ivory/70 text-sm mb-2">Phone Number</label>
+                                    <label className="block text-theme-secondary text-sm mb-2">Phone Number</label>
                                     <input
                                         type="tel"
                                         required
-                                        className="w-full px-4 py-3 bg-midnight/50 border border-glass-border rounded-xl text-ivory focus:border-gold focus:outline-none transition-colors"
+                                        className="w-full px-4 py-3 bg-white/50 dark:bg-midnight/50 border border-theme-light rounded-xl text-theme-primary focus:border-terracotta dark:focus:border-gold focus:outline-none transition-colors"
                                         value={formData.phone}
                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
                                     />
                                 </div>
                             </div>
                             <div>
-                                <label className="block text-ivory/70 text-sm mb-2">Email Address</label>
+                                <label className="block text-theme-secondary text-sm mb-2">Email Address</label>
                                 <input
                                     type="email"
                                     required
-                                    className="w-full px-4 py-3 bg-midnight/50 border border-glass-border rounded-xl text-ivory focus:border-gold focus:outline-none transition-colors"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-midnight/50 border border-theme-light rounded-xl text-theme-primary focus:border-terracotta dark:focus:border-gold focus:outline-none transition-colors"
                                     value={formData.email}
                                     onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                                 />
                             </div>
                             <div>
-                                <label className="block text-ivory/70 text-sm mb-2">Subject</label>
+                                <label className="block text-theme-secondary text-sm mb-2">Subject</label>
                                 <select
-                                    className="w-full px-4 py-3 bg-midnight/50 border border-glass-border rounded-xl text-ivory focus:border-gold focus:outline-none transition-colors"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-midnight/50 border border-theme-light rounded-xl text-theme-primary focus:border-terracotta dark:focus:border-gold focus:outline-none transition-colors"
                                     value={formData.subject}
                                     onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
                                 >
@@ -121,15 +121,15 @@ export default function ContactPage() {
                                 </select>
                             </div>
                             <div>
-                                <label className="block text-ivory/70 text-sm mb-2">Message</label>
+                                <label className="block text-theme-secondary text-sm mb-2">Message</label>
                                 <textarea
                                     rows={4}
-                                    className="w-full px-4 py-3 bg-midnight/50 border border-glass-border rounded-xl text-ivory focus:border-gold focus:outline-none transition-colors resize-none"
+                                    className="w-full px-4 py-3 bg-white/50 dark:bg-midnight/50 border border-theme-light rounded-xl text-theme-primary focus:border-terracotta dark:focus:border-gold focus:outline-none transition-colors resize-none"
                                     value={formData.message}
                                     onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                                 ></textarea>
                             </div>
-                            <Button type="submit" size="lg" className="w-full bg-gold text-midnight hover:bg-white">
+                            <Button type="submit" size="lg" className="w-full">
                                 Send Message
                             </Button>
                         </form>
@@ -137,30 +137,30 @@ export default function ContactPage() {
 
                     {/* Map & Location */}
                     <div className="space-y-6">
-                        <div className="glass p-8 rounded-3xl border border-glass-border">
+                        <div className="glass-theme p-8 rounded-3xl">
                             <div className="flex items-start gap-4 mb-6">
-                                <MapPin className="w-6 h-6 text-gold flex-shrink-0 mt-1" />
+                                <MapPin className="w-6 h-6 text-theme-accent flex-shrink-0 mt-1" />
                                 <div>
-                                    <h3 className="text-xl font-bold text-ivory mb-2">Farm Location</h3>
-                                    <p className="text-ivory/70">
+                                    <h3 className="text-xl font-bold text-theme-primary mb-2">Farm Location</h3>
+                                    <p className="text-theme-secondary">
                                         Amrit Gir Cow Farm<br />
                                         Village Naimisharanya, Sitapur Road<br />
                                         Lucknow, Uttar Pradesh 226401
                                     </p>
                                 </div>
                             </div>
-                            <p className="text-ivory/50 text-sm">
+                            <p className="text-theme-muted text-sm">
                                 Farm visits available every Sunday for subscribers.
                                 Book via WhatsApp at least 48 hours in advance.
                             </p>
                         </div>
 
                         {/* Map Placeholder */}
-                        <div className="aspect-square bg-midnight-mid rounded-3xl border border-glass-border flex items-center justify-center">
+                        <div className="aspect-square bg-theme-secondary rounded-3xl border border-theme-light flex items-center justify-center">
                             <div className="text-center">
-                                <MapPin className="w-12 h-12 text-gold/50 mx-auto mb-4" />
-                                <p className="text-ivory/50">Interactive Map</p>
-                                <p className="text-ivory/30 text-sm">Coming Soon</p>
+                                <MapPin className="w-12 h-12 text-theme-accent/50 mx-auto mb-4" />
+                                <p className="text-theme-muted">Interactive Map</p>
+                                <p className="text-theme-muted/50 text-sm">Coming Soon</p>
                             </div>
                         </div>
 
@@ -168,11 +168,11 @@ export default function ContactPage() {
                         <a
                             href="https://wa.me/919876543210"
                             target="_blank"
-                            className="block glass p-6 rounded-3xl border border-green-500/30 hover:border-green-500/50 transition-all text-center group"
+                            className="block glass-theme p-6 rounded-3xl border-green-500/30 hover:border-green-500/50 transition-all text-center group"
                         >
-                            <MessageCircle className="w-10 h-10 text-green-400 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                            <p className="text-ivory font-bold text-lg">Prefer WhatsApp?</p>
-                            <p className="text-ivory/60 text-sm">Get instant responses on WhatsApp</p>
+                            <MessageCircle className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                            <p className="text-theme-primary font-bold text-lg">Prefer WhatsApp?</p>
+                            <p className="text-theme-muted text-sm">Get instant responses on WhatsApp</p>
                         </a>
                     </div>
                 </div>
