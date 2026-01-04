@@ -42,11 +42,31 @@ export default async function ProductPage({ params }: { params: { slug: string }
     return (
         <main className="bg-theme-primary min-h-screen">
             {/* Hero Section */}
-            <section className="relative pt-32 pb-20 bg-gradient-to-b from-terracotta/5 dark:from-gold/5 to-transparent overflow-hidden">
+            <section className="relative pt-24 md:pt-32 pb-20 bg-gradient-to-b from-terracotta/5 dark:from-gold/5 to-transparent overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-terracotta/5 dark:bg-gold/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>
 
                 <div className="max-w-7xl mx-auto px-6">
-                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
+                    {/* Mobile Header (Title on Top) */}
+                    <div className="lg:hidden mb-8 text-center">
+                        {basicProduct.badge && (
+                            <span className="inline-block px-4 py-1.5 bg-terracotta/10 dark:bg-gold/10 text-theme-accent border border-terracotta/20 dark:border-gold/20 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-4">
+                                {basicProduct.badge}
+                            </span>
+                        )}
+                        <h1 className="text-4xl font-serif font-bold text-theme-primary mb-4 leading-tight">
+                            {basicProduct.title}
+                        </h1>
+                        <div className="flex items-center justify-center gap-4 mb-2">
+                            <div className="flex text-theme-accent">
+                                {[...Array(5)].map((_, i) => (
+                                    <Star key={i} className="w-4 h-4 fill-current" />
+                                ))}
+                            </div>
+                            <span className="text-xs text-theme-muted font-medium">4.9/5 (240+ Reviews)</span>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-start">
                         {/* Product Image */}
                         <div className="sticky top-24">
                             <div className="relative aspect-square rounded-[2rem] overflow-hidden bg-theme-secondary border border-theme-light group">
@@ -80,16 +100,16 @@ export default async function ProductPage({ params }: { params: { slug: string }
                         <div className="space-y-8">
                             <div>
                                 {basicProduct.badge && (
-                                    <span className="inline-block px-4 py-1.5 bg-terracotta/10 dark:bg-gold/10 text-theme-accent border border-terracotta/20 dark:border-gold/20 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-6">
+                                    <span className="hidden lg:inline-block px-4 py-1.5 bg-terracotta/10 dark:bg-gold/10 text-theme-accent border border-terracotta/20 dark:border-gold/20 text-[10px] font-bold uppercase tracking-[0.2em] rounded-full mb-6">
                                         {basicProduct.badge}
                                     </span>
                                 )}
 
-                                <h1 className="text-5xl md:text-6xl font-serif font-bold text-theme-primary mb-4 leading-tight">
+                                <h1 className="hidden lg:block text-5xl md:text-6xl font-serif font-bold text-theme-primary mb-4 leading-tight">
                                     {basicProduct.title}
                                 </h1>
 
-                                <div className="flex items-center gap-4 mb-6">
+                                <div className="hidden lg:flex items-center gap-4 mb-6">
                                     <div className="flex text-theme-accent">
                                         {[...Array(5)].map((_, i) => (
                                             <Star key={i} className="w-4 h-4 fill-current" />
