@@ -60,13 +60,15 @@ export function ComboCarousel() {
                             <ProductCard
                                 id={product.id}
                                 title={product.title}
-                                price={`₹${product.price}`}
-                                regularPrice={product.originalPrice ? `₹${product.originalPrice}` : undefined}
+                                price={product.price}
+                                regularPrice={product.regularPrice}
                                 image={product.image}
-                                description={product.subtitle}
-                                slug={product.id}
+                                description={product.description}
+                                slug={product.slug}
                                 category={product.category}
-                                badge={product.tags?.[0]}
+                                badge={product.badge}
+                                subscription={product.subscription}
+                                featured={product.featured}
                             />
                         </div>
                     ))}
