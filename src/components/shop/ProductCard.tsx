@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { ArrowRight, ShoppingBag, Repeat, Check } from "lucide-react";
+import { ArrowRight, ShoppingBag, Repeat, Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/CartContext";
 import { useState } from "react";
@@ -11,23 +11,24 @@ import { ProductImage } from "@/components/ui/ProductImage";
 interface ProductCardProps {
     id: string;
     title: string;
-    price: string;
-    regularPrice?: string;
+    price: string | number;
+    regularPrice?: string | number;
     image: string;
     description: string;
     slug: string;
     badge?: string;
     subscription?: boolean;
     category?: string;
+    featured?: boolean;
 }
 
-export function ProductCard({ id, title, price, regularPrice, image, description, slug, badge, subscription, category }: ProductCardProps) {
+export function ProductCard({ id, title, price, regularPrice, image, description, slug, badge, subscription, category, featured }: ProductCardProps) {
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
     const isOnSale = regularPrice && regularPrice !== price;
 
     const handleAddToCart = () => {
-        addToCart({ id, title, price, image, slug });
+        addToCart({ id, title, price: String(price), image, slug });
         setAdded(true);
         setTimeout(() => setAdded(false), 2000);
     };
@@ -36,8 +37,14 @@ export function ProductCard({ id, title, price, regularPrice, image, description
         <div className="group relative bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border rounded-2xl overflow-hidden hover:border-terracotta/40 dark:hover:border-gold/40 transition-all duration-500 hover:shadow-lifted dark:hover:shadow-[0_20px_60px_rgba(212,175,55,0.2)] hover:-translate-y-2">
             {/* Badge */}
             {badge && (
-                <span className="absolute top-4 left-4 z-10 bg-terracotta dark:bg-gold text-white dark:text-midnight text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                <span className="absolute top-4 left-4 z-10 bg-terracotta dark:bg-gold text-white dark:text-midnight text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-xl">
                     {badge}
+                </span>
+            )}
+
+            {featured && !badge && (
+                <span className="absolute top-4 left-4 z-10 bg-espresso dark:bg-ivory text-white dark:text-midnight text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-xl flex items-center gap-1">
+                    <Star className="w-3 h-3 fill-current" /> Premium
                 </span>
             )}
 

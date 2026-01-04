@@ -1,244 +1,467 @@
 export const products = [
-    // DAIRY CATEGORY (7 products)
+    // ═══════════════════════════════════════════════════════════
+    // A2 DAIRY
+    // ═══════════════════════════════════════════════════════════
     {
-        id: "milk-500ml",
-        title: "A2 Desi Gir Cow Milk - 500ml",
-        price: "₹45",
-        regularPrice: "₹50",
+        id: "milk-gir-1l",
+        title: "A2 Gir cow milk - 1 L",
+        price: "₹125",
+        regularPrice: "₹140",
         image: "/assets/img/milk-bottle.png",
         category: "Dairy",
-        description: "Pure A2 beta-casein milk from indigenous Desi Gir cows. Glass bottled, delivered within 4 hours of milking. Rich in Omega-3, easier to digest, supports immunity.",
-        slug: "a2-milk-500ml",
-        badge: "Farm Fresh",
-        subscription: true,
-        sku: "AMRIT-MILK-500"
+        description: "Pure A2 beta-casein milk from indigenous Desi Gir cows. High nutritional value.",
+        slug: "a2-gir-cow-milk-1l",
+        sku: "AMRIT-DAIRY-001",
+        subscription: true
     },
     {
-        id: "milk-1l",
-        title: "A2 Desi Gir Cow Milk - 1L",
-        price: "₹85",
-        regularPrice: "₹95",
+        id: "milk-sahiwal-1l",
+        title: "A2 Sahiwal cow milk - 1 L",
+        price: "₹95",
         image: "/assets/img/milk-bottle.png",
         category: "Dairy",
-        description: "Pure A2 beta-casein milk from indigenous Desi Gir cows. Glass bottled, delivered within 4 hours of milking. Family size.",
-        slug: "a2-milk-1l",
-        badge: "Best Seller",
-        subscription: true,
-        sku: "AMRIT-MILK-1L"
+        description: "Fresh A2 milk from Sahiwal breed cows.",
+        slug: "a2-sahiwal-cow-milk-1l",
+        sku: "AMRIT-DAIRY-002",
+        subscription: true
     },
     {
-        id: "curd-500ml",
-        title: "A2 Curd (Dahi) - 500ml",
-        price: "₹50",
-        regularPrice: "₹60",
-        image: "/assets/img/curd.png",
+        id: "milk-buffalo-1l",
+        title: "A2 Buffalo Milk - 1 L",
+        price: "₹110",
+        image: "/assets/img/milk-bottle.png",
         category: "Dairy",
-        description: "Thick, creamy curd made from A2 milk. Live probiotic cultures. Perfect for digestion and gut health.",
-        slug: "a2-curd-500ml",
-        subscription: true,
-        sku: "AMRIT-CURD-500"
+        description: "Rich and creamy A2 Buffalo milk.",
+        slug: "a2-buffalo-milk-1l",
+        sku: "AMRIT-DAIRY-003",
+        subscription: true
     },
     {
-        id: "curd-1l",
-        title: "A2 Curd (Dahi) - 1L",
-        price: "₹90",
-        regularPrice: "₹105",
-        image: "/assets/img/curd.png",
+        id: "milk-colostrum-1l",
+        title: "A2 Colostrum Milk - 1 L",
+        price: "₹150",
+        image: "/assets/img/milk-bottle.png",
         category: "Dairy",
-        description: "Family pack thick, creamy curd made from A2 milk. Live probiotic cultures.",
-        slug: "a2-curd-1l",
-        subscription: true,
-        sku: "AMRIT-CURD-1L"
+        description: "Immunity-boosting first milk (Colostrum) from A2 cows.",
+        slug: "a2-colostrum-milk-1l",
+        sku: "AMRIT-DAIRY-004"
     },
     {
-        id: "paneer-200g",
-        title: "Malai Paneer - 200g",
-        price: "₹80",
-        regularPrice: "₹90",
-        image: "/assets/img/paneer.png",
-        category: "Dairy",
-        description: "Soft, velvety paneer made fresh from A2 milk. High protein, perfect for curries and grilling.",
-        slug: "malai-paneer-200g",
-        sku: "AMRIT-PANEER-200"
-    },
-    {
-        id: "paneer-500g",
-        title: "Malai Paneer - 500g",
-        price: "₹180",
-        regularPrice: "₹200",
-        image: "/assets/img/paneer.png",
-        category: "Dairy",
-        description: "Soft, velvety paneer made fresh from A2 milk. Bulk pack for families.",
-        slug: "malai-paneer-500g",
-        badge: "Best Value",
-        sku: "AMRIT-PANEER-500"
-    },
-    {
-        id: "ghee-500ml",
-        title: "Vedic Bilona Ghee - 500ml",
-        price: "₹650",
-        regularPrice: "₹750",
+        id: "ghee-cow-1kg",
+        title: "A2 Cow Ghee - 1 kg",
+        price: "₹2500",
         image: "/assets/img/ghee-jar.png",
         category: "Dairy",
-        description: "Traditional hand-churned ghee using ancient Bilona method. Made from A2 curd. Rich in Omega-3, CLA, and fat-soluble vitamins. Golden color, grainy texture, divine aroma.",
-        slug: "vedic-ghee-500ml",
-        badge: "Premium",
-        subscription: true,
-        sku: "AMRIT-GHEE-500"
+        description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
+        slug: "a2-cow-ghee-1kg",
+        sku: "AMRIT-DAIRY-005",
+        featured: true,
+        badge: "Pure Vedic"
+    },
+    {
+        id: "paneer-1kg",
+        title: "Paneer - 1 kg",
+        price: "₹500",
+        image: "/assets/img/paneer.png",
+        category: "Dairy",
+        description: "Freshly made Malai Paneer from A2 milk.",
+        slug: "a2-paneer-1kg",
+        sku: "AMRIT-DAIRY-006"
+    },
+    {
+        id: "curd-1kg",
+        title: "Curd - 1 kg",
+        price: "₹200",
+        image: "/assets/img/curd.png",
+        category: "Dairy",
+        description: "Thick, probiotic-rich Curd made from A2 milk.",
+        slug: "a2-curd-1kg",
+        sku: "AMRIT-DAIRY-007",
+        subscription: true
+    },
+    {
+        id: "khoya-1kg",
+        title: "Khoya - 1 kg",
+        price: "₹600",
+        image: "/assets/img/sweets.png",
+        category: "Dairy",
+        description: "Pure milk solids (Khoya) for traditional sweets.",
+        slug: "a2-khoya-1kg",
+        sku: "AMRIT-DAIRY-008"
     },
 
-    // OILS CATEGORY (7 products)
+    // ═══════════════════════════════════════════════════════════
+    // FLOUR (ATTA)
+    // ═══════════════════════════════════════════════════════════
     {
-        id: "oil-mustard",
-        title: "Cold-Pressed Mustard Oil - 1L",
-        price: "₹220",
-        regularPrice: "₹250",
+        id: "atta-wheat-1kg",
+        title: "Whole Wheat Atta - 1 kg",
+        price: "₹60",
+        image: "/assets/img/atta-sack.png",
+        category: "Atta",
+        description: "Stone-ground whole wheat flour.",
+        slug: "whole-wheat-atta-1kg",
+        sku: "AMRIT-ATTA-001",
+        subscription: true
+    },
+    {
+        id: "atta-multigrain-1kg",
+        title: "Multi grain - 1 kg",
+        price: "₹120",
+        image: "/assets/img/atta-sack.png",
+        category: "Atta",
+        description: "Nutritious blend of multiple grains.",
+        slug: "multigrain-atta-1kg",
+        sku: "AMRIT-ATTA-002"
+    },
+    {
+        id: "atta-corn-1kg",
+        title: "Corn Flour - 1 kg",
+        price: "₹120",
+        image: "/assets/img/atta-sack.png",
+        category: "Atta",
+        description: "Pure yellow corn flour.",
+        slug: "corn-flour-1kg",
+        sku: "AMRIT-ATTA-003"
+    },
+    {
+        id: "atta-bajra-1kg",
+        title: "Bajra - 1 kg",
+        price: "₹120",
+        image: "/assets/img/atta-sack.png",
+        category: "Atta",
+        description: "Traditional pearl millet (Bajra) flour.",
+        slug: "bajra-flour-1kg",
+        sku: "AMRIT-ATTA-004"
+    },
+    {
+        id: "atta-besan-1kg",
+        title: "Besan, Sattu - 1 kg",
+        price: "₹200",
+        image: "/assets/img/atta-sack.png",
+        category: "Atta",
+        description: "Pure Gram flour (Besan) and roasted gram flour (Sattu).",
+        slug: "besan-sattu-1kg",
+        sku: "AMRIT-ATTA-005"
+    },
+    {
+        id: "grains-millet-1kg",
+        title: "Millet Grains - 1 kg",
+        price: "₹250",
+        image: "/assets/img/millet-mix.png",
+        category: "Atta",
+        description: "Assorted ancient millet grains.",
+        slug: "millet-grains-1kg",
+        sku: "AMRIT-ATTA-006"
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // RICE
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "rice-kala-jeera-1kg",
+        title: "Kala Jeera Rice - 1 kg",
+        price: "₹100",
+        image: "/assets/img/millet-mix.png",
+        category: "Rice",
+        description: "Aromatic small-grain Kala Jeera rice.",
+        slug: "kala-jeera-rice-1kg",
+        sku: "AMRIT-RICE-001"
+    },
+    {
+        id: "rice-low-sugar-1kg",
+        title: "Kala Jeera Low-Sugar - 1 kg",
+        price: "₹120",
+        image: "/assets/img/millet-mix.png",
+        category: "Rice",
+        description: "Diabetes-friendly low-sugar Kala Jeera rice.",
+        slug: "kala-jeera-low-sugar-1kg",
+        sku: "AMRIT-RICE-002"
+    },
+    {
+        id: "rice-basmati-1kg",
+        title: "Premium Basmati - 1 kg",
+        price: "₹185",
+        image: "/assets/img/millet-mix.png",
+        category: "Rice",
+        description: "Long-grain aged premium Basmati rice.",
+        slug: "premium-basmati-rice-1kg",
+        sku: "AMRIT-RICE-003"
+    },
+    {
+        id: "rice-kala-namak-1kg",
+        title: "Kala Namak Rice - 1 kg",
+        price: "₹350",
+        image: "/assets/img/millet-mix.png",
+        category: "Rice",
+        description: "Buddha's gift - highly aromatic and nutritious Kala Namak rice.",
+        slug: "kala-namak-rice-1kg",
+        sku: "AMRIT-RICE-004"
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // COLD-PRESSED OILS
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "oil-yellow-mustard-1l",
+        title: "Yellow Mustard Oil - 1 L",
+        price: "₹380",
         image: "/assets/img/mustard-oil.png",
         category: "Oils",
-        description: "Single-origin cold-pressed kacchi ghani mustard oil. Pungent aroma, rich in Omega-3. Perfect for authentic North Indian cooking.",
-        slug: "mustard-oil-1l",
-        sku: "AMRIT-OIL-MUSTARD"
+        description: "Cold-pressed Yellow Mustard oil (Kacchi Ghani).",
+        slug: "yellow-mustard-oil-1l",
+        sku: "AMRIT-OIL-001",
+        featured: true
     },
     {
-        id: "oil-sesame",
-        title: "Cold-Pressed Sesame Oil (Til) - 500ml",
-        price: "₹280",
-        regularPrice: "₹320",
-        image: "/assets/img/sesame-oil.png",
-        category: "Oils",
-        description: "Premium cold-pressed sesame oil. Rich, nutty flavor. High in antioxidants and lignans. Excellent for massage and cooking.",
-        slug: "sesame-oil-500ml",
-        sku: "AMRIT-OIL-SESAME"
-    },
-    {
-        id: "oil-coconut",
-        title: "Virgin Coconut Oil - 500ml",
+        id: "oil-black-mustard-1l",
+        title: "Black Mustard Oil - 1 L",
         price: "₹350",
-        regularPrice: "₹400",
-        image: "/assets/img/coconut-oil.png",
+        image: "/assets/img/mustard-oil.png",
         category: "Oils",
-        description: "Cold-pressed virgin coconut oil. MCT-rich for quick energy. Perfect for cooking, hair care, and oil pulling.",
-        slug: "coconut-oil-500ml",
-        badge: "Superfood",
-        sku: "AMRIT-OIL-COCONUT"
+        description: "Cold-pressed Black Mustard oil, pungent and pure.",
+        slug: "black-mustard-oil-1l",
+        sku: "AMRIT-OIL-002",
+        featured: true
     },
     {
-        id: "oil-mentha",
-        title: "Mentha Arvensis Oil - 100ml",
-        price: "₹180",
-        regularPrice: "₹220",
-        image: "/assets/img/mentha-oil.png",
-        category: "Oils",
-        description: "Pure mentha oil extracted from fresh mint. Cooling, therapeutic. Use for aromatherapy, digestion support, and respiratory relief.",
-        slug: "mentha-oil-100ml",
-        sku: "AMRIT-OIL-MENTHA"
-    },
-    {
-        id: "oil-tulsi",
-        title: "Tulsi Infused Oil - 100ml",
-        price: "₹200",
-        regularPrice: "₹240",
-        image: "/assets/img/tulsi-oil.png",
-        category: "Oils",
-        description: "Sacred Tulsi (Holy Basil) infused in sesame oil. Adaptogenic properties. Supports immunity and stress relief.",
-        slug: "tulsi-oil-100ml",
-        badge: "Sacred",
-        sku: "AMRIT-OIL-TULSI"
-    },
-    {
-        id: "oil-lemongrass",
-        title: "Lemongrass Essential Oil - 100ml",
-        price: "₹190",
-        regularPrice: "₹230",
-        image: "/assets/img/lemongrass-oil.png",
-        category: "Oils",
-        description: "Fresh lemongrass essential oil. Citrus aroma, antimicrobial. Perfect for aromatherapy and natural cleaning.",
-        slug: "lemongrass-oil-100ml",
-        sku: "AMRIT-OIL-LEMONGRASS"
-    },
-    {
-        id: "oil-groundnut",
-        title: "Cold-Pressed Groundnut Oil - 1L",
-        price: "₹240",
-        regularPrice: "₹280",
+        id: "oil-groundnut-1l",
+        title: "Groundnut Oil - 1 L",
+        price: "₹600",
         image: "/assets/img/groundnut-oil.png",
         category: "Oils",
-        description: "Cold-pressed peanut oil. High smoke point, mild flavor. Perfect for frying and sautéing.",
-        slug: "groundnut-oil-1l",
-        sku: "AMRIT-OIL-GROUNDNUT"
+        description: "Cold-pressed Groundnut oil, rich in flavor.",
+        slug: "groundnut-oil-1l-premium",
+        sku: "AMRIT-OIL-003",
+        featured: true
+    },
+    {
+        id: "oil-coconut-1l",
+        title: "Coconut Oil - 1 L",
+        price: "₹1000",
+        image: "/assets/img/coconut-oil.png",
+        category: "Oils",
+        description: "Pure cold-pressed Coconut oil for cooking and care.",
+        slug: "coconut-oil-1l-premium",
+        sku: "AMRIT-OIL-004",
+        featured: true
+    },
+    {
+        id: "oil-sesame-1l",
+        title: "Sesame (Til) Oil - 1 L",
+        price: "₹800",
+        image: "/assets/img/sesame-oil.png",
+        category: "Oils",
+        description: "Cold-pressed Sesame (Til) oil.",
+        slug: "sesame-til-oil-1l",
+        sku: "AMRIT-OIL-005",
+        featured: true
+    },
+    {
+        id: "oil-tulsi-10ml",
+        title: "Tulsi Oil - 10 ml",
+        price: "₹300",
+        image: "/assets/img/tulsi-oil.png",
+        category: "Oils",
+        description: "Sacred Tulsi essential oil.",
+        slug: "tulsi-oil-10ml",
+        sku: "AMRIT-OIL-006",
+        featured: true
+    },
+    {
+        id: "oil-lemongrass-10ml",
+        title: "Lemongrass Oil - 10 ml",
+        price: "₹400",
+        image: "/assets/img/lemongrass-oil.png",
+        category: "Oils",
+        description: "Refreshing Lemongrass essential oil.",
+        slug: "lemongrass-oil-10ml",
+        sku: "AMRIT-OIL-007",
+        featured: true
+    },
+    {
+        id: "oil-menthol-10ml",
+        title: "Menthol Oil - 10 ml",
+        price: "₹250",
+        image: "/assets/img/mentha-oil.png",
+        category: "Oils",
+        description: "Cooling Menthol essential oil.",
+        slug: "menthol-oil-10ml",
+        sku: "AMRIT-OIL-008",
+        featured: true
     },
 
-    // OTHER/SUPERFOODS CATEGORY (7 products)
+    // ═══════════════════════════════════════════════════════════
+    // SWEETS & JAGGERY
+    // ═══════════════════════════════════════════════════════════
     {
-        id: "honey-500g",
-        title: "Raw Forest Honey - 500g",
-        price: "₹320",
-        regularPrice: "₹380",
-        image: "/assets/img/honey-jar.png",
-        category: "Other",
-        description: "Unprocessed, unheated honey from Himalayan forests. Rich in enzymes, antioxidants, and pollen. Natural sweetener with medicinal properties.",
-        slug: "forest-honey-500g",
-        badge: "Wild",
-        sku: "AMRIT-HONEY-500"
+        id: "sweets-rasgulla",
+        title: "Rasgulla - 1 Jar",
+        price: "₹450",
+        image: "/assets/img/sweets.png",
+        category: "Sweets",
+        description: "Soft and spongy Rasgullas made from A2 milk paneer.",
+        slug: "rasgulla-jar",
+        sku: "AMRIT-SWEET-001"
     },
     {
-        id: "atta-5kg",
-        title: "Stone Ground Whole Wheat Atta - 5kg",
-        price: "₹250",
-        regularPrice: "₹300",
-        image: "/assets/img/atta-sack.png",
-        category: "Other",
-        description: "Traditional chakki atta ground in stone mill. Retains all nutrients. Organic whole wheat from local farms.",
-        slug: "wheat-atta-5kg",
-        subscription: true,
-        sku: "AMRIT-ATTA-5KG"
-    },
-    {
-        id: "millet-1kg",
-        title: "Multi-Millet Mix - 1kg",
-        price: "₹150",
-        regularPrice: "₹180",
-        image: "/assets/img/millet-mix.png",
-        category: "Other",
-        description: "Blend of 5 ancient millets: jowar, bajra, ragi, foxtail, little millet. Gluten-free, low GI, high fiber. Perfect for diabetes management.",
-        slug: "millet-mix-1kg",
-        badge: "Superfood",
-        sku: "AMRIT-MILLET-1KG"
+        id: "jaggery-bites-500g",
+        title: "Jaggery Bites (Desi Chocolate Style) - 500g",
+        price: "₹110",
+        image: "/assets/img/jaggery.png",
+        category: "Sweets",
+        description: "Healthy jaggery bites, a natural substitute for chocolates.",
+        slug: "jaggery-bites-500g",
+        sku: "AMRIT-SWEET-002"
     },
     {
         id: "jaggery-1kg",
-        title: "Organic Jaggery (Gur) - 1kg",
-        price: "₹140",
-        regularPrice: "₹170",
+        title: "Jaggery - 1 kg",
+        price: "₹150",
         image: "/assets/img/jaggery.png",
-        category: "Other",
-        description: "Unrefined cane sugar. Rich in iron and minerals. Natural sweetener that detoxifies the body.",
-        slug: "jaggery-1kg",
-        sku: "AMRIT-JAGGERY-1KG"
+        category: "Sweets",
+        description: "Pure chemical-free Organic Jaggery.",
+        slug: "jaggery-1kg-pure",
+        sku: "AMRIT-SWEET-003"
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // WELLNESS / PERSONAL CARE
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "lip-balm",
+        title: "Lip Balm (Moisturizer)",
+        price: "₹300",
+        image: "/assets/img/balm.png",
+        category: "Wellness",
+        description: "Natural moisturizing Lip Balm.",
+        slug: "lip-balm-moisturizer",
+        sku: "AMRIT-WELL-001"
     },
     {
-        id: "turmeric-100g",
-        title: "Lakadong Turmeric Powder - 100g",
-        price: "₹120",
-        regularPrice: "₹150",
+        id: "bees-wax",
+        title: "Bees Wax (Moisturizer)",
+        price: "₹500",
+        image: "/assets/img/balm.png",
+        category: "Wellness",
+        description: "Pure Bees Wax for skin hydration.",
+        slug: "bees-wax-moisturizer",
+        sku: "AMRIT-WELL-002"
+    },
+    {
+        id: "bull-balm-rollon",
+        title: "Bull Balm Roll-On (10ml)",
+        price: "₹225",
+        image: "/assets/img/balm.png",
+        category: "Wellness",
+        description: "Ancient formula for pain relief in a handy roll-on.",
+        slug: "bull-balm-rollon",
+        sku: "AMRIT-WELL-003"
+    },
+    {
+        id: "bull-balm-spray",
+        title: "Bull Balm Spray (10ml)",
+        price: "₹250",
+        image: "/assets/img/balm.png",
+        category: "Wellness",
+        description: "Targeted pain relief spray.",
+        slug: "bull-balm-spray",
+        sku: "AMRIT-WELL-004"
+    },
+    {
+        id: "bull-balm-dropper",
+        title: "Bull Balm Dropper (10ml)",
+        price: "₹290",
+        image: "/assets/img/balm.png",
+        category: "Wellness",
+        description: "Concentrated formula for deep tissue relief.",
+        slug: "bull-balm-dropper",
+        sku: "AMRIT-WELL-005"
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // HONEY
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "honey-multiflora-1kg",
+        title: "Multiflora Honey - 1 kg",
+        price: "₹1200",
+        image: "/assets/img/honey-jar.png",
+        category: "Honey",
+        description: "Pure Multiflora honey collected from diverse forest flowers.",
+        slug: "multiflora-honey-1kg",
+        sku: "AMRIT-HONEY-001",
+        featured: true,
+        badge: "Raw & Pure"
+    },
+    {
+        id: "honey-jamun-1kg",
+        title: "Jamun Honey - 1 kg",
+        price: "₹1200",
+        image: "/assets/img/honey-jar.png",
+        category: "Honey",
+        description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
+        slug: "jamun-honey-1kg",
+        sku: "AMRIT-HONEY-002",
+        featured: true
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // OTHER PRODUCTS
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "turmeric-1kg",
+        title: "Organic Turmeric - 1 kg",
+        price: "₹900",
         image: "/assets/img/turmeric.png",
         category: "Other",
-        description: "Premium Lakadong turmeric with 7-9% curcumin (vs 2-3% in regular haldi). Powerful anti-inflammatory. Golden milk essential.",
-        slug: "lakadong-turmeric-100g",
-        badge: "Premium",
-        sku: "AMRIT-HALDI-100"
+        description: "High-curcumin Organic Turmeric powder.",
+        slug: "organic-turmeric-1kg",
+        sku: "AMRIT-MISC-001"
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // COW-BASED (GAU SEVA)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "cow-manure-1kg",
+        title: "Cow Manure - 1 kg",
+        price: "₹30",
+        image: "/assets/img/farm-soul.png",
+        category: "Gau Seva",
+        description: "Organic manure from Desi Gir cows for your garden.",
+        slug: "cow-manure-1kg",
+        sku: "AMRIT-GAU-001"
     },
     {
-        id: "balm-50g",
-        title: "Ayurvedic Pain Relief Balm - 50g",
-        price: "₹150",
-        regularPrice: "₹180",
-        image: "/assets/img/balm.png",
-        category: "Other",
-        description: "Herbal balm with camphor, mentha, eucalyptus, and clove oil. Natural relief for joint pain, headaches, and muscle soreness.",
-        slug: "ayurvedic-balm-50g",
-        sku: "AMRIT-BALM-50"
+        id: "cow-dung-cakes-2pcs",
+        title: "Upla (Cow Dung Cakes) - 2 pcs",
+        price: "₹100",
+        image: "/assets/img/farm-soul.png",
+        category: "Gau Seva",
+        description: "Traditionally dried Cow Dung cakes for rituals and fuel.",
+        slug: "cow-dung-cakes-2pcs",
+        sku: "AMRIT-GAU-002"
+    },
+    {
+        id: "gaumutra-1l",
+        title: "Gaumutra - 1 L",
+        price: "₹100",
+        image: "/assets/img/farm-soul.png",
+        category: "Gau Seva",
+        description: "Distilled Gaumutra for spiritual and medicinal use.",
+        slug: "gaumutra-1l",
+        sku: "AMRIT-GAU-003"
     }
 ];
 
-export type Product = typeof products[0];
+export type Product = (typeof products)[0];
+
+export const categories = [
+    { id: "all", label: "All Products", icon: "LayoutGrid" },
+    { id: "dairy", label: "A2 Dairy", icon: "Milk" },
+    { id: "oils", label: "Wood Pressed Oils", icon: "Droplet" },
+    { id: "atta", label: "Stone Ground Atta", icon: "Wheat" },
+    { id: "honey", label: "Raw Honey", icon: "Hexagon" },
+    { id: "wellness", label: "Wellness", icon: "Package" },
+] as const;

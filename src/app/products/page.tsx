@@ -11,8 +11,14 @@ export default function ProductsPage() {
     const categories = [
         { id: "all", name: "All Products", count: products.length },
         { id: "Dairy", name: "Dairy", count: products.filter(p => p.category === "Dairy").length },
-        { id: "Oils", name: "Oils", count: products.filter(p => p.category === "Oils").length },
-        { id: "Other", name: "Superfoods", count: products.filter(p => p.category === "Other").length },
+        { id: "Atta", name: "Atta (Flour)", count: products.filter(p => p.category === "Atta").length },
+        { id: "Rice", name: "Rice", count: products.filter(p => p.category === "Rice").length },
+        { id: "Oils", name: "Cold-Pressed Oils", count: products.filter(p => p.category === "Oils").length },
+        { id: "Honey", name: "Natural Honey", count: products.filter(p => p.category === "Honey").length },
+        { id: "Sweets", name: "Sweets & Jaggery", count: products.filter(p => p.category === "Sweets").length },
+        { id: "Wellness", name: "Wellness", count: products.filter(p => p.category === "Wellness").length },
+        { id: "Gau Seva", name: "Gau Seva", count: products.filter(p => p.category === "Gau Seva").length },
+        { id: "Other", name: "Other", count: products.filter(p => p.category === "Other").length },
     ];
 
     const filteredProducts = activeCategory === "all"
