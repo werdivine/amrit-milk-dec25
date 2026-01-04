@@ -9,7 +9,7 @@ import { ArrowLeft, ArrowRight } from "lucide-react";
 
 export function ComboCarousel() {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const comboProducts = products.filter(p => p.category === "Combos" || p.tags?.includes("Healthy Combo"));
+    const comboProducts = products.filter(p => p.category === "Combos");
 
     const scroll = (direction: "left" | "right") => {
         if (scrollRef.current) {
