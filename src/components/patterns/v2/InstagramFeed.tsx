@@ -18,15 +18,16 @@ export function InstagramFeed() {
                     <p className="text-lg text-espresso/70 dark:text-ivory/70 max-w-2xl mx-auto mb-8">
                         See behind the scenes - our cows, our team, the daily rituals that bring pure food to your table.
                     </p>
-                    <Button
+                    <a
                         href="https://www.instagram.com/amritmilk"
                         target="_blank"
-                        className="bg-gradient-to-r from-pink-500 to-purple-600 text-white hover:from-pink-600 hover:to-purple-700"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl font-semibold"
                     >
-                        <Instagram className="w-5 h-5 mr-2" />
+                        <Instagram className="w-5 h-5" />
                         Follow @amritmilk on Instagram
-                        <ExternalLink className="w-4 h-4 ml-2" />
-                    </Button>
+                        <ExternalLink className="w-4 h-4" />
+                    </a>
                 </div>
 
                 {/* Instagram embed placeholder */}
