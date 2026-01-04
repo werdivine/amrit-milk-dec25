@@ -38,7 +38,7 @@ export default function ProductsPage() {
             </section>
 
             {/* Category Filters - Sticky */}
-            <section className="sticky top-20 z-40 bg-theme-secondary/95 backdrop-blur-xl border-y border-theme-light py-6 shadow-lg">
+            <section className="sticky top-24 z-40 bg-theme-secondary/95 backdrop-blur-xl border-y border-theme-light py-6 shadow-lg">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="flex gap-4 justify-center flex-wrap">
                         {categories.map((cat) => (
@@ -64,7 +64,7 @@ export default function ProductsPage() {
                         <div
                             key={p.slug}
                             className="animate-fade-in-up"
-                            style={{ animationDelay: `${index * 0.1}s` }}
+                            style={{ animationDelay: `${index * 0.05}s` }}
                         >
                             <ProductCard {...p} />
                         </div>

@@ -50,39 +50,35 @@ export function Header() {
 
     return (
         <>
-            <header className="fixed top-0 left-0 w-full z-50 bg-creme/90 dark:bg-midnight/80 backdrop-blur-xl border-b border-espresso/5 dark:border-white/5 h-20 transition-all duration-300">
+            {/* Premium Header with rich terracotta/espresso for light mode - logo visibility */}
+            <header className="fixed top-0 left-0 w-full z-50 bg-gradient-to-r from-[#8B4513] via-[#A0522D] to-[#8B4513] dark:from-midnight/95 dark:via-midnight/90 dark:to-midnight/95 backdrop-blur-lg border-b border-warmGold/30 dark:border-gold/10 h-24 transition-all duration-500 shadow-md">
+                {/* Decorative top accent line */}
+                <div className="absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r from-warmGold via-gold to-warmGold opacity-80"></div>
+
                 <div className="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
                     {/* Mobile Menu Toggle */}
                     <button
-                        className="lg:hidden text-espresso dark:text-ivory"
+                        className="lg:hidden p-2 rounded-xl bg-white/10 text-ivory hover:bg-white/20 transition-all"
                         onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                     >
                         {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
                     </button>
 
-                    {/* Logo */}
-                    <Link href="/" className="flex items-center gap-3 group">
-                        {/* Icon */}
-                        <div className="relative">
-                            <svg width="40" height="40" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path d="M20 2C16 2 12 6 12 12C12 18 20 28 20 38C20 28 28 18 28 12C28 6 24 2 20 2Z" fill="#D4AF37" opacity="0.2" />
-                                <path d="M20 2C16 2 12 6 12 12C12 18 20 28 20 28C20 28 28 18 28 12C28 6 24 2 20 2Z" stroke="#D4AF37" strokeWidth="1.5" fill="none" />
-                                <circle cx="20" cy="13" r="3" fill="#D4AF37" />
-                            </svg>
-                        </div>
-                        {/* Text */}
-                        <div className="flex flex-col">
-                            <span className="text-2xl font-serif font-bold text-espresso dark:text-ivory tracking-tight leading-none">
-                                AMRIT
-                            </span>
-                            <span className="text-[10px] uppercase tracking-[0.2em] text-terracotta dark:text-gold/80 font-medium -mt-0.5">
-                                Affordable milk, rich in taste
-                            </span>
-                        </div>
+                    {/* Logo - Larger size with transparent logo */}
+                    <Link href="/" className="flex items-center gap-3 group relative">
+                        <Image
+                            src="/assets/img/amrit-logo-transparent.png"
+                            alt="Amrit Milk - Affordable milk rich in taste"
+                            width={220}
+                            height={88}
+                            className="h-[76px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+                            style={{ filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))' }}
+                            priority
+                        />
                     </Link>
 
                     {/* Desktop Nav */}
-                    <nav className="hidden lg:flex items-center gap-6">
+                    <nav className="hidden lg:flex items-center gap-1">
                         {navLinks.map((link) => (
                             <div
                                 key={link.href}
@@ -92,20 +88,20 @@ export function Header() {
                             >
                                 <Link
                                     href={link.href}
-                                    className="text-sm font-medium uppercase tracking-widest text-espresso/80 dark:text-ivory/80 hover:text-terracotta dark:hover:text-gold transition-colors flex items-center gap-1 py-2"
+                                    className="px-4 py-2 text-sm font-medium uppercase tracking-wider text-ivory/90 hover:text-gold transition-all duration-200 flex items-center gap-1 rounded-lg hover:bg-white/10"
                                 >
                                     {link.label}
-                                    {link.children && <ChevronDown className="w-3 h-3" />}
+                                    {link.children && <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />}
                                 </Link>
                                 {
                                     link.children && openDropdown === link.label && (
                                         <div className="absolute top-full left-0 pt-2">
-                                            <div className="glass rounded-xl border border-espresso/10 dark:border-glass-border py-2 min-w-[180px] bg-white/80 dark:bg-black/50 backdrop-blur-xl">
+                                            <div className="rounded-2xl border border-warmGold/30 py-3 min-w-[200px] bg-[#8B4513]/95 dark:bg-midnight/95 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
                                                 {link.children.map((child) => (
                                                     <Link
                                                         key={child.href}
                                                         href={child.href}
-                                                        className="block px-4 py-2 text-sm text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold hover:bg-espresso/5 dark:hover:bg-gold/5 transition-all"
+                                                        className="block px-5 py-2.5 text-sm text-ivory/80 hover:text-gold hover:bg-white/10 transition-all"
                                                     >
                                                         {child.label}
                                                     </Link>
@@ -119,47 +115,47 @@ export function Header() {
                     </nav>
 
                     {/* Actions */}
-                    <div className="flex items-center gap-4">
+                    <div className="flex items-center gap-3">
                         <ThemeToggle />
-                        <button className="text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold transition-colors hidden md:block">
+                        <button className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all hidden md:block">
                             <Search className="w-5 h-5" />
                         </button>
-                        <Link href="/account" className="text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold transition-colors">
+                        <Link href="/account" className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all">
                             <User className="w-5 h-5" />
                         </Link>
-                        <Link href="/cart" className="text-espresso/70 dark:text-ivory/70 hover:text-terracotta dark:hover:text-gold transition-colors relative group">
+                        <Link href="/cart" className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all relative group">
                             <ShoppingBag className="w-5 h-5" />
                             {cartCount > 0 && (
-                                <span className="absolute -top-2 -right-2 bg-terracotta dark:bg-gold text-white dark:text-midnight text-[10px] font-bold min-w-[16px] h-4 rounded-full flex items-center justify-center group-hover:scale-110 transition-transform px-1">
+                                <span className="absolute -top-1 -right-1 bg-gold text-espresso text-[10px] font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform px-1 shadow-md">
                                     {cartCount}
                                 </span>
                             )}
                         </Link>
                     </div>
-                </div >
-            </header >
+                </div>
+            </header>
 
             {/* Mobile Menu */}
             {
                 mobileMenuOpen && (
-                    <div className="fixed inset-0 z-40 bg-midnight pt-20">
-                        <nav className="p-6 space-y-4">
+                    <div className="fixed inset-0 z-40 bg-[#8B4513] dark:bg-midnight pt-24">
+                        <nav className="p-6 space-y-2">
                             {navLinks.map((link) => (
                                 <div key={link.href}>
                                     <Link
                                         href={link.href}
-                                        className="block text-xl font-medium text-ivory py-3 border-b border-glass-border"
+                                        className="block text-xl font-medium text-ivory py-3 px-4 rounded-xl hover:bg-white/10 border-b border-white/10 transition-all"
                                         onClick={() => setMobileMenuOpen(false)}
                                     >
                                         {link.label}
                                     </Link>
                                     {link.children && (
-                                        <div className="pl-4 space-y-2 py-2">
+                                        <div className="pl-6 space-y-1 py-2">
                                             {link.children.map((child) => (
                                                 <Link
                                                     key={child.href}
                                                     href={child.href}
-                                                    className="block text-ivory/60 py-2"
+                                                    className="block text-ivory/70 py-2 px-4 rounded-lg hover:bg-white/10 hover:text-gold transition-all"
                                                     onClick={() => setMobileMenuOpen(false)}
                                                 >
                                                     {child.label}

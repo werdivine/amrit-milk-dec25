@@ -25,7 +25,7 @@ export default function RootLayout({
                 <ThemeProvider>
                     <CartProvider>
                         <Header />
-                        <main className="flex-grow pt-20">
+                        <main className="flex-grow pt-24">
                             {children}
                         </main>
                         <Footer />

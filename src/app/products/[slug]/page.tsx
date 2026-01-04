@@ -6,6 +6,7 @@ import { notFound } from "next/navigation";
 import { Check, Heart, Shield, Leaf, Award, ChevronDown, Star, ArrowRight, ShoppingBag, Truck, ShieldCheck, Zap } from "lucide-react";
 import { ProductCard } from "@/components/shop/ProductCard";
 import Image from "next/image";
+import { AddToCartButton } from "@/components/shop/AddToCartButton";
 
 export async function generateStaticParams() {
     return products.map((product) => ({
@@ -13,8 +14,8 @@ export async function generateStaticParams() {
     }));
 }
 
-export default async function ProductPage({ params }: { params: Promise<{ slug: string }> }) {
-    const { slug } = await params;
+export default async function ProductPage({ params }: { params: { slug: string } }) {
+    const { slug } = params;
     const enrichedProduct = enrichedProducts.find(p => p.slug === slug);
     const basicProduct = products.find(p => p.slug === slug);
 
@@ -50,10 +51,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                         <div className="sticky top-24">
                             <div className="relative aspect-square rounded-[2rem] overflow-hidden bg-theme-secondary border border-theme-light group">
                                 <div className="absolute inset-0 bg-gradient-to-br from-terracotta/10 dark:from-gold/10 via-transparent to-transparent opacity-50 group-hover:opacity-100 transition-opacity duration-700"></div>
-                                <img
+                                <Image
                                     src={basicProduct.image}
                                     alt={basicProduct.title}
+                                    width={800}
+                                    height={800}
                                     className="relative z-10 w-full h-full object-contain p-12 drop-shadow-[0_20px_50px_rgba(0,0,0,0.3)] dark:drop-shadow-[0_20px_50px_rgba(0,0,0,0.5)] transform transition-transform duration-700 group-hover:scale-105"
+                                    priority
                                 />
                             </div>
 
@@ -107,9 +111,13 @@ export default async function ProductPage({ params }: { params: Promise<{ slug: 
                             </p>
 
                             <div className="flex flex-wrap gap-4 pt-4">
-                                <Button size="lg" className="flex-1 min-w-[200px] h-16 text-lg" icon>
-                                    Add to Cart
-                                </Button>
+                                <AddToCartButton
+                                    id={basicProduct.id}
+                                    title={basicProduct.title}
+                                    price={basicProduct.price}
+                                    image={basicProduct.image}
+                                    slug={basicProduct.slug}
+                                />
                                 <button className="w-16 h-16 flex items-center justify-center bg-theme-elevated border border-theme-light rounded-full hover:bg-terracotta/10 dark:hover:bg-gold/10 hover:border-terracotta/30 dark:hover:border-gold/30 transition-all group">
                                     <Heart className="w-6 h-6 text-theme-primary group-hover:text-theme-accent transition-colors" />
                                 </button>

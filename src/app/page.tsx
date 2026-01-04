@@ -26,6 +26,7 @@ import { TrustTicker } from "@/components/patterns/TrustTicker";
 import { FAQSection } from "@/components/patterns/FAQSection";
 import { PremiumStats } from "@/components/patterns/PremiumStats";
 import { Newsletter } from "@/components/patterns/Newsletter";
+import { FreshDelivery } from "@/components/patterns/FreshDelivery";
 
 import { Button } from "@/components/ui/button";
 
@@ -54,7 +55,7 @@ export default function Home() {
                     </h1>
                     <p className="text-xl md:text-2xl text-espresso/80 dark:text-ivory font-light max-w-3xl mx-auto leading-relaxed drop-shadow-md transition-colors duration-300">
                         Discover the raw majesty of A2 Desi Gir Cow Milk. <br className="hidden md:block" />
-                        Native DNA. Sterilized Glass. Delivered within 4 hours.
+                        Native DNA. Sterilized Glass. Delivered fresh within 4 hours.
                     </p>
 
                     <div className="flex flex-col sm:flex-row gap-6 justify-center pt-8">
@@ -93,6 +94,11 @@ export default function Home() {
                 7. PURE PATH - FARM TO DOORSTEP TIMELINE (NEW)
             ═══════════════════════════════════════════════════════════ */}
             <PurePath />
+
+            {/* ═══════════════════════════════════════════════════════════
+                7.5. FRESH DELIVERY - 2X DAILY DELIVERY USP (NEW)
+            ═══════════════════════════════════════════════════════════ */}
+            <FreshDelivery />
 
             {/* ═══════════════════════════════════════════════════════════
                 8. ADVANCED PRODUCT SHOWCASE

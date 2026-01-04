@@ -129,6 +129,83 @@ export default function CSRPage() {
                     ))}
                 </div>
             </Section>
+
+            {/* CSR Carbon Partnerships - NEW */}
+            <Section className="bg-gradient-to-br from-creme-light to-white dark:from-midnight-mid dark:to-midnight">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
+                    <div className="space-y-6">
+                        <span className="text-terracotta dark:text-gold font-bold uppercase tracking-widest text-xs">
+                            Corporate + Community
+                        </span>
+                        <h2 className="text-4xl font-serif font-bold text-espresso dark:text-ivory">
+                            CSR Funding That <span className="text-terracotta dark:text-gold">Cuts Carbon</span> and Lifts Farmers
+                        </h2>
+                        <p className="text-espresso/70 dark:text-ivory/70 leading-relaxed">
+                            Channel your CSR to renewable chilling, bottle reuse, tree belts, and farmer training.
+                            Trackable impact with carbon credit documentation.
+                        </p>
+                        <ul className="space-y-4">
+                            {[
+                                { emoji: "🌳", text: "Fund carbon sinks & fodder forests around Lucknow" },
+                                { emoji: "🔌", text: "Solar + biogas for chilling and processing" },
+                                { emoji: "🧪", text: "Breed & genetics lab (BMF) for resilient Indian cows" },
+                                { emoji: "👩🏽‍🌾", text: "FPO capacity building for 1400+ partnered farmers" },
+                                { emoji: "📈", text: "Transparent reports & carbon credit certificates" }
+                            ].map(item => (
+                                <li key={item.text} className="flex items-start gap-3">
+                                    <span className="text-xl">{item.emoji}</span>
+                                    <span className="text-espresso/80 dark:text-ivory/80">{item.text}</span>
+                                </li>
+                            ))}
+                        </ul>
+                        <div className="flex flex-wrap gap-4 pt-4">
+                            <a
+                                href="/contact"
+                                className="inline-flex items-center gap-2 px-6 py-3 bg-terracotta dark:bg-gold text-white dark:text-midnight font-semibold rounded-full hover:opacity-90 transition-opacity"
+                            >
+                                Download CSR Deck
+                            </a>
+                            <a
+                                href="/contact"
+                                className="inline-flex items-center gap-2 px-6 py-3 border-2 border-terracotta dark:border-gold text-terracotta dark:text-gold font-semibold rounded-full hover:bg-terracotta/5 dark:hover:bg-gold/5 transition-colors"
+                            >
+                                Book Impact Call
+                            </a>
+                        </div>
+                    </div>
+
+                    {/* Impact Scorecard */}
+                    <div className="bg-white dark:bg-midnight-deep rounded-3xl p-8 border border-espresso/10 dark:border-glass-border shadow-xl">
+                        <h3 className="text-xl font-bold text-espresso dark:text-ivory mb-6">Impact Snapshot</h3>
+                        <div className="grid grid-cols-3 gap-6 mb-6">
+                            {[
+                                { value: "1400+", label: "Farmers empowered via FPO network", color: "terracotta" },
+                                { value: "18%", label: "Lower emissions per litre delivered", color: "gold" },
+                                { value: "₹50L", label: "CSR deployed in FY24", color: "terracotta" }
+                            ].map((stat, i) => (
+                                <div key={i} className="text-center">
+                                    <div className={`text-3xl font-bold ${stat.color === 'terracotta' ? 'text-terracotta dark:text-gold' : 'text-warmGold dark:text-warmGold'} mb-1`}>
+                                        {stat.value}
+                                    </div>
+                                    <div className="text-xs text-espresso/60 dark:text-ivory/60 leading-tight">
+                                        {stat.label}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                        <hr className="border-espresso/10 dark:border-glass-border my-6" />
+                        <p className="text-sm text-espresso/60 dark:text-ivory/60 mb-4">
+                            Choose initiatives: renewable energy, fodder forests, bottle reuse, genetics lab, farmer training, Gaushala care.
+                        </p>
+                        <a
+                            href="/contact"
+                            className="inline-flex items-center gap-2 px-5 py-2.5 bg-warmGold text-white text-sm font-semibold rounded-xl hover:opacity-90 transition-opacity"
+                        >
+                            Talk to Impact Team
+                        </a>
+                    </div>
+                </div>
+            </Section>
         </main>
     );
 }
