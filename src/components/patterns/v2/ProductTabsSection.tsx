@@ -56,14 +56,15 @@ export function ProductTabsSection() {
                             key={product.id}
                             id={product.id}
                             title={product.title}
-                            price={`₹${product.price}`}
-                            regularPrice={product.originalPrice ? `₹${product.originalPrice}` : undefined}
+                            price={product.price}
+                            regularPrice={product.regularPrice}
                             image={product.image}
-                            description={product.subtitle} // Using subtitle as short desc
-                            slug={product.id} // Simple slug
+                            description={product.description} // Using description as short desc
+                            slug={product.slug}
                             category={product.category}
-                            badge={product.tags?.[0]} // Show first tag as badge
-                            featured={product.rating ? product.rating > 4.8 : false}
+                            badge={product.badge} // Show badge
+                            subscription={product.subscription}
+                            featured={product.featured}
                         />
                     ))}
                 </div>
