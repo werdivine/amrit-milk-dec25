@@ -1,7 +1,6 @@
 "use client";
 
 import { Section } from "@/components/ui/section";
-import { Button } from "@/components/ui/button";
 import { Instagram, ExternalLink } from "lucide-react";
 
 export function InstagramFeed() {
