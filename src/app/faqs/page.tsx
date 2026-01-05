@@ -115,24 +115,24 @@ export default function FAQsPage() {
         : [];
 
     return (
-        <main className="bg-midnight min-h-screen">
+        <main className="bg-theme-primary min-h-screen transition-colors duration-500">
             {/* Hero */}
             <section className="relative py-32 flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-radial from-gold/5 via-transparent to-transparent" />
                 <div className="relative z-10 text-center max-w-4xl px-6">
                     <span className="text-gold font-bold uppercase tracking-[0.3em] mb-4 block">Support</span>
-                    <h1 className="text-5xl md:text-7xl font-serif font-bold text-ivory mb-6">FAQs</h1>
-                    <p className="text-xl text-ivory/70 max-w-2xl mx-auto mb-8">
+                    <h1 className="text-5xl md:text-7xl font-serif font-bold text-theme-primary mb-6">FAQs</h1>
+                    <p className="text-xl text-theme-secondary max-w-2xl mx-auto mb-8">
                         Everything you need to know about Amrit Milk, our farm, and your subscription.
                     </p>
 
                     {/* Search */}
                     <div className="max-w-xl mx-auto relative">
-                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-ivory/40" />
+                        <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-theme-muted" />
                         <input
                             type="text"
                             placeholder="Search for answers..."
-                            className="w-full pl-12 pr-4 py-4 bg-midnight-mid border border-glass-border rounded-2xl text-ivory placeholder:text-ivory/40 focus:border-gold focus:outline-none transition-colors"
+                            className="w-full pl-12 pr-4 py-4 bg-theme-secondary border border-theme-light rounded-2xl text-theme-primary placeholder:text-theme-muted focus:border-gold focus:outline-none transition-colors"
                             value={searchQuery}
                             onChange={(e) => setSearchQuery(e.target.value)}
                         />
@@ -144,20 +144,20 @@ export default function FAQsPage() {
             {searchQuery && (
                 <Section className="pt-0">
                     <div className="max-w-4xl mx-auto">
-                        <p className="text-ivory/60 mb-6">
+                        <p className="text-theme-muted mb-6">
                             Found {filteredFaqs.length} result{filteredFaqs.length !== 1 ? 's' : ''} for "{searchQuery}"
                         </p>
                         {filteredFaqs.length > 0 ? (
                             <div className="space-y-4">
                                 {filteredFaqs.map((faq) => (
-                                    <div key={faq.key} className="glass p-6 rounded-2xl border border-glass-border">
-                                        <h3 className="text-lg font-bold text-ivory mb-3">{faq.question}</h3>
-                                        <p className="text-ivory/70">{faq.answer}</p>
+                                    <div key={faq.key} className="card-theme p-6 rounded-2xl">
+                                        <h3 className="text-lg font-bold text-theme-primary mb-3">{faq.question}</h3>
+                                        <p className="text-theme-secondary">{faq.answer}</p>
                                     </div>
                                 ))}
                             </div>
                         ) : (
-                            <p className="text-ivory/50 text-center py-12">No results found. Try a different search term.</p>
+                            <p className="text-theme-muted text-center py-12">No results found. Try a different search term.</p>
                         )}
                     </div>
                 </Section>
@@ -166,7 +166,7 @@ export default function FAQsPage() {
             {/* Category Navigation */}
             {!searchQuery && (
                 <>
-                    <section className="border-y border-glass-border bg-midnight-mid sticky top-20 z-30">
+                    <section className="border-y border-theme-light bg-theme-secondary sticky top-20 z-30">
                         <div className="max-w-4xl mx-auto px-6">
                             <div className="flex overflow-x-auto gap-2 py-4 scrollbar-hide">
                                 {faqCategories.map((cat, index) => (
@@ -175,7 +175,7 @@ export default function FAQsPage() {
                                         onClick={() => setActiveCategory(index)}
                                         className={`px-6 py-2 rounded-full whitespace-nowrap transition-all ${activeCategory === index
                                             ? 'bg-gold text-midnight font-bold'
-                                            : 'bg-midnight text-ivory/70 hover:text-ivory border border-glass-border'
+                                            : 'bg-theme-primary text-theme-secondary hover:text-theme-primary border border-theme-light'
                                             }`}
                                     >
                                         {cat.name}
@@ -188,22 +188,22 @@ export default function FAQsPage() {
                     {/* FAQ Accordion */}
                     <Section>
                         <div className="max-w-4xl mx-auto">
-                            <h2 className="text-2xl font-bold text-ivory mb-8">{faqCategories[activeCategory].name}</h2>
+                            <h2 className="text-2xl font-bold text-theme-primary mb-8">{faqCategories[activeCategory].name}</h2>
                             <div className="space-y-4">
                                 {faqCategories[activeCategory].faqs.map((faq, index) => {
                                     const key = `${activeCategory}-${index}`;
                                     const isOpen = openItems[key];
                                     return (
-                                        <div key={key} className="glass rounded-2xl border border-glass-border overflow-hidden">
+                                        <div key={key} className="card-theme rounded-2xl overflow-hidden">
                                             <button
                                                 className="w-full px-6 py-5 flex items-center justify-between text-left"
                                                 onClick={() => toggleItem(key)}
                                             >
-                                                <span className="text-lg font-medium text-ivory pr-4">{faq.question}</span>
+                                                <span className="text-lg font-medium text-theme-primary pr-4">{faq.question}</span>
                                                 <ChevronDown className={`w-5 h-5 text-gold flex-shrink-0 transition-transform duration-300 ${isOpen ? 'rotate-180' : ''}`} />
                                             </button>
                                             <div className={`overflow-hidden transition-all duration-300 ${isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'}`}>
-                                                <p className="px-6 pb-5 text-ivory/70 leading-relaxed">{faq.answer}</p>
+                                                <p className="px-6 pb-5 text-theme-secondary leading-relaxed">{faq.answer}</p>
                                             </div>
                                         </div>
                                     );
@@ -215,9 +215,9 @@ export default function FAQsPage() {
             )}
 
             {/* Still Have Questions */}
-            <Section className="bg-midnight-mid text-center">
-                <h2 className="text-3xl font-serif font-bold text-ivory mb-6">Still Have Questions?</h2>
-                <p className="text-ivory/60 max-w-xl mx-auto mb-8">
+            <Section className="bg-theme-secondary text-center">
+                <h2 className="text-3xl font-serif font-bold text-theme-primary mb-6">Still Have Questions?</h2>
+                <p className="text-theme-muted max-w-xl mx-auto mb-8">
                     Can't find what you're looking for? Reach out to us directly.
                 </p>
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">

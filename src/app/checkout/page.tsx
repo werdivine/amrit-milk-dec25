@@ -99,11 +99,7 @@ export default function CheckoutPage() {
 
             // Initialize Razorpay
             const options = {
-                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID, // Ensure this is exposing the ID if needed on client, but usually API handles it. Wait, client needs key_id to open modal. 
-                // Actually, best practice: server returns key_id if not sensitive, or we use env.
-                // For now assuming we might not have it in env.local for client. 
-                // Let's rely on server sending it or just env. 
-                // If the user hasn't set env, this will fail. That's why we have the 400 check above.
+                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
                 amount: data.amount,
                 currency: data.currency,
                 name: "Amrit Sovereign",
@@ -111,7 +107,6 @@ export default function CheckoutPage() {
                 order_id: data.id,
                 handler: function (response: any) {
                     // Payment Success
-                    // Verify payment on server if needed (skipping for MVP)
                     router.push("/checkout/success");
                 },
                 prefill: {
@@ -130,7 +125,7 @@ export default function CheckoutPage() {
                 setLoading(false);
             });
             rzp.open();
-            setLoading(false); // Modal is open, loading done
+            setLoading(false);
 
         } catch (err: any) {
             console.error(err);
@@ -141,9 +136,9 @@ export default function CheckoutPage() {
 
     if (cart.length === 0) {
         return (
-            <main className="bg-midnight min-h-screen flex items-center justify-center">
+            <main className="bg-theme-primary min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-3xl font-serif font-bold text-ivory">Your cart is empty</h1>
+                    <h1 className="text-3xl font-serif font-bold text-theme-primary">Your cart is empty</h1>
                     <Button href="/products" className="mt-4">Back to Shop</Button>
                 </div>
             </main>
@@ -151,7 +146,7 @@ export default function CheckoutPage() {
     }
 
     return (
-        <main className="bg-midnight min-h-screen pb-20">
+        <main className="bg-theme-primary min-h-screen pb-20 transition-colors duration-500">
             <Script src="https://checkout.razorpay.com/v1/checkout.js" />
 
             <Section>
@@ -164,39 +159,39 @@ export default function CheckoutPage() {
                         {/* LEFT: FORM */}
                         <div className="lg:col-span-7 space-y-8">
                             {/* Contact Info */}
-                            <div className="bg-glass-bg border border-glass-border p-8 rounded-2xl">
-                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2">
+                            <div className="card-theme p-8 rounded-2xl transition-all duration-300">
+                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-theme-primary">
                                     <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">1</div>
                                     Contact Details
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-ivory/70">Full Name</label>
+                                        <label className="text-sm font-bold text-theme-secondary">Full Name</label>
                                         <input
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full bg-midnight-dark border border-glass-border rounded-lg px-4 py-3 focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
                                             placeholder="John Doe"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-ivory/70">Phone Number</label>
+                                        <label className="text-sm font-bold text-theme-secondary">Phone Number</label>
                                         <input
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full bg-midnight-dark border border-glass-border rounded-lg px-4 py-3 focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
                                             placeholder="9876543210"
                                         />
                                     </div>
                                     <div className="space-y-2 md:col-span-2">
-                                        <label className="text-sm font-bold text-ivory/70">Email Address</label>
+                                        <label className="text-sm font-bold text-theme-secondary">Email Address</label>
                                         <input
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full bg-midnight-dark border border-glass-border rounded-lg px-4 py-3 focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
                                             placeholder="john@example.com"
                                         />
                                     </div>
@@ -204,40 +199,40 @@ export default function CheckoutPage() {
                             </div>
 
                             {/* Shipping Address */}
-                            <div className="bg-glass-bg border border-glass-border p-8 rounded-2xl">
-                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2">
+                            <div className="card-theme p-8 rounded-2xl transition-all duration-300">
+                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-theme-primary">
                                     <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">2</div>
                                     Shipping Address
                                 </h2>
                                 <div className="space-y-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-ivory/70">Street Address</label>
+                                        <label className="text-sm font-bold text-theme-secondary">Street Address</label>
                                         <textarea
                                             name="address"
                                             value={formData.address}
                                             onChange={handleChange}
                                             rows={2}
-                                            className="w-full bg-midnight-dark border border-glass-border rounded-lg px-4 py-3 focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
                                             placeholder="Flat / House No / Building, Street"
                                         />
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-ivory/70">City</label>
+                                            <label className="text-sm font-bold text-theme-secondary">City</label>
                                             <input
                                                 name="city"
                                                 value={formData.city}
                                                 onChange={handleChange}
-                                                className="w-full bg-midnight-dark border border-glass-border rounded-lg px-4 py-3 focus:border-gold outline-none transition-colors"
+                                                className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-ivory/70">Pincode</label>
+                                            <label className="text-sm font-bold text-theme-secondary">Pincode</label>
                                             <input
                                                 name="pincode"
                                                 value={formData.pincode}
                                                 onChange={handleChange}
-                                                className="w-full bg-midnight-dark border border-glass-border rounded-lg px-4 py-3 focus:border-gold outline-none transition-colors"
+                                                className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
                                             />
                                         </div>
                                     </div>
@@ -245,13 +240,13 @@ export default function CheckoutPage() {
                             </div>
 
                             {/* Payment Method */}
-                            <div className="bg-glass-bg border border-glass-border p-8 rounded-2xl">
-                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2">
+                            <div className="card-theme p-8 rounded-2xl transition-all duration-300">
+                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-theme-primary">
                                     <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">3</div>
                                     Payment Method
                                 </h2>
                                 <div className="space-y-4">
-                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-gold bg-gold/10' : 'border-glass-border hover:bg-glass-bg/50'}`}>
+                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-gold bg-gold/10' : 'border-theme-light hover:bg-theme-secondary/50'}`}>
                                         <input
                                             type="radio"
                                             name="payment"
@@ -260,13 +255,13 @@ export default function CheckoutPage() {
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <CreditCard className="w-6 h-6 text-gold" />
-                                        <div>
+                                        <div className="text-theme-primary">
                                             <div className="font-bold">Pay Online</div>
-                                            <div className="text-sm text-ivory/60">Razorpay Secure (UPI, Cards, Netbanking)</div>
+                                            <div className="text-sm text-theme-muted">Razorpay Secure (UPI, Cards, Netbanking)</div>
                                         </div>
                                     </label>
 
-                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-gold bg-gold/10' : 'border-glass-border hover:bg-glass-bg/50'}`}>
+                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-gold bg-gold/10' : 'border-theme-light hover:bg-theme-secondary/50'}`}>
                                         <input
                                             type="radio"
                                             name="payment"
@@ -275,9 +270,9 @@ export default function CheckoutPage() {
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <Truck className="w-6 h-6 text-gold" />
-                                        <div>
+                                        <div className="text-theme-primary">
                                             <div className="font-bold">Cash on Delivery</div>
-                                            <div className="text-sm text-ivory/60">Pay when you receive your order</div>
+                                            <div className="text-sm text-theme-muted">Pay when you receive your order</div>
                                         </div>
                                     </label>
                                 </div>
@@ -286,19 +281,19 @@ export default function CheckoutPage() {
 
                         {/* RIGHT: SUMMARY */}
                         <div className="lg:col-span-5">
-                            <div className="bg-glass-bg border border-glass-border p-8 rounded-2xl sticky top-24">
-                                <h3 className="text-2xl font-serif font-bold mb-6">Order Summary</h3>
+                            <div className="card-theme p-8 rounded-2xl sticky top-24 transition-all duration-300">
+                                <h3 className="text-2xl font-serif font-bold mb-6 text-theme-primary">Order Summary</h3>
 
                                 <div className="space-y-4 mb-8 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                                     {cart.map((item) => (
                                         <div key={item.id} className="flex gap-4 items-center">
                                             <div
-                                                className="w-16 h-16 rounded-lg bg-cover bg-center bg-white/5"
+                                                className="w-16 h-16 rounded-lg bg-cover bg-center bg-theme-secondary"
                                                 style={{ backgroundImage: `url(${item.image})` }}
                                             ></div>
                                             <div className="flex-1">
-                                                <h4 className="font-bold text-sm">{item.title}</h4>
-                                                <p className="text-xs text-ivory/60">Qty: {item.quantity}</p>
+                                                <h4 className="font-bold text-sm text-theme-primary">{item.title}</h4>
+                                                <p className="text-xs text-theme-muted">Qty: {item.quantity}</p>
                                             </div>
                                             <div className="font-bold text-gold">
                                                 ₹{(parseFloat(item.price.replace(/[₹,]/g, '')) * item.quantity).toFixed(0)}
@@ -307,16 +302,16 @@ export default function CheckoutPage() {
                                     ))}
                                 </div>
 
-                                <div className="space-y-4 py-6 border-t border-glass-border">
-                                    <div className="flex justify-between text-ivory/70">
+                                <div className="space-y-4 py-6 border-t border-theme-light">
+                                    <div className="flex justify-between text-theme-secondary">
                                         <span>Subtotal</span>
                                         <span>₹{cartTotal.toFixed(0)}</span>
                                     </div>
-                                    <div className="flex justify-between text-ivory/70">
+                                    <div className="flex justify-between text-theme-secondary">
                                         <span>Delivery</span>
                                         <span className="text-green-500">FREE</span>
                                     </div>
-                                    <div className="flex justify-between text-xl font-bold">
+                                    <div className="flex justify-between text-xl font-bold text-theme-primary">
                                         <span>Total</span>
                                         <span className="text-gold">₹{cartTotal.toFixed(0)}</span>
                                     </div>
@@ -338,7 +333,7 @@ export default function CheckoutPage() {
                                     {loading ? "Processing..." : paymentMethod === 'online' ? "Pay Now" : "Place Order"}
                                 </Button>
 
-                                <div className="mt-6 flex items-center justify-center gap-2 text-xs text-ivory/40">
+                                <div className="mt-6 flex items-center justify-center gap-2 text-xs text-theme-muted">
                                     <Lock className="w-3 h-3" />
                                     Secure Checkout powered by Razorpay
                                 </div>
