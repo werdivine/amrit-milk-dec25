@@ -136,9 +136,9 @@ export default function CheckoutPage() {
 
     if (cart.length === 0) {
         return (
-            <main className="bg-theme-primary min-h-screen flex items-center justify-center">
+            <main className="bg-creme dark:bg-midnight min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-3xl font-serif font-bold text-theme-primary">Your cart is empty</h1>
+                    <h1 className="text-3xl font-serif font-bold text-espresso dark:text-ivory">Your cart is empty</h1>
                     <Button href="/products" className="mt-4">Back to Shop</Button>
                 </div>
             </main>
@@ -146,7 +146,7 @@ export default function CheckoutPage() {
     }
 
     return (
-        <main className="bg-theme-primary min-h-screen pb-20 transition-colors duration-500">
+        <main className="bg-creme dark:bg-midnight min-h-screen pb-20 transition-colors duration-500">
             <Script src="https://checkout.razorpay.com/v1/checkout.js" />
 
             <Section>
@@ -159,39 +159,39 @@ export default function CheckoutPage() {
                         {/* LEFT: FORM */}
                         <div className="lg:col-span-7 space-y-8">
                             {/* Contact Info */}
-                            <div className="card-theme p-8 rounded-2xl transition-all duration-300">
-                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-theme-primary">
+                            <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl transition-all duration-300">
+                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-espresso dark:text-ivory">
                                     <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">1</div>
                                     Contact Details
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-theme-secondary">Full Name</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Full Name</label>
                                         <input
                                             name="name"
                                             value={formData.name}
                                             onChange={handleChange}
-                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
                                             placeholder="John Doe"
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-theme-secondary">Phone Number</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Phone Number</label>
                                         <input
                                             name="phone"
                                             value={formData.phone}
                                             onChange={handleChange}
-                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
                                             placeholder="9876543210"
                                         />
                                     </div>
                                     <div className="space-y-2 md:col-span-2">
-                                        <label className="text-sm font-bold text-theme-secondary">Email Address</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Email Address</label>
                                         <input
                                             name="email"
                                             value={formData.email}
                                             onChange={handleChange}
-                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
                                             placeholder="john@example.com"
                                         />
                                     </div>
@@ -199,40 +199,40 @@ export default function CheckoutPage() {
                             </div>
 
                             {/* Shipping Address */}
-                            <div className="card-theme p-8 rounded-2xl transition-all duration-300">
-                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-theme-primary">
+                            <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl transition-all duration-300">
+                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-espresso dark:text-ivory">
                                     <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">2</div>
                                     Shipping Address
                                 </h2>
                                 <div className="space-y-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-theme-secondary">Street Address</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Street Address</label>
                                         <textarea
                                             name="address"
                                             value={formData.address}
                                             onChange={handleChange}
                                             rows={2}
-                                            className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
+                                            className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
                                             placeholder="Flat / House No / Building, Street"
                                         />
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-theme-secondary">City</label>
+                                            <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">City</label>
                                             <input
                                                 name="city"
                                                 value={formData.city}
                                                 onChange={handleChange}
-                                                className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
+                                                className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-theme-secondary">Pincode</label>
+                                            <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Pincode</label>
                                             <input
                                                 name="pincode"
                                                 value={formData.pincode}
                                                 onChange={handleChange}
-                                                className="w-full bg-theme-secondary border border-theme-light rounded-lg px-4 py-3 text-theme-primary focus:border-gold outline-none transition-colors"
+                                                className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
                                             />
                                         </div>
                                     </div>
@@ -240,13 +240,13 @@ export default function CheckoutPage() {
                             </div>
 
                             {/* Payment Method */}
-                            <div className="card-theme p-8 rounded-2xl transition-all duration-300">
-                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-theme-primary">
+                            <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl transition-all duration-300">
+                                <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-espresso dark:text-ivory">
                                     <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">3</div>
                                     Payment Method
                                 </h2>
                                 <div className="space-y-4">
-                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-gold bg-gold/10' : 'border-theme-light hover:bg-theme-secondary/50'}`}>
+                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-gold bg-gold/10' : 'border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5'}`}>
                                         <input
                                             type="radio"
                                             name="payment"
@@ -255,13 +255,13 @@ export default function CheckoutPage() {
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <CreditCard className="w-6 h-6 text-gold" />
-                                        <div className="text-theme-primary">
+                                        <div className="text-espresso dark:text-ivory">
                                             <div className="font-bold">Pay Online</div>
-                                            <div className="text-sm text-theme-muted">Razorpay Secure (UPI, Cards, Netbanking)</div>
+                                            <div className="text-sm text-espresso-muted dark:text-ivory/60">Razorpay Secure (UPI, Cards, Netbanking)</div>
                                         </div>
                                     </label>
 
-                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-gold bg-gold/10' : 'border-theme-light hover:bg-theme-secondary/50'}`}>
+                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-gold bg-gold/10' : 'border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5'}`}>
                                         <input
                                             type="radio"
                                             name="payment"
@@ -270,9 +270,9 @@ export default function CheckoutPage() {
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <Truck className="w-6 h-6 text-gold" />
-                                        <div className="text-theme-primary">
+                                        <div className="text-espresso dark:text-ivory">
                                             <div className="font-bold">Cash on Delivery</div>
-                                            <div className="text-sm text-theme-muted">Pay when you receive your order</div>
+                                            <div className="text-sm text-espresso-muted dark:text-ivory/60">Pay when you receive your order</div>
                                         </div>
                                     </label>
                                 </div>
@@ -281,19 +281,19 @@ export default function CheckoutPage() {
 
                         {/* RIGHT: SUMMARY */}
                         <div className="lg:col-span-5">
-                            <div className="card-theme p-8 rounded-2xl sticky top-24 transition-all duration-300">
-                                <h3 className="text-2xl font-serif font-bold mb-6 text-theme-primary">Order Summary</h3>
+                            <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl sticky top-24 transition-all duration-300">
+                                <h3 className="text-2xl font-serif font-bold mb-6 text-espresso dark:text-ivory">Order Summary</h3>
 
                                 <div className="space-y-4 mb-8 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                                     {cart.map((item) => (
                                         <div key={item.id} className="flex gap-4 items-center">
                                             <div
-                                                className="w-16 h-16 rounded-lg bg-cover bg-center bg-theme-secondary"
+                                                className="w-16 h-16 rounded-lg bg-cover bg-center bg-creme-light dark:bg-midnight-mid"
                                                 style={{ backgroundImage: `url(${item.image})` }}
                                             ></div>
                                             <div className="flex-1">
-                                                <h4 className="font-bold text-sm text-theme-primary">{item.title}</h4>
-                                                <p className="text-xs text-theme-muted">Qty: {item.quantity}</p>
+                                                <h4 className="font-bold text-sm text-espresso dark:text-ivory">{item.title}</h4>
+                                                <p className="text-xs text-espresso-muted dark:text-ivory/60">Qty: {item.quantity}</p>
                                             </div>
                                             <div className="font-bold text-gold">
                                                 ₹{(parseFloat(item.price.replace(/[₹,]/g, '')) * item.quantity).toFixed(0)}
@@ -302,16 +302,16 @@ export default function CheckoutPage() {
                                     ))}
                                 </div>
 
-                                <div className="space-y-4 py-6 border-t border-theme-light">
-                                    <div className="flex justify-between text-theme-secondary">
+                                <div className="space-y-4 py-6 border-t border-creme-dark dark:border-white/10">
+                                    <div className="flex justify-between text-espresso-light dark:text-ivory/80">
                                         <span>Subtotal</span>
                                         <span>₹{cartTotal.toFixed(0)}</span>
                                     </div>
-                                    <div className="flex justify-between text-theme-secondary">
+                                    <div className="flex justify-between text-espresso-light dark:text-ivory/80">
                                         <span>Delivery</span>
                                         <span className="text-green-500">FREE</span>
                                     </div>
-                                    <div className="flex justify-between text-xl font-bold text-theme-primary">
+                                    <div className="flex justify-between text-xl font-bold text-espresso dark:text-ivory">
                                         <span>Total</span>
                                         <span className="text-gold">₹{cartTotal.toFixed(0)}</span>
                                     </div>
@@ -333,7 +333,7 @@ export default function CheckoutPage() {
                                     {loading ? "Processing..." : paymentMethod === 'online' ? "Pay Now" : "Place Order"}
                                 </Button>
 
-                                <div className="mt-6 flex items-center justify-center gap-2 text-xs text-theme-muted">
+                                <div className="mt-6 flex items-center justify-center gap-2 text-xs text-espresso-muted dark:text-ivory/60">
                                     <Lock className="w-3 h-3" />
                                     Secure Checkout powered by Razorpay
                                 </div>
