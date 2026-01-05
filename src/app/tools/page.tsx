@@ -165,7 +165,7 @@ function SubscriptionCalculator() {
     const monthlySavings = (weeklyA2 - weeklySubscription) * 4;
     const yearlySavings = monthlySavings * 12;
 
-    return <div className="max-w-6xl mx-auto">
+    return (<div className="max-w-6xl mx-auto">
         <div className="text-center mb-12">
             <div className="w-16 h-16 mx-auto bg-gold/20 rounded-full flex items-center justify-center mb-4">
                 <DollarSign className="w-8 h-8 text-gold" />
