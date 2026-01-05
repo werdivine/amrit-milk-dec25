@@ -41,7 +41,7 @@ export function KitchenQuiz() {
     };
 
     return (
-        <Section className="bg-espresso dark:bg-midnight transition-colors duration-500">
+        <Section className="bg-creme dark:bg-midnight transition-colors duration-500">
             <div className="max-w-4xl mx-auto">
                 <AnimatePresence mode="wait">
                     {!completed ? (
@@ -50,18 +50,18 @@ export function KitchenQuiz() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -20 }}
-                            className="bg-white/5 border border-white/10 rounded-[3rem] p-8 md:p-16 space-y-10 backdrop-blur-md"
+                            className="bg-white dark:bg-white/5 border border-creme-dark dark:border-white/10 rounded-[3rem] p-8 md:p-16 space-y-10 backdrop-blur-md shadow-soft dark:shadow-none"
                         >
                             <div className="space-y-2">
                                 <span className="text-terracotta font-black uppercase tracking-[0.3em] text-xs">Purity Audit</span>
                                 <div className="flex justify-between items-end">
-                                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-creme dark:text-ivory">The Kitchen <span className="italic">Quiz.</span></h2>
-                                    <span className="text-creme/40 font-mono text-sm">0{step + 1} / 0{questions.length}</span>
+                                    <h2 className="text-3xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory">The Kitchen <span className="italic">Quiz.</span></h2>
+                                    <span className="text-espresso/40 dark:text-ivory/40 font-mono text-sm">0{step + 1} / 0{questions.length}</span>
                                 </div>
                             </div>
 
                             <div className="space-y-8">
-                                <p className="text-xl md:text-3xl text-creme/90 dark:text-ivory/90 font-light leading-tight">
+                                <p className="text-xl md:text-3xl text-espresso/90 dark:text-ivory/90 font-light leading-tight">
                                     {questions[step].q}
                                 </p>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
@@ -69,7 +69,7 @@ export function KitchenQuiz() {
                                         <button
                                             key={opt}
                                             onClick={() => handleAnswer(i)}
-                                            className="text-left p-6 rounded-2xl border border-white/10 text-creme/70 hover:bg-white/10 hover:border-terracotta/50 transition-all flex justify-between items-center group"
+                                            className="text-left p-6 rounded-2xl border border-espresso/10 dark:border-white/10 text-espresso/70 dark:text-ivory/70 hover:bg-creme-dark/20 dark:hover:bg-white/10 hover:border-terracotta/50 transition-all flex justify-between items-center group"
                                         >
                                             <span>{opt}</span>
                                             <ArrowRight className="w-4 h-4 opacity-0 group-hover:opacity-100 -translate-x-2 group-hover:translate-x-0 transition-all" />
@@ -83,7 +83,7 @@ export function KitchenQuiz() {
                             key="result"
                             initial={{ opacity: 0, scale: 0.95 }}
                             animate={{ opacity: 1, scale: 1 }}
-                            className="bg-creme dark:bg-white/5 rounded-[3rem] p-12 md:p-20 text-center space-y-8 shadow-2xl transition-colors"
+                            className="bg-white dark:bg-white/5 rounded-[3rem] p-12 md:p-20 text-center space-y-8 shadow-2xl transition-colors"
                         >
                             <div className="flex justify-center">
                                 {score > 200 ? (

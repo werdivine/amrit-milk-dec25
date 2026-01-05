@@ -69,7 +69,7 @@ export function FreshDelivery() {
                     {stats.map((stat, index) => (
                         <div
                             key={index}
-                            className="group relative bg-white dark:bg-midnight-deep rounded-3xl p-8 border border-espresso/10 dark:border-glass-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                            className="group relative bg-white dark:bg-midnight-mid rounded-3xl p-8 border border-espresso/10 dark:border-glass-border shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
                         >
                             {/* Gradient accent */}
                             <div className="absolute inset-0 rounded-3xl bg-gradient-to-br from-terracotta/5 to-transparent dark:from-gold/5 opacity-0 group-hover:opacity-100 transition-opacity" />

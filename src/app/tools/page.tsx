@@ -108,7 +108,7 @@ function HealthROICalculator() {
 
                         <div className="space-y-6">
                             <div>
-                                <p className="text-sm text-ivory/60 mb-1">Monthly A2 Milk Investment</p>
+                                <p className="text-sm text-espresso-muted dark:text-ivory/60 mb-1">Monthly A2 Milk Investment</p>
                                 <p className="text-3xl font-bold text-gold">₹{monthlyA2Cost.toLocaleString()}</p>
                             </div>
 
@@ -214,8 +214,8 @@ function SubscriptionCalculator() {
 
             {/* Results */}
             <div className="space-y-6">
-                <div className="bg-gradient-to-br from-green-500/20 to-green-500/5 border border-green-500/30 rounded-2xl p-8">
-                    <h3 className="text-2xl font-bold mb-6">Your Savings</h3>
+                <div className="bg-gradient-to-br from-green-500/20 to-green-500/5 border border-green-500/30 rounded-2xl p-8 bg-white dark:bg-transparent shadow-soft dark:shadow-none">
+                    <h3 className="text-2xl font-bold mb-6 text-espresso dark:text-ivory">Your Savings</h3>
 
                     <div className="space-y-6">
                         <div>

@@ -44,7 +44,7 @@ const impactStats = [
 
 export default function SustainabilityPage() {
     return (
-        <main className="bg-midnight min-h-screen">
+        <main className="bg-creme dark:bg-midnight min-h-screen transition-colors duration-500">
             {/* Hero */}
             <section className="relative h-[60vh] flex items-center justify-center">
                 <div className="absolute inset-0 bg-gradient-to-br from-green-900/30 via-midnight to-midnight" />
@@ -59,13 +59,13 @@ export default function SustainabilityPage() {
             </section>
 
             {/* Impact Stats */}
-            <section className="py-16 bg-midnight-mid border-y border-glass-border">
+            <section className="py-16 bg-creme-light dark:bg-midnight-mid border-y border-creme-dark dark:border-glass-border">
                 <div className="max-w-7xl mx-auto px-6">
                     <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
                         {impactStats.map((stat) => (
                             <div key={stat.label} className="text-center">
-                                <p className="text-5xl font-bold text-green-400 mb-2">{stat.number}</p>
-                                <p className="text-ivory/60 uppercase tracking-wider text-sm">{stat.label}</p>
+                                <p className="text-5xl font-bold text-green-500 dark:text-green-400 mb-2">{stat.number}</p>
+                                <p className="text-espresso-muted dark:text-ivory/60 uppercase tracking-wider text-sm">{stat.label}</p>
                             </div>
                         ))}
                     </div>
@@ -75,20 +75,20 @@ export default function SustainabilityPage() {
             {/* Initiatives */}
             <Section>
                 <div className="text-center mb-16">
-                    <span className="text-green-400 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">What We Do</span>
-                    <h2 className="text-4xl font-serif font-bold text-ivory">Green Initiatives</h2>
+                    <span className="text-green-500 dark:text-green-400 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">What We Do</span>
+                    <h2 className="text-4xl font-serif font-bold text-espresso dark:text-ivory">Green Initiatives</h2>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
                     {initiatives.map((item) => {
                         const Icon = item.icon;
                         return (
-                            <div key={item.title} className="glass p-8 rounded-3xl border border-glass-border hover:border-green-500/30 transition-all">
+                            <div key={item.title} className="bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border hover:border-green-500/30 shadow-soft dark:shadow-none p-8 rounded-3xl transition-all">
                                 <div className="w-16 h-16 rounded-2xl bg-green-500/10 flex items-center justify-center mb-6">
-                                    <Icon className="w-8 h-8 text-green-400" />
+                                    <Icon className="w-8 h-8 text-green-600 dark:text-green-400" />
                                 </div>
-                                <h3 className="text-xl font-bold text-ivory mb-3">{item.title}</h3>
-                                <p className="text-ivory/60 leading-relaxed">{item.description}</p>
+                                <h3 className="text-xl font-bold text-espresso dark:text-ivory mb-3">{item.title}</h3>
+                                <p className="text-espresso-light dark:text-ivory/60 leading-relaxed">{item.description}</p>
                             </div>
                         );
                     })}
@@ -96,24 +96,24 @@ export default function SustainabilityPage() {
             </Section>
 
             {/* Vision */}
-            <Section className="bg-midnight-mid">
+            <Section className="bg-creme-light dark:bg-midnight-mid transition-colors duration-500">
                 <div className="max-w-4xl mx-auto text-center">
-                    <span className="text-green-400 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">2030 Vision</span>
-                    <h2 className="text-4xl font-serif font-bold text-ivory mb-8">Our Sustainability Goals</h2>
+                    <span className="text-green-500 dark:text-green-400 font-bold uppercase tracking-[0.3em] text-sm mb-4 block">2030 Vision</span>
+                    <h2 className="text-4xl font-serif font-bold text-espresso dark:text-ivory mb-8">Our Sustainability Goals</h2>
 
-                    <div className="glass p-8 md:p-12 rounded-3xl border border-green-500/20">
+                    <div className="bg-white dark:bg-glass-bg border border-green-500/20 shadow-soft dark:shadow-none p-8 md:p-12 rounded-3xl">
                         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                             <div className="text-center">
-                                <p className="text-4xl font-bold text-green-400 mb-2">1000+</p>
-                                <p className="text-ivory/70">Indigenous Cows Protected</p>
+                                <p className="text-4xl font-bold text-green-500 dark:text-green-400 mb-2">1000+</p>
+                                <p className="text-espresso-light dark:text-ivory/70">Indigenous Cows Protected</p>
                             </div>
                             <div className="text-center">
-                                <p className="text-4xl font-bold text-green-400 mb-2">100%</p>
-                                <p className="text-ivory/70">Carbon Neutral Operations</p>
+                                <p className="text-4xl font-bold text-green-500 dark:text-green-400 mb-2">100%</p>
+                                <p className="text-espresso-light dark:text-ivory/70">Carbon Neutral Operations</p>
                             </div>
                             <div className="text-center">
-                                <p className="text-4xl font-bold text-green-400 mb-2">500</p>
-                                <p className="text-ivory/70">Farmer Families Supported</p>
+                                <p className="text-4xl font-bold text-green-500 dark:text-green-400 mb-2">500</p>
+                                <p className="text-espresso-light dark:text-ivory/70">Farmer Families Supported</p>
                             </div>
                         </div>
                     </div>
@@ -122,8 +122,8 @@ export default function SustainabilityPage() {
 
             {/* CTA */}
             <Section className="text-center">
-                <h2 className="text-3xl font-serif font-bold text-ivory mb-6">Join the Movement</h2>
-                <p className="text-ivory/60 max-w-xl mx-auto mb-8">
+                <h2 className="text-3xl font-serif font-bold text-espresso dark:text-ivory mb-6">Join the Movement</h2>
+                <p className="text-espresso-light dark:text-ivory/60 max-w-xl mx-auto mb-8">
                     Every subscription supports sustainable dairy farming,
                     indigenous cow preservation, and rural livelihoods.
                 </p>
