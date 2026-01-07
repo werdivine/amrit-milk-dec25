@@ -226,7 +226,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                             <h2 className="text-4xl font-serif font-bold text-theme-primary">Who should choose this</h2>
                         </div>
                         <div className="flex flex-wrap justify-center gap-4">
-                             {content.whoShouldChoose.map((item: string, i: number) => ( // Typed
+                              {content.whoShouldChoose.map((item: string, i: number) => ( // Typed
                                 <span key={i} className="px-8 py-4 rounded-full bg-white dark:bg-white/10 border border-theme-light text-xl text-theme-secondary shadow-sm">
                                     {item}
                                 </span>
@@ -285,6 +285,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                         </div>
                     </Section>
                 )}
+
                 {/* Best Sellers */}
                 <Section className="bg-theme-secondary/30">
                     <div className="max-w-7xl mx-auto px-6">
