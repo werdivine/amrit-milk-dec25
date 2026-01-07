@@ -1,6 +1,5 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Section } from "@/components/ui/section";
 
 export function FounderNote() {
@@ -14,7 +13,7 @@ export function FounderNote() {
                 </h2>
                 <div className="space-y-6 text-espresso/80 dark:text-ivory/80 text-lg md:text-xl font-light leading-relaxed max-w-3xl mx-auto">
                     <p>
-                        Starting Amrit Sovereign wasn't a business decision; it was a father's necessity. I couldn't find milk in Lucknow that wasn't contaminated with urea or hormones.
+                        Starting Amrit Milk Organic wasn't a business decision; it was a father's necessity. I couldn't find milk in Lucknow that wasn't contaminated with urea or hormones.
                     </p>
                     <p>
                         I went back to our roots, to the native Gir cows, and built a farm that operates on the principles of Ahimsa and Vedic hygiene.

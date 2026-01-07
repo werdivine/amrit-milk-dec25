@@ -21,14 +21,10 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
-            <body className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-creme text-espresso dark:bg-midnight dark:text-ivory transition-colors duration-500`}>
+            <body className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-creme dark:bg-midnight transition-colors duration-500`}>
                 <ThemeProvider>
                     <CartProvider>
-                        <Header />
-                        <main className="flex-grow pt-24">
-                            {children}
-                        </main>
-                        <Footer />
+                        {children}
                     </CartProvider>
                 </ThemeProvider>
             </body>

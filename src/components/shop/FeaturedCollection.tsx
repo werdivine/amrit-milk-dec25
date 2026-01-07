@@ -1,12 +1,10 @@
 "use client";
 
-import { products } from "@/lib/products";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { ChevronRight } from "lucide-react";
 import { motion } from "framer-motion";
-
 interface FeaturedCollectionProps {
     title: string;
     subtitle?: string;
@@ -15,9 +13,10 @@ interface FeaturedCollectionProps {
     limit?: number;
     description?: string;
     lightBg?: boolean;
+    products: any[];
 }
 
-export function FeaturedCollection({ title, subtitle, category, featuredOnly, limit = 4, description, lightBg }: FeaturedCollectionProps) {
+export function FeaturedCollection({ title, subtitle, category, featuredOnly, limit = 4, description, lightBg, products }: FeaturedCollectionProps) {
     let filteredProducts = products;
 
     if (category) {

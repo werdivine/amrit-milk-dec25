@@ -10,8 +10,13 @@ const nextConfig = {
                 protocol: 'https',
                 hostname: 'images.unsplash.com',
             },
+            {
+                protocol: 'https',
+                hostname: 'cdn.sanity.io',
+            },
         ],
     },
+    // No extra compiler settings needed
 };
 
 export default nextConfig;

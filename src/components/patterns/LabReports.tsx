@@ -13,16 +13,16 @@ const reports = [
 
 export function LabReports() {
     return (
-        <Section id="lab-reports" className="bg-espresso dark:bg-midnight transition-colors duration-500 overflow-hidden">
+        <Section id="lab-reports" className="bg-creme dark:bg-midnight transition-colors duration-500 overflow-hidden">
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
                 <div className="space-y-12">
                     <div className="space-y-4">
                         <span className="text-terracotta dark:text-gold font-bold uppercase tracking-[0.3em] text-xs">Uncompromising Truth</span>
-                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-creme dark:text-ivory leading-tight">
+                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory leading-tight">
                             Total <br />
                             <span className="text-terracotta">Transparency.</span>
                         </h2>
-                        <p className="text-creme/60 dark:text-ivory/60 text-lg md:text-xl leading-relaxed">
+                        <p className="text-espresso/60 dark:text-ivory/60 text-lg md:text-xl leading-relaxed">
                             Trust is earned through evidence. We publish our random batch test results from NABL accredited labs, so you never have to take our word for it.
                         </p>
                     </div>
@@ -41,13 +41,13 @@ export function LabReports() {
                                         <FileText className="w-5 h-5" />
                                     </div>
                                     <div>
-                                        <h4 className="text-creme dark:text-ivory font-bold">{report.title}</h4>
-                                        <p className="text-xs text-creme/40 uppercase tracking-widest">{report.date}</p>
+                                        <h4 className="text-espresso dark:text-ivory font-bold">{report.title}</h4>
+                                        <p className="text-xs text-espresso/40 dark:text-ivory/40 uppercase tracking-widest">{report.date}</p>
                                     </div>
                                 </div>
                                 <div className="text-right">
                                     <span className="text-xs font-black text-gold block mb-1 uppercase">{report.result}</span>
-                                    <button className="text-creme/40 hover:text-white flex items-center gap-1 text-[10px] uppercase font-bold tracking-widest transition-colors">
+                                    <button className="text-espresso/40 dark:text-ivory/40 hover:text-espresso dark:hover:text-white flex items-center gap-1 text-[10px] uppercase font-bold tracking-widest transition-colors">
                                         <Download className="w-3 h-3" /> PDF
                                     </button>
                                 </div>

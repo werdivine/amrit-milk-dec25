@@ -1,8 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
-import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
+import { Section } from "@/components/ui/section";
+import { motion } from "framer-motion";
 
 export function Newsletter() {
     return (
@@ -15,7 +15,7 @@ export function Newsletter() {
                     className="space-y-4"
                 >
                     <span className="text-creme/60 dark:text-gold/60 font-medium uppercase tracking-[0.3em] text-sm block">Join the Elite</span>
-                    <h2 className="text-4xl md:text-6xl font-serif font-bold text-creme dark:text-ivory">The Sovereign <span className="text-terracotta dark:text-gold">Circle.</span></h2>
+                    <h2 className="text-4xl md:text-6xl font-serif font-bold text-creme dark:text-ivory">The Amrit <span className="text-terracotta dark:text-gold">Family.</span></h2>
                     <p className="text-creme/70 dark:text-ivory/70 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
                         Become part of Lucknow's most discerning community. Get early access to seasonal harvests, Vedic wisdom, and farm-to-table events.
                     </p>

@@ -75,6 +75,17 @@ export default {
             of: [{ type: 'string' }],
         },
         {
+            name: 'sku',
+            title: 'SKU (Stock Keeping Unit)',
+            type: 'string',
+        },
+        {
+            name: 'subscription',
+            title: 'Available for Subscription?',
+            type: 'boolean',
+            initialValue: false,
+        },
+        {
             name: 'featured',
             title: 'Featured Product',
             type: 'boolean',

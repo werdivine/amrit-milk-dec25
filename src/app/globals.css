@@ -3,6 +3,51 @@
 @tailwind utilities;
 
 @layer base {
+    :root {
+        --background: 254 100% 99%;
+        --foreground: 20 40% 25%;
+        --card: 0 0% 100%;
+        --card-foreground: 20 40% 25%;
+        --popover: 0 0% 100%;
+        --popover-foreground: 20 40% 25%;
+        --primary: 14 81% 53%;
+        --primary-foreground: 0 0% 100%;
+        --secondary: 35 50% 93%;
+        --secondary-foreground: 20 40% 25%;
+        --muted: 35 50% 93%;
+        --muted-foreground: 25 30% 40%;
+        --accent: 14 81% 53%;
+        --accent-foreground: 0 0% 100%;
+        --destructive: 0 84% 60%;
+        --destructive-foreground: 0 0% 98%;
+        --border: 35 30% 85%;
+        --input: 35 30% 85%;
+        --ring: 14 81% 53%;
+        --radius: 0.5rem;
+    }
+
+    .dark {
+        --background: 222 84% 5%;
+        --foreground: 210 40% 98%;
+        --card: 222 84% 5%;
+        --card-foreground: 210 40% 98%;
+        --popover: 222 84% 5%;
+        --popover-foreground: 210 40% 98%;
+        --primary: 45 93% 47%;
+        --primary-foreground: 222 47% 11%;
+        --secondary: 217 33% 17%;
+        --secondary-foreground: 210 40% 98%;
+        --muted: 217 33% 17%;
+        --muted-foreground: 215 20% 65%;
+        --accent: 45 93% 47%;
+        --accent-foreground: 210 40% 98%;
+        --destructive: 0 63% 31%;
+        --destructive-foreground: 210 40% 98%;
+        --border: 217 33% 17%;
+        --input: 217 33% 17%;
+        --ring: 45 93% 47%;
+    }
+
     body {
         @apply bg-creme text-espresso transition-colors duration-500;
         font-family: 'Inter', sans-serif;

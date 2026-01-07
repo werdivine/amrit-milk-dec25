@@ -1,27 +1,29 @@
 "use client";
 
-import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
+import { useEffect, useState } from "react";
 
 const slides = [
     {
         id: 1,
-        title: "Purity. Sovereign.",
-        subtitle: "Lucknow's Gold Standard",
-        description: "Discover the raw majesty of A2 Desi Gir Cow Milk. Native DNA. Sterilized Glass. Delivered fresh within 4 hours.",
-        image: "/assets/img/hero-luxe-bg.png", // Using existing asset
-        cta: "Shop Now",
-        link: "/products"
+        title: "Vedic Bilona Ghee",
+        subtitle: "20,000+ Jars Dispatched",
+        description: "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
+        image: "/assets/img/ghee-jar.png",
+        cta: "Buy Now",
+        link: "/products/a2-bilona-ghee"
     },
     {
         id: 2,
-        title: "Vedic Bilona Ghee",
-        subtitle: "The Golden Elixir",
-        description: "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
-        image: "/assets/img/ghee-jar.png",
-        cta: "Explore Ghee",
-        link: "/products?category=ghee"
+        title: "Pure A2 Milk & Desi Food Products",
+        subtitle: "From Our Own Farm — Trusted by Families for 12+ Years",
+        description: "Daily milk delivery, bilona ghee, cold-pressed oils & natural foods — made for children, families, and conscious living.",
+        image: "/assets/img/hero-luxe-bg.png",
+        cta: "Order for Your Family",
+        link: "/products",
+        secondaryCta: "Know Our Farm & Process",
+        secondaryLink: "/the-farm"
     },
     {
         id: 3,
@@ -84,7 +86,7 @@ export function HeroSlider() {
                             <p className="text-lg md:text-2xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
                                 {slide.description}
                             </p>
-                            <div className="pt-4">
+                            <div className="pt-4 flex flex-wrap justify-center gap-4">
                                 <Button
                                     href={slide.link}
                                     size="lg"
@@ -92,6 +94,16 @@ export function HeroSlider() {
                                 >
                                     {slide.cta} <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
+                                {(slide as any).secondaryCta && (
+                                    <Button
+                                        href={(slide as any).secondaryLink}
+                                        size="lg"
+                                        variant="outline"
+                                        className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-espresso transition-all duration-300 text-lg px-10 py-6 h-auto"
+                                    >
+                                        {(slide as any).secondaryCta}
+                                    </Button>
+                                )}
                             </div>
                         </div>
                     </div>

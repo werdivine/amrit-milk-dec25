@@ -1,11 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import Image from "next/image";
-import { Search, ShoppingBag, User, Menu, X, ChevronDown } from "lucide-react";
-import { useCart } from "@/lib/CartContext";
-import { useState } from "react";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
+import { useCart } from "@/lib/CartContext";
+import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { useState } from "react";
 
 const navLinks = [
     { href: "/", label: "Home" },
@@ -65,7 +65,7 @@ export function Header() {
                     </button>
 
                     {/* Logo - Larger size with transparent logo */}
-                    <Link href="/" className="flex items-center gap-3 group relative">
+                    <Link href="/" className="flex flex-col items-center gap-0.5 group relative">
                         <Image
                             src="/assets/img/amrit-logo-transparent.png"
                             alt="Amrit Milk - Affordable milk rich in taste"
@@ -75,6 +75,9 @@ export function Header() {
                             style={{ filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))' }}
                             priority
                         />
+                         <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-ivory/80 group-hover:text-gold transition-colors">
+                            Purity Assured.
+                        </span>
                     </Link>
 
                     {/* Desktop Nav */}

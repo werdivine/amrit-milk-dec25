@@ -1,6 +1,6 @@
-import Link from "next/link";
+import { Facebook, Heart, Instagram, Mail, MapPin, MessageCircle, Phone, Twitter } from "lucide-react";
 import Image from "next/image";
-import { Facebook, Instagram, Twitter, MessageCircle, MapPin, Phone, Mail, Heart } from "lucide-react";
+import Link from "next/link";
 
 export function Footer() {
     return (
@@ -33,6 +33,10 @@ export function Footer() {
                             Affordable milk, rich in taste. Pure A2 Gir Cow Milk from indigenous breeds,
                             delivered fresh to your doorstep in glass bottles.
                         </p>
+                        <div className="pt-4 border-t border-white/10">
+                             <p className="text-gold font-serif italic text-lg">"Not a brand, a movement."</p>
+                             <p className="text-xs text-ivory/50 mt-1 uppercase tracking-widest">Reclaiming Real Food</p>
+                        </div>
                         {/* Social Icons with premium styling */}
                         <div className="flex gap-3">
                             <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-gold hover:border-gold hover:text-espresso transition-all duration-300 text-ivory shadow-sm hover:shadow-lg">

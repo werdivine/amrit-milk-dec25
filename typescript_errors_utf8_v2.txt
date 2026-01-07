@@ -1,0 +1,8 @@
+﻿sanity.config.ts(1,30): error TS2307: Cannot find module 'sanity' or its corresponding type declarations.
+sanity.config.ts(2,31): error TS2307: Cannot find module 'sanity/structure' or its corresponding type declarations.
+sanity.config.ts(3,28): error TS2307: Cannot find module '@sanity/vision' or its corresponding type declarations.
+src/app/(shop)/v2/page.tsx(96,27): error TS2304: Cannot find name 'products'.
+src/app/(shop)/v2/page.tsx(108,27): error TS2304: Cannot find name 'products'.
+src/app/(shop)/v2/page.tsx(119,14): error TS2741: Property 'products' is missing in type '{ title: string; subtitle: string; category: string; description: string; lightBg: true; limit: number; }' but required in type 'FeaturedCollectionProps'.
+src/app/admin/[[...index]]/page.tsx(7,24): error TS2322: Type '{ config: any; }' is not assignable to type 'IntrinsicAttributes & NextStudioProps'.
+  Property 'config' does not exist on type 'IntrinsicAttributes & NextStudioProps'.

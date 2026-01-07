@@ -1,28 +1,28 @@
 "use client";
 
 import { Section } from "@/components/ui/section";
-import { CheckCircle, Clock, Award, ShieldCheck } from "lucide-react";
+import { Award, CheckCircle, Clock, ShieldCheck } from "lucide-react";
 
 const trustItems = [
     {
         icon: Award,
-        title: "100% Native Breed",
+        title: "Indian Desi Cows (A2)",
         desc: "Strictly Desi Gir Cow & Buffalo Milk"
     },
     {
-        icon: Clock,
-        title: "Farm-to-Door in 4Hrs",
-        desc: "Milked at 4AM, delivered by 8AM"
-    },
-    {
         icon: ShieldCheck,
-        title: "Lab Tested Purity",
-        desc: "Daily checks for adulteration & inconsistencies"
+        title: "Own Farm, Not Aggregated",
+        desc: "We raise our own cows, we don't buy milk."
     },
     {
         icon: CheckCircle,
-        title: "Zero Plastic",
-        desc: "Packed in sterilized glass bottles only"
+        title: "Trusted by 700+ Families",
+        desc: "Serving healthy families & children for 12+ years"
+    },
+    {
+        icon: Clock,
+        title: "Delivered Fresh",
+        desc: "Milked at 4AM, delivered by 8AM daily"
     }
 ];
 
