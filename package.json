@@ -26,6 +26,7 @@
         "prepare": "husky"
     },
     "dependencies": {
+        "@prisma/client": "^5.22.0",
         "@sanity/client": "^7.13.2",
         "@sanity/image-url": "^2.0.2",
         "@sanity/vision": "^3.0.0",

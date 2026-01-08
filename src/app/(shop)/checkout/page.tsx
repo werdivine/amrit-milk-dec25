@@ -4,21 +4,48 @@ import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { useCart } from "@/lib/CartContext";
 import { AlertCircle, CreditCard, Lock, Truck } from "lucide-react";
-import { useRouter } from "next/navigation";
-import Script from "next/script";
-import { useEffect, useState } from "react";
+import { useRouter, useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
-declare global {
-    interface Window {
-        Razorpay: any;
-    }
+// CCAvenue form component - handles redirect to CCAvenue
+function CCavenueForm({
+    encryptedData,
+    accessCode,
+    ccavenueUrl,
+}: {
+    encryptedData: string;
+    accessCode: string;
+    ccavenueUrl: string;
+}) {
+    useEffect(() => {
+        // Auto-submit the form to CCAvenue
+        const form = document.getElementById("ccavenue-form") as HTMLFormElement;
+        if (form) {
+            form.submit();
+        }
+    }, []);
+
+    return (
+        <form id="ccavenue-form" method="POST" action={ccavenueUrl} style={{ display: "none" }}>
+            <input type="hidden" name="encRequest" value={encryptedData} />
+            <input type="hidden" name="access_code" value={accessCode} />
+        </form>
+    );
 }
 
-export default function CheckoutPage() {
+function CheckoutContent() {
     const { cart, cartTotal, clearCart } = useCart();
     const router = useRouter();
+    const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
     const [error, setError] = useState<string | null>(null);
+
+    // CCAvenue redirect state
+    const [ccavenueData, setCcavenueData] = useState<{
+        encryptedData: string;
+        accessCode: string;
+        ccavenueUrl: string;
+    } | null>(null);
 
     // Form State
     const [formData, setFormData] = useState({
@@ -28,10 +55,26 @@ export default function CheckoutPage() {
         address: "",
         city: "",
         pincode: "",
-        state: ""
+        state: "",
     });
 
     const [paymentMethod, setPaymentMethod] = useState<"online" | "cod">("online");
+
+    // Check for payment status from URL (returned from CCAvenue)
+    useEffect(() => {
+        const status = searchParams.get("status");
+        const message = searchParams.get("message");
+
+        if (status === "cancelled") {
+            setError("Payment was cancelled. Please try again or choose Cash on Delivery.");
+        } else if (status === "failed") {
+            setError(
+                `Payment failed: ${message || "Please try again or choose Cash on Delivery."}`
+            );
+        } else if (status === "error") {
+            setError("An error occurred during payment. Please try again.");
+        }
+    }, [searchParams]);
 
     useEffect(() => {
         // Load saved address
@@ -39,16 +82,22 @@ export default function CheckoutPage() {
         if (saved) {
             try {
                 setFormData(JSON.parse(saved));
-            } catch (e) { }
+            } catch (e) {}
         }
     }, []);
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-        setFormData(prev => ({ ...prev, [e.target.name]: e.target.value }));
+        setFormData((prev) => ({ ...prev, [e.target.name]: e.target.value }));
     };
 
     const validateForm = () => {
-        if (!formData.name || !formData.email || !formData.phone || !formData.address || !formData.pincode) {
+        if (
+            !formData.name ||
+            !formData.email ||
+            !formData.phone ||
+            !formData.address ||
+            !formData.pincode
+        ) {
             setError("Please fill in all required fields.");
             return false;
         }
@@ -68,78 +117,118 @@ export default function CheckoutPage() {
         // Save address
         localStorage.setItem("amrit-address", JSON.stringify(formData));
 
-        if (paymentMethod === "cod") {
-            // Simulate API call for COD
-            setTimeout(() => {
-                router.push("/checkout/success");
-            }, 1000);
-            return;
-        }
-
         try {
-            // Create Order on Server
-            const res = await fetch("/api/create-order", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ amount: cartTotal, currency: "INR" })
-            });
-
-            const data = await res.json();
-
-            if (!res.ok) {
-                // Should fall back to COD if keys missing
-                if (res.status === 400 && data.message?.includes("keys missing")) {
-                    setError("Online payments currently unavailable. Switching to Cash on Delivery.");
-                    setPaymentMethod("cod");
-                    setLoading(false);
-                    return;
-                }
-                throw new Error(data.error || "Something went wrong");
-            }
-
-            // Initialize Razorpay
-            const options = {
-                key: process.env.NEXT_PUBLIC_RAZORPAY_KEY_ID,
-                amount: data.amount,
-                currency: data.currency,
-                name: "Amrit Milk Organic",
-                description: "Premium Dairy & Wellness",
-                order_id: data.id,
-                handler: function (response: any) {
-                    // Payment Success
-                    router.push("/checkout/success");
-                },
-                prefill: {
-                    name: formData.name,
-                    email: formData.email,
-                    contact: formData.phone
-                },
-                theme: {
-                    color: "#D4AF37" // Gold
-                }
+            // Prepare order data
+            const orderData = {
+                customerName: formData.name,
+                email: formData.email,
+                phone: formData.phone,
+                address: formData.address,
+                city: formData.city,
+                state: formData.state,
+                pincode: formData.pincode,
+                items: cart,
+                subtotal: cartTotal,
+                deliveryFee: 0,
+                total: cartTotal,
+                paymentMethod: paymentMethod,
             };
 
-            const rzp = new window.Razorpay(options);
-            rzp.on("payment.failed", function (response: any) {
-                setError("Payment Failed: " + response.error.description);
-                setLoading(false);
+            // Step 1: Create order in database
+            const orderRes = await fetch("/api/orders", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(orderData),
             });
-            rzp.open();
-            setLoading(false);
 
+            const orderResult = await orderRes.json();
+
+            if (!orderRes.ok) {
+                throw new Error(orderResult.error || "Failed to create order");
+            }
+
+            const orderId = orderResult.order.orderNumber;
+
+            // Step 2: Process payment based on method
+            if (paymentMethod === "cod") {
+                // COD - order is already created, redirect to success
+                clearCart();
+                router.push(`/checkout/success?order_id=${orderId}`);
+                return;
+            }
+
+            // Step 3: For online payment, initiate CCAvenue
+            const ccavenueRes = await fetch("/api/ccavenue/initiate", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    orderId,
+                    amount: cartTotal,
+                    customerName: formData.name,
+                    customerEmail: formData.email,
+                    customerPhone: formData.phone,
+                    billingAddress: formData.address,
+                    billingCity: formData.city,
+                    billingState: formData.state,
+                    billingZip: formData.pincode,
+                }),
+            });
+
+            const ccavenueResult = await ccavenueRes.json();
+
+            if (!ccavenueRes.ok) {
+                // If CCAvenue fails, suggest COD
+                if (ccavenueResult.error?.includes("not configured")) {
+                    setError(
+                        "Online payments are currently unavailable. Please use Cash on Delivery."
+                    );
+                    setPaymentMethod("cod");
+                } else {
+                    throw new Error(ccavenueResult.error || "Failed to initiate payment");
+                }
+                setLoading(false);
+                return;
+            }
+
+            // Clear cart before redirecting (order is saved)
+            clearCart();
+
+            // Set CCAvenue data to trigger form submission
+            setCcavenueData({
+                encryptedData: ccavenueResult.encryptedData,
+                accessCode: ccavenueResult.accessCode,
+                ccavenueUrl: ccavenueResult.ccavenueUrl,
+            });
         } catch (err: any) {
             console.error(err);
-            setError(err.message || "Payment initialization failed. Try COD.");
+            setError(err.message || "Something went wrong. Please try again.");
             setLoading(false);
         }
     };
+
+    // If we have CCAvenue data, render the hidden form
+    if (ccavenueData) {
+        return (
+            <main className="bg-creme dark:bg-midnight min-h-screen flex items-center justify-center">
+                <div className="text-center space-y-4">
+                    <div className="animate-spin w-12 h-12 border-4 border-gold border-t-transparent rounded-full mx-auto"></div>
+                    <p className="text-espresso dark:text-ivory">Redirecting to CCAvenue...</p>
+                    <CCavenueForm {...ccavenueData} />
+                </div>
+            </main>
+        );
+    }
 
     if (cart.length === 0) {
         return (
             <main className="bg-creme dark:bg-midnight min-h-screen flex items-center justify-center">
                 <div className="text-center">
-                    <h1 className="text-3xl font-serif font-bold text-espresso dark:text-ivory">Your cart is empty</h1>
-                    <Button href="/products" className="mt-4">Back to Shop</Button>
+                    <h1 className="text-3xl font-serif font-bold text-espresso dark:text-ivory">
+                        Your cart is empty
+                    </h1>
+                    <Button href="/products" className="mt-4">
+                        Back to Shop
+                    </Button>
                 </div>
             </main>
         );
@@ -147,8 +236,6 @@ export default function CheckoutPage() {
 
     return (
         <main className="bg-creme dark:bg-midnight min-h-screen pb-20 transition-colors duration-500">
-            <Script src="https://checkout.razorpay.com/v1/checkout.js" />
-
             <Section>
                 <div className="max-w-7xl mx-auto">
                     <h1 className="text-4xl md:text-5xl font-serif font-bold mb-12 text-gradient-gold">
@@ -161,12 +248,16 @@ export default function CheckoutPage() {
                             {/* Contact Info */}
                             <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl transition-all duration-300">
                                 <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-espresso dark:text-ivory">
-                                    <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">1</div>
+                                    <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">
+                                        1
+                                    </div>
                                     Contact Details
                                 </h2>
                                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Full Name</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                            Full Name
+                                        </label>
                                         <input
                                             name="name"
                                             value={formData.name}
@@ -176,7 +267,9 @@ export default function CheckoutPage() {
                                         />
                                     </div>
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Phone Number</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                            Phone Number
+                                        </label>
                                         <input
                                             name="phone"
                                             value={formData.phone}
@@ -186,7 +279,9 @@ export default function CheckoutPage() {
                                         />
                                     </div>
                                     <div className="space-y-2 md:col-span-2">
-                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Email Address</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                            Email Address
+                                        </label>
                                         <input
                                             name="email"
                                             value={formData.email}
@@ -201,12 +296,16 @@ export default function CheckoutPage() {
                             {/* Shipping Address */}
                             <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl transition-all duration-300">
                                 <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-espresso dark:text-ivory">
-                                    <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">2</div>
+                                    <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">
+                                        2
+                                    </div>
                                     Shipping Address
                                 </h2>
                                 <div className="space-y-6">
                                     <div className="space-y-2">
-                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Street Address</label>
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                            Street Address
+                                        </label>
                                         <textarea
                                             name="address"
                                             value={formData.address}
@@ -218,7 +317,9 @@ export default function CheckoutPage() {
                                     </div>
                                     <div className="grid grid-cols-2 gap-6">
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">City</label>
+                                            <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                                City
+                                            </label>
                                             <input
                                                 name="city"
                                                 value={formData.city}
@@ -227,7 +328,9 @@ export default function CheckoutPage() {
                                             />
                                         </div>
                                         <div className="space-y-2">
-                                            <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">Pincode</label>
+                                            <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                                Pincode
+                                            </label>
                                             <input
                                                 name="pincode"
                                                 value={formData.pincode}
@@ -236,43 +339,65 @@ export default function CheckoutPage() {
                                             />
                                         </div>
                                     </div>
+                                    <div className="space-y-2">
+                                        <label className="text-sm font-bold text-espresso-light dark:text-ivory/80">
+                                            State
+                                        </label>
+                                        <input
+                                            name="state"
+                                            value={formData.state}
+                                            onChange={handleChange}
+                                            className="w-full bg-creme-light dark:bg-midnight-mid border border-creme-dark dark:border-white/10 rounded-lg px-4 py-3 text-espresso dark:text-ivory focus:border-gold outline-none transition-colors"
+                                            placeholder="e.g., Uttar Pradesh"
+                                        />
+                                    </div>
                                 </div>
                             </div>
 
                             {/* Payment Method */}
                             <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl transition-all duration-300">
                                 <h2 className="text-2xl font-serif font-bold mb-6 flex items-center gap-2 text-espresso dark:text-ivory">
-                                    <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">3</div>
+                                    <div className="w-8 h-8 rounded-full bg-gold/20 flex items-center justify-center text-gold text-sm">
+                                        3
+                                    </div>
                                     Payment Method
                                 </h2>
                                 <div className="space-y-4">
-                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'online' ? 'border-gold bg-gold/10' : 'border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5'}`}>
+                                    <label
+                                        className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === "online" ? "border-gold bg-gold/10" : "border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5"}`}
+                                    >
                                         <input
                                             type="radio"
                                             name="payment"
-                                            checked={paymentMethod === 'online'}
-                                            onChange={() => setPaymentMethod('online')}
+                                            checked={paymentMethod === "online"}
+                                            onChange={() => setPaymentMethod("online")}
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <CreditCard className="w-6 h-6 text-gold" />
                                         <div className="text-espresso dark:text-ivory">
                                             <div className="font-bold">Pay Online</div>
-                                            <div className="text-sm text-espresso-muted dark:text-ivory/60">Razorpay Secure (UPI, Cards, Netbanking)</div>
+                                            <div className="text-sm text-espresso-muted dark:text-ivory/60">
+                                                CCAvenue Secure (UPI, Cards, Netbanking)
+                                            </div>
                                         </div>
                                     </label>
 
-                                    <label className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === 'cod' ? 'border-gold bg-gold/10' : 'border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5'}`}>
+                                    <label
+                                        className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === "cod" ? "border-gold bg-gold/10" : "border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5"}`}
+                                    >
                                         <input
                                             type="radio"
                                             name="payment"
-                                            checked={paymentMethod === 'cod'}
-                                            onChange={() => setPaymentMethod('cod')}
+                                            checked={paymentMethod === "cod"}
+                                            onChange={() => setPaymentMethod("cod")}
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <Truck className="w-6 h-6 text-gold" />
                                         <div className="text-espresso dark:text-ivory">
                                             <div className="font-bold">Cash on Delivery</div>
-                                            <div className="text-sm text-espresso-muted dark:text-ivory/60">Pay when you receive your order</div>
+                                            <div className="text-sm text-espresso-muted dark:text-ivory/60">
+                                                Pay when you receive your order
+                                            </div>
                                         </div>
                                     </label>
                                 </div>
@@ -282,7 +407,9 @@ export default function CheckoutPage() {
                         {/* RIGHT: SUMMARY */}
                         <div className="lg:col-span-5">
                             <div className="bg-white dark:bg-midnight-mid border border-creme-dark dark:border-white/5 shadow-soft dark:shadow-card-dark p-8 rounded-2xl sticky top-24 transition-all duration-300">
-                                <h3 className="text-2xl font-serif font-bold mb-6 text-espresso dark:text-ivory">Order Summary</h3>
+                                <h3 className="text-2xl font-serif font-bold mb-6 text-espresso dark:text-ivory">
+                                    Order Summary
+                                </h3>
 
                                 <div className="space-y-4 mb-8 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
                                     {cart.map((item) => (
@@ -292,11 +419,19 @@ export default function CheckoutPage() {
                                                 style={{ backgroundImage: `url(${item.image})` }}
                                             ></div>
                                             <div className="flex-1">
-                                                <h4 className="font-bold text-sm text-espresso dark:text-ivory">{item.title}</h4>
-                                                <p className="text-xs text-espresso-muted dark:text-ivory/60">Qty: {item.quantity}</p>
+                                                <h4 className="font-bold text-sm text-espresso dark:text-ivory">
+                                                    {item.title}
+                                                </h4>
+                                                <p className="text-xs text-espresso-muted dark:text-ivory/60">
+                                                    Qty: {item.quantity}
+                                                </p>
                                             </div>
                                             <div className="font-bold text-gold">
-                                                ₹{(parseFloat(item.price.replace(/[₹,]/g, '')) * item.quantity).toFixed(0)}
+                                                ₹
+                                                {(
+                                                    parseFloat(item.price.replace(/[₹,]/g, "")) *
+                                                    item.quantity
+                                                ).toFixed(0)}
                                             </div>
                                         </div>
                                     ))}
@@ -330,12 +465,16 @@ export default function CheckoutPage() {
                                     onClick={handlePayment}
                                     disabled={loading}
                                 >
-                                    {loading ? "Processing..." : paymentMethod === 'online' ? "Pay Now" : "Place Order"}
+                                    {loading
+                                        ? "Processing..."
+                                        : paymentMethod === "online"
+                                          ? "Pay Now"
+                                          : "Place Order"}
                                 </Button>
 
                                 <div className="mt-6 flex items-center justify-center gap-2 text-xs text-espresso-muted dark:text-ivory/60">
                                     <Lock className="w-3 h-3" />
-                                    Secure Checkout powered by Razorpay
+                                    Secure Checkout powered by CCAvenue
                                 </div>
                             </div>
                         </div>
@@ -343,5 +482,19 @@ export default function CheckoutPage() {
                 </div>
             </Section>
         </main>
+    );
+}
+
+export default function CheckoutPage() {
+    return (
+        <Suspense
+            fallback={
+                <main className="bg-creme dark:bg-midnight min-h-screen flex items-center justify-center">
+                    <div className="animate-spin w-12 h-12 border-4 border-gold border-t-transparent rounded-full"></div>
+                </main>
+            }
+        >
+            <CheckoutContent />
+        </Suspense>
     );
 }
