@@ -1,39 +1,39 @@
 "use client";
 
 import { Section } from "@/components/ui/section";
-import { Leaf, Droplets, Sun, Recycle, Heart, TreePine } from "lucide-react";
+import { Droplets, Heart, Leaf, Recycle, Sun, TreePine } from "lucide-react";
 
 const practices = [
     {
         icon: Recycle,
         title: "Zero Waste",
-        description: "Every byproduct is reused - cow dung for biogas, waste for compost"
+        description: "Every byproduct is reused - cow dung for biogas, waste for compost",
     },
     {
         icon: TreePine,
         title: "Native Breeds",
-        description: "Preserving indigenous Gir and Sahiwal cows from extinction"
+        description: "Preserving indigenous Gir and Sahiwal cows from extinction",
     },
     {
         icon: Sun,
         title: "Renewable Energy",
-        description: "Solar-powered operations and biogas from farm waste"
+        description: "Solar-powered operations and biogas from farm waste",
     },
     {
         icon: Droplets,
         title: "Water Conservation",
-        description: "Rainwater harvesting and drip irrigation systems"
+        description: "Rainwater harvesting and drip irrigation systems",
     },
     {
         icon: Leaf,
         title: "Organic Feed",
-        description: "100% chemical-free fodder grown on our own fields"
+        description: "100% chemical-free fodder grown on our own fields",
     },
     {
         icon: Heart,
         title: "Cow Welfare",
-        description: "Free-range grazing, natural breeding, no hormones"
-    }
+        description: "Free-range grazing, natural breeding, no hormones",
+    },
 ];
 
 export function SustainabilityStory() {
@@ -53,7 +53,9 @@ export function SustainabilityStory() {
                         How We Farm Matters
                     </h2>
                     <p className="text-xl text-white/80 max-w-3xl mx-auto leading-relaxed">
-                        Since 2015, we've built a <span className="text-gold font-bold">completely sustainable farm</span> where every decision honors  the earth, the animals, and our heritage.
+                        Since 2015, we&apos;ve built a{" "}
+                        <span className="text-gold font-bold">completely sustainable farm</span>{" "}
+                        where every decision honors the earth, the animals, and our heritage.
                     </p>
                 </div>
 
@@ -66,12 +68,8 @@ export function SustainabilityStory() {
                             <div className="w-16 h-16 rounded-full bg-white/10 flex items-center justify-center mb-6 group-hover:bg-gold/20 transition-colors">
                                 <practice.icon className="w-8 h-8 text-gold" />
                             </div>
-                            <h3 className="text-2xl font-bold text-white mb-3">
-                                {practice.title}
-                            </h3>
-                            <p className="text-white/70">
-                                {practice.description}
-                            </p>
+                            <h3 className="text-2xl font-bold text-white mb-3">{practice.title}</h3>
+                            <p className="text-white/70">{practice.description}</p>
                         </div>
                     ))}
                 </div>
@@ -79,7 +77,8 @@ export function SustainabilityStory() {
                 {/* Call to action */}
                 <div className="text-center mt-16">
                     <p className="text-white/90 text-lg italic">
-                        "We don't just sell products. We practice a way of life that has sustained our civilization for millennia."
+                        &quot;We don&apos;t just sell products. We practice a way of life that has
+                        sustained our civilization for millennia.&quot;
                     </p>
                 </div>
             </div>

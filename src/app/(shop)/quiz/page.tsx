@@ -1,62 +1,118 @@
 "use client";
 
-import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
-import { useState } from "react";
-import { ChevronRight, Award, CheckCircle, Sparkles } from "lucide-react";
+import { Section } from "@/components/ui/section";
+import { CheckCircle, ChevronRight, Sparkles } from "lucide-react";
 import Link from "next/link";
+import { useState } from "react";
 
 const questions = [
     {
         id: 1,
-        question: "What's your primary health goal?",
+        question: "What&apos;s your primary health goal?",
         options: [
-            { text: "Better digestion", value: "digestion", points: { a2milk: 10, curd: 8, ghee: 6 } },
-            { text: "Build muscle/strength", value: "muscle", points: { a2milk: 10, paneer: 9, ghee: 7 } },
-            { text: "Weight management", value: "weight", points: { ghee: 10, a2milk: 8, honey: 7 } },
-            { text: "Boost immunity", value: "immunity", points: { a2milk: 10, ghee: 9, honey: 8 } }
-        ]
+            {
+                text: "Better digestion",
+                value: "digestion",
+                points: { a2milk: 10, curd: 8, ghee: 6 },
+            },
+            {
+                text: "Build muscle/strength",
+                value: "muscle",
+                points: { a2milk: 10, paneer: 9, ghee: 7 },
+            },
+            {
+                text: "Weight management",
+                value: "weight",
+                points: { ghee: 10, a2milk: 8, honey: 7 },
+            },
+            {
+                text: "Boost immunity",
+                value: "immunity",
+                points: { a2milk: 10, ghee: 9, honey: 8 },
+            },
+        ],
     },
     {
         id: 2,
         question: "Do you have any digestive sensitivities?",
         options: [
             { text: "Lactose intolerant", value: "lactose", points: { ghee: 10, a2milk: 6 } },
-            { text: "Bloating with regular milk", value: "bloating", points: { a2milk: 10, curd: 8 } },
+            {
+                text: "Bloating with regular milk",
+                value: "bloating",
+                points: { a2milk: 10, curd: 8 },
+            },
             { text: "No issues", value: "none", points: { a2milk: 10, paneer: 8, curd: 8 } },
-            { text: "Sensitive stomach", value: "sensitive", points: { ghee: 9, a2milk: 8, curd: 7 } }
-        ]
+            {
+                text: "Sensitive stomach",
+                value: "sensitive",
+                points: { ghee: 9, a2milk: 8, curd: 7 },
+            },
+        ],
     },
     {
         id: 3,
-        question: "What's your lifestyle like?",
+        question: "What&apos;s your lifestyle like?",
         options: [
-            { text: "Very active / Athletic", value: "athletic", points: { a2milk: 10, paneer: 9, ghee: 8 } },
-            { text: "Sedentary / Desk job", value: "sedentary", points: { ghee: 8, honey: 7, a2milk: 6 } },
-            { text: "Moderate activity", value: "moderate", points: { a2milk: 9, curd: 8, ghee: 7 } },
-            { text: "High stress", value: "stress", points: { ghee: 10, a2milk: 8, honey: 7 } }
-        ]
+            {
+                text: "Very active / Athletic",
+                value: "athletic",
+                points: { a2milk: 10, paneer: 9, ghee: 8 },
+            },
+            {
+                text: "Sedentary / Desk job",
+                value: "sedentary",
+                points: { ghee: 8, honey: 7, a2milk: 6 },
+            },
+            {
+                text: "Moderate activity",
+                value: "moderate",
+                points: { a2milk: 9, curd: 8, ghee: 7 },
+            },
+            { text: "High stress", value: "stress", points: { ghee: 10, a2milk: 8, honey: 7 } },
+        ],
     },
     {
         id: 4,
         question: "What time of day do you prefer dairy?",
         options: [
-            { text: "Morning (breakfast)", value: "morning", points: { a2milk: 10, ghee: 8, curd: 6 } },
-            { text: "Evening (dinner)", value: "evening", points: { curd: 9, a2milk: 8, paneer: 7 } },
+            {
+                text: "Morning (breakfast)",
+                value: "morning",
+                points: { a2milk: 10, ghee: 8, curd: 6 },
+            },
+            {
+                text: "Evening (dinner)",
+                value: "evening",
+                points: { curd: 9, a2milk: 8, paneer: 7 },
+            },
             { text: "Before bed", value: "night", points: { a2milk: 10, ghee: 9 } },
-            { text: "All day", value: "allday", points: { a2milk: 10, ghee: 9, curd: 8 } }
-        ]
+            { text: "All day", value: "allday", points: { a2milk: 10, ghee: 9, curd: 8 } },
+        ],
     },
     {
         id: 5,
-        question: "What's most important to you?",
+        question: "What&apos;s most important to you?",
         options: [
-            { text: "Taste & tradition", value: "taste", points: { ghee: 10, a2milk: 9, paneer: 7 } },
-            { text: "Protein content", value: "protein", points: { paneer: 10, a2milk: 9, curd: 7 } },
+            {
+                text: "Taste & tradition",
+                value: "taste",
+                points: { ghee: 10, a2milk: 9, paneer: 7 },
+            },
+            {
+                text: "Protein content",
+                value: "protein",
+                points: { paneer: 10, a2milk: 9, curd: 7 },
+            },
             { text: "Easy digestion", value: "digest", points: { a2milk: 10, curd: 9, ghee: 8 } },
-            { text: "Ayurvedic benefits", value: "ayurveda", points: { ghee: 10, a2milk: 9, honey: 8 } }
-        ]
-    }
+            {
+                text: "Ayurvedic benefits",
+                value: "ayurveda",
+                points: { ghee: 10, a2milk: 9, honey: 8 },
+            },
+        ],
+    },
 ];
 
 const productRecommendations: any = {
@@ -65,36 +121,56 @@ const productRecommendations: any = {
         image: "/assets/img/milk-bottle.png",
         slug: "a2-milk-500ml",
         tagline: "Perfect for daily nutrition and gut health",
-        benefits: ["Easier to digest", "Rich in Omega-3", "Boosts immunity", "No A1 protein inflammation"]
+        benefits: [
+            "Easier to digest",
+            "Rich in Omega-3",
+            "Boosts immunity",
+            "No A1 protein inflammation",
+        ],
     },
     ghee: {
         name: "Vedic Bilona Ghee",
         image: "/assets/img/ghee-jar.png",
         slug: "vedic-ghee-500ml",
         tagline: "Ancient wisdom in every spoonful",
-        benefits: ["Improves memory", "Lubricates joints", "High-heat cooking", "Builds Ojas (vitality)"]
+        benefits: [
+            "Improves memory",
+            "Lubricates joints",
+            "High-heat cooking",
+            "Builds Ojas (vitality)",
+        ],
     },
     curd: {
         name: "A2 Curd (Dahi)",
         image: "/assets/img/paneer.png",
         slug: "a2-curd-500ml",
         tagline: "Live probiotics for gut health",
-        benefits: ["Natural probiotics", "Cools the body", "Improves digestion", "Rich in protein"]
+        benefits: ["Natural probiotics", "Cools the body", "Improves digestion", "Rich in protein"],
     },
     paneer: {
         name: "Malai Paneer",
         image: "/assets/img/paneer.png",
         slug: "malai-paneer-200g",
         tagline: "High-protein vegetarian superfood",
-        benefits: ["20g protein per 100g", "Builds muscle", "Strengthens bones", "Versatile cooking"]
+        benefits: [
+            "20g protein per 100g",
+            "Builds muscle",
+            "Strengthens bones",
+            "Versatile cooking",
+        ],
     },
     honey: {
         name: "Raw Forest Honey",
         image: "/assets/img/honey-jar.png",
         slug: "forest-honey-500g",
         tagline: "Nature's healing elixir",
-        benefits: ["Natural antimicrobial", "Soothes throat", "Boosts energy", "Rich in antioxidants"]
-    }
+        benefits: [
+            "Natural antimicrobial",
+            "Soothes throat",
+            "Boosts energy",
+            "Rich in antioxidants",
+        ],
+    },
 };
 
 export default function QuizPage() {
@@ -153,7 +229,7 @@ export default function QuizPage() {
                             Your Perfect Match!
                         </h1>
                         <p className="text-xl text-ivory/70 mb-12">
-                            Based on your answers, here's what we recommend:
+                            Based on your answers, here&apos;s what we recommend:
                         </p>
 
                         {/* Top Recommendation */}
@@ -170,14 +246,23 @@ export default function QuizPage() {
                                 />
                             </div>
 
-                            <h2 className="text-3xl font-serif font-bold text-espresso dark:text-ivory mb-3">{recommendation.name}</h2>
-                            <p className="text-xl text-espresso/80 dark:text-ivory/80 italic mb-8">{recommendation.tagline}</p>
+                            <h2 className="text-3xl font-serif font-bold text-espresso dark:text-ivory mb-3">
+                                {recommendation.name}
+                            </h2>
+                            <p className="text-xl text-espresso/80 dark:text-ivory/80 italic mb-8">
+                                {recommendation.tagline}
+                            </p>
 
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                                 {recommendation.benefits.map((benefit: string, i: number) => (
-                                    <div key={i} className="flex items-center gap-3 bg-espresso/5 dark:bg-midnight/40 rounded-xl p-4">
+                                    <div
+                                        key={i}
+                                        className="flex items-center gap-3 bg-espresso/5 dark:bg-midnight/40 rounded-xl p-4"
+                                    >
                                         <CheckCircle className="w-5 h-5 text-gold flex-shrink-0" />
-                                        <span className="text-sm text-left text-espresso dark:text-ivory">{benefit}</span>
+                                        <span className="text-sm text-left text-espresso dark:text-ivory">
+                                            {benefit}
+                                        </span>
                                     </div>
                                 ))}
                             </div>
@@ -189,7 +274,9 @@ export default function QuizPage() {
 
                         {/* Other Recommendations */}
                         <div className="mb-12">
-                            <h3 className="text-2xl font-serif font-bold mb-6">Also Great For You:</h3>
+                            <h3 className="text-2xl font-serif font-bold mb-6">
+                                Also Great For You:
+                            </h3>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {topProducts.slice(1, 3).map((productKey: string) => {
                                     const prod = productRecommendations[productKey];
@@ -199,9 +286,17 @@ export default function QuizPage() {
                                             href={`/products/${prod.slug}`}
                                             className="bg-glass-bg border border-glass-border rounded-2xl p-6 hover:border-gold/30 transition-all group"
                                         >
-                                            <img src={prod.image} alt={prod.name} className="w-32 h-32 mx-auto mb-4 object-contain group-hover:scale-110 transition-transform" />
-                                            <h4 className="font-bold mb-2 text-espresso dark:text-ivory">{prod.name}</h4>
-                                            <p className="text-sm text-espresso/60 dark:text-ivory/60">{prod.tagline}</p>
+                                            <img
+                                                src={prod.image}
+                                                alt={prod.name}
+                                                className="w-32 h-32 mx-auto mb-4 object-contain group-hover:scale-110 transition-transform"
+                                            />
+                                            <h4 className="font-bold mb-2 text-espresso dark:text-ivory">
+                                                {prod.name}
+                                            </h4>
+                                            <p className="text-sm text-espresso/60 dark:text-ivory/60">
+                                                {prod.tagline}
+                                            </p>
                                         </Link>
                                     );
                                 })}
@@ -232,7 +327,9 @@ export default function QuizPage() {
                     {/* Progress Bar */}
                     <div className="mb-12">
                         <div className="flex justify-between text-sm text-espresso/60 dark:text-ivory/60 mb-2">
-                            <span>Question {currentQuestion + 1} of {questions.length}</span>
+                            <span>
+                                Question {currentQuestion + 1} of {questions.length}
+                            </span>
                             <span>{Math.round(progress)}%</span>
                         </div>
                         <div className="h-2 bg-espresso/10 dark:bg-midnight-mid rounded-full overflow-hidden">
@@ -248,7 +345,9 @@ export default function QuizPage() {
                         <h2 className="text-3xl md:text-4xl font-serif font-bold text-espresso dark:text-ivory mb-4">
                             {question.question}
                         </h2>
-                        <p className="text-espresso/60 dark:text-ivory/60">Choose the option that best describes you</p>
+                        <p className="text-espresso/60 dark:text-ivory/60">
+                            Choose the option that best describes you
+                        </p>
                     </div>
 
                     {/* Options */}
@@ -261,7 +360,9 @@ export default function QuizPage() {
                                 style={{ animationDelay: `${i * 0.1}s` }}
                             >
                                 <div className="flex items-center justify-between">
-                                    <span className="text-lg font-medium pr-4 text-espresso/80 dark:text-ivory/80 group-hover:text-espresso dark:group-hover:text-ivory transition-colors">{option.text}</span>
+                                    <span className="text-lg font-medium pr-4 text-espresso/80 dark:text-ivory/80 group-hover:text-espresso dark:group-hover:text-ivory transition-colors">
+                                        {option.text}
+                                    </span>
                                     <ChevronRight className="w-6 h-6 text-gold opacity-0 group-hover:opacity-100 transform group-hover:translate-x-1 transition-all" />
                                 </div>
                             </button>

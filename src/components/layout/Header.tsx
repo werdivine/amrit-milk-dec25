@@ -2,6 +2,7 @@
 
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useCart } from "@/lib/CartContext";
+import { AnimatePresence, motion } from "framer-motion";
 import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -17,7 +18,7 @@ const navLinks = [
             { href: "/products?category=milk", label: "Milk" },
             { href: "/products?category=ghee", label: "Bilona Ghee" },
             { href: "/products?category=paneer", label: "Paneer" },
-        ]
+        ],
     },
     {
         href: "/about",
@@ -27,7 +28,7 @@ const navLinks = [
             { href: "/the-farm", label: "The Farm" },
             { href: "/genetic-library", label: "Genetic Library" },
             { href: "/sustainability", label: "Sustainability" },
-        ]
+        ],
     },
     {
         href: "/tools",
@@ -36,7 +37,7 @@ const navLinks = [
             { href: "/quiz", label: "Kitchen Quiz" },
             { href: "/calculator", label: "Savings Calculator" },
             { href: "/lab-reports", label: "Lab Reports" },
-        ]
+        ],
     },
     { href: "/faqs", label: "FAQs" },
     { href: "/subscription-hub", label: "Subscribe" },
@@ -72,10 +73,10 @@ export function Header() {
                             width={220}
                             height={88}
                             className="h-[76px] w-auto object-contain transition-transform duration-300 group-hover:scale-105"
-                            style={{ filter: 'drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))' }}
+                            style={{ filter: "drop-shadow(0 2px 8px rgba(0, 0, 0, 0.3))" }}
                             priority
                         />
-                         <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-ivory/80 group-hover:text-gold transition-colors">
+                        <span className="text-[10px] uppercase tracking-[0.2em] font-medium text-ivory/80 group-hover:text-gold transition-colors">
                             Purity Assured.
                         </span>
                     </Link>
@@ -94,25 +95,25 @@ export function Header() {
                                     className="px-4 py-2 text-sm font-medium uppercase tracking-wider text-ivory/90 hover:text-gold transition-all duration-200 flex items-center gap-1 rounded-lg hover:bg-white/10"
                                 >
                                     {link.label}
-                                    {link.children && <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />}
+                                    {link.children && (
+                                        <ChevronDown className="w-3 h-3 transition-transform group-hover:rotate-180" />
+                                    )}
                                 </Link>
-                                {
-                                    link.children && openDropdown === link.label && (
-                                        <div className="absolute top-full left-0 pt-2">
-                                            <div className="rounded-2xl border border-warmGold/30 py-3 min-w-[200px] bg-[#8B4513]/95 dark:bg-midnight/95 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
-                                                {link.children.map((child) => (
-                                                    <Link
-                                                        key={child.href}
-                                                        href={child.href}
-                                                        className="block px-5 py-2.5 text-sm text-ivory/80 hover:text-gold hover:bg-white/10 transition-all"
-                                                    >
-                                                        {child.label}
-                                                    </Link>
-                                                ))}
-                                            </div>
+                                {link.children && openDropdown === link.label && (
+                                    <div className="absolute top-full left-0 pt-2">
+                                        <div className="rounded-2xl border border-warmGold/30 py-3 min-w-[200px] bg-[#8B4513]/95 dark:bg-midnight/95 backdrop-blur-2xl shadow-[0_8px_32px_rgba(0,0,0,0.3)]">
+                                            {link.children.map((child) => (
+                                                <Link
+                                                    key={child.href}
+                                                    href={child.href}
+                                                    className="block px-5 py-2.5 text-sm text-ivory/80 hover:text-gold hover:bg-white/10 transition-all"
+                                                >
+                                                    {child.label}
+                                                </Link>
+                                            ))}
                                         </div>
-                                    )
-                                }
+                                    </div>
+                                )}
                             </div>
                         ))}
                     </nav>
@@ -123,55 +124,102 @@ export function Header() {
                         <button className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all hidden md:block">
                             <Search className="w-5 h-5" />
                         </button>
-                        <Link href="/account" className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all">
+                        <Link
+                            href="/account"
+                            className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all"
+                        >
                             <User className="w-5 h-5" />
                         </Link>
-                        <Link href="/cart" className="p-2.5 rounded-xl text-ivory/80 hover:text-gold hover:bg-white/10 transition-all relative group">
-                            <ShoppingBag className="w-5 h-5" />
-                            {cartCount > 0 && (
-                                <span className="absolute -top-1 -right-1 bg-gold text-espresso text-[10px] font-bold min-w-[18px] h-[18px] rounded-full flex items-center justify-center group-hover:scale-110 transition-transform px-1 shadow-md">
-                                    {cartCount}
-                                </span>
-                            )}
-                        </Link>
+                        <motion.div
+                            whileHover={{ scale: 1.05 }}
+                            whileTap={{ scale: 0.95 }}
+                            className="relative"
+                        >
+                            <Link
+                                href="/cart"
+                                className="relative p-3.5 rounded-xl group flex items-center justify-center overflow-hidden"
+                            >
+                                {/* Permanent Ambient Glow & Border */}
+                                <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent rounded-xl border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.1)] group-hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] group-hover:border-gold/50 transition-all duration-500" />
+
+                                {/* Animated Background Sheen */}
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+
+                                <motion.div
+                                    animate={{
+                                        y: [0, -3, 0],
+                                        filter: [
+                                            "drop-shadow(0 0 0px rgba(212,175,55,0))",
+                                            "drop-shadow(0 4px 8px rgba(212,175,55,0.3))",
+                                            "drop-shadow(0 0 0px rgba(212,175,55,0))",
+                                        ],
+                                    }}
+                                    transition={{
+                                        duration: 2.5,
+                                        repeat: Infinity,
+                                        ease: "easeInOut",
+                                    }}
+                                    className="relative z-10"
+                                >
+                                    <ShoppingBag className="w-7 h-7 text-ivory group-hover:text-gold transition-colors duration-300" />
+                                </motion.div>
+                                <AnimatePresence>
+                                    {cartCount > 0 && (
+                                        <motion.span
+                                            initial={{ scale: 0, opacity: 0, rotate: -45 }}
+                                            animate={{ scale: 1, opacity: 1, rotate: 0 }}
+                                            exit={{ scale: 0, opacity: 0 }}
+                                            className="absolute -top-1 -right-1 bg-gradient-to-tr from-[#FF4D4D] to-[#D32F2F] text-white text-[10px] font-black min-w-[22px] h-[22px] rounded-full flex items-center justify-center border-2 border-[#8B4513] shadow-lg z-20"
+                                        >
+                                            <motion.span
+                                                key={cartCount}
+                                                initial={{ scale: 1.5 }}
+                                                animate={{ scale: 1 }}
+                                                className="flex items-center justify-center w-full h-full"
+                                            >
+                                                {cartCount}
+                                            </motion.span>
+                                        </motion.span>
+                                    )}
+                                </AnimatePresence>
+                            </Link>
+                        </motion.div>
                     </div>
                 </div>
             </header>
 
             {/* Mobile Menu */}
-            {
-                mobileMenuOpen && (
-                    <div className="fixed inset-0 z-40 bg-[#8B4513] dark:bg-midnight pt-24">
-                        <nav className="p-6 space-y-2">
-                            {navLinks.map((link) => (
-                                <div key={link.href}>
-                                    <Link
-                                        href={link.href}
-                                        className="block text-xl font-medium text-ivory py-3 px-4 rounded-xl hover:bg-white/10 border-b border-white/10 transition-all"
-                                        onClick={() => setMobileMenuOpen(false)}
-                                    >
-                                        {link.label}
-                                    </Link>
-                                    {link.children && (
-                                        <div className="pl-6 space-y-1 py-2">
-                                            {link.children.map((child) => (
-                                                <Link
-                                                    key={child.href}
-                                                    href={child.href}
-                                                    className="block text-ivory/70 py-2 px-4 rounded-lg hover:bg-white/10 hover:text-gold transition-all"
-                                                    onClick={() => setMobileMenuOpen(false)}
-                                                >
-                                                    {child.label}
-                                                </Link>
-                                            ))}
-                                        </div>
-                                    )}
-                                </div>
-                            ))}
-                        </nav>
-                    </div>
-                )
-            }
+            {mobileMenuOpen && (
+                <div className="fixed inset-0 z-40 bg-[#8B4513] dark:bg-midnight pt-24">
+                    <nav className="p-6 space-y-2">
+                        {navLinks.map((link) => (
+                            <div key={link.href}>
+                                <Link
+                                    href={link.href}
+                                    className="block text-xl font-medium text-ivory py-3 px-4 rounded-xl hover:bg-white/10 border-b border-white/10 transition-all"
+                                    onClick={() => setMobileMenuOpen(false)}
+                                >
+                                    {link.label}
+                                </Link>
+                                {link.children && (
+                                    <div className="pl-6 space-y-1 py-2">
+                                        {link.children.map((child) => (
+                                            <Link
+                                                key={child.href}
+                                                href={child.href}
+                                                className="block text-ivory/70 py-2 px-4 rounded-lg hover:bg-white/10 hover:text-gold transition-all"
+                                                onClick={() => setMobileMenuOpen(false)}
+                                            >
+                                                {child.label}
+                                            </Link>
+                                        ))}
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </nav>
+                </div>
+            )}
         </>
     );
 }

@@ -1,5 +1,5 @@
 import { Section } from "@/components/ui/section";
-import { Leaf, Recycle, Sun, Droplet, Heart, TreePine } from "lucide-react";
+import { Droplet, Heart, Leaf, Recycle, Sun, TreePine } from "lucide-react";
 
 export default function CSRPage() {
     return (
@@ -15,7 +15,8 @@ export default function CSRPage() {
                         <span className="text-terracotta dark:text-gold">Legacy.</span>
                     </h1>
                     <p className="text-xl text-espresso/70 dark:text-ivory/70 max-w-3xl mx-auto leading-relaxed">
-                        Our commitment to the earth, our animals, and future generations runs deeper than business—it's our dharma.
+                        Our commitment to the earth, our animals, and future generations runs deeper
+                        than business—it&apos;s our dharma.
                     </p>
                 </div>
             </section>
@@ -24,14 +25,17 @@ export default function CSRPage() {
             <Section className="bg-white dark:bg-midnight-deep">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
                     <div className="space-y-6">
-                        <span className="text-terracotta dark:text-gold font-bold uppercase tracking-widest text-xs">The Ahimsa Way</span>
+                        <span className="text-terracotta dark:text-gold font-bold uppercase tracking-widest text-xs">
+                            The Ahimsa Way
+                        </span>
                         <h2 className="text-4xl font-serif font-bold text-espresso dark:text-ivory">
                             Non-Violence, Not Just Non-Harm
                         </h2>
                         <p className="text-espresso/70 dark:text-ivory/70 leading-relaxed">
-                            At Amrit, we practice true Ahimsa dairy. Our cows are never artificially inseminated.
-                            Calves stay with their mothers and nurse first. Bulls are honored and given meaningful
-                            work in the fields rather than being sold for slaughter.
+                            At Amrit, we practice true Ahimsa dairy. Our cows are never artificially
+                            inseminated. Calves stay with their mothers and nurse first. Bulls are
+                            honored and given meaningful work in the fields rather than being sold
+                            for slaughter.
                         </p>
                         <ul className="space-y-4">
                             {[
@@ -39,11 +43,13 @@ export default function CSRPage() {
                                 "No artificial insemination ever",
                                 "Bulls live full natural lives",
                                 "Zero slaughter guarantee",
-                                "Organic, grass-fed diet"
-                            ].map(item => (
+                                "Organic, grass-fed diet",
+                            ].map((item) => (
                                 <li key={item} className="flex items-center gap-3">
                                     <Heart className="w-5 h-5 text-terracotta dark:text-gold" />
-                                    <span className="text-espresso/80 dark:text-ivory/80">{item}</span>
+                                    <span className="text-espresso/80 dark:text-ivory/80">
+                                        {item}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
@@ -71,38 +77,51 @@ export default function CSRPage() {
                         {
                             icon: Sun,
                             title: "Solar Energy",
-                            description: "100% solar-powered milk chillers and operations. Zero fossil fuels on-farm."
+                            description:
+                                "100% solar-powered milk chillers and operations. Zero fossil fuels on-farm.",
                         },
                         {
                             icon: Recycle,
                             title: "Glass Bottles",
-                            description: "Returnable, reusable glass packaging. Zero plastic waste contribution."
+                            description:
+                                "Returnable, reusable glass packaging. Zero plastic waste contribution.",
                         },
                         {
                             icon: Droplet,
                             title: "Water Conservation",
-                            description: "Rainwater harvesting, drip irrigation, and wastewater recycling systems."
+                            description:
+                                "Rainwater harvesting, drip irrigation, and wastewater recycling systems.",
                         },
                         {
                             icon: TreePine,
                             title: "Regenerative Farming",
-                            description: "Organic composting, natural pest control, and soil health restoration."
+                            description:
+                                "Organic composting, natural pest control, and soil health restoration.",
                         },
                         {
                             icon: Leaf,
                             title: "Carbon Negative",
-                            description: "Our farm sequesters more carbon than it emits through tree planting."
+                            description:
+                                "Our farm sequesters more carbon than it emits through tree planting.",
                         },
                         {
                             icon: Heart,
                             title: "Community Support",
-                            description: "Fair wages, education programs, and healthcare for all farm workers."
-                        }
+                            description:
+                                "Fair wages, education programs, and healthcare for all farm workers.",
+                        },
                     ].map((pillar, i) => (
-                        <div key={i} className="glass rounded-2xl p-8 border border-espresso/10 dark:border-glass-border">
+                        <div
+                            key={i}
+                            className="glass rounded-2xl p-8 border border-espresso/10 dark:border-glass-border"
+                        >
                             <pillar.icon className="w-12 h-12 text-terracotta dark:text-gold mb-4" />
-                            <h3 className="text-xl font-bold text-espresso dark:text-ivory mb-3">{pillar.title}</h3>
-                            <p className="text-espresso/70 dark:text-ivory/70 leading-relaxed">{pillar.description}</p>
+                            <h3 className="text-xl font-bold text-espresso dark:text-ivory mb-3">
+                                {pillar.title}
+                            </h3>
+                            <p className="text-espresso/70 dark:text-ivory/70 leading-relaxed">
+                                {pillar.description}
+                            </p>
                         </div>
                     ))}
                 </div>
@@ -120,11 +139,15 @@ export default function CSRPage() {
                         { number: "100%", label: "Solar Powered" },
                         { number: "0", label: "Plastic Bottles" },
                         { number: "500+", label: "Trees Planted" },
-                        { number: "30%", label: "Water Saved" }
+                        { number: "30%", label: "Water Saved" },
                     ].map((stat, i) => (
                         <div key={i} className="text-center">
-                            <div className="text-5xl font-bold text-terracotta dark:text-gold mb-2">{stat.number}</div>
-                            <div className="text-espresso/70 dark:text-ivory/70 uppercase tracking-widest text-sm">{stat.label}</div>
+                            <div className="text-5xl font-bold text-terracotta dark:text-gold mb-2">
+                                {stat.number}
+                            </div>
+                            <div className="text-espresso/70 dark:text-ivory/70 uppercase tracking-widest text-sm">
+                                {stat.label}
+                            </div>
                         </div>
                     ))}
                 </div>
@@ -138,23 +161,39 @@ export default function CSRPage() {
                             Corporate + Community
                         </span>
                         <h2 className="text-4xl font-serif font-bold text-espresso dark:text-ivory">
-                            CSR Funding That <span className="text-terracotta dark:text-gold">Cuts Carbon</span> and Lifts Farmers
+                            CSR Funding That{" "}
+                            <span className="text-terracotta dark:text-gold">Cuts Carbon</span> and
+                            Lifts Farmers
                         </h2>
                         <p className="text-espresso/70 dark:text-ivory/70 leading-relaxed">
-                            Channel your CSR to renewable chilling, bottle reuse, tree belts, and farmer training.
-                            Trackable impact with carbon credit documentation.
+                            Channel your CSR to renewable chilling, bottle reuse, tree belts, and
+                            farmer training. Trackable impact with carbon credit documentation.
                         </p>
                         <ul className="space-y-4">
                             {[
-                                { emoji: "🌳", text: "Fund carbon sinks & fodder forests around Lucknow" },
+                                {
+                                    emoji: "🌳",
+                                    text: "Fund carbon sinks & fodder forests around Lucknow",
+                                },
                                 { emoji: "🔌", text: "Solar + biogas for chilling and processing" },
-                                { emoji: "🧪", text: "Breed & genetics lab (BMF) for resilient Indian cows" },
-                                { emoji: "👩🏽‍🌾", text: "FPO capacity building for 1400+ partnered farmers" },
-                                { emoji: "📈", text: "Transparent reports & carbon credit certificates" }
-                            ].map(item => (
+                                {
+                                    emoji: "🧪",
+                                    text: "Breed & genetics lab (BMF) for resilient Indian cows",
+                                },
+                                {
+                                    emoji: "👩🏽‍🌾",
+                                    text: "FPO capacity building for 1400+ partnered farmers",
+                                },
+                                {
+                                    emoji: "📈",
+                                    text: "Transparent reports & carbon credit certificates",
+                                },
+                            ].map((item) => (
                                 <li key={item.text} className="flex items-start gap-3">
                                     <span className="text-xl">{item.emoji}</span>
-                                    <span className="text-espresso/80 dark:text-ivory/80">{item.text}</span>
+                                    <span className="text-espresso/80 dark:text-ivory/80">
+                                        {item.text}
+                                    </span>
                                 </li>
                             ))}
                         </ul>
@@ -176,15 +215,31 @@ export default function CSRPage() {
 
                     {/* Impact Scorecard */}
                     <div className="bg-white dark:bg-midnight-deep rounded-3xl p-8 border border-espresso/10 dark:border-glass-border shadow-xl">
-                        <h3 className="text-xl font-bold text-espresso dark:text-ivory mb-6">Impact Snapshot</h3>
+                        <h3 className="text-xl font-bold text-espresso dark:text-ivory mb-6">
+                            Impact Snapshot
+                        </h3>
                         <div className="grid grid-cols-3 gap-6 mb-6">
                             {[
-                                { value: "1400+", label: "Farmers empowered via FPO network", color: "terracotta" },
-                                { value: "18%", label: "Lower emissions per litre delivered", color: "gold" },
-                                { value: "₹50L", label: "CSR deployed in FY24", color: "terracotta" }
+                                {
+                                    value: "1400+",
+                                    label: "Farmers empowered via FPO network",
+                                    color: "terracotta",
+                                },
+                                {
+                                    value: "18%",
+                                    label: "Lower emissions per litre delivered",
+                                    color: "gold",
+                                },
+                                {
+                                    value: "₹50L",
+                                    label: "CSR deployed in FY24",
+                                    color: "terracotta",
+                                },
                             ].map((stat, i) => (
                                 <div key={i} className="text-center">
-                                    <div className={`text-3xl font-bold ${stat.color === 'terracotta' ? 'text-terracotta dark:text-gold' : 'text-warmGold dark:text-warmGold'} mb-1`}>
+                                    <div
+                                        className={`text-3xl font-bold ${stat.color === "terracotta" ? "text-terracotta dark:text-gold" : "text-warmGold dark:text-warmGold"} mb-1`}
+                                    >
                                         {stat.value}
                                     </div>
                                     <div className="text-xs text-espresso/60 dark:text-ivory/60 leading-tight">
@@ -195,7 +250,8 @@ export default function CSRPage() {
                         </div>
                         <hr className="border-espresso/10 dark:border-glass-border my-6" />
                         <p className="text-sm text-espresso/60 dark:text-ivory/60 mb-4">
-                            Choose initiatives: renewable energy, fodder forests, bottle reuse, genetics lab, farmer training, Gaushala care.
+                            Choose initiatives: renewable energy, fodder forests, bottle reuse,
+                            genetics lab, farmer training, Gaushala care.
                         </p>
                         <a
                             href="/contact"

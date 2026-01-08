@@ -5,7 +5,7 @@ import { MessageCircle } from "lucide-react";
 export function StickyWhatsApp() {
     return (
         <a
-            href="https://wa.me/919919999123" // Replace with actual number if known, or use placeholder
+            href="https://wa.me/918130693767" // Updated WhatsApp number
             target="_blank"
             rel="noopener noreferrer"
             className="fixed bottom-6 right-6 z-50 flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-4 py-3 rounded-full shadow-lg transition-all hover:scale-105 group animate-fade-in-up"

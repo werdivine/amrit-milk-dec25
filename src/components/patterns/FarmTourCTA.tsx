@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 export function FarmTourCTA() {
     return (
@@ -9,7 +9,7 @@ export function FarmTourCTA() {
             {/* Background Image */}
             <div
                 className="absolute inset-0 bg-[url('/assets/img/farm-soul.png')] bg-cover bg-center bg-fixed"
-                style={{ transform: 'scale(1.1)' }}
+                style={{ transform: "scale(1.1)" }}
             />
 
             {/* Overlay */}
@@ -28,8 +28,8 @@ export function FarmTourCTA() {
                         The Living Sanctuary
                     </h2>
                     <p className="text-xl text-ivory/80 leading-relaxed mb-8">
-                        Our cows aren't milk machines. They are members of the family.
-                        They feed on hydroponic green fodder, listen to Vedic chants, and roam free.
+                        Our cows aren&apos;t milk machines. They are members of the family. They
+                        feed on hydroponic green fodder, listen to Vedic chants, and roam free.
                     </p>
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
                         <Button
@@ -39,11 +39,7 @@ export function FarmTourCTA() {
                         >
                             Book Private Tour
                         </Button>
-                        <Button
-                            href="/the-farm"
-                            variant="glass"
-                            size="lg"
-                        >
+                        <Button href="/the-farm" variant="glass" size="lg">
                             Virtual 360° Tour
                         </Button>
                     </div>

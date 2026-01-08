@@ -78,20 +78,24 @@ export async function POST(req: NextRequest) {
 
         console.log(`Order created: ${orderNumber}`);
 
-        // Send notifications (async, don't wait)
-        sendOrderNotifications({
-            orderNumber,
-            customerName: data.customerName,
-            email: data.email || "",
-            phone: data.phone,
-            total: data.total,
-            paymentMethod: data.paymentMethod,
-            items: data.items.map((item) => ({
-                title: item.title,
-                quantity: item.quantity,
-                price: item.price,
-            })),
-        }).catch((err) => console.error("Notification error:", err));
+        // Send notifications (Await to ensure completion in serverless)
+        try {
+            await sendOrderNotifications({
+                orderNumber,
+                customerName: data.customerName,
+                email: data.email || "",
+                phone: data.phone,
+                total: data.total,
+                paymentMethod: data.paymentMethod,
+                items: data.items.map((item) => ({
+                    title: item.title,
+                    quantity: item.quantity,
+                    price: item.price,
+                })),
+            });
+        } catch (err) {
+            console.error("Notification error:", err);
+        }
 
         return NextResponse.json({
             success: true,
