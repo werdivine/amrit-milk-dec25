@@ -39,7 +39,7 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                from: "Amrit Milk <orders@amritmilkorganic.com>",
+                from: `Amrit Milk <${process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"}>`,
                 to: merchantEmail.split(",").map((e) => e.trim()),
                 subject: `🛒 New Order: ${order.orderNumber} - ₹${order.total}`,
                 html: `
@@ -96,7 +96,7 @@ export async function sendCustomerConfirmationEmail(
                 "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                from: "Amrit Milk <orders@amritmilkorganic.com>",
+                from: `Amrit Milk <${process.env.RESEND_FROM_EMAIL || "onboarding@resend.dev"}>`,
                 to: [order.email],
                 subject: `Order Confirmed: ${order.orderNumber} - Amrit Milk`,
                 html: `
