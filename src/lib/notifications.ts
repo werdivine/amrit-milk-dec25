@@ -23,6 +23,7 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
 
     if (!resendApiKey || !merchantEmail) {
         console.warn("Email notification skipped: RESEND_API_KEY or MERCHANT_EMAIL not configured");
+        console.warn(`Debug: Key Present: ${!!resendApiKey}, Email Present: ${!!merchantEmail}`);
         return false;
     }
 
@@ -53,7 +54,6 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
                     <pre>${itemsList}</pre>
                     <hr>
                     <p><strong>Total: ₹${order.total}</strong></p>
-                    <p><a href="https://amritmilkorganic.com/admin">View in Admin Dashboard</a></p>
                 `,
             }),
         });
@@ -161,7 +161,7 @@ export async function sendWhatsAppNotification(order: OrderNotificationData): Pr
             `Phone: ${order.phone}\n` +
             `Total: ₹${order.total}\n` +
             `Payment: ${order.paymentMethod.toUpperCase()}\n\n` +
-            `View: amritmilkorganic.com/admin`
+            `View Order: Not available`
     );
 
     try {

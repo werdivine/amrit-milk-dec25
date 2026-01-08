@@ -1,9 +1,9 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { useCart } from "@/lib/CartContext";
 import { Check, Package } from "lucide-react";
+import Link from "next/link";
 import { useSearchParams } from "next/navigation";
 import { Suspense, useEffect } from "react";
 
@@ -81,12 +81,18 @@ function SuccessContent() {
                     </div>
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                        <Button href="/products" icon size="lg">
+                        <Link
+                            href="/products"
+                            className="inline-flex items-center justify-center font-bold uppercase tracking-widest transition-all duration-300 rounded-full bg-terracotta text-white hover:bg-espresso dark:bg-gold dark:text-midnight dark:hover:bg-white hover:scale-105 px-10 py-5 text-base"
+                        >
                             Continue Shopping
-                        </Button>
-                        <Button href="/" variant="outline" size="lg">
+                        </Link>
+                        <Link
+                            href="/"
+                            className="inline-flex items-center justify-center font-bold uppercase tracking-widest transition-all duration-300 rounded-full bg-transparent border-2 border-terracotta text-terracotta hover:bg-terracotta/10 dark:border-gold dark:text-gold dark:hover:bg-gold/10 px-10 py-5 text-base"
+                        >
                             Return Home
-                        </Button>
+                        </Link>
                     </div>
                 </div>
             </Section>
