@@ -145,7 +145,7 @@ export default function AccountPage() {
                                 <Phone className="absolute left-5 top-1/2 -translate-y-1/2 w-5 h-5 text-theme-accent group-focus-within:scale-110 transition-transform" />
                                 <input
                                     type="tel"
-                                    placeholder="+91 98765 43210"
+                                    placeholder="Enter your registered number"
                                     value={phoneInput}
                                     onChange={(e) => setPhoneInput(e.target.value)}
                                     className="w-full bg-theme-secondary/50 text-theme-primary border border-theme-light rounded-2xl p-5 pl-14 focus:border-terracotta dark:focus:border-gold outline-none transition-all font-bold shadow-soft text-lg"

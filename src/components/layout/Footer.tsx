@@ -84,7 +84,7 @@ export function Footer() {
                                 <Twitter className="w-4 h-4" />
                             </a>
                             <a
-                                href="https://wa.me/919876543210"
+                                href="https://wa.me/918130693767"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-green-500 hover:border-green-500 hover:text-white transition-all duration-300 text-ivory shadow-sm hover:shadow-lg"
@@ -264,13 +264,13 @@ export function Footer() {
                 <div className="py-8 border-y border-white/10 mb-8">
                     <div className="flex flex-wrap justify-center gap-8 text-sm">
                         <a
-                            href="tel:+919876543210"
+                            href="tel:+918130693767"
                             className="flex items-center gap-3 text-ivory/80 hover:text-gold transition-colors duration-200 group"
                         >
                             <div className="p-2.5 bg-white/10 rounded-xl border border-white/10 group-hover:bg-gold group-hover:text-espresso group-hover:border-gold transition-all shadow-sm">
                                 <Phone className="w-4 h-4" />
                             </div>
-                            +91 98765 43210
+                            +91 81306 93767
                         </a>
                         <a
                             href="mailto:hello@amritmilk.com"
