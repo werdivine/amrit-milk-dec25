@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import Image from "next/image";
 
 export default function TheFarm() {
     return (
@@ -77,27 +78,35 @@ export default function TheFarm() {
                     </div>
                     <div className="grid grid-cols-2 gap-4">
                         <div className="space-y-4 translate-y-8">
-                            <img
+                            <Image
                                 src="/assets/img/farm-soul.png"
                                 className="rounded-2xl border border-theme-light grayscale hover:grayscale-0 transition-all duration-700 h-64 w-full object-cover"
                                 alt="Farm 1"
+                                width={400}
+                                height={400}
                             />
-                            <img
+                            <Image
                                 src="/assets/img/milk-bottle.png"
                                 className="rounded-2xl border border-theme-light grayscale hover:grayscale-0 transition-all duration-700 h-64 w-full object-cover"
                                 alt="Farm 2"
+                                width={400}
+                                height={400}
                             />
                         </div>
                         <div className="space-y-4">
-                            <img
+                            <Image
                                 src="/assets/img/hero-luxe-bg.png"
                                 className="rounded-2xl border border-theme-light grayscale hover:grayscale-0 transition-all duration-700 h-64 w-full object-cover"
                                 alt="Farm 3"
+                                width={400}
+                                height={400}
                             />
-                            <img
+                            <Image
                                 src="/assets/img/atta-sack.png"
                                 className="rounded-2xl border border-theme-light grayscale hover:grayscale-0 transition-all duration-700 h-64 w-full object-cover"
                                 alt="Farm 4"
+                                width={400}
+                                height={400}
                             />
                         </div>
                     </div>

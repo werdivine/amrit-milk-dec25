@@ -39,7 +39,7 @@ export default function CalculatorPage() {
             isNetPositive,
             dailyCostDiff: difference / 30,
         };
-    }, [familySize, currentMilkType, dailyConsumption]);
+    }, [familySize, currentMilkType, dailyConsumption, pricing]);
 
     return (
         <main className="bg-creme dark:bg-midnight transition-colors duration-500 min-h-screen">

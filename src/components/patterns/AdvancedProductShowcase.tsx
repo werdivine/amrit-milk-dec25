@@ -1,5 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import Image from "next/image";
 
 export function AdvancedProductShowcase() {
     return (
@@ -51,9 +52,11 @@ export function AdvancedProductShowcase() {
                 <div className="relative order-1 md:order-2">
                     <div className="relative z-10 aspect-square rounded-full border border-terracotta/20 dark:border-gold/20 flex items-center justify-center bg-creme dark:bg-midnight overflow-hidden transition-colors duration-300">
                         <div className="absolute inset-0 bg-terracotta/5 dark:bg-gold/5 blur-3xl rounded-full"></div>
-                        <img
+                        <Image
                             src="/assets/img/milk-bottle.png"
                             alt="Sovereign A2 Milk"
+                            width={500}
+                            height={500}
                             className="w-3/4 object-contain drop-shadow-2xl animate-float"
                         />
                     </div>

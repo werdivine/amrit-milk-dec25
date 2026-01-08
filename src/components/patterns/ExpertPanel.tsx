@@ -3,6 +3,7 @@
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
+import Image from "next/image";
 
 const experts = [
     {
@@ -49,9 +50,11 @@ export function ExpertPanel() {
                             className="bg-creme-light dark:bg-white/5 p-10 rounded-[3rem] space-y-8 border border-espresso/5 dark:border-white/5 flex flex-col items-center text-center md:items-start md:text-left md:flex-row gap-10 hover:shadow-lifted dark:hover:shadow-none transition-all duration-500"
                         >
                             <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-terracotta/20 dark:border-gold/20 flex-shrink-0">
-                                <img
+                                <Image
                                     src={expert.image}
                                     alt={expert.name}
+                                    width={96}
+                                    height={96}
                                     className="w-full h-full object-cover"
                                 />
                             </div>

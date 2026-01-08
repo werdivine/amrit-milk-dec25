@@ -1,0 +1,42 @@
+﻿
+> amrit-next-sovereign@0.1.0 lint
+> next lint
+
+node.exe : 
+At line:1 char:1
++ & "C:\Program Files\nodejs/node.exe" "C:\Users\natur\AppData\Roaming\ ...
++ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : NotSpecified: (:String) [], RemoteException
+    + FullyQualifiedErrorId : NativeCommandError
+ 
+./src/app/(shop)/about/page.tsx
+63:26  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/app/(shop)/blog/page.tsx
+87:22  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/app/(shop)/calculator/page.tsx
+13:11  Warning: The 'pricing' object makes the dependencies of useMemo Hook (at line 42) change on every render. Move 
+it inside the useMemo callback. Alternatively, wrap the initialization of 'pricing' in its own useMemo() Hook.  
+react-hooks/exhaustive-deps
+
+./src/app/(shop)/csr/page.tsx
+59:26  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/components/patterns/ExpertPanel.tsx
+52:34  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/components/patterns/GirWisdom.tsx
+67:26  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/components/patterns/Storyteller.tsx
+68:30  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/components/ui/ProductImage.tsx
+78:18  Error: 'Image' is not defined.  react/jsx-no-undef
+
+./src/payload.config.ts
+2:1  Warning: Assign object to a variable before exporting as module default  import/no-anonymous-default-export
+
+info  - Need to disable some ESLint rules? Learn more here: 
+https://nextjs.org/docs/basic-features/eslint#disabling-rules

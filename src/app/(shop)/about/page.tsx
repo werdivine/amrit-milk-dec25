@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { Heart, Leaf, Shield, Target } from "lucide-react";
+import Image from "next/image";
 
 export default function AboutPage() {
     return (
@@ -60,9 +61,11 @@ export default function AboutPage() {
 
                     <div className="relative aspect-square rounded-2xl overflow-hidden animate-slide-in-right">
                         <div className="absolute inset-0 bg-gradient-to-br from-terracotta/20 dark:from-gold/20 to-transparent"></div>
-                        <img
+                        <Image
                             src="/assets/img/farm-soul.png"
                             alt="Farm Soul"
+                            width={600}
+                            height={600}
                             className="w-full h-full object-cover"
                         />
                     </div>

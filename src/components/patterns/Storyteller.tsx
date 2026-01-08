@@ -1,6 +1,7 @@
 "use client";
 
 import { Section } from "@/components/ui/section";
+import Image from "next/image";
 
 export function Storyteller() {
     return (
@@ -65,9 +66,11 @@ export function Storyteller() {
                     <div className="relative group">
                         <div className="absolute -inset-4 bg-terracotta/10 dark:bg-gold/10 rounded-[4rem] blur-2xl group-hover:blur-3xl transition-all duration-700"></div>
                         <div className="relative aspect-square rounded-[3rem] overflow-hidden border border-espresso/5 dark:border-white/5 shadow-2xl">
-                            <img
+                            <Image
                                 src="https://images.unsplash.com/photo-1500595046743-cd271d694d30?q=80&w=2000&auto=format&fit=crop"
                                 alt="Founding Vision"
+                                width={800}
+                                height={800}
                                 className="w-full h-full object-cover grayscale opacity-50 dark:opacity-100 hover:scale-110 transition-all duration-700"
                             />
                             <div className="absolute inset-0 bg-gradient-to-t from-espresso via-transparent to-transparent opacity-60"></div>

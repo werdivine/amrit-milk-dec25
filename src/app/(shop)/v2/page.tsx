@@ -1,13 +1,14 @@
+import { FinalImperialCTA } from "@/components/patterns/FinalImperialCTA";
+import { GirWisdom } from "@/components/patterns/GirWisdom";
+import { Storyteller } from "@/components/patterns/Storyteller";
+import { TrustTicker } from "@/components/patterns/TrustTicker";
+import { WallOfLove } from "@/components/patterns/WallOfLove";
 import { CategoryIcons } from "@/components/shop/CategoryIcons";
 import { FeaturedCollection } from "@/components/shop/FeaturedCollection";
-import { TrustTicker } from "@/components/patterns/TrustTicker";
-import { Storyteller } from "@/components/patterns/Storyteller";
-import { GirWisdom } from "@/components/patterns/GirWisdom";
-import { WallOfLove } from "@/components/patterns/WallOfLove";
-import { FinalImperialCTA } from "@/components/patterns/FinalImperialCTA";
-import { getProducts } from "@/lib/fetchProducts";
 import { Button } from "@/components/ui/button";
-import { Star, ShieldCheck, Clock, Award } from "lucide-react";
+import { getProducts } from "@/lib/fetchProducts";
+import { Award, Clock, ShieldCheck, Star } from "lucide-react";
+import Image from "next/image";
 
 export default async function HomeV2() {
     const products = await getProducts();
@@ -28,23 +29,37 @@ export default async function HomeV2() {
                 <div className="relative z-20 max-w-7xl w-full mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                     <div className="space-y-8 animate-fade-in-up">
                         <div className="inline-flex items-center gap-2 px-4 py-2 bg-terracotta/10 dark:bg-gold/10 border border-terracotta/20 dark:border-gold/20 rounded-full text-terracotta dark:text-gold font-bold text-xs uppercase tracking-widest">
-                            <Star className="w-4 h-4 fill-current" /> Trusted by 10,000+ Wellness Families
+                            <Star className="w-4 h-4 fill-current" /> Trusted by 10,000+ Wellness
+                            Families
                         </div>
 
                         <h1 className="font-serif text-6xl md:text-8xl font-black leading-tight text-espresso dark:text-ivory">
                             Pure Farm <br />
-                            <span className="text-terracotta dark:text-gold italic">Excellence.</span>
+                            <span className="text-terracotta dark:text-gold italic">
+                                Excellence.
+                            </span>
                         </h1>
 
                         <p className="text-xl md:text-2xl text-espresso/70 dark:text-ivory/70 max-w-xl leading-relaxed">
-                            Experience the raw majesty of Vedic A2 Dairy, Cold-Pressed Oils, and Raw forest Honey. Delivered from our farm to your Lucknow doorstep within 4 hours.
+                            Experience the raw majesty of Vedic A2 Dairy, Cold-Pressed Oils, and Raw
+                            forest Honey. Delivered from our farm to your Lucknow doorstep within 4
+                            hours.
                         </p>
 
                         <div className="flex flex-col sm:flex-row gap-4 pt-4">
-                            <Button href="/products" size="lg" className="bg-espresso text-white hover:bg-terracotta dark:bg-gold dark:text-midnight dark:hover:bg-white px-10 h-16 text-lg rounded-2xl shadow-xl">
+                            <Button
+                                href="/products"
+                                size="lg"
+                                className="bg-espresso text-white hover:bg-terracotta dark:bg-gold dark:text-midnight dark:hover:bg-white px-10 h-16 text-lg rounded-2xl shadow-xl"
+                            >
                                 Shop All Products
                             </Button>
-                            <Button href="/subscription-hub" variant="outline" size="lg" className="border-espresso/20 text-espresso dark:border-white/10 dark:text-white px-10 h-16 text-lg rounded-2xl">
+                            <Button
+                                href="/subscription-hub"
+                                variant="outline"
+                                size="lg"
+                                className="border-espresso/20 text-espresso dark:border-white/10 dark:text-white px-10 h-16 text-lg rounded-2xl"
+                            >
                                 Start Subscription
                             </Button>
                         </div>
@@ -53,9 +68,12 @@ export default async function HomeV2() {
                             {[
                                 { icon: ShieldCheck, label: "Lab Certified" },
                                 { icon: Clock, label: "4hr Freshness" },
-                                { icon: Award, label: "Vedic Process" }
+                                { icon: Award, label: "Vedic Process" },
                             ].map((item, i) => (
-                                <div key={i} className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-espresso/40 dark:text-ivory/40">
+                                <div
+                                    key={i}
+                                    className="flex items-center gap-2 text-xs font-bold uppercase tracking-widest text-espresso/40 dark:text-ivory/40"
+                                >
                                     <item.icon className="w-5 h-5" />
                                     {item.label}
                                 </div>
@@ -65,9 +83,11 @@ export default async function HomeV2() {
 
                     <div className="hidden lg:block relative group">
                         <div className="absolute inset-0 bg-terracotta/5 dark:bg-gold/5 blur-3xl rounded-full scale-110 group-hover:scale-125 transition-transform duration-700"></div>
-                        <img
+                        <Image
                             src="/assets/img/ghee-jar.png"
                             alt="Premium A2 Ghee"
+                            width={500}
+                            height={500}
                             className="relative z-10 w-full max-w-md mx-auto drop-shadow-2xl translate-y-4 hover:translate-y-0 transition-transform duration-700 animate-float"
                         />
                     </div>

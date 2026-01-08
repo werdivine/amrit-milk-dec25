@@ -1,7 +1,8 @@
-import { getBlogPosts, getBlogCategories } from '@/lib/wordpressBlog';
 import { Section } from "@/components/ui/section";
-import Link from 'next/link';
-import { Calendar, Clock, User, Tag } from 'lucide-react';
+import { getBlogCategories, getBlogPosts } from "@/lib/wordpressBlog";
+import { Calendar, Clock } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
 
 export default async function BlogPage() {
     const data = await getBlogPosts({ perPage: 12 });
@@ -23,7 +24,11 @@ export default async function BlogPage() {
                         Knowledge Hub
                     </span>
                     <h1 className="text-5xl md:text-7xl font-serif font-bold mb-6">
-                        The <span className="text-transparent bg-clip-text bg-gradient-to-r from-ivory via-gold to-ivory">Sovereign</span> Blog
+                        The{" "}
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-ivory via-gold to-ivory">
+                            Sovereign
+                        </span>{" "}
+                        Blog
                     </h1>
                     <p className="text-xl text-ivory/70">
                         Health wisdom, recipes, farm stories, and the science of real food.
@@ -36,7 +41,10 @@ export default async function BlogPage() {
                 <Section>
                     <div className="max-w-6xl mx-auto">
                         <div className="flex gap-3 flex-wrap justify-center mb-12">
-                            <Link href="/blog" className="px-6 py-2 bg-gold text-midnight rounded-full font-bold text-sm hover:bg-gold/90 transition-colors">
+                            <Link
+                                href="/blog"
+                                className="px-6 py-2 bg-gold text-midnight rounded-full font-bold text-sm hover:bg-gold/90 transition-colors"
+                            >
                                 All Posts
                             </Link>
                             {categories.map((cat: any) => (
@@ -84,9 +92,11 @@ function BlogCard({ post }: { post: any }) {
             {/* Featured Image */}
             {post.featured_image && (
                 <div className="aspect-video overflow-hidden bg-midnight-mid">
-                    <img
+                    <Image
                         src={post.featured_image}
                         alt={post.title}
+                        width={800}
+                        height={450}
                         className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
                     />
                 </div>
@@ -109,9 +119,7 @@ function BlogCard({ post }: { post: any }) {
                     {post.title}
                 </h3>
 
-                <p className="text-sm text-ivory/60 mb-4 line-clamp-3">
-                    {post.excerpt}
-                </p>
+                <p className="text-sm text-ivory/60 mb-4 line-clamp-3">{post.excerpt}</p>
 
                 {/* Meta */}
                 <div className="flex items-center gap-4 text-xs text-ivory/50">

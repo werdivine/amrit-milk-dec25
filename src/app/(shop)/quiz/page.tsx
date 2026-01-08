@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { CheckCircle, ChevronRight, Sparkles } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -239,9 +240,11 @@ export default function QuizPage() {
                             </span>
 
                             <div className="w-48 h-48 mx-auto mb-8">
-                                <img
+                                <Image
                                     src={recommendation.image}
                                     alt={recommendation.name}
+                                    width={400}
+                                    height={400}
                                     className="w-full h-full object-contain drop-shadow-2xl"
                                 />
                             </div>
@@ -286,9 +289,11 @@ export default function QuizPage() {
                                             href={`/products/${prod.slug}`}
                                             className="bg-glass-bg border border-glass-border rounded-2xl p-6 hover:border-gold/30 transition-all group"
                                         >
-                                            <img
+                                            <Image
                                                 src={prod.image}
                                                 alt={prod.name}
+                                                width={200}
+                                                height={200}
                                                 className="w-32 h-32 mx-auto mb-4 object-contain group-hover:scale-110 transition-transform"
                                             />
                                             <h4 className="font-bold mb-2 text-espresso dark:text-ivory">

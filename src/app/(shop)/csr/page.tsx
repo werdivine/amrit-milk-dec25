@@ -1,5 +1,6 @@
 import { Section } from "@/components/ui/section";
 import { Droplet, Heart, Leaf, Recycle, Sun, TreePine } from "lucide-react";
+import Image from "next/image";
 
 export default function CSRPage() {
     return (
@@ -56,9 +57,11 @@ export default function CSRPage() {
                     </div>
                     <div className="relative aspect-square rounded-3xl overflow-hidden">
                         <div className="absolute inset-0 bg-gradient-to-br from-terracotta/20 to-transparent dark:from-gold/20"></div>
-                        <img
+                        <Image
                             src="https://images.unsplash.com/photo-1560493676-04071c5f467b?w=800&q=80"
                             alt="Gir Cows grazing naturally"
+                            width={800}
+                            height={800}
                             className="w-full h-full object-cover"
                         />
                     </div>
