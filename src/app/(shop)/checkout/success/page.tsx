@@ -15,6 +15,7 @@ function SuccessContent() {
     const trackingId = searchParams.get("tracking_id");
 
     useEffect(() => {
+        console.log("SuccessContent: mounted, clearing cart");
         clearCart();
     }, [clearCart]);
 

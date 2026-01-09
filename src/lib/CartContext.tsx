@@ -1,6 +1,14 @@
 "use client";
 
-import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+import {
+    createContext,
+    ReactNode,
+    useCallback,
+    useContext,
+    useEffect,
+    useMemo,
+    useState,
+} from "react";
 
 interface CartItem {
     id: string;
@@ -47,7 +55,7 @@ export function CartProvider({ children }: { children: ReactNode }) {
         }
     }, [cart, mounted]);
 
-    const addToCart = React.useCallback((item: Omit<CartItem, "quantity">) => {
+    const addToCart = useCallback((item: Omit<CartItem, "quantity">) => {
         setCart((prevCart) => {
             const existing = prevCart.find((i) => i.id === item.id);
             if (existing) {
@@ -59,11 +67,11 @@ export function CartProvider({ children }: { children: ReactNode }) {
         });
     }, []);
 
-    const removeFromCart = React.useCallback((id: string) => {
+    const removeFromCart = useCallback((id: string) => {
         setCart((prevCart) => prevCart.filter((item) => item.id !== id));
     }, []);
 
-    const updateQuantity = React.useCallback(
+    const updateQuantity = useCallback(
         (id: string, quantity: number) => {
             if (quantity <= 0) {
                 removeFromCart(id);
@@ -76,33 +84,37 @@ export function CartProvider({ children }: { children: ReactNode }) {
         [removeFromCart]
     );
 
-    const clearCart = React.useCallback(() => {
+    const clearCart = useCallback(() => {
+        console.log("CartContext: clearing cart");
         setCart([]);
     }, []);
 
-    const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+    const cartCount = useMemo(() => cart.reduce((sum, item) => sum + item.quantity, 0), [cart]);
 
-    const cartTotal = cart.reduce((sum, item) => {
-        const priceStr = String(item.price || "0");
-        const price = parseFloat(priceStr.replace(/[₹,]/g, ""));
-        return sum + price * item.quantity;
-    }, 0);
-
-    return (
-        <CartContext.Provider
-            value={{
-                cart,
-                addToCart,
-                removeFromCart,
-                updateQuantity,
-                clearCart,
-                cartCount,
-                cartTotal,
-            }}
-        >
-            {children}
-        </CartContext.Provider>
+    const cartTotal = useMemo(
+        () =>
+            cart.reduce((sum, item) => {
+                const priceStr = String(item.price || "0");
+                const price = parseFloat(priceStr.replace(/[₹,]/g, ""));
+                return sum + price * item.quantity;
+            }, 0),
+        [cart]
     );
+
+    const value = useMemo(
+        () => ({
+            cart,
+            addToCart,
+            removeFromCart,
+            updateQuantity,
+            clearCart,
+            cartCount,
+            cartTotal,
+        }),
+        [cart, addToCart, removeFromCart, updateQuantity, clearCart, cartCount, cartTotal]
+    );
+
+    return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 }
 
 export function useCart() {

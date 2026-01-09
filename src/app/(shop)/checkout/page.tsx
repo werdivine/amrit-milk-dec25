@@ -58,7 +58,7 @@ function CheckoutContent() {
         state: "",
     });
 
-    const [paymentMethod, setPaymentMethod] = useState<"online" | "cod">("online");
+    const [paymentMethod, setPaymentMethod] = useState<"ccavenue" | "cod">("ccavenue");
 
     // Check for payment status from URL (returned from CCAvenue)
     useEffect(() => {
@@ -134,6 +134,8 @@ function CheckoutContent() {
                 paymentMethod: paymentMethod,
             };
 
+            console.log("Creating order with data:", orderData);
+
             // Step 1: Create order in database
             const orderRes = await fetch("/api/orders", {
                 method: "POST",
@@ -144,6 +146,7 @@ function CheckoutContent() {
             const orderResult = await orderRes.json();
 
             if (!orderRes.ok) {
+                console.error("Order creation failed:", orderResult);
                 throw new Error(orderResult.error || "Failed to create order");
             }
 

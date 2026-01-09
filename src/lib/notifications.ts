@@ -18,6 +18,13 @@ import nodemailer from "nodemailer";
 /**
  * Configure Nodemailer SMTP Transporter for IONOS
  */
+console.log("SMTP Config:", {
+    host: process.env.SMTP_HOST || "smtp.ionos.com",
+    port: process.env.SMTP_PORT || "587",
+    secure: process.env.SMTP_SECURE === "true",
+    user: process.env.SMTP_USER,
+});
+
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.ionos.com",
     port: parseInt(process.env.SMTP_PORT || "587"),
@@ -177,10 +184,15 @@ export async function sendWhatsAppNotification(order: OrderNotificationData): Pr
  * Send all notifications for a new order
  */
 export async function sendOrderNotifications(order: OrderNotificationData): Promise<void> {
+    console.log(`Starting notifications for order: ${order.orderNumber} to ${order.email}`);
     // Send all notifications in parallel
-    await Promise.allSettled([
+    const results = await Promise.allSettled([
         sendOrderEmailNotification(order),
         sendCustomerConfirmationEmail(order),
         sendWhatsAppNotification(order),
     ]);
+    console.log(
+        `Notifications complete for ${order.orderNumber}:`,
+        results.map((r) => r.status)
+    );
 }
