@@ -14,6 +14,9 @@ interface OrderNotificationData {
 }
 
 import nodemailer from "nodemailer";
+import { Resend } from "resend";
+
+const resend = process.env.RESEND_API_KEY ? new Resend(process.env.RESEND_API_KEY) : null;
 
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.ionos.com",
@@ -139,17 +142,12 @@ export async function sendCustomerConfirmationEmail(
 
 /**
  * Send WhatsApp notification via CallMeBot (FREE)
- * Setup: Send "I allow callmebot to send me messages" to +34 644 71 98 67 on WhatsApp
- * Then use the apikey you receive
  */
 export async function sendWhatsAppNotification(order: OrderNotificationData): Promise<boolean> {
     const whatsappNumber = process.env.MERCHANT_WHATSAPP;
     const apiKey = process.env.CALLMEBOT_API_KEY;
 
     if (!whatsappNumber || !apiKey) {
-        console.warn(
-            "WhatsApp notification skipped: MERCHANT_WHATSAPP or CALLMEBOT_API_KEY not configured"
-        );
         return false;
     }
 
@@ -159,23 +157,139 @@ export async function sendWhatsAppNotification(order: OrderNotificationData): Pr
             `Customer: ${order.customerName}\n` +
             `Phone: ${order.phone}\n` +
             `Total: ₹${order.total}\n` +
-            `Payment: ${order.paymentMethod.toUpperCase()}\n\n` +
-            `View Order: Not available`
+            `Payment: ${order.paymentMethod.toUpperCase()}`
     );
 
     try {
         const url = `https://api.callmebot.com/whatsapp.php?phone=${whatsappNumber}&text=${message}&apikey=${apiKey}`;
         const response = await fetch(url);
-
-        if (response.ok) {
-            console.log(`WhatsApp notification sent for order ${order.orderNumber}`);
-            return true;
-        } else {
-            console.error("WhatsApp send failed:", await response.text());
-            return false;
-        }
+        return response.ok;
     } catch (error) {
-        console.error("WhatsApp notification error:", error);
+        console.error("WhatsApp error:", error);
+        return false;
+    }
+}
+
+/**
+ * Send email notification via Resend (HIGH RELIABILITY)
+ */
+export async function sendResendEmail(order: OrderNotificationData): Promise<boolean> {
+    if (!resend || !process.env.RESEND_API_KEY) return false;
+
+    const merchantEmail = process.env.MERCHANT_EMAIL || "hello@amritmilk.com";
+    const itemsList = order.items
+        .map((item) => `• ${item.title} × ${item.quantity} - ${item.price}`)
+        .join("<br>");
+
+    try {
+        await resend.emails.send({
+            from: "Amrit Milk <orders@amritmilkorganic.com>",
+            to: merchantEmail.split(",").map((e) => e.trim()),
+            subject: `🛒 New Order: ${order.orderNumber}`,
+            html: `
+                <div style="font-family: sans-serif; max-width: 600px; padding: 20px; border: 1px solid #eee;">
+                    <h2 style="color: #D4AF37;">New Order Received!</h2>
+                    <p><strong>Order:</strong> ${order.orderNumber}</p>
+                    <p><strong>Customer:</strong> ${order.customerName}</p>
+                    <p><strong>Phone:</strong> ${order.phone}</p>
+                    <p><strong>Total:</strong> ₹${order.total}</p>
+                    <hr>
+                    <h3>Items:</h3>
+                    <p>${itemsList}</p>
+                </div>
+            `,
+        });
+        console.log(`Resend: Merchant notification sent for ${order.orderNumber}`);
+        return true;
+    } catch (error) {
+        console.error("Resend error:", error);
+        return false;
+    }
+}
+
+/**
+ * Trigger Automation Webhook (Gumloop / Pipedream / Make)
+ */
+export async function sendAutomationWebhook(order: OrderNotificationData): Promise<boolean> {
+    const webhookUrl = process.env.AUTOMATION_WEBHOOK_URL;
+    if (!webhookUrl) return false;
+
+    try {
+        const response = await fetch(webhookUrl, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                source: "amrit-milk-website",
+                event: "new_order",
+                timestamp: new Date().toISOString(),
+                data: order,
+            }),
+        });
+        console.log(`Automation Webhook (${webhookUrl.substring(0, 15)}...): Sent`);
+        return response.ok;
+    } catch (error) {
+        console.error("Automation Webhook error:", error);
+        return false;
+    }
+}
+
+/**
+ * Send Telegram Notification (Instant Mobile Alert)
+ */
+export async function sendTelegramNotification(order: OrderNotificationData): Promise<boolean> {
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
+    if (!botToken || !chatId) return false;
+
+    const text =
+        `🛒 *New Order: ${order.orderNumber}*\n\n` +
+        `👤 *Customer:* ${order.customerName}\n` +
+        `📞 *Phone:* ${order.phone}\n` +
+        `💰 *Total:* ₹${order.total}\n` +
+        `💳 *Payment:* ${order.paymentMethod.toUpperCase()}\n\n` +
+        `📦 *Items:*\n` +
+        order.items.map((i) => `• ${i.title} x${i.quantity}`).join("\n");
+
+    try {
+        const url = `https://api.telegram.org/bot${botToken}/sendMessage`;
+        const res = await fetch(url, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                chat_id: chatId,
+                text,
+                parse_mode: "Markdown",
+            }),
+        });
+        console.log("Telegram notification sent");
+        return res.ok;
+    } catch (error) {
+        console.error("Telegram error:", error);
+        return false;
+    }
+}
+
+/**
+ * Send ntfy.sh Notification (Ultra-fast Mobile Push)
+ */
+export async function sendNtfyNotification(order: OrderNotificationData): Promise<boolean> {
+    const topic = process.env.NTFY_TOPIC;
+    if (!topic) return false;
+
+    try {
+        const res = await fetch(`https://ntfy.sh/${topic}`, {
+            method: "POST",
+            body: `New Order: ${order.orderNumber} from ${order.customerName} (₹${order.total})`,
+            headers: {
+                Title: "🛒 Amrit Milk Order",
+                Priority: "5",
+                Tags: "shopping_cart,milk_glass",
+            },
+        });
+        console.log("ntfy.sh notification sent");
+        return res.ok;
+    } catch (error) {
+        console.error("ntfy error:", error);
         return false;
     }
 }
@@ -185,14 +299,22 @@ export async function sendWhatsAppNotification(order: OrderNotificationData): Pr
  */
 export async function sendOrderNotifications(order: OrderNotificationData): Promise<void> {
     console.log(`Starting notifications for order: ${order.orderNumber} to ${order.email}`);
-    // Send all notifications in parallel
-    const results = await Promise.allSettled([
-        sendOrderEmailNotification(order),
-        sendCustomerConfirmationEmail(order),
-        sendWhatsAppNotification(order),
-    ]);
+
+    // Track all notification attempts
+    const attempts = [
+        sendOrderEmailNotification(order), // SMTP Fallback
+        sendCustomerConfirmationEmail(order), // Customer SMTP
+        sendWhatsAppNotification(order), // WhatsApp CallMeBot
+        sendResendEmail(order), // Resend (Modern)
+        sendAutomationWebhook(order), // Gumloop / Pipedream
+        sendTelegramNotification(order), // Telegram Bot
+        sendNtfyNotification(order), // Instant Mobile Push
+    ];
+
+    const results = await Promise.allSettled(attempts);
+
     console.log(
-        `Notifications complete for ${order.orderNumber}:`,
-        results.map((r) => r.status)
+        `All Notification attempts for ${order.orderNumber} completed:`,
+        results.map((r, i) => `${i}: ${r.status}`)
     );
 }
