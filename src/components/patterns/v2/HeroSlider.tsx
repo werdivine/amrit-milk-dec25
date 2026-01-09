@@ -12,7 +12,7 @@ const slides = [
         description: "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
         image: "/assets/img/ghee-jar.png",
         cta: "Buy Now",
-        link: "/products/a2-bilona-ghee"
+        link: "/products/a2-cow-ghee-1kg"
     },
     {
         id: 2,

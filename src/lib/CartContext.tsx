@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
+import { createContext, ReactNode, useContext, useEffect, useState } from 'react';
 
 interface CartItem {
     id: string;
@@ -82,7 +82,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
     const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
 
     const cartTotal = cart.reduce((sum, item) => {
-        const price = parseFloat(item.price.replace(/[₹,]/g, ''));
+        const priceStr = String(item.price || "0");
+        const price = parseFloat(priceStr.replace(/[₹,]/g, ''));
         return sum + (price * item.quantity);
     }, 0);
 

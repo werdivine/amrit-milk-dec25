@@ -1,5 +1,5 @@
+import { products as staticProducts } from './products';
 import { client } from './sanity';
-import { products as staticProducts, Product } from './products';
 
 const productQuery = `*[_type == "product"] {
   "id": _id,
@@ -22,23 +22,27 @@ const productQuery = `*[_type == "product"] {
   certifications
 }`;
 
+function formatPrice(price: any): string {
+    if (typeof price === 'number') return `₹${price}`;
+    if (typeof price === 'string' && !price.startsWith('₹')) return `₹${price}`;
+    return String(price || "₹0");
+}
+
 export async function getProducts(): Promise<any[]> {
     try {
-        // Only attempt to fetch if projectId is set
         if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
-            console.warn('Sanity Project ID not found. Using static products.');
             return staticProducts;
         }
 
         const sanityProducts = await client.fetch(productQuery);
 
-        if (!sanityProducts || sanityProducts.length === 0) {
-            return staticProducts;
-        }
-
-        // Merge or transform if necessary. 
-        // For now, assume Sanity is the source of truth if available.
-        return sanityProducts && sanityProducts.length > 0 ? sanityProducts : staticProducts;
+        const products = (sanityProducts && sanityProducts.length > 0) ? sanityProducts : staticProducts;
+        
+        return products.map(p => ({
+            ...p,
+            price: formatPrice(p.price),
+            regularPrice: p.regularPrice ? formatPrice(p.regularPrice) : undefined
+        }));
     } catch (error) {
         console.error('Error fetching products from Sanity:', error);
         return staticProducts;
@@ -73,9 +77,26 @@ export async function getProductBySlug(slug: string): Promise<any | null> {
         }`;
 
         const product = await client.fetch(query, { slug });
-        return product || staticProducts.find(p => p.slug === slug) || null;
+        const result = product || staticProducts.find(p => p.slug === slug) || null;
+
+        if (result) {
+            return {
+                ...result,
+                price: formatPrice(result.price),
+                regularPrice: result.regularPrice ? formatPrice(result.regularPrice) : undefined
+            };
+        }
+        return null;
     } catch (error) {
         console.error(`Error fetching product ${slug} from Sanity:`, error);
-        return staticProducts.find(p => p.slug === slug) || null;
+        const fallback = staticProducts.find(p => p.slug === slug) || null;
+        if (fallback) {
+            return {
+                ...fallback,
+                price: formatPrice(fallback.price),
+                regularPrice: fallback.regularPrice ? formatPrice(fallback.regularPrice) : undefined
+            };
+        }
+        return null;
     }
 }
