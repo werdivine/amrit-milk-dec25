@@ -1,5 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(req: NextRequest) {
     const resendApiKey = process.env.RESEND_API_KEY;
     const merchantEmail = process.env.MERCHANT_EMAIL || "hello@amritmilk.com";

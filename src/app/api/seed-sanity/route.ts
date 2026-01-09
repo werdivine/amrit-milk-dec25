@@ -5,6 +5,8 @@ import { createClient } from "next-sanity";
 import { NextResponse } from "next/server";
 import path from "path";
 
+export const dynamic = "force-dynamic";
+
 const client = createClient({
     projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
     dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
