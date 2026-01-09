@@ -15,23 +15,18 @@ interface OrderNotificationData {
 
 import nodemailer from "nodemailer";
 
-/**
- * Configure Nodemailer SMTP Transporter for IONOS
- */
-console.log("SMTP Config:", {
-    host: process.env.SMTP_HOST || "smtp.ionos.com",
-    port: process.env.SMTP_PORT || "587",
-    secure: process.env.SMTP_SECURE === "true",
-    user: process.env.SMTP_USER,
-});
-
 const transporter = nodemailer.createTransport({
     host: process.env.SMTP_HOST || "smtp.ionos.com",
     port: parseInt(process.env.SMTP_PORT || "587"),
-    secure: process.env.SMTP_SECURE === "true", // true for 465, false for other ports
+    secure: process.env.SMTP_SECURE === "true", // true for 465, false for 587
     auth: {
         user: process.env.SMTP_USER,
         pass: process.env.SMTP_PASSWORD,
+    },
+    tls: {
+        // IONOS compatibility settings
+        ciphers: "SSLv3",
+        rejectUnauthorized: false,
     },
 });
 
@@ -132,7 +127,12 @@ export async function sendCustomerConfirmationEmail(
         console.log(`Customer SMTP confirmation email sent to ${order.email}`);
         return true;
     } catch (error: any) {
-        console.error("Customer SMTP email error:", error.message || error);
+        console.error("Customer SMTP email error details:", {
+            message: error.message,
+            code: error.code,
+            command: error.command,
+            response: error.response,
+        });
         return false;
     }
 }
