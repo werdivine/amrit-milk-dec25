@@ -33,10 +33,10 @@ const transporter = nodemailer.createTransport({
  */
 export async function sendOrderEmailNotification(order: OrderNotificationData): Promise<boolean> {
     const smtpUser = process.env.SMTP_USER;
-    const merchantEmail = process.env.MERCHANT_EMAIL;
+    const merchantEmail = process.env.MERCHANT_EMAIL || "hello@amritmilk.com";
 
-    if (!smtpUser || !merchantEmail) {
-        console.warn("Email notification skipped: SMTP_USER or MERCHANT_EMAIL not configured");
+    if (!smtpUser) {
+        console.warn("Email notification skipped: SMTP_USER not configured");
         return false;
     }
 
@@ -124,8 +124,8 @@ export async function sendCustomerConfirmationEmail(
 
         console.log(`Customer SMTP confirmation email sent to ${order.email}`);
         return true;
-    } catch (error) {
-        console.error("Customer SMTP email error:", error);
+    } catch (error: any) {
+        console.error("Customer SMTP email error:", error.message || error);
         return false;
     }
 }

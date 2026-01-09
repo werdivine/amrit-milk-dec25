@@ -1,32 +1,82 @@
 "use client";
 
-import { useState } from "react";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { Section } from "@/components/ui/section";
+import { useSearchParams } from "next/navigation";
+import { Suspense, useEffect, useState } from "react";
 
 interface ProductCatalogProps {
     initialProducts: any[];
 }
 
-export function ProductCatalog({ initialProducts }: ProductCatalogProps) {
+function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
+    const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState("all");
 
     const categories = [
         { id: "all", name: "All Products", count: initialProducts.length },
-        { id: "Dairy", name: "Dairy", count: initialProducts.filter(p => p.category === "Dairy").length },
-        { id: "Atta", name: "Atta (Flour)", count: initialProducts.filter(p => p.category === "Atta").length },
-        { id: "Rice", name: "Rice", count: initialProducts.filter(p => p.category === "Rice").length },
-        { id: "Oils", name: "Cold-Pressed Oils", count: initialProducts.filter(p => p.category === "Oils").length },
-        { id: "Honey", name: "Natural Honey", count: initialProducts.filter(p => p.category === "Honey").length },
-        { id: "Sweets", name: "Sweets & Jaggery", count: initialProducts.filter(p => p.category === "Sweets").length },
-        { id: "Wellness", name: "Wellness", count: initialProducts.filter(p => p.category === "Wellness").length },
-        { id: "Gau Seva", name: "Gau Seva", count: initialProducts.filter(p => p.category === "Gau Seva").length },
-        { id: "Other", name: "Other", count: initialProducts.filter(p => p.category === "Other").length },
+        {
+            id: "Dairy",
+            name: "Dairy",
+            count: initialProducts.filter((p) => p.category === "Dairy").length,
+        },
+        {
+            id: "Atta",
+            name: "Atta (Flour)",
+            count: initialProducts.filter((p) => p.category === "Atta").length,
+        },
+        {
+            id: "Rice",
+            name: "Rice",
+            count: initialProducts.filter((p) => p.category === "Rice").length,
+        },
+        {
+            id: "Oils",
+            name: "Cold-Pressed Oils",
+            count: initialProducts.filter((p) => p.category === "Oils").length,
+        },
+        {
+            id: "Honey",
+            name: "Natural Honey",
+            count: initialProducts.filter((p) => p.category === "Honey").length,
+        },
+        {
+            id: "Sweets",
+            name: "Sweets & Jaggery",
+            count: initialProducts.filter((p) => p.category === "Sweets").length,
+        },
+        {
+            id: "Wellness",
+            name: "Wellness",
+            count: initialProducts.filter((p) => p.category === "Wellness").length,
+        },
+        {
+            id: "Gau Seva",
+            name: "Gau Seva",
+            count: initialProducts.filter((p) => p.category === "Gau Seva").length,
+        },
+        {
+            id: "Other",
+            name: "Other",
+            count: initialProducts.filter((p) => p.category === "Other").length,
+        },
     ];
 
-    const filteredProducts = activeCategory === "all"
-        ? initialProducts
-        : initialProducts.filter(p => p.category === activeCategory);
+    useEffect(() => {
+        const cat = searchParams.get("category");
+        if (cat) {
+            // Find matched category ignoring case
+            const matched = categories.find((c) => c.id.toLowerCase() === cat.toLowerCase());
+            if (matched) {
+                setActiveCategory(matched.id);
+            }
+        }
+    }, [searchParams]);
+
+    const filteredProducts =
+        activeCategory === "all"
+            ? initialProducts
+            : initialProducts.filter((p) => p.category === activeCategory);
 
     return (
         <>
@@ -38,10 +88,11 @@ export function ProductCatalog({ initialProducts }: ProductCatalogProps) {
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
-                                className={`flex-shrink-0 snap-center px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${activeCategory === cat.id
-                                    ? "bg-terracotta dark:bg-gold text-white dark:text-midnight shadow-[0_0_20px_rgba(199,91,57,0.4)] dark:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
-                                    : "bg-transparent text-terracotta dark:text-gold border-2 border-terracotta dark:border-gold hover:bg-terracotta/10 dark:hover:bg-gold/10"
-                                    }`}
+                                className={`flex-shrink-0 snap-center px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+                                    activeCategory === cat.id
+                                        ? "bg-terracotta dark:bg-gold text-white dark:text-midnight shadow-[0_0_20px_rgba(199,91,57,0.4)] dark:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
+                                        : "bg-transparent text-terracotta dark:text-gold border-2 border-terracotta dark:border-gold hover:bg-terracotta/10 dark:hover:bg-gold/10"
+                                }`}
                             >
                                 {cat.name} ({cat.count})
                             </button>
@@ -66,10 +117,20 @@ export function ProductCatalog({ initialProducts }: ProductCatalogProps) {
 
                 {filteredProducts.length === 0 && (
                     <div className="text-center py-20">
-                        <p className="text-theme-muted text-xl">No products found in this category.</p>
+                        <p className="text-theme-muted text-xl">
+                            No products found in this category.
+                        </p>
                     </div>
                 )}
             </Section>
         </>
+    );
+}
+
+export function ProductCatalog(props: ProductCatalogProps) {
+    return (
+        <Suspense fallback={<div className="py-20 text-center">Loading catalog...</div>}>
+            <ProductCatalogContent {...props} />
+        </Suspense>
     );
 }
