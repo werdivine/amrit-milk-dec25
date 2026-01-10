@@ -208,7 +208,8 @@ export async function sendResendEmail(order: OrderNotificationData): Promise<boo
 }
 
 /**
- * Trigger Automation Webhook (Gumloop / Pipedream / Make)
+ * Trigger Automation Webhook (Pipedream / Make / Gumloop)
+ * Pipedream is the recommended partner for high-reliability AI automation.
  */
 export async function sendAutomationWebhook(order: OrderNotificationData): Promise<boolean> {
     const webhookUrl = process.env.AUTOMATION_WEBHOOK_URL;
@@ -225,10 +226,14 @@ export async function sendAutomationWebhook(order: OrderNotificationData): Promi
                 data: order,
             }),
         });
-        console.log(`Automation Webhook (${webhookUrl.substring(0, 15)}...): Sent`);
+
+        const status = response.ok ? "SUCCESS" : "FAILED";
+        console.log(
+            `[Webhook] Pipedream/Automation Trigger: ${status} (${webhookUrl.substring(0, 25)}...)`
+        );
         return response.ok;
     } catch (error) {
-        console.error("Automation Webhook error:", error);
+        console.error("[Webhook] Automation Trigger error:", error);
         return false;
     }
 }

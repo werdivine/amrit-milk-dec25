@@ -7,77 +7,78 @@ export const products = [
         title: "A2 Gir cow milk - 1 L",
         price: "₹125",
         regularPrice: "₹140",
-        image: "/assets/img/milk-bottle.png",
+        image: "/assets/img/products/a2milkbottles-gircowandsahiwalcowmilkbottles.png",
         category: "Dairy",
-        description: "Pure A2 beta-casein milk from indigenous Desi Gir cows. High nutritional value.",
+        description:
+            "Pure A2 beta-casein milk from indigenous Desi Gir cows. High nutritional value.",
         slug: "a2-gir-cow-milk-1l",
         sku: "AMRIT-DAIRY-001",
-        subscription: true
+        subscription: true,
     },
     {
         id: "milk-sahiwal-1l",
         title: "A2 Sahiwal cow milk - 1 L",
         price: "₹95",
-        image: "/assets/img/generated/sahiwal-milk.png",
+        image: "/assets/img/products/a2milkbottles-gircowandsahiwalcowmilkbottles.png",
         category: "Dairy",
         description: "Fresh A2 milk from Sahiwal breed cows.",
         slug: "a2-sahiwal-cow-milk-1l",
         sku: "AMRIT-DAIRY-002",
-        subscription: true
+        subscription: true,
     },
     {
         id: "milk-buffalo-1l",
         title: "A2 Buffalo Milk - 1 L",
         price: "₹110",
-        image: "/assets/img/generated/buffalo-milk.png",
+        image: "/assets/img/products/a2buffalomilkanda2colostrummilk.png",
         category: "Dairy",
         description: "Rich and creamy A2 Buffalo milk.",
         slug: "a2-buffalo-milk-1l",
         sku: "AMRIT-DAIRY-003",
-        subscription: true
+        subscription: true,
     },
     {
         id: "milk-colostrum-1l",
         title: "A2 Colostrum Milk - 1 L",
         price: "₹150",
-        image: "/assets/img/milk-bottle.png",
+        image: "/assets/img/products/a2buffalomilkanda2colostrummilk.png",
         category: "Dairy",
         description: "Immunity-boosting first milk (Colostrum) from A2 cows.",
         slug: "a2-colostrum-milk-1l",
-        sku: "AMRIT-DAIRY-004"
+        sku: "AMRIT-DAIRY-004",
     },
     {
         id: "ghee-cow-1kg",
         title: "A2 Cow Ghee - 1 kg",
         price: "₹2500",
-        image: "/assets/img/generated/cow-ghee.png",
+        image: "/assets/img/products/a2desicowgheeglassjarbilonamethod.png",
         category: "Dairy",
         description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
         slug: "a2-cow-ghee-1kg",
         sku: "AMRIT-DAIRY-005",
         featured: true,
-        badge: "Pure Vedic"
+        badge: "Pure Vedic",
     },
     {
         id: "paneer-1kg",
         title: "Paneer - 1 kg",
         price: "₹500",
-        image: "/assets/img/generated/paneer.png",
+        image: "/assets/img/products/a2desicowmilkpaneer.png",
         category: "Dairy",
         description: "Freshly made Malai Paneer from A2 milk.",
         slug: "a2-paneer-1kg",
-        sku: "AMRIT-DAIRY-006"
+        sku: "AMRIT-DAIRY-006",
     },
     {
         id: "curd-1kg",
         title: "Curd - 1 kg",
         price: "₹200",
-        image: "/assets/img/generated/curd.png",
+        image: "/assets/img/products/a2desicowmilkcurd.png",
         category: "Dairy",
         description: "Thick, probiotic-rich Curd made from A2 milk.",
         slug: "a2-curd-1kg",
         sku: "AMRIT-DAIRY-007",
-        subscription: true
+        subscription: true,
     },
     {
         id: "khoya-1kg",
@@ -87,7 +88,7 @@ export const products = [
         category: "Dairy",
         description: "Pure milk solids (Khoya) for traditional sweets.",
         slug: "a2-khoya-1kg",
-        sku: "AMRIT-DAIRY-008"
+        sku: "AMRIT-DAIRY-008",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -102,7 +103,7 @@ export const products = [
         description: "Stone-ground whole wheat flour.",
         slug: "whole-wheat-atta-1kg",
         sku: "AMRIT-ATTA-001",
-        subscription: true
+        subscription: true,
     },
     {
         id: "atta-multigrain-1kg",
@@ -112,27 +113,27 @@ export const products = [
         category: "Atta",
         description: "Nutritious blend of multiple grains.",
         slug: "multigrain-atta-1kg",
-        sku: "AMRIT-ATTA-002"
+        sku: "AMRIT-ATTA-002",
     },
     {
         id: "atta-corn-1kg",
         title: "Corn Flour - 1 kg",
         price: "₹120",
-        image: "/assets/img/generated/corn-flour.png",
+        image: "/assets/img/products/cornflour.png",
         category: "Atta",
         description: "Pure yellow corn flour.",
         slug: "corn-flour-1kg",
-        sku: "AMRIT-ATTA-003"
+        sku: "AMRIT-ATTA-003",
     },
     {
         id: "atta-bajra-1kg",
         title: "Bajra - 1 kg",
         price: "₹120",
-        image: "/assets/img/generated/bajra-flour.png",
+        image: "/assets/img/products/bajraflour.png",
         category: "Atta",
         description: "Traditional pearl millet (Bajra) flour.",
         slug: "bajra-flour-1kg",
-        sku: "AMRIT-ATTA-004"
+        sku: "AMRIT-ATTA-004",
     },
     {
         id: "atta-besan-1kg",
@@ -142,7 +143,7 @@ export const products = [
         category: "Atta",
         description: "Pure Gram flour (Besan) and roasted gram flour (Sattu).",
         slug: "besan-sattu-1kg",
-        sku: "AMRIT-ATTA-005"
+        sku: "AMRIT-ATTA-005",
     },
     {
         id: "grains-millet-1kg",
@@ -152,7 +153,7 @@ export const products = [
         category: "Atta",
         description: "Assorted ancient millet grains.",
         slug: "millet-grains-1kg",
-        sku: "AMRIT-ATTA-006"
+        sku: "AMRIT-ATTA-006",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -166,7 +167,7 @@ export const products = [
         category: "Rice",
         description: "Aromatic small-grain Kala Jeera rice.",
         slug: "kala-jeera-rice-1kg",
-        sku: "AMRIT-RICE-001"
+        sku: "AMRIT-RICE-001",
     },
     {
         id: "rice-low-sugar-1kg",
@@ -176,7 +177,7 @@ export const products = [
         category: "Rice",
         description: "Diabetes-friendly low-sugar Kala Jeera rice.",
         slug: "kala-jeera-low-sugar-1kg",
-        sku: "AMRIT-RICE-002"
+        sku: "AMRIT-RICE-002",
     },
     {
         id: "rice-basmati-1kg",
@@ -186,7 +187,7 @@ export const products = [
         category: "Rice",
         description: "Long-grain aged premium Basmati rice.",
         slug: "premium-basmati-rice-1kg",
-        sku: "AMRIT-RICE-003"
+        sku: "AMRIT-RICE-003",
     },
     {
         id: "rice-kala-namak-1kg",
@@ -196,7 +197,7 @@ export const products = [
         category: "Rice",
         description: "Buddha's gift - highly aromatic and nutritious Kala Namak rice.",
         slug: "kala-namak-rice-1kg",
-        sku: "AMRIT-RICE-004"
+        sku: "AMRIT-RICE-004",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -211,7 +212,7 @@ export const products = [
         description: "Cold-pressed Yellow Mustard oil (Kacchi Ghani).",
         slug: "yellow-mustard-oil-1l",
         sku: "AMRIT-OIL-001",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-black-mustard-1l",
@@ -222,18 +223,18 @@ export const products = [
         description: "Cold-pressed Black Mustard oil, pungent and pure.",
         slug: "black-mustard-oil-1l",
         sku: "AMRIT-OIL-002",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-groundnut-1l",
         title: "Groundnut Oil - 1 L",
         price: "₹600",
-        image: "/assets/img/generated/groundnut-oil.png",
+        image: "/assets/img/products/peanut oil.png",
         category: "Oils",
         description: "Cold-pressed Groundnut oil, rich in flavor.",
         slug: "groundnut-oil-1l-premium",
         sku: "AMRIT-OIL-003",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-coconut-1l",
@@ -244,7 +245,7 @@ export const products = [
         description: "Pure cold-pressed Coconut oil for cooking and care.",
         slug: "coconut-oil-1l-premium",
         sku: "AMRIT-OIL-004",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-sesame-1l",
@@ -255,7 +256,7 @@ export const products = [
         description: "Cold-pressed Sesame (Til) oil.",
         slug: "sesame-til-oil-1l",
         sku: "AMRIT-OIL-005",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-tulsi-10ml",
@@ -266,7 +267,7 @@ export const products = [
         description: "Sacred Tulsi essential oil.",
         slug: "tulsi-oil-10ml",
         sku: "AMRIT-OIL-006",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-lemongrass-10ml",
@@ -277,7 +278,7 @@ export const products = [
         description: "Refreshing Lemongrass essential oil.",
         slug: "lemongrass-oil-10ml",
         sku: "AMRIT-OIL-007",
-        featured: true
+        featured: true,
     },
     {
         id: "oil-menthol-10ml",
@@ -288,7 +289,7 @@ export const products = [
         description: "Cooling Menthol essential oil.",
         slug: "menthol-oil-10ml",
         sku: "AMRIT-OIL-008",
-        featured: true
+        featured: true,
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -302,7 +303,7 @@ export const products = [
         category: "Sweets",
         description: "Soft and spongy Rasgullas made from A2 milk paneer.",
         slug: "rasgulla-jar",
-        sku: "AMRIT-SWEET-001"
+        sku: "AMRIT-SWEET-001",
     },
     {
         id: "jaggery-bites-500g",
@@ -312,7 +313,7 @@ export const products = [
         category: "Sweets",
         description: "Healthy jaggery bites, a natural substitute for chocolates.",
         slug: "jaggery-bites-500g",
-        sku: "AMRIT-SWEET-002"
+        sku: "AMRIT-SWEET-002",
     },
     {
         id: "jaggery-1kg",
@@ -322,7 +323,7 @@ export const products = [
         category: "Sweets",
         description: "Pure chemical-free Organic Jaggery.",
         slug: "jaggery-1kg-pure",
-        sku: "AMRIT-SWEET-003"
+        sku: "AMRIT-SWEET-003",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -336,7 +337,7 @@ export const products = [
         category: "Wellness",
         description: "Natural moisturizing Lip Balm.",
         slug: "lip-balm-moisturizer",
-        sku: "AMRIT-WELL-001"
+        sku: "AMRIT-WELL-001",
     },
     {
         id: "bees-wax",
@@ -346,7 +347,7 @@ export const products = [
         category: "Wellness",
         description: "Pure Bees Wax for skin hydration.",
         slug: "bees-wax-moisturizer",
-        sku: "AMRIT-WELL-002"
+        sku: "AMRIT-WELL-002",
     },
     {
         id: "bull-balm-rollon",
@@ -356,7 +357,7 @@ export const products = [
         category: "Wellness",
         description: "Ancient formula for pain relief in a handy roll-on.",
         slug: "bull-balm-rollon",
-        sku: "AMRIT-WELL-003"
+        sku: "AMRIT-WELL-003",
     },
     {
         id: "bull-balm-spray",
@@ -366,7 +367,7 @@ export const products = [
         category: "Wellness",
         description: "Targeted pain relief spray.",
         slug: "bull-balm-spray",
-        sku: "AMRIT-WELL-004"
+        sku: "AMRIT-WELL-004",
     },
     {
         id: "bull-balm-dropper",
@@ -376,7 +377,7 @@ export const products = [
         category: "Wellness",
         description: "Concentrated formula for deep tissue relief.",
         slug: "bull-balm-dropper",
-        sku: "AMRIT-WELL-005"
+        sku: "AMRIT-WELL-005",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -392,7 +393,7 @@ export const products = [
         slug: "multiflora-honey-1kg",
         sku: "AMRIT-HONEY-001",
         featured: true,
-        badge: "Raw & Pure"
+        badge: "Raw & Pure",
     },
     {
         id: "honey-jamun-1kg",
@@ -403,7 +404,7 @@ export const products = [
         description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
         slug: "jamun-honey-1kg",
         sku: "AMRIT-HONEY-002",
-        featured: true
+        featured: true,
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -417,7 +418,7 @@ export const products = [
         category: "Other",
         description: "High-curcumin Organic Turmeric powder.",
         slug: "organic-turmeric-1kg",
-        sku: "AMRIT-MISC-001"
+        sku: "AMRIT-MISC-001",
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -431,7 +432,7 @@ export const products = [
         category: "Gau Seva",
         description: "Organic manure from Desi Gir cows for your garden.",
         slug: "cow-manure-1kg",
-        sku: "AMRIT-GAU-001"
+        sku: "AMRIT-GAU-001",
     },
     {
         id: "cow-dung-cakes-2pcs",
@@ -441,7 +442,7 @@ export const products = [
         category: "Gau Seva",
         description: "Traditionally dried Cow Dung cakes for rituals and fuel.",
         slug: "cow-dung-cakes-2pcs",
-        sku: "AMRIT-GAU-002"
+        sku: "AMRIT-GAU-002",
     },
     {
         id: "gaumutra-1l",
@@ -451,8 +452,8 @@ export const products = [
         category: "Gau Seva",
         description: "Distilled Gaumutra for spiritual and medicinal use.",
         slug: "gaumutra-1l",
-        sku: "AMRIT-GAU-003"
-    }
+        sku: "AMRIT-GAU-003",
+    },
 ];
 
 export type Product = (typeof products)[0];
