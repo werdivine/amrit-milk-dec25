@@ -160,7 +160,7 @@ function CheckoutContent() {
             }
 
             // Step 3: For online payment, initiate CCAvenue
-            const ccavenueRes = await fetch("/api/ccavenue/initiate", {
+            const ccavenueRes = await fetch(`/api/ccavenue/initiate?t=${Date.now()}`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({
