@@ -23,8 +23,12 @@ function getMd5(data: string): Buffer {
 export function encrypt(plainText: string, workingKey: string): string {
     const key = getMd5(workingKey);
 
-    // CCAvenue uses a fixed IV of 16 null bytes for AES-128-CBC
-    const iv = Buffer.alloc(16, 0);
+    // CCAvenue uses a fixed IV of 0x00-0x0F for AES-128-CBC
+    // const iv = Buffer.alloc(16, 0); // INCORRECT
+    const iv = Buffer.from([
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e,
+        0x0f,
+    ]);
 
     const cipher = crypto.createCipheriv(ALGORITHM, key, iv);
     let encrypted = cipher.update(plainText, "utf8", "hex");
@@ -42,8 +46,12 @@ export function encrypt(plainText: string, workingKey: string): string {
 export function decrypt(encryptedText: string, workingKey: string): string {
     const key = getMd5(workingKey);
 
-    // CCAvenue uses a fixed IV of 16 null bytes for AES-128-CBC
-    const iv = Buffer.alloc(16, 0);
+    // CCAvenue uses a fixed IV of 0x00-0x0F for AES-128-CBC
+    // const iv = Buffer.alloc(16, 0); // INCORRECT
+    const iv = Buffer.from([
+        0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e,
+        0x0f,
+    ]);
 
     const decipher = crypto.createDecipheriv(ALGORITHM, key, iv);
     let decrypted = decipher.update(encryptedText, "hex", "utf8");

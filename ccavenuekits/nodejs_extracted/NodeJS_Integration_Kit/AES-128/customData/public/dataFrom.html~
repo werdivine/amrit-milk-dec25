@@ -1,0 +1,294 @@
+<html>
+<head>
+<script language="javascript" type="text/javascript" src="json.js"></script>
+<script src="jquery-1.7.2.js"></script>
+</head>
+<body>
+	<form method="POST" name="customerData" action="/ccavRequestHandler">
+		<table width="40%" height="100" border='1' align="center"><caption><font size="4" color="blue"><b>Integration Kit</b></font></caption></table>
+			<table width="50%" height="100" border='1' align="center">
+				<tr>
+					<td>Parameter Name:</td><td>Parameter Value:</td>
+				</tr>
+				<tr>
+					<td colspan="2"> Compulsory information</td>
+				</tr>
+				<tr>
+					<td>Merchant Id	:</td><td><input type="text" name="merchant_id" value=""/></td>
+				</tr>
+				<tr>
+					<td>Order Id	:</td><td><input type="text" name="order_id" value=""/></td>
+				</tr>
+				<tr>
+					<td>Amount	:</td><td><input type="text" name="amount" value="1.00"/></td>
+				</tr>
+				<tr>
+					<td>Currency	:</td><td><input type="text" name="currency" value="INR"/></td>
+				</tr>
+				<tr>
+					<td>Redirect URL	:</td><td><input type="text" name="redirect_url" value="http://127.0.0.1:3000/ccavResponseHandler"/></td>
+				</tr>
+			 	<tr>
+			 		<td>Cancel URL	:</td><td><input type="text" name="cancel_url" value="http://127.0.0.1:3000/ccavResponseHandler"/></td>
+			 	</tr>
+			 	<tr>
+					<td>Language	:</td><td><input type="text" name="language" value="EN"/></td>
+				</tr>
+		     	<tr>
+		     		<td colspan="2">Billing information(optional):</td>
+		     	</tr>
+		        <tr>
+		        	<td>Billing Name	:</td><td><input type="text" name="billing_name" value="Charli"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Address	:</td><td><input type="text" name="billing_address" value="Room no 1101, near Railway station Ambad"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing City	:</td><td><input type="text" name="billing_city" value="Indore"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing State	:</td><td><input type="text" name="billing_state" value="MP"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Zip	:</td><td><input type="text" name="billing_zip" value="425001"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Country	:</td><td><input type="text" name="billing_country" value="India"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Tel	:</td><td><input type="text" name="billing_tel" value="9876543210"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Billing Email	:</td><td><input type="text" name="billing_email" value="ur.email@domain.com"/></td>
+		        </tr>
+		        <tr>
+		        	<td colspan="2">Shipping information(optional)</td>
+		        </tr>
+		        <tr>
+		        	<td>Shipping Name	:</td><td><input type="text" name="delivery_name" value="Chaplin"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Shipping Address	:</td><td><input type="text" name="delivery_address" value="room no.701 near bus stand"/></td>
+		        </tr>
+		        <tr>
+		        	<td>shipping City	:</td><td><input type="text" name="delivery_city" value="Hyderabad"/></td>
+		        </tr>
+		        <tr>
+		        	<td>shipping State	:</td><td><input type="text" name="delivery_state" value="Andhra"/></td>
+		        </tr>
+		        <tr>
+		        	<td>shipping Zip	:</td><td><input type="text" name="delivery_zip" value="425001"/></td>
+		        </tr>
+		        <tr>
+		        	<td>shipping Country	:</td><td><input type="text" name="delivery_country" value="India"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Shipping Tel	:</td><td><input type="text" name="delivery_tel" value="1234567890"/></td>
+		        </tr>
+		        <tr>
+		        	<td>Merchant Param1	:</td><td><input type="text" name="merchant_param1" value="additional Info."/></td>
+		        </tr>
+		        <tr>
+		        	<td>Merchant Param2	:</td><td><input type="text" name="merchant_param2" value="additional Info."/></td>
+		        </tr>
+				<tr>
+					<td>Merchant Param3	:</td><td><input type="text" name="merchant_param3" value="additional Info."/></td>
+				</tr>
+				<tr>
+					<td>Merchant Param4	:</td><td><input type="text" name="merchant_param4" value="additional Info."/></td>
+				</tr>
+				<tr>
+					<td>Merchant Param5	:</td><td><input type="text" name="merchant_param5" value="additional Info."/></td>
+				</tr>
+				 
+				 <tr>
+		     		<td colspan="2">Payment information:</td>
+		     	</tr>
+				 <tr> <td> Payment Option: </td> 
+		         	  <td> 
+
+		         	  		
+		         	  		<input class="payOption" type="radio" name="payment_option" value="OPTCRDC">Credit Card
+		         	  		<input class="payOption" type="radio" name="payment_option" value="OPTDBCRD">Debit Card  <br/>
+		         	  		<input class="payOption" type="radio" name="payment_option" value="OPTNBK">Net Banking 
+		         	  		<input class="payOption" type="radio" name="payment_option" value="OPTCASHC">Cash Card <br/>
+		         	  		<input class="payOption" type="radio" name="payment_option" value="OPTMOBP">Mobile Payments
+		         	   </td>
+		         </tr>
+		         
+		         <tr> <td> Card Type: </td>
+		             <td><input type="text" id="card_type" name="card_type" value="" readonly="readonly"/></td>
+		         </tr>
+		        
+		        <tr> <td> Card Name: </td>
+		             <td> <select name="card_name" id="card_name"> <option value="">Select Card Name</option> </select> </td>
+		        </tr>
+		        
+		        <tr> <td> Data Accepted At </td>
+		             <td><input type="text" id="data_accept" name="data_accept" readonly="readonly"/></td>
+		        </tr>
+		         
+		         <tr> <td> Card Number: </td>
+		            <td> <input type="text" name="card_number" value=""/>e.g. 4111111111111111 </td>
+		         </tr>
+		          <tr> <td> Expiry Month: </td>
+		               <td> <input type="text" name="expiry_month" value=""/>e.g. 07 </td>
+		         </tr>
+		          <tr> <td> Expiry Year: </td>
+		          	   <td> <input type="text" name="expiry_year" value=""/>e.g. 2027</td>
+		         </tr>
+		          <tr> <td> CVV Number:</td>
+		               <td> <input type="text" name="cvv_number" value=""/>e.g. 328</td>
+		         </tr>
+		         <tr> <td> Issuing Bank:</td>
+		            <td><input type="text" name="issuing_bank" value=""/>e.g. State Bank Of India</td>
+		         </tr>
+			<tr> 
+		        	<td> Mobile Number:</td><td><input type="text" name="mobile_number" value=""/>e.g. 9770707070</td>
+		        </tr>
+				 
+		        <tr>
+		        	<td></td><td><INPUT TYPE="submit" value="CheckOut"></td>
+		        </tr>
+	      	</table>
+	      </form>
+	
+	
+	
+	
+	
+	
+</body>
+ 
+<script type="text/javascript">
+$(function(){
+  
+	 /* json object contains
+	 	1) payOptType - Will contain payment options allocated to the merchant. Options may include Credit Card, Net Banking, Debit Card, Cash Cards or Mobile Payments.
+	 	2) cardType - Will contain card type allocated to the merchant. Options may include Credit Card, Net Banking, Debit Card, Cash Cards or Mobile Payments.
+	 	3) cardName - Will contain name of card. E.g. Visa, MasterCard, American Express or and bank name in case of Net banking. 
+	 	4) status - Will help in identifying the status of the payment mode. Options may include Active or Down.
+	 	5) dataAcceptedAt - It tell data accept at CCAvenue or Service provider
+	 	6)error -  This parameter will enable you to troubleshoot any configuration related issues. It will provide error description.
+	 */	  
+  	  var jsonData;
+  	  var access_code="" // Put in the access code shared by CCAvenues.
+  	  var amount="10.00";
+  	  var currency="INR";
+  	  
+      $.ajax({
+           url:'http://203.109.97.244/transaction/transaction.do?command=getJsonData&access_code='+access_code+'&currency='+currency+'&amount='+amount,
+           dataType: 'jsonp',
+           jsonp: false,
+           jsonpCallback: 'processData',
+           success: function (data) {
+		 jsonData = data;
+                 // processData method for reference
+                 processData(data); 
+           },
+           error: function(xhr, textStatus, errorThrown) {
+               alert('An error occurred! ' + ( errorThrown ? errorThrown :xhr.status ));
+               //console.log("Error occured");
+           }
+   		});
+   
+   		$(".payOption").click(function(){
+            $("#card_name").children().remove(); // remove old card names from old one
+            $("#card_name").append("<option value=''>Select</option>");
+           	
+           	var paymentOption = $(this).val();
+           	$("#card_type").val(paymentOption.replace("OPT",""));
+           	
+           	$.each(jsonData, function(index,value) {
+           		console.log(value.error);
+            	 console.log(value);
+            	 if(value.payOpt==paymentOption){
+            		console.log(value[paymentOption]);
+            		var payOptJSONArray = $.parseJSON(value[paymentOption]);
+                	$.each(payOptJSONArray, function() {
+    	            	$("#card_name").find("option:last").after("<option class='"+this['dataAcceptedAt']+" "+this['status']+"'  value='"+this['cardName']+"'>"+this['cardName']+"</option>");
+                	});
+                  }
+           	});
+            	
+         });
+            
+          $("#card_name").click(function(){
+          	if($(this).find(":selected").hasClass("DOWN")){
+          		alert("Selected option is currently unavailable. Select another payment option or try again later.");
+          	}
+          	if($(this).find(":selected").hasClass("CCAvenue")){
+          		$("#data_accept").val("Y");
+          	}else{
+          		$("#data_accept").val("N");
+          	}
+          });
+   
+   
+   // below code for reference 
+ 
+   function processData(data){
+         var paymentOptions = [];
+         var creditCards = [];
+         var debitCards = [];
+         var netBanks = [];
+         var cashCards = [];
+         var mobilePayments=[];
+         $.each(data, function() {
+         	 // this.error shows if any error   	
+             console.log(this.error);
+              paymentOptions.push(this.payOpt);
+              switch(this.payOpt){
+                case 'OPTCRDC':
+                	var jsonData = this.OPTCRDC;
+                 	var obj = $.parseJSON(jsonData);
+                 	$.each(obj, function() {
+                 		creditCards.push(this['cardName']);
+                	});
+                break;
+                case 'OPTDBCRD':
+                	var jsonData = this.OPTDBCRD;
+                 	var obj = $.parseJSON(jsonData);
+                 	$.each(obj, function() {
+                 		debitCards.push(this['cardName']);
+                	});
+                break;
+              	case 'OPTNBK':
+	              	var jsonData = this.OPTNBK;
+	                var obj = $.parseJSON(jsonData);
+	                $.each(obj, function() {
+	                 	netBanks.push(this['cardName']);
+	                });
+                break;
+                
+                case 'OPTCASHC':
+                  var jsonData = this.OPTCASHC;
+                  var obj =  $.parseJSON(jsonData);
+                  $.each(obj, function() {
+                  	cashCards.push(this['cardName']);
+                  });
+                 break;
+                   
+                  case 'OPTMOBP':
+                  var jsonData = this.OPTMOBP;
+                  var obj =  $.parseJSON(jsonData);
+                  $.each(obj, function() {
+                  	mobilePayments.push(this['cardName']);
+                  });
+              }
+              
+            });
+           
+           //console.log(creditCards);
+          // console.log(debitCards);
+          // console.log(netBanks);
+          // console.log(cashCards);
+         //  console.log(mobilePayments);
+            
+      }
+      
+     
+   
+  });
+</script>
+</html>
