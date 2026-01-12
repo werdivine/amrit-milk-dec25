@@ -34,6 +34,16 @@ const transporter = nodemailer.createTransport({
 });
 
 /**
+ * Helper to format payment status
+ */
+function formatPaymentStatus(method: string): string {
+    const m = method.toLowerCase();
+    if (m === "cod") return "Cash on Delivery (Pending Collection)";
+    if (m === "online" || m === "ccavenue") return "Paid Online (Verified)";
+    return method.toUpperCase();
+}
+
+/**
  * Send email notification via SMTP (IONOS)
  */
 export async function sendOrderEmailNotification(order: OrderNotificationData): Promise<boolean> {
@@ -49,12 +59,14 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
         .map((item) => `• ${item.title} × ${item.quantity} - ${item.price}`)
         .join("\n");
 
+    const paymentStatus = formatPaymentStatus(order.paymentMethod);
+
     try {
         await transporter.sendMail({
             from: `"Amrit Milk Orders" <${smtpUser}>`,
             to: merchantEmail.split(",").map((e) => e.trim()),
             subject: `🛒 New Order: ${order.orderNumber} - ₹${order.total}`,
-            text: `New Order Received!\n\nOrder Number: ${order.orderNumber}\nCustomer: ${order.customerName}\nPhone: ${order.phone}\nEmail: ${order.email}\nPayment: ${order.paymentMethod.toUpperCase()}\n\nItems:\n${itemsList}\n\nTotal: ₹${order.total}`,
+            text: `New Order Received!\n\nOrder Number: ${order.orderNumber}\nCustomer: ${order.customerName}\nPhone: ${order.phone}\nEmail: ${order.email}\nPayment: ${paymentStatus}\n\nItems:\n${itemsList}\n\nTotal: ₹${order.total}`,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #eee; padding: 20px;">
                     <h2 style="color: #D4AF37;">New Order Received!</h2>
@@ -62,7 +74,7 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
                     <p><strong>Customer:</strong> ${order.customerName}</p>
                     <p><strong>Phone:</strong> ${order.phone}</p>
                     <p><strong>Email:</strong> ${order.email}</p>
-                    <p><strong>Payment:</strong> ${order.paymentMethod.toUpperCase()}</p>
+                    <p><strong>Payment:</strong> <span style="background: #e8f5e9; padding: 4px 8px; border-radius: 4px; color: #2e7d32; font-weight: bold;">${paymentStatus}</span></p>
                     <hr>
                     <h3>Items:</h3>
                     <pre style="background: #f9f9f9; padding: 10px; border-radius: 4px;">${itemsList}</pre>
@@ -97,6 +109,8 @@ export async function sendCustomerConfirmationEmail(
         .map((item) => `• ${item.title} × ${item.quantity} - ${item.price}`)
         .join("<br>");
 
+    const paymentStatus = formatPaymentStatus(order.paymentMethod);
+
     try {
         await transporter.sendMail({
             from: `"Amrit Milk" <${smtpUser}>`,
@@ -110,7 +124,11 @@ export async function sendCustomerConfirmationEmail(
                     
                     <div style="background: #fdfaf0; padding: 20px; border-radius: 8px; margin: 20px 0; border: 1px solid #e5d1b1;">
                         <p style="margin: 0;"><strong>Order Number:</strong> ${order.orderNumber}</p>
-                        <p style="margin: 5px 0 0 0;"><strong>Payment Method:</strong> ${order.paymentMethod === "cod" ? "Cash on Delivery" : "Online Payment"}</p>
+                        <p style="margin: 5px 0 0 0;"><strong>Payment Status:</strong> 
+                            <span style="font-weight: bold; color: ${order.paymentMethod === "cod" ? "#e65100" : "#2e7d32"};">
+                                ${paymentStatus}
+                            </span>
+                        </p>
                     </div>
                     
                     <h3 style="border-bottom: 2px solid #D4AF37; padding-bottom: 5px;">Order Summary:</h3>
@@ -157,7 +175,7 @@ export async function sendWhatsAppNotification(order: OrderNotificationData): Pr
             `Customer: ${order.customerName}\n` +
             `Phone: ${order.phone}\n` +
             `Total: ₹${order.total}\n` +
-            `Payment: ${order.paymentMethod.toUpperCase()}`
+            `Payment: ${formatPaymentStatus(order.paymentMethod)}`
     );
 
     try {
@@ -181,6 +199,8 @@ export async function sendResendEmail(order: OrderNotificationData): Promise<boo
         .map((item) => `• ${item.title} × ${item.quantity} - ${item.price}`)
         .join("<br>");
 
+    const paymentStatus = formatPaymentStatus(order.paymentMethod);
+
     try {
         await resend.emails.send({
             from: "Amrit Milk <orders@amritmilkorganic.com>",
@@ -193,6 +213,7 @@ export async function sendResendEmail(order: OrderNotificationData): Promise<boo
                     <p><strong>Customer:</strong> ${order.customerName}</p>
                     <p><strong>Phone:</strong> ${order.phone}</p>
                     <p><strong>Total:</strong> ₹${order.total}</p>
+                     <p><strong>Payment:</strong> ${paymentStatus}</p>
                     <hr>
                     <h3>Items:</h3>
                     <p>${itemsList}</p>
@@ -246,12 +267,14 @@ export async function sendTelegramNotification(order: OrderNotificationData): Pr
     const chatId = process.env.TELEGRAM_CHAT_ID;
     if (!botToken || !chatId) return false;
 
+    const paymentStatus = formatPaymentStatus(order.paymentMethod);
+
     const text =
         `🛒 *New Order: ${order.orderNumber}*\n\n` +
         `👤 *Customer:* ${order.customerName}\n` +
         `📞 *Phone:* ${order.phone}\n` +
         `💰 *Total:* ₹${order.total}\n` +
-        `💳 *Payment:* ${order.paymentMethod.toUpperCase()}\n\n` +
+        `💳 *Payment:* ${paymentStatus}\n\n` +
         `📦 *Items:*\n` +
         order.items.map((i) => `• ${i.title} x${i.quantity}`).join("\n");
 
@@ -284,7 +307,7 @@ export async function sendNtfyNotification(order: OrderNotificationData): Promis
     try {
         const res = await fetch(`https://ntfy.sh/${topic}`, {
             method: "POST",
-            body: `New Order: ${order.orderNumber} from ${order.customerName} (₹${order.total})`,
+            body: `New Order: ${order.orderNumber} from ${order.customerName} (₹${order.total}) - ${formatPaymentStatus(order.paymentMethod)}`,
             headers: {
                 Title: "🛒 Amrit Milk Order",
                 Priority: "5",

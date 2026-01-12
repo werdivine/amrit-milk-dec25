@@ -19,7 +19,8 @@ export async function POST(req: NextRequest) {
         if (!encryptedResponse) {
             console.error("No encrypted response received from CCAvenue");
             return NextResponse.redirect(
-                new URL("/checkout?status=error&message=no_response", req.url)
+                new URL("/checkout?status=error&message=no_response", req.url),
+                { status: 303 }
             );
         }
 
@@ -30,7 +31,8 @@ export async function POST(req: NextRequest) {
         if (!workingKey) {
             console.error("CCAvenue working key not configured");
             return NextResponse.redirect(
-                new URL("/checkout?status=error&message=config_error", req.url)
+                new URL("/checkout?status=error&message=config_error", req.url),
+                { status: 303 }
             );
         }
 
@@ -61,14 +63,14 @@ export async function POST(req: NextRequest) {
             successUrl.searchParams.set("order_id", order_id || "");
             successUrl.searchParams.set("tracking_id", tracking_id || "");
 
-            return NextResponse.redirect(successUrl);
+            return NextResponse.redirect(successUrl, { status: 303 });
         } else if (order_status === "Aborted") {
             // User cancelled payment
             const cancelUrl = new URL("/checkout", req.url);
             cancelUrl.searchParams.set("status", "cancelled");
             cancelUrl.searchParams.set("message", "Payment was cancelled");
 
-            return NextResponse.redirect(cancelUrl);
+            return NextResponse.redirect(cancelUrl, { status: 303 });
         } else {
             // Payment failed - update order status in Sanity
             try {
@@ -82,7 +84,7 @@ export async function POST(req: NextRequest) {
             failureUrl.searchParams.set("message", status_message || "Payment failed");
             failureUrl.searchParams.set("order_id", order_id || "");
 
-            return NextResponse.redirect(failureUrl);
+            return NextResponse.redirect(failureUrl, { status: 303 });
         }
     } catch (error: any) {
         console.error("CCAvenue handle error:", error);
