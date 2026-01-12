@@ -2,47 +2,72 @@
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
+import { calculateCartTotals, getCrossSellRecommendations } from "@/lib/cart-utils";
 import { useCart } from "@/lib/CartContext";
+import { products, type Product } from "@/lib/products";
+import { AnimatePresence, motion } from "framer-motion";
 import {
     ArrowRight,
-    CheckCircle2,
+    Clock,
     Minus,
     Plus,
     ShieldCheck,
-    ShoppingBag,
-    Star,
     Trash2,
+    TrendingUp,
+    Truck,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
+import { useEffect, useState } from "react";
 
 export default function CartPage() {
-    const { cart, removeFromCart, updateQuantity, cartTotal, clearCart } = useCart();
+    const { cart, updateQuantity, removeFromCart, addToCart } = useCart();
 
+    // Enrich cart with full product details (category, etc.) for logic
+    const enrichedCart = cart.map((item) => {
+        const product = products.find((p) => p.id === item.id);
+        return product ? { ...product, ...item } : item;
+    }) as (Product & { quantity: number })[];
+
+    // Derived State
+    const totals = calculateCartTotals(enrichedCart);
+    const recommendations = getCrossSellRecommendations(enrichedCart);
+
+    // Hydration fix
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => setMounted(true), []);
+
+    if (!mounted) return null;
+
+    // ----------------------------------------------------------------------
+    // EMPTY STATE
+    // ----------------------------------------------------------------------
     if (cart.length === 0) {
         return (
-            <main className="bg-creme dark:bg-midnight min-h-screen flex items-center justify-center transition-colors duration-500">
-                <Section>
-                    <div className="text-center max-w-2xl mx-auto space-y-8 animate-fade-in-up">
-                        <div className="w-24 h-24 mx-auto bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border shadow-soft dark:shadow-none rounded-full flex items-center justify-center relative">
-                            <ShoppingBag className="w-10 h-10 text-terracotta dark:text-gold" />
-                            <div className="absolute -top-2 -right-2 w-8 h-8 bg-gold rounded-full flex items-center justify-center animate-bounce-slow">
-                                <span className="text-espresso font-bold text-xs">0</span>
-                            </div>
+            <main className="min-h-screen pt-24 pb-20 bg-creme dark:bg-espresso-dark">
+                <Section className="container mx-auto px-4">
+                    <div className="max-w-2xl mx-auto text-center space-y-8 py-20">
+                        <div className="relative w-48 h-48 mx-auto opacity-80">
+                            <Image
+                                src="/assets/img/logo.png"
+                                alt="Empty Cart"
+                                fill
+                                className="object-contain grayscale"
+                            />
                         </div>
                         <div className="space-y-4">
                             <h1 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory">
                                 Your Cart is Empty
                             </h1>
                             <p className="text-xl text-espresso-muted dark:text-ivory/60 max-w-md mx-auto leading-relaxed">
-                                Looks like you haven&apos;t added any pure goodness to your cart
-                                yet.
+                                Explore our farm-fresh A2 dairy and organic essentials.
                             </p>
                         </div>
                         <Button
                             href="/products"
                             size="lg"
                             icon
-                            className="shadow-gold hover:shadow-gold-hover transition-all duration-300 transform hover:-translate-y-1"
+                            className="shadow-lg hover:translate-y-[-2px] transition-transform"
                         >
                             Start Shopping
                         </Button>
@@ -52,128 +77,129 @@ export default function CartPage() {
         );
     }
 
+    // ----------------------------------------------------------------------
+    // MAIN CART UI
+    // ----------------------------------------------------------------------
     return (
-        <main className="bg-creme/50 dark:bg-midnight min-h-screen transition-colors duration-500 pb-20">
-            <Section>
-                <div className="max-w-7xl mx-auto">
-                    {/* Header with Progress Steps */}
-                    <div className="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-6 animate-fade-in">
-                        <div>
-                            <h1 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory mb-2">
-                                Your Cart
-                            </h1>
-                            <p className="text-espresso-muted dark:text-ivory/60 flex items-center gap-2">
-                                <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
-                                {cart.length} {cart.length === 1 ? "item" : "items"} reserved for
-                                you
-                            </p>
-                        </div>
-                        <div className="flex items-center gap-4 text-sm font-medium">
-                            <div className="flex items-center gap-2 text-espresso dark:text-ivory">
-                                <span className="w-6 h-6 rounded-full bg-gold text-espresso flex items-center justify-center font-bold text-xs">
-                                    1
-                                </span>
-                                Cart
-                            </div>
-                            <div className="w-12 h-px bg-creme-dark dark:bg-white/10"></div>
-                            <div className="flex items-center gap-2 text-espresso-muted dark:text-ivory/40">
-                                <span className="w-6 h-6 rounded-full border border-current flex items-center justify-center text-xs">
-                                    2
-                                </span>
-                                Details
-                            </div>
-                            <div className="w-12 h-px bg-creme-dark dark:bg-white/10"></div>
-                            <div className="flex items-center gap-2 text-espresso-muted dark:text-ivory/40">
-                                <span className="w-6 h-6 rounded-full border border-current flex items-center justify-center text-xs">
-                                    3
-                                </span>
-                                Pay
-                            </div>
-                        </div>
+        <main className="min-h-screen pt-24 pb-20 bg-creme dark:bg-espresso-dark">
+            <div className="container mx-auto px-4 max-w-6xl">
+                {/* 1. Header & Trust */}
+                <header className="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+                    <div>
+                        <h1 className="text-3xl md:text-4xl font-serif font-bold text-espresso dark:text-ivory">
+                            Your Basket
+                        </h1>
+                        <p className="text-espresso-muted dark:text-ivory/60 mt-1">
+                            {cart.length} items of pure goodness
+                        </p>
                     </div>
+                    <div className="flex items-center gap-4 text-xs md:text-sm font-medium text-espresso/80 dark:text-ivory/80">
+                        <span className="flex items-center gap-1.5">
+                            <ShieldCheck className="w-4 h-4 text-gold" /> 100% Genuine
+                        </span>
+                        <span className="flex items-center gap-1.5">
+                            <Truck className="w-4 h-4 text-gold" /> Farm to Home
+                        </span>
+                    </div>
+                </header>
 
-                    <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-                        {/* Cart Items */}
-                        <div className="lg:col-span-8 space-y-6 animate-fade-in-up delay-100">
-                            {/* Free Shipping Progress (Mockup for now, assuming free shipping is standard or > X) */}
-                            <div className="bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border p-4 rounded-xl flex items-center gap-4 shadow-sm">
-                                <div className="w-10 h-10 rounded-full bg-green-100 dark:bg-green-900/30 flex items-center justify-center text-green-600 dark:text-green-400">
-                                    <CheckCircle2 className="w-5 h-5" />
-                                </div>
-                                <div>
-                                    <p className="font-bold text-espresso dark:text-ivory text-sm">
-                                        Free Delivery Unlocked!
-                                    </p>
-                                    <p className="text-xs text-espresso-muted dark:text-ivory/60">
-                                        Your order qualifies for free farm-to-table delivery.
-                                    </p>
-                                </div>
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 md:gap-12">
+                    {/* LEFT COLUMN: Cart Items & Cross-Sell */}
+                    <div className="lg:col-span-8 space-y-8">
+                        {/* 2. Gamified Free Delivery Progress */}
+                        <div className="bg-white dark:bg-espresso border border-stone-200 dark:border-white/10 p-5 rounded-xl shadow-sm relative overflow-hidden">
+                            <div className="flex items-center justify-between mb-3 text-sm font-medium">
+                                <span className="text-espresso dark:text-ivory">
+                                    {totals.isFreeDelivery
+                                        ? "🎉 You've unlocked FREE Delivery!"
+                                        : `Add ₹${totals.missingForFreeDelivery} for FREE Delivery`}
+                                </span>
+                                <span className="text-gold">
+                                    {Math.round(totals.progressPercent)}%
+                                </span>
                             </div>
+                            {/* Progress Bar Track */}
+                            <div className="h-2 w-full bg-stone-100 dark:bg-white/10 rounded-full overflow-hidden">
+                                <motion.div
+                                    initial={{ width: 0 }}
+                                    animate={{ width: `${totals.progressPercent}%` }}
+                                    className="h-full bg-gradient-to-r from-gold to-orange-400"
+                                />
+                            </div>
+                            {totals.isFreeDelivery && (
+                                <div className="absolute top-0 right-0 p-2">
+                                    <div className="bg-gold/10 text-gold text-xs font-bold px-2 py-1 rounded">
+                                        FREESHIP APPLIED
+                                    </div>
+                                </div>
+                            )}
+                        </div>
 
-                            <div className="space-y-4">
+                        {/* 3. Cart Items List */}
+                        <div className="space-y-4">
+                            <AnimatePresence>
                                 {cart.map((item) => (
-                                    <div
+                                    <motion.div
                                         key={item.id}
-                                        className="group bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border shadow-sm hover:shadow-md dark:shadow-none rounded-2xl p-4 sm:p-6 flex gap-6 transition-all duration-300"
+                                        layout
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        exit={{ opacity: 0, height: 0 }}
+                                        className="group bg-white dark:bg-espresso border border-stone-200 dark:border-white/10 rounded-xl p-4 md:p-5 flex gap-4 md:gap-6 shadow-sm hover:shadow-md transition-shadow"
                                     >
                                         {/* Product Image */}
-                                        <div className="relative w-28 h-28 sm:w-32 sm:h-32 flex-shrink-0 rounded-xl overflow-hidden bg-creme-light dark:bg-midnight-mid">
-                                            <div
-                                                className="absolute inset-0 bg-cover bg-center transition-transform duration-500 group-hover:scale-105"
-                                                style={{ backgroundImage: `url(${item.image})` }}
+                                        <div className="relative w-24 h-24 md:w-32 md:h-32 flex-shrink-0 bg-stone-50 dark:bg-white/5 rounded-lg overflow-hidden border border-stone-100 dark:border-white/5">
+                                            <Image
+                                                src={item.image}
+                                                alt={item.title}
+                                                fill
+                                                className="object-cover"
                                             />
-                                            {/* Purity Badge Overlay */}
-                                            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent p-2">
-                                                <span className="text-[10px] text-white font-medium flex items-center gap-1">
-                                                    <Star className="w-3 h-3 fill-gold text-gold" />
-                                                    Pure A2
-                                                </span>
+                                            {/* Badge */}
+                                            <div className="absolute top-0 left-0 bg-gold/90 text-espresso text-[10px] font-bold px-2 py-0.5 rounded-br">
+                                                PURE A2
                                             </div>
                                         </div>
 
-                                        {/* Product Info */}
-                                        <div className="flex-1 flex flex-col justify-between">
+                                        {/* Content */}
+                                        <div className="flex-1 flex flex-col justify-between py-1">
                                             <div>
                                                 <div className="flex justify-between items-start">
-                                                    <Link
-                                                        href={`/products/${item.slug}`}
-                                                        className="text-lg sm:text-xl font-serif font-bold text-espresso dark:text-ivory hover:text-terracotta dark:hover:text-gold transition-colors mb-1"
-                                                    >
+                                                    <h3 className="font-serif font-bold text-lg text-espresso dark:text-ivory leading-tight">
                                                         {item.title}
-                                                    </Link>
-                                                    <p className="text-lg font-bold text-espresso dark:text-ivory">
-                                                        ₹
-                                                        {(
-                                                            parseFloat(
-                                                                item.price.replace(/[₹,]/g, "")
-                                                            ) * item.quantity
-                                                        ).toFixed(0)}
-                                                    </p>
+                                                    </h3>
+                                                    <div className="text-right">
+                                                        <span className="block font-bold text-lg text-espresso dark:text-ivory">
+                                                            {item.price}
+                                                        </span>
+                                                        {item.regularPrice && (
+                                                            <span className="block text-sm text-stone-400 line-through">
+                                                                {item.regularPrice}
+                                                            </span>
+                                                        )}
+                                                    </div>
                                                 </div>
-                                                <p className="text-sm text-terracotta dark:text-gold font-medium mb-4">
-                                                    {item.price}{" "}
-                                                    <span className="text-espresso-muted dark:text-ivory/40 font-normal">
-                                                        per unit
-                                                    </span>
+                                                <p className="text-sm text-espresso-muted dark:text-ivory/60 line-clamp-1 mt-1">
+                                                    {item.category} • Fresh Stock
                                                 </p>
                                             </div>
 
-                                            {/* Controls */}
-                                            <div className="flex items-center justify-between">
-                                                <div className="flex items-center gap-3 bg-creme-light dark:bg-midnight-mid/50 border border-creme-dark dark:border-white/10 rounded-lg p-1">
+                                            {/* Action Row */}
+                                            <div className="flex items-center justify-between mt-4">
+                                                {/* Quantity Control */}
+                                                <div className="flex items-center gap-3 bg-stone-50 dark:bg-white/5 rounded-lg border border-stone-200 dark:border-white/10 p-1">
                                                     <button
                                                         onClick={() =>
                                                             updateQuantity(
                                                                 item.id,
-                                                                item.quantity - 1
+                                                                Math.max(0, item.quantity - 1)
                                                             )
                                                         }
-                                                        className="w-8 h-8 rounded-md hover:bg-white dark:hover:bg-midnight-light flex items-center justify-center text-espresso dark:text-ivory transition-all disabled:opacity-50"
-                                                        disabled={item.quantity <= 1}
+                                                        className="w-8 h-8 flex items-center justify-center rounded-md bg-white dark:bg-transparent shadow-sm hover:bg-stone-100 dark:hover:bg-white/10 text-espresso dark:text-ivory transition-colors"
                                                     >
-                                                        <Minus className="w-4 h-4" />
+                                                        <Minus className="w-3.5 h-3.5" />
                                                     </button>
-                                                    <span className="w-8 text-center font-bold text-espresso dark:text-ivory text-sm">
+                                                    <span className="w-6 text-center font-bold text-espresso dark:text-ivory text-sm">
                                                         {item.quantity}
                                                     </span>
                                                     <button
@@ -183,152 +209,152 @@ export default function CartPage() {
                                                                 item.quantity + 1
                                                             )
                                                         }
-                                                        className="w-8 h-8 rounded-md hover:bg-white dark:hover:bg-midnight-light flex items-center justify-center text-espresso dark:text-ivory transition-all"
+                                                        className="w-8 h-8 flex items-center justify-center rounded-md bg-gold text-espresso shadow-sm hover:brightness-110 transition-colors"
+                                                    >
+                                                        <Plus className="w-3.5 h-3.5" />
+                                                    </button>
+                                                </div>
+
+                                                {/* Subscribe Toggle (Visual Only for now) */}
+                                                <div className="hidden md:flex items-center gap-2 px-3 py-1.5 rounded-full bg-blue-50 dark:bg-blue-900/20 border border-blue-100 dark:border-blue-500/30 cursor-pointer hover:bg-blue-100 transition-colors group/sub">
+                                                    <div className="w-2 h-2 rounded-full bg-blue-500 animate-pulse" />
+                                                    <span className="text-xs font-bold text-blue-700 dark:text-blue-300 group-hover/sub:text-blue-800">
+                                                        Subscribe & Save
+                                                    </span>
+                                                </div>
+
+                                                {/* Remove Button */}
+                                                <button
+                                                    onClick={() => removeFromCart(item.id)}
+                                                    className="text-stone-400 hover:text-red-500 transition-colors p-2"
+                                                    title="Remove Item"
+                                                >
+                                                    <Trash2 className="w-4 h-4" />
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </motion.div>
+                                ))}
+                            </AnimatePresence>
+                        </div>
+
+                        {/* 4. Smart Cross-Sell Recommendations */}
+                        {recommendations.length > 0 && (
+                            <div className="mt-12 bg-white dark:bg-espresso p-6 rounded-2xl border border-stone-200 dark:border-white/10">
+                                <h3 className="text-xl font-serif font-bold text-espresso dark:text-ivory mb-6 flex items-center gap-2">
+                                    <TrendingUp className="w-5 h-5 text-gold" /> You might also need
+                                </h3>
+                                <div className="grid grid-cols-2 gap-4">
+                                    {recommendations.map((product) => (
+                                        <div
+                                            key={product.id}
+                                            className="group bg-stone-50 dark:bg-white/5 border border-stone-100 dark:border-white/5 rounded-xl p-3 shadow-sm hover:border-gold/50 transition-all flex flex-col items-center text-center"
+                                        >
+                                            <div className="relative w-20 h-20 bg-white rounded-lg mb-3 overflow-hidden">
+                                                <Image
+                                                    src={product.image}
+                                                    alt={product.title}
+                                                    fill
+                                                    className="object-contain p-1 group-hover:scale-110 transition-transform duration-500"
+                                                />
+                                            </div>
+                                            <div className="space-y-1 w-full">
+                                                <h4 className="font-bold text-sm text-espresso dark:text-ivory line-clamp-1">
+                                                    {product.title}
+                                                </h4>
+                                                <p className="text-xs text-stone-500 line-clamp-1">
+                                                    {product.category}
+                                                </p>
+                                                <div className="flex items-center justify-between mt-2 pt-2 border-t border-stone-200 dark:border-white/10">
+                                                    <span className="text-sm font-bold text-gold">
+                                                        {product.price}
+                                                    </span>
+                                                    <button
+                                                        onClick={() => addToCart(product)}
+                                                        className="bg-espresso text-ivory p-1.5 rounded-full hover:bg-gold hover:text-espresso transition-colors shadow-sm"
                                                     >
                                                         <Plus className="w-4 h-4" />
                                                     </button>
                                                 </div>
-
-                                                <button
-                                                    onClick={() => removeFromCart(item.id)}
-                                                    className="text-espresso-muted hover:text-red-500 dark:text-ivory/40 dark:hover:text-red-400 transition-colors p-2 rounded-full hover:bg-red-50 dark:hover:bg-red-900/10"
-                                                    aria-label="Remove item"
-                                                >
-                                                    <Trash2 className="w-5 h-5" />
-                                                </button>
                                             </div>
                                         </div>
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Why Shop With Us - Trust Section (Replacing empty space) */}
-                            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-4">
-                                <div className="bg-white/50 dark:bg-glass-bg border border-creme-dark/50 dark:border-glass-border p-4 rounded-xl flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                                        <ShieldCheck className="w-5 h-5" />
-                                    </div>
-                                    <div className="text-sm">
-                                        <p className="font-bold text-espresso dark:text-ivory">
-                                            Safe & Pure
-                                        </p>
-                                        <p className="text-xs text-espresso-muted dark:text-ivory/60">
-                                            Zero adulteration
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="bg-white/50 dark:bg-glass-bg border border-creme-dark/50 dark:border-glass-border p-4 rounded-xl flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                                        <Star className="w-5 h-5" />
-                                    </div>
-                                    <div className="text-sm">
-                                        <p className="font-bold text-espresso dark:text-ivory">
-                                            Premium Quality
-                                        </p>
-                                        <p className="text-xs text-espresso-muted dark:text-ivory/60">
-                                            Direct from farm
-                                        </p>
-                                    </div>
-                                </div>
-                                <div className="bg-white/50 dark:bg-glass-bg border border-creme-dark/50 dark:border-glass-border p-4 rounded-xl flex items-center gap-3">
-                                    <div className="w-10 h-10 rounded-full bg-gold/10 flex items-center justify-center text-gold">
-                                        <CheckCircle2 className="w-5 h-5" />
-                                    </div>
-                                    <div className="text-sm">
-                                        <p className="font-bold text-espresso dark:text-ivory">
-                                            Hygenic
-                                        </p>
-                                        <p className="text-xs text-espresso-muted dark:text-ivory/60">
-                                            Touch-free packing
-                                        </p>
-                                    </div>
+                                    ))}
                                 </div>
                             </div>
-                        </div>
+                        )}
+                    </div>
 
-                        {/* Order Summary & Checkout */}
-                        <div className="lg:col-span-4 animate-fade-in-up delay-200">
-                            <div className="bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border shadow-lg dark:shadow-card-dark rounded-2xl p-6 sticky top-24">
-                                <h3 className="text-xl font-serif font-bold mb-6 text-espresso dark:text-ivory flex items-center justify-between">
-                                    Order Summary
-                                    <button
-                                        onClick={clearCart}
-                                        className="text-xs font-sans font-normal text-red-500 hover:text-red-600 transition-colors"
-                                    >
-                                        Clear Cart
-                                    </button>
-                                </h3>
+                    {/* RIGHT COLUMN: Summary & Checkout */}
+                    <div className="lg:col-span-4 mt-8 lg:mt-0">
+                        <div className="bg-white dark:bg-espresso border border-stone-200 dark:border-white/10 rounded-xl p-6 shadow-sm lg:sticky lg:top-24 space-y-6">
+                            <h2 className="text-xl font-serif font-bold text-espresso dark:text-ivory">
+                                Order Summary
+                            </h2>
 
-                                <div className="space-y-4 mb-6">
-                                    <div className="flex justify-between text-espresso-light dark:text-ivory/70">
-                                        <span>Item Total</span>
-                                        <span>₹{cartTotal.toFixed(0)}</span>
-                                    </div>
-                                    <div className="flex justify-between text-espresso-light dark:text-ivory/70">
-                                        <span>Delivery Charges</span>
-                                        <span className="text-green-600 font-medium">Free</span>
-                                    </div>
-                                    <div className="flex justify-between text-espresso-light dark:text-ivory/70 items-center">
-                                        <span>Taxes</span>
-                                        <span className="text-xs bg-creme p-1 rounded text-espresso-muted">
-                                            Calculated at Checkout
-                                        </span>
-                                    </div>
-
-                                    <div className="h-px bg-creme-dark dark:bg-white/10 my-4"></div>
-
-                                    <div className="flex justify-between items-end">
-                                        <span className="text-lg font-bold text-espresso dark:text-ivory">
-                                            Grand Total
-                                        </span>
-                                        <div className="text-right">
-                                            <span className="text-2xl font-serif font-bold text-gold">
-                                                ₹{cartTotal.toFixed(0)}
-                                            </span>
-                                            <p className="text-[10px] text-espresso-muted dark:text-ivory/50">
-                                                Incl. of all taxes
-                                            </p>
-                                        </div>
-                                    </div>
+                            {/* Summary Rows */}
+                            <div className="space-y-3 text-sm">
+                                <div className="flex justify-between text-espresso-muted dark:text-ivory/70">
+                                    <span>Subtotal</span>
+                                    <span className="font-medium">₹{totals.subtotal}</span>
                                 </div>
+                                <div className="flex justify-between text-espresso-muted dark:text-ivory/70">
+                                    <span>Delivery</span>
+                                    {totals.isFreeDelivery ? (
+                                        <span className="font-bold text-green-600">FREE</span>
+                                    ) : (
+                                        <span>₹{totals.deliveryFee}</span>
+                                    )}
+                                </div>
+                                <div className="pt-4 border-t border-stone-100 dark:border-white/10 flex justify-between items-end">
+                                    <span className="font-bold text-lg text-espresso dark:text-ivory">
+                                        Total
+                                    </span>
+                                    <span className="font-bold text-2xl text-espresso dark:text-ivory">
+                                        ₹{totals.total}
+                                    </span>
+                                </div>
+                            </div>
 
+                            {/* Trust Badge */}
+                            <div className="bg-stone-50 dark:bg-white/5 rounded-lg p-3 flex items-start gap-3 border border-stone-100 dark:border-white/5">
+                                <ShieldCheck className="w-5 h-5 text-gold shrink-0 mt-0.5" />
+                                <div>
+                                    <h4 className="text-xs font-bold text-espresso dark:text-ivory uppercase mb-0.5">
+                                        Secure Checkout
+                                    </h4>
+                                    <p className="text-[10px] text-espresso-muted dark:text-ivory/60 leading-snug">
+                                        Guaranteed safe checkout. All orders are packed with care in
+                                        sanitized conditions.
+                                    </p>
+                                </div>
+                            </div>
+
+                            {/* Action Buttons */}
+                            <div className="space-y-3 pt-2">
                                 <Button
                                     href="/checkout"
                                     size="lg"
-                                    icon
-                                    className="w-full mb-4 shadow-gold hover:shadow-gold-hover transition-all duration-300 relative overflow-hidden group"
+                                    className="w-full text-base py-6 shadow-xl shadow-gold/20 hover:shadow-gold/30"
                                 >
-                                    <span className="relative z-10">Proceed to Checkout</span>
+                                    Proceed to Checkout <ArrowRight className="w-5 h-5 ml-2" />
                                 </Button>
-
-                                <div className="text-center">
-                                    <Link
-                                        href="/products"
-                                        className="inline-flex items-center gap-2 text-sm text-espresso-muted hover:text-gold dark:text-ivory/60 dark:hover:text-gold transition-colors"
-                                    >
-                                        <ArrowRight className="w-4 h-4 rotate-180" />
-                                        Continue Shopping
-                                    </Link>
-                                </div>
-
-                                {/* Secure Checkout Badge */}
-                                <div className="mt-8 pt-6 border-t border-creme-dark dark:border-white/10 text-center">
-                                    <p className="text-xs text-espresso-muted dark:text-ivory/50 flex items-center justify-center gap-2 mb-2">
-                                        <ShieldCheck className="w-3 h-3" />
-                                        Guaranteed Safe Checkout
-                                    </p>
-                                    <div className="flex justify-center gap-2 opacity-60 grayscale hover:grayscale-0 transition-all">
-                                        {/* Simple visualization of payment options */}
-                                        <div className="h-6 w-10 bg-gray-200 rounded"></div>
-                                        <div className="h-6 w-10 bg-gray-200 rounded"></div>
-                                        <div className="h-6 w-10 bg-gray-200 rounded"></div>
-                                    </div>
-                                </div>
+                                <Link
+                                    href="/products"
+                                    className="block text-center text-sm font-medium text-espresso-muted hover:text-espresso dark:text-ivory/50 dark:hover:text-ivory transition-colors"
+                                >
+                                    Continue Shopping
+                                </Link>
                             </div>
+                        </div>
+
+                        {/* Delivery Info */}
+                        <div className="mt-6 flex items-center justify-center gap-2 text-xs text-espresso-muted dark:text-ivory/50">
+                            <Clock className="w-3.5 h-3.5" />
+                            <span>Order by 10 PM for next morning delivery</span>
                         </div>
                     </div>
                 </div>
-            </Section>
+            </div>
         </main>
     );
 }
