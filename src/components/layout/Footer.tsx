@@ -272,15 +272,26 @@ export function Footer() {
                             </div>
                             +91 81306 93767
                         </a>
-                        <a
-                            href="mailto:hello@amritmilk.com"
-                            className="flex items-center gap-3 text-ivory/80 hover:text-gold transition-colors duration-200 group"
-                        >
-                            <div className="p-2.5 bg-white/10 rounded-xl border border-white/10 group-hover:bg-gold group-hover:text-espresso group-hover:border-gold transition-all shadow-sm">
-                                <Mail className="w-4 h-4" />
-                            </div>
-                            hello@amritmilk.com
-                        </a>
+                        <div className="flex flex-col gap-2">
+                            <a
+                                href="mailto:info@amritmilkorganic.com"
+                                className="flex items-center gap-3 text-ivory/80 hover:text-gold transition-colors duration-200 group"
+                            >
+                                <div className="p-2.5 bg-white/10 rounded-xl border border-white/10 group-hover:bg-gold group-hover:text-espresso group-hover:border-gold transition-all shadow-sm">
+                                    <Mail className="w-4 h-4" />
+                                </div>
+                                info@amritmilkorganic.com
+                            </a>
+                            <a
+                                href="mailto:support@amritmilkorganic.com"
+                                className="flex items-center gap-3 text-ivory/80 hover:text-gold transition-colors duration-200 group"
+                            >
+                                <div className="p-2.5 bg-white/10 rounded-xl border border-white/10 group-hover:bg-gold group-hover:text-espresso group-hover:border-gold transition-all shadow-sm">
+                                    <Mail className="w-4 h-4" />
+                                </div>
+                                support@amritmilkorganic.com
+                            </a>
+                        </div>
                         <span className="flex items-center gap-3 text-ivory/80">
                             <div className="p-2.5 bg-gold/20 rounded-xl border border-gold/30">
                                 <MapPin className="w-4 h-4 text-gold" />

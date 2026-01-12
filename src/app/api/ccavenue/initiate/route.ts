@@ -49,12 +49,15 @@ export async function POST(req: NextRequest) {
         // const accessCode = cleanEnv(process.env.CCAVENUE_ACCESS_CODE) || "AVPB87NA49AZ79BPZA";
         // const workingKey = cleanEnv(process.env.CCAVENUE_WORKING_KEY) || "7E11E36439A6169B00EB122F6155B84A";
 
-        const redirectUrl =
-            cleanEnv(process.env.CCAVENUE_REDIRECT_URL) ||
-            "https://www.amritmilkorganic.com/api/ccavenue/handle";
-        const cancelUrl =
-            cleanEnv(process.env.CCAVENUE_CANCEL_URL) ||
-            "https://www.amritmilkorganic.com/checkout?status=cancelled";
+        const redirectUrl = "https://www.amritmilkorganic.com/ccavenue/success";
+        const cancelUrl = "https://www.amritmilkorganic.com/ccavenue/failure";
+
+        // const redirectUrl =
+        //     cleanEnv(process.env.CCAVENUE_REDIRECT_URL) ||
+        //     "https://www.amritmilkorganic.com/api/ccavenue/handle";
+        // const cancelUrl =
+        //     cleanEnv(process.env.CCAVENUE_CANCEL_URL) ||
+        //     "https://www.amritmilkorganic.com/checkout?status=cancelled";
 
         if (!accessCode || !workingKey) {
             console.error("CCAvenue credentials (Access Code/Working Key) not configured");

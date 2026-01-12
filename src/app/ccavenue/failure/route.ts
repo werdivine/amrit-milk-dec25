@@ -9,7 +9,9 @@ export async function POST(req: NextRequest) {
     try {
         const formData = await req.formData();
         const encResp = formData.get("encResp") as string;
-        const workingKey = process.env.CCAVENUE_WORKING_KEY;
+        // Urgent Fix: Hardcoded key to match user provided credentials
+        const workingKey = "7E11E36439A6169B00EB122F6155B84A";
+        // const workingKey = process.env.CCAVENUE_WORKING_KEY;
 
         if (!encResp || !workingKey) {
             return NextResponse.redirect(new URL("/checkout?error=invalid_response", req.url));

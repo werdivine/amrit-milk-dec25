@@ -81,13 +81,29 @@ export async function getProductBySlug(slug: string): Promise<any | null> {
         const result = product || staticProducts.find((p) => p.slug === slug) || null;
 
         if (result) {
+            // MERGE STRATEGY: Prioritize LOCAL data (images, prices, titles) over Sanity data
+            // This ensures manual updates in products.ts take precedence immediately
+            const localMatch = staticProducts.find((p) => p.slug === slug);
+
+            if (localMatch) {
+                return {
+                    ...result, // Sanity data (rich content)
+                    ...localMatch, // Local data overrides (Images, Price, Title)
+                    // Ensure prices are formatted
+                    price: formatPrice(localMatch.price),
+                    regularPrice: localMatch.regularPrice
+                        ? formatPrice(localMatch.regularPrice)
+                        : undefined,
+                };
+            }
+
             return {
                 ...result,
                 price: formatPrice(result.price),
                 regularPrice: result.regularPrice ? formatPrice(result.regularPrice) : undefined,
             };
         }
-        return null;
+        return null; // Should ideally fallback to local search if Sanity fails (handled by catch block)
     } catch (error) {
         console.error(`Error fetching product ${slug} from Sanity:`, error);
         const fallback = staticProducts.find((p) => p.slug === slug) || null;
