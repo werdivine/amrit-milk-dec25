@@ -1,10 +1,10 @@
-import type { Metadata } from "next";
 import { CategoryIconStrip } from "@/components/patterns/v2/CategoryIconStrip";
 import { ComboCarousel } from "@/components/patterns/v2/ComboCarousel";
 import { HeroSlider } from "@/components/patterns/v2/HeroSlider";
 import { ProductCollection } from "@/components/patterns/v2/ProductCollection";
 import { TrustStrip } from "@/components/patterns/v2/TrustStrip";
 import { getProducts } from "@/lib/fetchProducts";
+import type { Metadata } from "next";
 
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
@@ -30,29 +30,29 @@ import { FAQSection } from "@/components/patterns/FAQSection";
 import { Newsletter } from "@/components/patterns/Newsletter";
 import { WallOfLove } from "@/components/patterns/WallOfLove";
 export const metadata: Metadata = {
-    title: "Amrit Milk Organic | Pure A2 Milk & Farm Foods",
+    title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
     description:
         "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
     openGraph: {
-        title: "Amrit Milk Organic | Pure A2 Milk & Farm Foods",
+        title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
         description:
             "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
         url: "https://amritmilkorganic.com",
         siteName: "Amrit Milk Organic",
         images: [
             {
-                url: "https://amritmilkorganic.com/assets/img/milk-bottle.png",
-                alt: "Amrit Milk glass bottle",
+                url: "https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png",
+                alt: "Amrit Milk A2 Bilona Ghee",
             },
         ],
         type: "website",
     },
     twitter: {
         card: "summary_large_image",
-        title: "Amrit Milk Organic | Pure A2 Milk & Farm Foods",
+        title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
         description:
             "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-        images: ["https://amritmilkorganic.com/assets/img/milk-bottle.png"],
+        images: ["https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png"],
     },
 };
 
