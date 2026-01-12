@@ -158,15 +158,31 @@ export default defineType({
             status: "orderStatus",
             paymentStatus: "paymentStatus",
         },
-        prepare({ orderNumber, customer, total, status, paymentStatus }) {
-            const statusEmoji =
-                {
-                    pending: "🆕",
-                    processing: "📦",
-                    shipped: "🚚",
-                    delivered: "✅",
-                    cancelled: "❌",
-                }[status] || "❓";
+        prepare({
+            orderNumber,
+            customer,
+            total,
+            status,
+            paymentStatus,
+        }: {
+            orderNumber?: string;
+            customer?: string;
+            total?: number;
+            status?: "pending" | "processing" | "shipped" | "delivered" | "cancelled";
+            paymentStatus?: string;
+        }) {
+            const statusEmojiMap: Record<
+                "pending" | "processing" | "shipped" | "delivered" | "cancelled",
+                string
+            > = {
+                pending: "🆕",
+                processing: "📦",
+                shipped: "🚚",
+                delivered: "✅",
+                cancelled: "❌",
+            };
+
+            const statusEmoji = status ? (statusEmojiMap[status] ?? "❓") : "❓";
 
             const paymentEmoji =
                 paymentStatus === "success" ? "💰" : paymentStatus === "failed" ? "⚠️" : "⏳";

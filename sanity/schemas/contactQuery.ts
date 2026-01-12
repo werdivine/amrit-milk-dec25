@@ -67,14 +67,23 @@ export default defineType({
             subject: "subject",
             status: "status",
         },
-        prepare({ name, subject, status }) {
-            const statusEmoji =
-                {
-                    new: "🆕",
-                    viewed: "👀",
-                    responded: "💬",
-                    closed: "✅",
-                }[status] || "❓";
+        prepare({
+            name,
+            subject,
+            status,
+        }: {
+            name?: string;
+            subject?: string;
+            status?: "new" | "viewed" | "responded" | "closed";
+        }) {
+            const statusEmojiMap: Record<"new" | "viewed" | "responded" | "closed", string> = {
+                new: "🆕",
+                viewed: "👀",
+                responded: "💬",
+                closed: "✅",
+            };
+
+            const statusEmoji = status ? (statusEmojiMap[status] ?? "❓") : "❓";
 
             return {
                 title: `${statusEmoji} ${name}`,

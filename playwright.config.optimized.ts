@@ -15,23 +15,22 @@ export default defineConfig({
         trace: "on-first-retry",
         /* Low Resource Optimizations */
         launchOptions: {
-      args: [
-        '--no-sandbox',
-        '--disable-setuid-sandbox',
-        '--disable-gpu',
-        '--disable-dev-shm-usage',
-        '--single-process', // Memory saver
-        '--disable-background-networking',
-        '--disable-default-apps',
-        '--disable-sync',
-        '--disable-translate',
-        '--no-first-run',
-        '--memory-pressure-off',
-        '--disable-features=TranslateUI,VizDisplayCompositor',
-        '--js-flags="--max-old-space-size=256"', // Capped memory
-      ],
-    },
-  },
+            args: [
+                "--no-sandbox",
+                "--disable-setuid-sandbox",
+                "--disable-gpu",
+                "--disable-dev-shm-usage",
+                "--single-process", // Memory saver
+                "--disable-background-networking",
+                "--disable-default-apps",
+                "--disable-sync",
+                "--disable-translate",
+                "--no-first-run",
+                "--memory-pressure-off",
+                "--disable-features=TranslateUI,VizDisplayCompositor",
+                '--js-flags="--max-old-space-size=256"', // Capped memory
+            ],
+        },
     },
 
     projects: [

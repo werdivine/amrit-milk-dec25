@@ -1,5 +1,9 @@
 const WORDPRESS_API_URL = process.env.WORDPRESS_API_URL;
 
+export const wordpress = {
+    isConfigured: Boolean(WORDPRESS_API_URL),
+};
+
 /**
  * Fetch data from WordPress GraphQL API
  */
@@ -90,4 +94,29 @@ export async function getProductBySlugWP(slug: string) {
 
     const data = await wpFetch(query, { id: slug });
     return data.product;
+}
+
+export async function getWooCommerceProducts() {
+    if (!wordpress.isConfigured) {
+        return null;
+    }
+
+    return getAllProductsWP();
+}
+
+export function transformWooProduct(product: any) {
+    return {
+        id: product?.id ?? product?.slug ?? "",
+        title: product?.name ?? "",
+        price: product?.price ?? product?.regularPrice ?? "",
+        regularPrice: product?.regularPrice ?? product?.price ?? "",
+        image:
+            product?.image?.sourceUrl ||
+            product?.galleryImages?.nodes?.[0]?.sourceUrl ||
+            "/assets/img/milk-bottle.png",
+        category: product?.productCategories?.nodes?.[0]?.name ?? "Other",
+        description: product?.shortDescription ?? product?.description ?? "",
+        slug: product?.slug ?? "",
+        sku: product?.sku ?? product?.id ?? "",
+    };
 }

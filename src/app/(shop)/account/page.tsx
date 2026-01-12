@@ -82,9 +82,14 @@ export default function AccountPage() {
                 // Fallback for demo if API fails or no user found yet
                 setUserProfile({
                     name: "Guest Member",
+                    email: "",
                     phone: phone,
+                    address: "",
+                    city: "",
+                    state: "",
                     tier: "Bronze Start",
                     totalSpent: 0,
+                    activeSubscriptions: 0,
                     impactPoints: 0,
                 });
                 setIsAuthenticated(true);
