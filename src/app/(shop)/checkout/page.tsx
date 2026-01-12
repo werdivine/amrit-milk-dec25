@@ -366,13 +366,13 @@ function CheckoutContent() {
                                 </h2>
                                 <div className="space-y-4">
                                     <label
-                                        className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === "online" ? "border-gold bg-gold/10" : "border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5"}`}
+                                        className={`flex items-center gap-4 p-4 rounded-xl border cursor-pointer transition-all ${paymentMethod === "ccavenue" ? "border-gold bg-gold/10" : "border-creme-dark dark:border-white/10 hover:bg-creme-light/50 dark:hover:bg-white/5"}`}
                                     >
                                         <input
                                             type="radio"
                                             name="payment"
-                                            checked={paymentMethod === "online"}
-                                            onChange={() => setPaymentMethod("online")}
+                                            checked={paymentMethod === "ccavenue"}
+                                            onChange={() => setPaymentMethod("ccavenue")}
                                             className="w-5 h-5 accent-gold"
                                         />
                                         <CreditCard className="w-6 h-6 text-gold" />
@@ -484,7 +484,7 @@ function CheckoutContent() {
                                 >
                                     {loading
                                         ? "Processing..."
-                                        : paymentMethod === "online"
+                                        : paymentMethod === "ccavenue"
                                           ? "Pay Now"
                                           : "Place Order"}
                                 </Button>
