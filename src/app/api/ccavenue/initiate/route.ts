@@ -6,6 +6,15 @@
 import { buildRequestData, CCAVENUE_URLS, encrypt } from "@/lib/ccavenue";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
+function cleanEnv(value?: string | null): string | null {
+    if (!value) return null;
+    const trimmed = value.trim();
+    return trimmed.length ? trimmed : null;
+}
+
 export async function POST(req: NextRequest) {
     try {
         const body = await req.json();
@@ -27,14 +36,22 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        // Use the exact URLs provided by the user + fallback to Merchant 1475948
-        const merchantId = process.env.CCAVENUE_MERCHANT_ID || "1475948";
-        const accessCode = process.env.CCAVENUE_ACCESS_CODE;
-        const workingKey = process.env.CCAVENUE_WORKING_KEY;
+        if (Number(amount) <= 0) {
+            return NextResponse.json({ error: "Invalid amount" }, { status: 400 });
+        }
 
-        // HARDCODED as strict requirement to fix "Invalid Response"
-        const redirectUrl = "https://www.amritmilkorganic.com/ccavenue/success";
-        const cancelUrl = "https://www.amritmilkorganic.com/ccavenue/failure";
+        const merchantId = cleanEnv(process.env.CCAVENUE_MERCHANT_ID) || "1475948";
+        // Urgent Fix: Use new credentials provided by user
+        const accessCode = cleanEnv(process.env.CCAVENUE_ACCESS_CODE) || "AVPB87NA49AZ79BPZA";
+        const workingKey =
+            cleanEnv(process.env.CCAVENUE_WORKING_KEY) || "7E11E36439A6169B00EB122F6155B84A";
+
+        const redirectUrl =
+            cleanEnv(process.env.CCAVENUE_REDIRECT_URL) ||
+            "https://amritmilkorganic.com/api/ccavenue/handle";
+        const cancelUrl =
+            cleanEnv(process.env.CCAVENUE_CANCEL_URL) ||
+            "https://amritmilkorganic.com/checkout?status=cancelled";
 
         if (!accessCode || !workingKey) {
             console.error("CCAvenue credentials (Access Code/Working Key) not configured");
@@ -44,9 +61,11 @@ export async function POST(req: NextRequest) {
             );
         }
 
+        const safeOrderId = String(orderId).slice(0, 30);
+
         // Build request data
         const requestData = buildRequestData({
-            orderId,
+            orderId: safeOrderId,
             amount,
             merchantId,
             redirectUrl,
@@ -59,22 +78,22 @@ export async function POST(req: NextRequest) {
             billingState: billingState || "",
             billingZip: billingZip || "",
             currency: "INR",
-            language: "EN",
         });
 
         console.log(
             "CCAvenue Request Data (Raw):",
             JSON.stringify(
                 {
-                    ...requestData,
-                    merchantId: "***", // Masking sensitive info
+                    orderId: safeOrderId,
+                    amount,
+                    merchantId: "***",
+                    redirectUrl,
+                    cancelUrl,
                 },
                 null,
                 2
             )
         );
-
-        console.log("CCAvenue Request Encrypted String:", requestData);
 
         // Encrypt the request
         const encryptedData = encrypt(requestData, workingKey);

@@ -1,12 +1,15 @@
-import { revalidatePath, revalidateTag } from 'next/cache';
-import { NextRequest, NextResponse } from 'next/server';
+import { revalidatePath, revalidateTag } from "next/cache";
+import { NextRequest, NextResponse } from "next/server";
+
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
 
 /**
  * Revalidation API Route
- * 
+ *
  * This endpoint receives revalidation requests from WordPress
  * when content is updated. It purges Next.js cache for specific paths.
- * 
+ *
  * @endpoint POST /api/revalidate
  */
 export async function POST(request: NextRequest) {
@@ -14,18 +17,15 @@ export async function POST(request: NextRequest) {
         const body = await request.json();
 
         // Verify secret
-        const secret = body.secret || request.headers.get('X-Revalidate-Secret');
+        const secret = body.secret || request.headers.get("X-Revalidate-Secret");
 
         if (secret !== process.env.REVALIDATION_SECRET) {
-            console.error('[Revalidate] Invalid secret provided');
-            return NextResponse.json(
-                { error: 'Invalid revalidation secret' },
-                { status: 401 }
-            );
+            console.error("[Revalidate] Invalid secret provided");
+            return NextResponse.json({ error: "Invalid revalidation secret" }, { status: 401 });
         }
 
         // Log revalidation request
-        console.log('[Revalidate] Request received:', {
+        console.log("[Revalidate] Request received:", {
             paths: body.paths,
             revalidateAll: body.revalidateAll,
             post: body.post,
@@ -33,11 +33,11 @@ export async function POST(request: NextRequest) {
 
         // Revalidate all pages
         if (body.revalidateAll) {
-            revalidatePath('/', 'layout');
-            console.log('[Revalidate] All pages revalidated');
+            revalidatePath("/", "layout");
+            console.log("[Revalidate] All pages revalidated");
             return NextResponse.json({
                 revalidated: true,
-                message: 'All pages revalidated',
+                message: "All pages revalidated",
                 timestamp: new Date().toISOString(),
             });
         }
@@ -75,15 +75,12 @@ export async function POST(request: NextRequest) {
         }
 
         return NextResponse.json(
-            { error: 'No paths, tags, or revalidateAll flag provided' },
+            { error: "No paths, tags, or revalidateAll flag provided" },
             { status: 400 }
         );
     } catch (error) {
-        console.error('[Revalidate] Error:', error);
-        return NextResponse.json(
-            { error: 'Internal server error' },
-            { status: 500 }
-        );
+        console.error("[Revalidate] Error:", error);
+        return NextResponse.json({ error: "Internal server error" }, { status: 500 });
     }
 }
 
@@ -92,9 +89,9 @@ export async function POST(request: NextRequest) {
  */
 export async function GET() {
     return NextResponse.json({
-        status: 'healthy',
-        endpoint: '/api/revalidate',
-        method: 'POST',
+        status: "healthy",
+        endpoint: "/api/revalidate",
+        method: "POST",
         timestamp: new Date().toISOString(),
     });
 }

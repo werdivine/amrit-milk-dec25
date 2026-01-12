@@ -2,6 +2,9 @@ import { decrypt, parseResponse } from "@/lib/ccavenue";
 import { updateOrderPaymentStatus } from "@/lib/sanity-orders";
 import { NextRequest, NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+export const runtime = "nodejs";
+
 export async function POST(req: NextRequest) {
     try {
         const formData = await req.formData();

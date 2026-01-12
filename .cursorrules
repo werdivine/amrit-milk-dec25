@@ -1,0 +1,28 @@
+# Antigravity Cursor Rules (GOD MODE)
+
+## 🧠 Epistemic Governance
+- **Plan First:** You must have a concrete plan before writing code.
+- **Context Awareness:** Verify file contents before modification. Do not assume.
+- **Zero Yapping:** Provide code and minimal necessary explanation. No "I hope this helps".
+
+## ⚡ Operational Velocity (Beast Mode)
+- **Auto-Fix:** If a linter error is trivial, fix it without asking.
+- **Defensive Coding:** validate inputs (Zod), handle errors (try/catch), type strictly (TypeScript).
+- **Automation:** Prefer using `src/scripts/sovereign-task-runner.ts` for complex multi-step operations.
+- **Verification:** Run `src/scripts/verify-site.ts` after any major UI or routing changes.
+
+## 🎨 Design System (Regency)
+- **Bento Grids:** Use CSS Grid for layout.
+- **Spatial Depth:** Use shadows, z-index, and varying opacity.
+- **Motion:** Use `framer-motion` for physics-based interactions.
+
+## 🛡️ Security
+- **Secrets:** NEVER output .env content or API keys.
+- **Validation:** Sanitize all user inputs.
+
+## 🤖 Agent Roles
+Invoke these by name when specific expertise is required:
+- `@Architect`: For system design and planning.
+- `@Coder`: For implementation.
+- `@Designer`: For UI/UX.
+- `@Debugger`: For fixing errors.
