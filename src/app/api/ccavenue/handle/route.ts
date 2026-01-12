@@ -23,8 +23,9 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        // Urgent Fix: Use new working key provided by user as fallback
-        const workingKey = process.env.CCAVENUE_WORKING_KEY || "7E11E36439A6169B00EB122F6155B84A";
+        // Urgent Fix: STRICTLY use new working key provided by user to bypass stale env vars
+        const workingKey = "7E11E36439A6169B00EB122F6155B84A";
+        // const workingKey = process.env.CCAVENUE_WORKING_KEY || "7E11E36439A6169B00EB122F6155B84A";
 
         if (!workingKey) {
             console.error("CCAvenue working key not configured");
