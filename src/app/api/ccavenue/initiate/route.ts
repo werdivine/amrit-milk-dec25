@@ -41,9 +41,9 @@ export async function POST(req: NextRequest) {
         }
 
         // Urgent Fix: STRICTLY use new credentials provided by user to bypass stale env vars
-        const merchantId = "1475948";
-        const accessCode = "AVPB87NA49AZ79BPZA";
-        const workingKey = "7E11E36439A6169B00EB122F6155B84A";
+        const merchantId = "1475948".trim();
+        const accessCode = "AVPB87NA49AZ79BPZA".trim();
+        const workingKey = "7E11E36439A6169B00EB122F6155B84A".trim();
 
         // const merchantId = cleanEnv(process.env.CCAVENUE_MERCHANT_ID) || "1475948";
         // const accessCode = cleanEnv(process.env.CCAVENUE_ACCESS_CODE) || "AVPB87NA49AZ79BPZA";
@@ -51,10 +51,10 @@ export async function POST(req: NextRequest) {
 
         const redirectUrl =
             cleanEnv(process.env.CCAVENUE_REDIRECT_URL) ||
-            "https://amritmilkorganic.com/api/ccavenue/handle";
+            "https://www.amritmilkorganic.com/api/ccavenue/handle";
         const cancelUrl =
             cleanEnv(process.env.CCAVENUE_CANCEL_URL) ||
-            "https://amritmilkorganic.com/checkout?status=cancelled";
+            "https://www.amritmilkorganic.com/checkout?status=cancelled";
 
         if (!accessCode || !workingKey) {
             console.error("CCAvenue credentials (Access Code/Working Key) not configured");
