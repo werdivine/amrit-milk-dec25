@@ -140,3 +140,37 @@ export async function createContactQuery(data: {
 
     return { id: result._id };
 }
+
+/**
+ * Get recent orders for Admin Dashboard
+ */
+export async function getOrders(limit = 50) {
+    const query = `*[_type == "order"] | order(_createdAt desc) [0...$limit] {
+        _id,
+        orderNumber,
+        customerName,
+        email,
+        phone,
+        address,
+        city,
+        pincode,
+        items,
+        total,
+        paymentMethod,
+        paymentStatus,
+        orderStatus,
+        _createdAt
+    }`;
+
+    try {
+        const orders = await writeClient.fetch(query, { limit });
+        return orders.map((order: any) => ({
+            id: order._id,
+            ...order,
+            createdAt: order._createdAt,
+        }));
+    } catch (error) {
+        console.error("Failed to fetch orders from Sanity:", error);
+        throw new Error("Failed to fetch orders");
+    }
+}

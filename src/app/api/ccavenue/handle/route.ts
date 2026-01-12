@@ -41,10 +41,15 @@ export async function POST(req: NextRequest) {
         if (order_status === "Success") {
             // Payment successful - update order in Sanity
             try {
-                await updateOrderPaymentStatus(order_id, "success", tracking_id);
-                console.log(`Order ${order_id} payment successful`);
+                if (process.env.SANITY_WRITE_TOKEN) {
+                    await updateOrderPaymentStatus(order_id, "success", tracking_id);
+                    console.log(`Order ${order_id} payment successful`);
+                } else {
+                    console.error("Skipping Sanity update: SANITY_WRITE_TOKEN missing");
+                }
             } catch (dbError) {
                 console.error("Failed to update order:", dbError);
+                // Continue to redirect user even if DB update fails (critical for UX)
             }
 
             const successUrl = new URL("/checkout/success", req.url);

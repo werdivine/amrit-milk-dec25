@@ -137,31 +137,32 @@ export function Header() {
                         >
                             <Link
                                 href="/cart"
-                                className="relative p-3.5 rounded-xl group flex items-center justify-center overflow-hidden"
+                                className="relative p-3.5 rounded-xl group flex items-center justify-center overflow-hidden bg-gold/5 dark:bg-white/5"
                             >
                                 {/* Permanent Ambient Glow & Border */}
-                                <div className="absolute inset-0 bg-gradient-to-tr from-gold/10 to-transparent rounded-xl border border-gold/20 shadow-[0_0_15px_rgba(212,175,55,0.1)] group-hover:shadow-[0_0_25px_rgba(212,175,55,0.3)] group-hover:border-gold/50 transition-all duration-500" />
+                                <div className="absolute inset-0 bg-gradient-to-tr from-gold/20 to-transparent rounded-xl border border-gold/40 shadow-[0_0_15px_rgba(212,175,55,0.2)] group-hover:shadow-[0_0_25px_rgba(212,175,55,0.5)] group-hover:border-gold/80 transition-all duration-500" />
 
                                 {/* Animated Background Sheen */}
-                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
+                                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gold/20 to-transparent -translate-x-[100%] group-hover:translate-x-[100%] transition-transform duration-1000 ease-in-out" />
 
                                 <motion.div
                                     animate={{
-                                        y: [0, -3, 0],
+                                        y: [0, -4, 0],
+                                        scale: [1, 1.1, 1],
                                         filter: [
                                             "drop-shadow(0 0 0px rgba(212,175,55,0))",
-                                            "drop-shadow(0 4px 8px rgba(212,175,55,0.3))",
+                                            "drop-shadow(0 4px 12px rgba(212,175,55,0.5))",
                                             "drop-shadow(0 0 0px rgba(212,175,55,0))",
                                         ],
                                     }}
                                     transition={{
-                                        duration: 2.5,
+                                        duration: 2,
                                         repeat: Infinity,
                                         ease: "easeInOut",
                                     }}
                                     className="relative z-10"
                                 >
-                                    <ShoppingBag className="w-7 h-7 text-ivory group-hover:text-gold transition-colors duration-300" />
+                                    <ShoppingBag className="w-8 h-8 text-ivory group-hover:text-gold transition-colors duration-300 drop-shadow-md" />
                                 </motion.div>
                                 <AnimatePresence>
                                     {cartCount > 0 && (

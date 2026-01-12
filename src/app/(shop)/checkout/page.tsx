@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { useCart } from "@/lib/CartContext";
+import { products } from "@/lib/products";
 import { AlertCircle, CreditCard, Lock, Truck } from "lucide-react";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Suspense, useEffect, useState } from "react";
@@ -66,11 +67,9 @@ function CheckoutContent() {
         const message = searchParams.get("message");
 
         if (status === "cancelled") {
-            setError("Payment was cancelled. Please try again or choose Cash on Delivery.");
+            setError("Payment was cancelled. Please try again or choose Pay on Delivery.");
         } else if (status === "failed") {
-            setError(
-                `Payment failed: ${message || "Please try again or choose Cash on Delivery."}`
-            );
+            setError(`Payment failed: ${message || "Please try again or choose Pay on Delivery."}`);
         } else if (status === "error") {
             setError("An error occurred during payment. Please try again.");
         }
@@ -183,7 +182,7 @@ function CheckoutContent() {
                 // If CCAvenue fails, suggest COD
                 if (ccavenueResult.error?.includes("not configured")) {
                     setError(
-                        "Online payments are currently unavailable. Please use Cash on Delivery."
+                        "Online payments are currently unavailable. Please use Pay on Delivery."
                     );
                     setPaymentMethod("cod");
                 } else {
@@ -397,7 +396,7 @@ function CheckoutContent() {
                                         />
                                         <Truck className="w-6 h-6 text-gold" />
                                         <div className="text-espresso dark:text-ivory">
-                                            <div className="font-bold">Cash on Delivery</div>
+                                            <div className="font-bold">Pay on Delivery</div>
                                             <div className="text-sm text-espresso-muted dark:text-ivory/60">
                                                 Pay when you receive your order
                                             </div>
@@ -415,29 +414,44 @@ function CheckoutContent() {
                                 </h3>
 
                                 <div className="space-y-4 mb-8 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
-                                    {cart.map((item) => (
-                                        <div key={item.id} className="flex gap-4 items-center">
-                                            <div
-                                                className="w-16 h-16 rounded-lg bg-cover bg-center bg-creme-light dark:bg-midnight-mid"
-                                                style={{ backgroundImage: `url(${item.image})` }}
-                                            ></div>
-                                            <div className="flex-1">
-                                                <h4 className="font-bold text-sm text-espresso dark:text-ivory">
-                                                    {item.title}
-                                                </h4>
-                                                <p className="text-xs text-espresso-muted dark:text-ivory/60">
-                                                    Qty: {item.quantity}
-                                                </p>
+                                    {cart.map((item) => {
+                                        // Find fresh product data to get the latest image
+                                        const product =
+                                            products.find((p) => p.id === item.id) ||
+                                            products.find((p) => p.title === item.title);
+                                        // Fallback to item.image if not found (though it should be)
+                                        const displayImage = product?.image || item.image;
+
+                                        return (
+                                            <div key={item.id} className="flex gap-4 items-center">
+                                                <div
+                                                    className="w-16 h-16 rounded-lg bg-cover bg-center bg-creme-light dark:bg-midnight-mid"
+                                                    style={{
+                                                        backgroundImage: `url(${displayImage})`,
+                                                    }}
+                                                ></div>
+                                                {/* DEBUG: Remove after verification */}
+                                                {/* <span className="text-[8px] text-red-500 absolute">{item.id} -&gt; {product ? "Found" : "Missing"}</span> */}
+
+                                                <div className="flex-1">
+                                                    <h4 className="font-bold text-sm text-espresso dark:text-ivory">
+                                                        {item.title}
+                                                    </h4>
+                                                    <p className="text-xs text-espresso-muted dark:text-ivory/60">
+                                                        Qty: {item.quantity}
+                                                    </p>
+                                                </div>
+                                                <div className="font-bold text-gold">
+                                                    ₹
+                                                    {(
+                                                        parseFloat(
+                                                            item.price.replace(/[₹,]/g, "")
+                                                        ) * item.quantity
+                                                    ).toFixed(0)}
+                                                </div>
                                             </div>
-                                            <div className="font-bold text-gold">
-                                                ₹
-                                                {(
-                                                    parseFloat(item.price.replace(/[₹,]/g, "")) *
-                                                    item.quantity
-                                                ).toFixed(0)}
-                                            </div>
-                                        </div>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
 
                                 <div className="space-y-4 py-6 border-t border-creme-dark dark:border-white/10">

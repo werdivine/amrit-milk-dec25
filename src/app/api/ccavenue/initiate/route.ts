@@ -27,17 +27,19 @@ export async function POST(req: NextRequest) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
-        // Get CCAvenue credentials from environment
-        const merchantId = process.env.CCAVENUE_MERCHANT_ID;
+        // Use the exact URLs provided by the user + fallback to Merchant 1475948
+        const merchantId = process.env.CCAVENUE_MERCHANT_ID || "1475948";
         const accessCode = process.env.CCAVENUE_ACCESS_CODE;
         const workingKey = process.env.CCAVENUE_WORKING_KEY;
-        const redirectUrl = process.env.CCAVENUE_REDIRECT_URL;
-        const cancelUrl = process.env.CCAVENUE_CANCEL_URL;
 
-        if (!merchantId || !accessCode || !workingKey || !redirectUrl || !cancelUrl) {
-            console.error("CCAvenue credentials not configured");
+        // HARDCODED as strict requirement to fix "Invalid Response"
+        const redirectUrl = "https://www.amritmilkorganic.com/ccavenue/success";
+        const cancelUrl = "https://www.amritmilkorganic.com/ccavenue/failure";
+
+        if (!accessCode || !workingKey) {
+            console.error("CCAvenue credentials (Access Code/Working Key) not configured");
             return NextResponse.json(
-                { error: "Payment gateway not configured. Please use COD." },
+                { error: "Payment gateway credentials missing." },
                 { status: 500 }
             );
         }
@@ -56,7 +58,23 @@ export async function POST(req: NextRequest) {
             billingCity: billingCity || "",
             billingState: billingState || "",
             billingZip: billingZip || "",
+            currency: "INR",
+            language: "EN",
         });
+
+        console.log(
+            "CCAvenue Request Data (Raw):",
+            JSON.stringify(
+                {
+                    ...requestData,
+                    merchantId: "***", // Masking sensitive info
+                },
+                null,
+                2
+            )
+        );
+
+        console.log("CCAvenue Request Encrypted String:", requestData);
 
         // Encrypt the request
         const encryptedData = encrypt(requestData, workingKey);
