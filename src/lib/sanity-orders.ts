@@ -94,18 +94,18 @@ export async function updateOrderPaymentStatus(
     orderNumber: string,
     status: "success" | "failed",
     trackingId?: string
-): Promise<void> {
+): Promise<any> {
     // Find the order by orderNumber
-    const query = `*[_type == "order" && orderNumber == $orderNumber][0]._id`;
-    const orderId = await writeClient.fetch(query, { orderNumber });
+    const query = `*[_type == "order" && orderNumber == $orderNumber][0]`;
+    const order = await writeClient.fetch(query, { orderNumber });
 
-    if (!orderId) {
+    if (!order) {
         console.error(`Order not found: ${orderNumber}`);
-        return;
+        return null;
     }
 
-    await writeClient
-        .patch(orderId)
+    const updatedOrder = await writeClient
+        .patch(order._id)
         .set({
             paymentStatus: status,
             orderStatus: status === "success" ? "processing" : "pending",
@@ -114,6 +114,7 @@ export async function updateOrderPaymentStatus(
         .commit();
 
     console.log(`Order ${orderNumber} payment status updated to ${status}`);
+    return updatedOrder;
 }
 
 /**

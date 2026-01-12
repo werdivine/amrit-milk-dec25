@@ -4,6 +4,7 @@
  */
 
 import { decrypt, parseResponse } from "@/lib/ccavenue";
+import { sendOrderNotifications } from "@/lib/notifications";
 import { updateOrderPaymentStatus } from "@/lib/sanity-orders";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -49,8 +50,29 @@ export async function POST(req: NextRequest) {
             // Payment successful - update order in Sanity
             try {
                 if (process.env.SANITY_WRITE_TOKEN) {
-                    await updateOrderPaymentStatus(order_id, "success", tracking_id);
+                    const updatedOrder = await updateOrderPaymentStatus(
+                        order_id,
+                        "success",
+                        tracking_id
+                    );
                     console.log(`Order ${order_id} payment successful`);
+
+                    if (updatedOrder) {
+                        // Send 'Payment Verified' email now
+                        await sendOrderNotifications({
+                            orderNumber: updatedOrder.orderNumber,
+                            customerName: updatedOrder.customerName,
+                            email: updatedOrder.email,
+                            phone: updatedOrder.phone,
+                            total: updatedOrder.total,
+                            paymentMethod: "online", // Enforces "Verified" status
+                            items: updatedOrder.items.map((item: any) => ({
+                                title: item.title,
+                                quantity: item.quantity,
+                                price: item.price,
+                            })),
+                        });
+                    }
                 } else {
                     console.error("Skipping Sanity update: SANITY_WRITE_TOKEN missing");
                 }
@@ -63,14 +85,20 @@ export async function POST(req: NextRequest) {
             successUrl.searchParams.set("order_id", order_id || "");
             successUrl.searchParams.set("tracking_id", tracking_id || "");
 
-            return NextResponse.redirect(successUrl, { status: 303 });
+            return NextResponse.redirect(successUrl, {
+                status: 303,
+                headers: { "Cache-Control": "no-store, max-age=0" },
+            });
         } else if (order_status === "Aborted") {
             // User cancelled payment
             const cancelUrl = new URL("/checkout", req.url);
             cancelUrl.searchParams.set("status", "cancelled");
             cancelUrl.searchParams.set("message", "Payment was cancelled");
 
-            return NextResponse.redirect(cancelUrl, { status: 303 });
+            return NextResponse.redirect(cancelUrl, {
+                status: 303,
+                headers: { "Cache-Control": "no-store, max-age=0" },
+            });
         } else {
             // Payment failed - update order status in Sanity
             try {
@@ -84,7 +112,10 @@ export async function POST(req: NextRequest) {
             failureUrl.searchParams.set("message", status_message || "Payment failed");
             failureUrl.searchParams.set("order_id", order_id || "");
 
-            return NextResponse.redirect(failureUrl, { status: 303 });
+            return NextResponse.redirect(failureUrl, {
+                status: 303,
+                headers: { "Cache-Control": "no-store, max-age=0" },
+            });
         }
     } catch (error: any) {
         console.error("CCAvenue handle error:", error);
