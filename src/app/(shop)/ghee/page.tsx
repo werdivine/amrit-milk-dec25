@@ -67,7 +67,7 @@ export default function GheePage() {
 
                     <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in-up delay-300">
                         <Link
-                            href={`/product/${gheeProduct?.slug}`}
+                            href={`/products/${gheeProduct?.slug}`}
                             className="w-full sm:w-auto px-10 py-5 bg-terracotta hover:bg-terracotta-dark text-white rounded-full font-bold text-xl shadow-gold/20 shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-2 group"
                         >
                             <ShoppingBag className="w-6 h-6 group-hover:animate-bounce" />
@@ -424,7 +424,7 @@ export default function GheePage() {
                         </div>
                     </div>
                     <Link
-                        href={`/product/${gheeProduct?.slug}`}
+                        href={`/products/${gheeProduct?.slug}`}
                         className="flex-1 bg-terracotta hover:bg-terracotta-dark text-white font-bold py-3 px-6 rounded-xl flex items-center justify-center gap-2 shadow-lg"
                     >
                         Add to Cart <ArrowRight className="w-5 h-5" />
@@ -437,7 +437,7 @@ export default function GheePage() {
                 className={`fixed bottom-8 right-8 z-50 transition-all duration-500 hidden md:block ${scrolled ? "translate-y-0 opacity-100" : "translate-y-20 opacity-0"}`}
             >
                 <Link
-                    href={`/product/${gheeProduct?.slug}`}
+                    href={`/products/${gheeProduct?.slug}`}
                     className="bg-terracotta hover:bg-terracotta-dark text-white font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 transition-transform"
                 >
                     <ShoppingBag className="w-5 h-5" /> Buy Ghee - {gheeProduct?.price}
