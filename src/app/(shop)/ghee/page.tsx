@@ -2,7 +2,7 @@
 
 import { Section } from "@/components/ui/section";
 import { products } from "@/lib/products";
-import { ArrowRight, Flame, Heart, Leaf, Star } from "lucide-react";
+import { ArrowRight, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -45,45 +45,152 @@ export default function GheePage() {
                             <ArrowRight className="w-5 h-5" />
                         </Link>
                         <a
-                            href="#vedic-process"
+                            href="#ayurveda"
                             className="px-8 py-4 bg-white/10 backdrop-blur-md hover:bg-white/20 text-white border border-white/20 rounded-full font-bold text-lg transition-all"
                         >
-                            Learn the Process
+                            Read the Truth
                         </a>
                     </div>
                 </div>
             </div>
 
-            {/* WHY A2 BILONA? */}
+            {/* SECTION 1: THE AYURVEDIC PERSPECTIVE (Deep Dive) */}
+            <Section className="py-24" id="ayurveda">
+                <div className="container mx-auto px-4">
+                    <div className="max-w-4xl mx-auto text-center mb-16">
+                        <span className="text-terracotta text-sm font-bold tracking-widest uppercase mb-2 block">
+                            Ancient Wisdom
+                        </span>
+                        <h2 className="text-4xl md:text-6xl font-serif font-bold text-espresso dark:text-ivory mb-6">
+                            The Science of Ojas
+                        </h2>
+                        <p className="text-lg text-espresso/70 dark:text-ivory/70 leading-relaxed">
+                            In Ayurveda, Ghee is considered the essence of milk and a vital builder
+                            of <strong>Ojas</strong>—the subtle energy that governs immunity,
+                            strength, and happiness. Unlike ordinary oils which clog the system,
+                            Desi Ghee lubricates the tissues (Dhatus), clears the mind, and kindles
+                            the digestive fire (Agni).
+                        </p>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+                        {[
+                            {
+                                title: "Lubrication",
+                                desc: "Nourishes joints and connective tissues, keeping the body flexible and youthful.",
+                            },
+                            {
+                                title: "Brain Health",
+                                desc: "Rich in Omega-3 (DHA) which supports cognitive function, memory, and focus.",
+                            },
+                            {
+                                title: "Gut Healing",
+                                desc: "Contains Butyric Acid, which heals the gut lining and cures constipation.",
+                            },
+                        ].map((item, i) => (
+                            <div
+                                key={i}
+                                className="bg-white dark:bg-midnight-mid p-8 rounded-2xl border border-espresso/5 shadow-md text-center hover:border-terracotta/20 transition-all"
+                            >
+                                <div className="w-16 h-16 rounded-full bg-gold/10 flex items-center justify-center mx-auto mb-6 text-terracotta">
+                                    <Star className="w-8 h-8 fill-current" />
+                                </div>
+                                <h3 className="text-xl font-bold text-espresso dark:text-white mb-3">
+                                    {item.title}
+                                </h3>
+                                <p className="text-espresso/60 dark:text-ivory/60">{item.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* SECTION 2: THE COMPARISON TABLE (Truth) */}
+            <Section className="bg-white dark:bg-midnight-light py-24 border-y border-espresso/5">
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory mb-4">
+                            Know What You Eat
+                        </h2>
+                        <p className="text-espresso/60 dark:text-ivory/60">
+                            The difference between &quot;Product&quot; and &quot;Prana&quot;.
+                        </p>
+                    </div>
+
+                    <div className="overflow-x-auto">
+                        <table className="w-full max-w-5xl mx-auto text-left border-collapse">
+                            <thead>
+                                <tr className="border-b border-espresso/10 dark:border-white/10">
+                                    <th className="p-6 text-espresso/40 dark:text-ivory/40 uppercase text-xs tracking-widest font-bold">
+                                        Feature
+                                    </th>
+                                    <th className="p-6 bg-terracotta/5 text-terracotta font-bold text-lg w-1/3 rounded-t-2xl">
+                                        Amrit A2 Bilona Ghee
+                                    </th>
+                                    <th className="p-6 text-espresso/60 dark:text-ivory/60 font-bold text-lg w-1/3">
+                                        Industrial Ghee
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody className="text-espresso dark:text-ivory">
+                                <tr className="border-b border-espresso/5 dark:border-white/5">
+                                    <td className="p-6 font-bold">Source</td>
+                                    <td className="p-6 bg-terracotta/5 font-semibold">
+                                        Free-grazing Gir Cows
+                                    </td>
+                                    <td className="p-6 text-espresso/60">
+                                        Caged Buffalo/Mixed Breed
+                                    </td>
+                                </tr>
+                                <tr className="border-b border-espresso/5 dark:border-white/5">
+                                    <td className="p-6 font-bold">Process</td>
+                                    <td className="p-6 bg-terracotta/5 font-semibold">
+                                        Curd Churned (Bilona)
+                                    </td>
+                                    <td className="p-6 text-espresso/60">
+                                        Cream Centrifuged (Machine)
+                                    </td>
+                                </tr>
+                                <tr className="border-b border-espresso/5 dark:border-white/5">
+                                    <td className="p-6 font-bold">Nutrients</td>
+                                    <td className="p-6 bg-terracotta/5 font-semibold">
+                                        A2 Protein, intact Vitamins
+                                    </td>
+                                    <td className="p-6 text-espresso/60">
+                                        A1 Protein (Inflammatory)
+                                    </td>
+                                </tr>
+                                <tr className="border-b border-espresso/5 dark:border-white/5">
+                                    <td className="p-6 font-bold">Aroma</td>
+                                    <td className="p-6 bg-terracotta/5 font-semibold">
+                                        Divine, nutty, rich
+                                    </td>
+                                    <td className="p-6 text-espresso/60">
+                                        Bland or Artificial Essence
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td className="p-6 font-bold">Packaging</td>
+                                    <td className="p-6 bg-terracotta/5 rounded-b-2xl font-semibold">
+                                        Glass Jar (Non-toxic)
+                                    </td>
+                                    <td className="p-6 text-espresso/60">
+                                        Plastic (Leaches Chemicals)
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </Section>
+
+            {/* SECTION 3: GOLDEN RITUALS (Usage) */}
             <Section className="py-24">
                 <div className="container mx-auto px-4">
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
-                        <div className="relative">
-                            <div className="aspect-[4/5] rounded-3xl overflow-hidden shadow-2xl rotate-2 hover:rotate-0 transition-transform duration-700">
-                                <Image
-                                    src="/assets/img/products/a2desicowgheeglassjarbilonamethod.png"
-                                    alt="Bilona Method"
-                                    fill
-                                    className="object-cover"
-                                />
-                            </div>
-                            <div className="absolute -bottom-8 -left-8 bg-white dark:bg-midnight-light p-6 rounded-2xl shadow-xl border border-espresso/5 max-w-xs">
-                                <div className="flex items-center gap-2 text-terracotta mb-2">
-                                    <Star className="w-5 h-5 fill-current" />
-                                    <Star className="w-5 h-5 fill-current" />
-                                    <Star className="w-5 h-5 fill-current" />
-                                    <Star className="w-5 h-5 fill-current" />
-                                    <Star className="w-5 h-5 fill-current" />
-                                </div>
-                                <p className="text-espresso/80 dark:text-ivory/80 italic text-sm">
-                                    &quot;This ghee reminds me of my grandmother&apos;s home. The
-                                    aroma is purely nostalgic.&quot;
-                                </p>
-                            </div>
-                        </div>
                         <div>
                             <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory mb-6">
-                                Why Our Ghee is Different?
+                                Golden Rituals
                             </h2>
                             <p className="text-lg text-espresso/70 dark:text-ivory/70 mb-8 leading-relaxed">
                                 Most &apos;ghee&apos; in the market is machine-processed cream oil.
@@ -92,101 +199,53 @@ export default function GheePage() {
                                 by hand to extract butter (makkhan), and slowly heat it over a wood
                                 fire to create liquid gold.
                             </p>
-
-                            <div className="space-y-6">
+                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                                 {[
                                     {
-                                        icon: Leaf,
-                                        title: "100% Natural & Organic",
-                                        desc: "No chemicals, preservatives, or hormones. Just pure nature.",
+                                        title: "The Morning Teaspoon",
+                                        desc: "1 tsp on empty stomach lubricates joints and improves vision.",
                                     },
                                     {
-                                        icon: Heart,
-                                        title: "A2 Beta-Casein Protein",
-                                        desc: "Easier to digest and healthier for the heart than regular A1 milk ghee.",
+                                        title: "Cooking Medium",
+                                        desc: "High smoke point (250°C). Doesn't turn toxic like vegetable oils.",
                                     },
                                     {
-                                        icon: Flame,
-                                        title: "Wood-Fired Bilona Method",
-                                        desc: "Made from Curd (not cream) using the ancient Ayurvedic process.",
+                                        title: "Nasya (Nasal Drops)",
+                                        desc: "2 warm drops in nose enhances memory and treats headaches.",
+                                    },
+                                    {
+                                        title: "Skin Glow",
+                                        desc: "Massage on face for radiantly glowing, hydrated skin.",
                                     },
                                 ].map((item, i) => (
-                                    <div key={i} className="flex gap-4">
-                                        <div className="w-12 h-12 rounded-full bg-terracotta/10 flex items-center justify-center flex-shrink-0">
-                                            <item.icon className="w-6 h-6 text-terracotta" />
-                                        </div>
-                                        <div>
-                                            <h3 className="text-xl font-bold text-espresso dark:text-white mb-1">
-                                                {item.title}
-                                            </h3>
-                                            <p className="text-espresso/60 dark:text-ivory/60">
-                                                {item.desc}
-                                            </p>
-                                        </div>
+                                    <div
+                                        key={i}
+                                        className="p-6 bg-creme-dark dark:bg-midnight-mid rounded-xl border-l-4 border-terracotta"
+                                    >
+                                        <h3 className="font-bold text-espresso dark:text-white mb-2">
+                                            {item.title}
+                                        </h3>
+                                        <p className="text-sm text-espresso/70 dark:text-ivory/70">
+                                            {item.desc}
+                                        </p>
                                     </div>
                                 ))}
                             </div>
+                        </div>
+                        <div className="relative h-[600px] w-full rounded-3xl overflow-hidden shadow-2xl">
+                            <Image
+                                src="/assets/img/products/a2desicowgheeglassjarbilonamethod.png"
+                                alt="Golden Ghee Rituals"
+                                fill
+                                className="object-cover"
+                            />
                         </div>
                     </div>
                 </div>
             </Section>
 
-            {/* THE VEDIC PROCESS */}
-            <Section className="bg-white dark:bg-midnight-light py-24 border-y border-espresso/5">
-                <div className="container mx-auto px-4" id="vedic-process">
-                    <div className="text-center mb-16">
-                        <span className="text-terracotta font-bold tracking-widest uppercase text-sm mb-2 block">
-                            Transparency
-                        </span>
-                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory">
-                            From Farm to Jar
-                        </h2>
-                    </div>
-
-                    <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
-                        {[
-                            {
-                                step: "01",
-                                title: "Free Grazing",
-                                desc: "Our Gir cows graze freely on organic pastures.",
-                            },
-                            {
-                                step: "02",
-                                title: "Curd Formation",
-                                desc: "Milk is boiled and set into curd in clay pots.",
-                            },
-                            {
-                                step: "03",
-                                title: "Bilona Churning",
-                                desc: "Curd is hand-churned to extract white makkhan.",
-                            },
-                            {
-                                step: "04",
-                                title: "Slow Heating",
-                                desc: "Makkhan is heated over wood fire to make Ghee.",
-                            },
-                        ].map((item, i) => (
-                            <div
-                                key={i}
-                                className="relative p-8 rounded-2xl bg-creme/50 dark:bg-midnight border border-espresso/5 hover:border-terracotta/30 transition-all hover:-translate-y-2"
-                            >
-                                <span className="absolute -top-6 left-8 text-6xl font-black text-terracotta/10">
-                                    {item.step}
-                                </span>
-                                <h3 className="text-xl font-bold text-espresso dark:text-white mb-3 mt-4 relative z-10">
-                                    {item.title}
-                                </h3>
-                                <p className="text-espresso/60 dark:text-ivory/60 text-sm relative z-10">
-                                    {item.desc}
-                                </p>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </Section>
-
             {/* PRODUCT CTA */}
-            <Section className="py-24">
+            <Section className="py-24 bg-white dark:bg-midnight-light border-t border-espresso/5">
                 <div className="container mx-auto px-4 text-center">
                     <div className="max-w-4xl mx-auto bg-gradient-to-br from-terracotta to-red-700 rounded-3xl p-12 md:p-20 text-white shadow-2xl relative overflow-hidden">
                         <div className="absolute top-0 left-0 w-full h-full bg-[url('/assets/img/noise.png')] opacity-10"></div>
