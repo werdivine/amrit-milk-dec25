@@ -4,10 +4,12 @@ import { HeroSlider } from "@/components/patterns/v2/HeroSlider";
 import { ProductCollection } from "@/components/patterns/v2/ProductCollection";
 import { TrustStrip } from "@/components/patterns/v2/TrustStrip";
 import { getProducts } from "@/lib/fetchProducts";
+import { getGoogleReviews, getInstagramPosts } from "@/lib/fetchSocials";
 import type { Metadata } from "next";
 
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
+import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
 import { InstagramFeed } from "@/components/patterns/v2/InstagramFeed";
 import { MissionBridge } from "@/components/patterns/v2/MissionBridge";
 import { OurMission } from "@/components/patterns/v2/OurMission";
@@ -67,6 +69,9 @@ export default async function Home() {
     const grains = products
         .filter((p) => p.category === "Atta" || p.category === "Rice")
         .slice(0, 12);
+
+    const posts = await getInstagramPosts();
+    const reviews = await getGoogleReviews();
 
     return (
         <main className="flex min-h-screen flex-col bg-creme dark:bg-midnight transition-colors duration-500">
@@ -155,7 +160,8 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <InstagramFeed />
+            <InstagramFeed posts={posts} />
+            <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 
             {/* 17. SUPPORT */}
