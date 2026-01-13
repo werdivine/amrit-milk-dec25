@@ -49,7 +49,7 @@ export default function CartPage() {
                     <div className="max-w-2xl mx-auto text-center space-y-8 py-20">
                         <div className="relative w-48 h-48 mx-auto opacity-80">
                             <Image
-                                src="/assets/img/logo.png"
+                                src="/assets/img/amrit-logo-new.png"
                                 alt="Empty Cart"
                                 fill
                                 className="object-contain grayscale"

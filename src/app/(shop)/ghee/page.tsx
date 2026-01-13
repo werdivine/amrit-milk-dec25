@@ -11,6 +11,7 @@ import {
     Check,
     ChefHat,
     Flame,
+    Plus,
     ScrollText,
     ShieldCheck,
     ShoppingBag,
@@ -355,7 +356,126 @@ export default function GheePage() {
             </Section>
 
             {/* ═══════════════════════════════════════════════════════════
-                 5. WALL OF LOVE (Reviews)
+                 5. THE 5 SANSKARS (Process Timeline)
+            ═══════════════════════════════════════════════════════════ */}
+            <Section className="py-24 bg-white dark:bg-black relative overflow-hidden">
+                <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-gold/30 to-transparent"></div>
+                <div className="container mx-auto px-4">
+                    <div className="text-center mb-16">
+                        <span className="text-terracotta font-bold tracking-widest uppercase text-sm mb-2 block">
+                            Ancient Wisdom
+                        </span>
+                        <h2 className="text-4xl md:text-5xl font-serif font-bold text-espresso dark:text-ivory mb-6">
+                            The 5 Sanskars of Bilona
+                        </h2>
+                        <p className="max-w-2xl mx-auto text-espresso/60 dark:text-ivory/60">
+                            We follow the strict Ayurvedic text of <i>Charaka Samhita</i>. No
+                            shortcuts, no cream separators.
+                        </p>
+                    </div>
+
+                    <div className="relative">
+                        {/* Connecting Line (Mobile: Hidden, Desktop: Visible) */}
+                        <div className="hidden md:block absolute top-24 left-0 right-0 h-1 bg-espresso/5 dark:bg-white/10 -z-10"></div>
+
+                        <div className="grid grid-cols-1 md:grid-cols-5 gap-8">
+                            {[
+                                { step: "01", title: "DOHAN", desc: "Milking pure A2 Gir Cows." },
+                                {
+                                    step: "02",
+                                    title: "JAAGRAN",
+                                    desc: "Boiling & turning milk into Curd.",
+                                },
+                                {
+                                    step: "03",
+                                    title: "MANTHAN",
+                                    desc: "Hand-churning Curd roughly.",
+                                },
+                                {
+                                    step: "04",
+                                    title: "MAKKHAN",
+                                    desc: "Extracting pure white butter.",
+                                },
+                                { step: "05", title: "TAPAN", desc: "Slow heating on wood fire." },
+                            ].map((item, i) => (
+                                <div
+                                    key={i}
+                                    className="flex flex-col items-center text-center group"
+                                >
+                                    <div className="w-16 h-16 rounded-full bg-creme dark:bg-midnight border-2 border-gold flex items-center justify-center text-xl font-bold text-terracotta mb-6 shadow-xl relative z-10 group-hover:scale-110 transition-transform bg-white">
+                                        {item.step}
+                                    </div>
+                                    <h3 className="font-bold text-lg text-espresso dark:text-ivory mb-2">
+                                        {item.title}
+                                    </h3>
+                                    <p className="text-sm text-espresso/60 dark:text-ivory/60">
+                                        {item.desc}
+                                    </p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="mt-16 text-center">
+                        <Link
+                            href={`/products/${gheeProduct?.slug}`}
+                            className="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-dark text-white rounded-full font-bold shadow-lg transition-all transform hover:-translate-y-1"
+                        >
+                            <ShoppingBag className="w-5 h-5" /> Experience the Process
+                        </Link>
+                    </div>
+                </div>
+            </Section>
+
+            {/* ═══════════════════════════════════════════════════════════
+                 6. FAQ SECTION
+            ═══════════════════════════════════════════════════════════ */}
+            <Section className="py-24 bg-creme dark:bg-midnight-dark">
+                <div className="container mx-auto px-4 max-w-4xl">
+                    <h2 className="text-3xl md:text-4xl font-serif font-bold text-espresso dark:text-ivory mb-12 text-center">
+                        Common Questions
+                    </h2>
+
+                    <div className="space-y-4">
+                        {[
+                            {
+                                q: "Is this Ghee grainy (Danedar)?",
+                                a: "Yes, absolutely. The 'Daana' (grain) develops naturally because of our slow cooling process ensuring the traditional texture.",
+                            },
+                            {
+                                q: "How long does it last?",
+                                a: "Since we remove all moisture during the heating process, our Ghee has a natural shelf life of 12 months without refrigeration.",
+                            },
+                            {
+                                q: "Is it suitable for lactose intolerant people?",
+                                a: "Generally, yes. The fermentation process (curd) and heating remove most milk solids and lactose, leaving pure healthy fats.",
+                            },
+                            {
+                                q: "Why is it more expensive than market ghee?",
+                                a: "It takes 30-35 liters of A2 milk to make just 1 kg of our Ghee. Market ghee is often made from cream or mixed milk, which is cheaper but lacks medicinal value.",
+                            },
+                        ].map((item, i) => (
+                            <details
+                                key={i}
+                                className="group bg-white dark:bg-midnight border border-espresso/5 rounded-2xl p-6 [&_summary::-webkit-details-marker]:hidden cursor-pointer open:ring-1 open:ring-gold/50 shadow-sm transition-all hover:shadow-md"
+                            >
+                                <summary className="flex items-center justify-between gap-4 font-bold text-lg text-espresso dark:text-ivory marker:content-none">
+                                    {item.q}
+                                    <span className="transition group-open:rotate-180">
+                                        <Plus className="w-5 h-5 opacity-50" />
+                                    </span>
+                                </summary>
+                                <div className="mt-4 text-espresso/70 dark:text-ivory/70 leading-relaxed border-t border-espresso/5 pt-4">
+                                    {item.a}
+                                </div>
+                            </details>
+                        ))}
+                    </div>
+                </div>
+            </Section>
+
+            {/* ═══════════════════════════════════════════════════════════
+                 7. WALL OF LOVE (Reviews)
             ═══════════════════════════════════════════════════════════ */}
             <Section className="py-24">
                 <div className="container mx-auto px-4 text-center">
@@ -405,11 +525,20 @@ export default function GheePage() {
                             </div>
                         ))}
                     </div>
+                    {/* Extra CTA after Reviews */}
+                    <div className="mt-12">
+                        <Link
+                            href={`/products/${gheeProduct?.slug}`}
+                            className="inline-block px-12 py-4 border-2 border-espresso/10 hover:border-terracotta text-terracotta font-bold rounded-full transition-colors uppercase tracking-widest text-sm"
+                        >
+                            Read more reviews on product page
+                        </Link>
+                    </div>
                 </div>
             </Section>
 
             {/* ═══════════════════════════════════════════════════════════
-                 6. STICKY MOBILE CTA
+                 8. STICKY MOBILE CTA
             ═══════════════════════════════════════════════════════════ */}
             <div
                 className={`fixed bottom-0 left-0 right-0 bg-white dark:bg-midnight border-t border-gray-200 dark:border-gray-800 p-4 z-50 transition-transform duration-300 md:hidden shadow-[0_-5px_20px_rgba(0,0,0,0.1)] ${scrolled ? "translate-y-0" : "translate-y-full"}`}
