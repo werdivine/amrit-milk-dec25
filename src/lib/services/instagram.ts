@@ -1,4 +1,4 @@
-import { client } from "../../sanity";
+import { client } from "../sanity";
 
 const INSTAGRAM_API_URL = "https://graph.instagram.com/me/media";
 
