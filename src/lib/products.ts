@@ -1,4 +1,19 @@
-export const products = [
+export interface Product {
+    id: string;
+    title: string;
+    price: string;
+    regularPrice?: string;
+    image: string;
+    category: string;
+    description: string;
+    slug: string;
+    sku: string;
+    subscription?: boolean;
+    featured?: boolean;
+    badge?: string;
+}
+
+export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     // A2 DAIRY
     // ═══════════════════════════════════════════════════════════
@@ -58,6 +73,16 @@ export const products = [
         sku: "AMRIT-DAIRY-005",
         featured: true,
         badge: "Pure Vedic",
+    },
+    {
+        id: "ghee-cow-500ml",
+        title: "A2 Cow Ghee - 500ml",
+        price: "₹1350",
+        image: "/assets/img/products/amrit_ghee_premium.png",
+        category: "Ghee",
+        description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
+        slug: "a2-cow-ghee-500ml",
+        sku: "AMRIT-DAIRY-005-SM",
     },
     {
         id: "paneer-1kg",
@@ -455,8 +480,6 @@ export const products = [
         sku: "AMRIT-GAU-003",
     },
 ];
-
-export type Product = (typeof products)[0];
 
 export const categories = [
     { id: "all", label: "All Products", icon: "LayoutGrid" },

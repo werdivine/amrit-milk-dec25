@@ -171,6 +171,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                     price={basicProduct.price}
                                     image={basicProduct.image}
                                     slug={basicProduct.slug}
+                                    category={basicProduct.category}
+                                    description={basicProduct.description}
+                                    sku={basicProduct.sku}
                                 />
                                 <button className="w-16 h-16 flex items-center justify-center bg-theme-elevated border border-theme-light rounded-full hover:bg-terracotta/10 dark:hover:bg-gold/10 hover:border-terracotta/30 dark:hover:border-gold/30 transition-all group">
                                     <Heart className="w-6 h-6 text-theme-primary group-hover:text-theme-accent transition-colors" />

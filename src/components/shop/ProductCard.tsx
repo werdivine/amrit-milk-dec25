@@ -1,12 +1,11 @@
 "use client";
 
-import Link from "next/link";
-import { ArrowRight, ShoppingBag, Repeat, Check, Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/lib/CartContext";
-import { useState } from "react";
 import { ProductImage } from "@/components/ui/ProductImage";
-
+import { useCart } from "@/lib/CartContext";
+import { ArrowRight, Check, Repeat, ShoppingBag, Star } from "lucide-react";
+import Link from "next/link";
+import { useState } from "react";
 
 interface ProductCardProps {
     id: string;
@@ -18,17 +17,41 @@ interface ProductCardProps {
     slug: string;
     badge?: string;
     subscription?: boolean;
-    category?: string;
+    category: string;
+
+    sku?: string;
     featured?: boolean;
 }
 
-export function ProductCard({ id, title, price, regularPrice, image, description, slug, badge, subscription, category, featured }: ProductCardProps) {
+export function ProductCard({
+    id,
+    title,
+    price,
+    regularPrice,
+    image,
+    description,
+    slug,
+    badge,
+    subscription,
+    category,
+    sku,
+    featured,
+}: ProductCardProps) {
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
     const isOnSale = regularPrice && regularPrice !== price;
 
     const handleAddToCart = () => {
-        addToCart({ id, title, price: String(price), image, slug });
+        addToCart({
+            id,
+            title,
+            price: String(price),
+            image,
+            slug,
+            category: category || "Uncategorized",
+            description,
+            sku: sku || "N/A",
+        });
         setAdded(true);
         setTimeout(() => setAdded(false), 2000);
     };
@@ -58,7 +81,13 @@ export function ProductCard({ id, title, price, regularPrice, image, description
             {/* Image Container */}
             <Link href={`/products/${slug}`} className="block">
                 <div className="relative h-80 overflow-hidden bg-creme-light dark:bg-midnight-mid/30 flex items-center justify-center p-8 cursor-pointer">
-                    <ProductImage src={image} alt={title} category={category} id={id} className="w-full h-full" />
+                    <ProductImage
+                        src={image}
+                        alt={title}
+                        category={category}
+                        id={id}
+                        className="w-full h-full"
+                    />
                 </div>
             </Link>
 
@@ -73,27 +102,40 @@ export function ProductCard({ id, title, price, regularPrice, image, description
 
                 <div className="flex justify-between items-start mb-4">
                     <Link href={`/products/${slug}`} className="flex-1 cursor-pointer">
-                        <h3 className="text-xl font-serif font-bold mb-2 text-espresso dark:text-ivory group-hover:text-terracotta dark:group-hover:text-gold transition-colors line-clamp-2">{title}</h3>
+                        <h3 className="text-xl font-serif font-bold mb-2 text-espresso dark:text-ivory group-hover:text-terracotta dark:group-hover:text-gold transition-colors line-clamp-2">
+                            {title}
+                        </h3>
                         <div className="flex items-baseline gap-2">
-                            <p className="text-2xl font-bold text-terracotta dark:text-gold">{price}</p>
+                            <p className="text-2xl font-bold text-terracotta dark:text-gold">
+                                {price}
+                            </p>
                             {regularPrice && regularPrice !== price && (
-                                <p className="text-sm text-espresso/40 dark:text-ivory/40 line-through">{regularPrice}</p>
+                                <p className="text-sm text-espresso/40 dark:text-ivory/40 line-through">
+                                    {regularPrice}
+                                </p>
                             )}
                         </div>
                     </Link>
                     <button
                         onClick={handleAddToCart}
-                        className={`rounded-full p-3 transition-all duration-300 ml-4 ${added
-                            ? 'bg-green-600 text-white'
-                            : 'bg-terracotta dark:bg-gold text-white dark:text-midnight hover:bg-terracotta-dark dark:hover:bg-gold/90 hover:scale-110'
-                            }`}
+                        className={`rounded-full p-3 transition-all duration-300 ml-4 ${
+                            added
+                                ? "bg-green-600 text-white"
+                                : "bg-terracotta dark:bg-gold text-white dark:text-midnight hover:bg-terracotta-dark dark:hover:bg-gold/90 hover:scale-110"
+                        }`}
                         title={added ? "Added to cart!" : "Add to cart"}
                     >
-                        {added ? <Check className="w-5 h-5" /> : <ShoppingBag className="w-5 h-5" />}
+                        {added ? (
+                            <Check className="w-5 h-5" />
+                        ) : (
+                            <ShoppingBag className="w-5 h-5" />
+                        )}
                     </button>
                 </div>
 
-                <p className="text-sm text-espresso/60 dark:text-ivory/60 mb-6 line-clamp-2 md:line-clamp-3">{description}</p>
+                <p className="text-sm text-espresso/60 dark:text-ivory/60 mb-6 line-clamp-2 md:line-clamp-3">
+                    {description}
+                </p>
 
                 {/* Subscription Indicator */}
                 {subscription && (
@@ -104,7 +146,12 @@ export function ProductCard({ id, title, price, regularPrice, image, description
                 )}
 
                 <div className="flex gap-2">
-                    <Button href={`/products/${slug}`} variant="outline" size="sm" className="w-full group-hover:bg-terracotta/10 dark:group-hover:bg-gold/10 group-hover:border-terracotta dark:group-hover:border-gold">
+                    <Button
+                        href={`/products/${slug}`}
+                        variant="outline"
+                        size="sm"
+                        className="w-full group-hover:bg-terracotta/10 dark:group-hover:bg-gold/10 group-hover:border-terracotta dark:group-hover:border-gold"
+                    >
                         <ArrowRight className="w-4 h-4 mr-2" />
                         View Details
                     </Button>

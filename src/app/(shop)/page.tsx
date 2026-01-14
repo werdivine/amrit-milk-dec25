@@ -23,8 +23,7 @@ import { KitchenQuiz } from "@/components/patterns/KitchenQuiz";
 import { LabReports } from "@/components/patterns/LabReports";
 import { PremiumStats } from "@/components/patterns/PremiumStats";
 import { ToxicityAudit } from "@/components/patterns/ToxicityAudit";
-import { HoneySource } from "@/components/patterns/v2/HoneySource";
-import { OilsProcess } from "@/components/patterns/v2/OilsProcess";
+import { GheeSpotlight } from "@/components/patterns/v2/GheeSpotlight";
 
 // Social Proof
 import { ExpertPanel } from "@/components/patterns/ExpertPanel";
@@ -58,13 +57,15 @@ export const metadata: Metadata = {
     },
 };
 
+const TERMS = ["Ghee", "Oils", "Honey"];
+
 export default async function Home() {
     const products = await getProducts();
     const bestSellers = products.filter((p) => p.badge || p.featured).slice(0, 8);
+    const pantryEssentials = products.filter((p) => TERMS.includes(p.category));
+
     const superfoods = products
-        .filter(
-            (p) => p.category === "Honey" || p.category === "Wellness" || p.category === "Other"
-        )
+        .filter((p) => p.category === "Wellness" || p.category === "Other")
         .slice(0, 8);
     const grains = products
         .filter((p) => p.category === "Atta" || p.category === "Rice")
@@ -81,7 +82,17 @@ export default async function Home() {
             {/* 2. QUICK NAVIGATION */}
             <CategoryIconStrip />
 
-            {/* 3. IMMEDIATE VALUE - Best Sellers */}
+            {/* 3. IMMEDIATE VALUE - Pantry Essentials (Ghee, Oils, Honey) */}
+            <ProductCollection
+                items={pantryEssentials}
+                category="Oils"
+                title="Pantry Essentials"
+                subtitle="Ghee • Oils • Honey"
+                description="Pure Bilona Ghee, Cold-Pressed Oils, and Raw Honey. The foundation of a healthy kitchen."
+                backgroundTheme="light"
+            />
+
+            {/* 3.1. BEST SELLERS */}
             <ProductCollection
                 items={bestSellers}
                 title="Customer Favorites"
@@ -89,6 +100,9 @@ export default async function Home() {
                 description="The most loved products from our collection. Trusted by thousands of families."
                 backgroundTheme="light"
             />
+
+            {/* 3.5. CINEMATIC GHEE SPOTLIGHT */}
+            <GheeSpotlight />
 
             {/* 4. WHY WE'RE DIFFERENT - Our Mission */}
             <OurMission />
@@ -124,16 +138,8 @@ export default async function Home() {
                 backgroundTheme="creme"
             />
 
-            <OilsProcess />
-            <ProductCollection
-                category="Oils"
-                title="Ancient Cold-Pressed Oils"
-                subtitle="Wood-Pressed Purity"
-                description="Yellow Mustard, Black Mustard, Groundnut, Coconut, Sesame, and healing Essential Oils."
-                backgroundTheme="light"
-            />
+            {/* Removed Pantry Essentials from here as it moved up */}
 
-            <HoneySource />
             <ProductCollection
                 items={superfoods}
                 title="Superfoods & Healing"

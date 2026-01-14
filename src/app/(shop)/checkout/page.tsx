@@ -3,8 +3,8 @@ import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/CartContext";
-import { calculateCartTotals } from "@/lib/cart-utils"; // Use the new consistent util
-import { products, type Product } from "@/lib/products";
+import { calculateCartTotals, type CartItem } from "@/lib/cart-utils"; // Use the new consistent util
+import { products } from "@/lib/products";
 import {
     AlertCircle,
     ArrowLeft,
@@ -49,15 +49,16 @@ function CCavenueForm({
 }
 
 function CheckoutContent() {
-    const { cart, clearCart } = useCart();
+    const { cart, clearCart, discountAmount, couponCode } = useCart();
 
     // Enrich cart for type compatibility with cart-utils
     const enrichedCart = cart.map((item) => {
         const product = products.find((p) => p.id === item.id);
         return product ? { ...product, ...item } : item;
-    }) as (Product & { quantity: number })[];
+    }) as CartItem[];
 
-    const totals = calculateCartTotals(enrichedCart); // Use consistent totals logic
+    // Derived State
+    const totals = calculateCartTotals(enrichedCart, discountAmount); // Use consistent totals logic
     const router = useRouter();
     const searchParams = useSearchParams();
     const [loading, setLoading] = useState(false);
@@ -151,6 +152,8 @@ function CheckoutContent() {
                 items: cart,
                 subtotal: totals.subtotal,
                 deliveryFee: totals.deliveryFee, // Use correct delivery fee
+                discount: totals.discount,
+                couponCode: couponCode || undefined,
                 total: totals.total,
                 paymentMethod: paymentMethod,
             };
@@ -484,7 +487,9 @@ function CheckoutContent() {
                                         Order in next 4 hrs
                                     </p>
                                     <p className="text-xs text-blue-600 dark:text-blue-300">
-                                        For guaranteed delivery by tomorrow morning.
+                                        {cart.some((i) => i.category === "Dairy")
+                                            ? "For guaranteed delivery by tomorrow morning."
+                                            : "Standard shipping (3-5 business days)."}
                                     </p>
                                 </div>
                             </div>
@@ -540,6 +545,12 @@ function CheckoutContent() {
                                         <span>₹{totals.deliveryFee}</span>
                                     )}
                                 </div>
+                                {totals.discount > 0 && (
+                                    <div className="flex justify-between text-sm text-green-600 dark:text-green-400">
+                                        <span>Discount ({couponCode})</span>
+                                        <span className="font-bold">-₹{totals.discount}</span>
+                                    </div>
+                                )}
                                 <div className="flex justify-between text-xl font-bold text-espresso dark:text-ivory pt-2">
                                     <span>To Pay</span>
                                     <span className="text-gold">₹{totals.total}</span>

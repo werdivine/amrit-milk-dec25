@@ -5,6 +5,8 @@ import { Product, products } from "./products";
 // ----------------------------------------------------------------------
 export type CartItem = Product & {
     quantity: number;
+    category: string;
+    regularPrice?: string;
     isSubscription?: boolean; // New feature: frequency toggle
 };
 
@@ -83,7 +85,7 @@ export function parsePrice(priceStr: string): number {
     return parseInt(priceStr.replace(/[^0-9]/g, ""), 10);
 }
 
-export function calculateCartTotals(cartItems: CartItem[]) {
+export function calculateCartTotals(cartItems: CartItem[], discountAmount: number = 0) {
     const subtotal = cartItems.reduce(
         (acc, item) => acc + parsePrice(item.price) * item.quantity,
         0
@@ -97,7 +99,8 @@ export function calculateCartTotals(cartItems: CartItem[]) {
     return {
         subtotal,
         deliveryFee,
-        total: subtotal + deliveryFee,
+        discount: discountAmount,
+        total: Math.max(0, subtotal + deliveryFee - discountAmount),
         isFreeDelivery,
         missingForFreeDelivery,
         progressPercent: Math.min((subtotal / FREE_DELIVERY_THRESHOLD) * 100, 100),

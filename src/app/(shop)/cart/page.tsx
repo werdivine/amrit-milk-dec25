@@ -2,9 +2,9 @@
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import { calculateCartTotals, getCrossSellRecommendations } from "@/lib/cart-utils";
+import { calculateCartTotals, getCrossSellRecommendations, type CartItem } from "@/lib/cart-utils";
 import { useCart } from "@/lib/CartContext";
-import { products, type Product } from "@/lib/products";
+import { products } from "@/lib/products";
 import { AnimatePresence, motion } from "framer-motion";
 import {
     ArrowRight,
@@ -21,17 +21,42 @@ import Link from "next/link";
 import { useEffect, useState } from "react";
 
 export default function CartPage() {
-    const { cart, updateQuantity, removeFromCart, addToCart } = useCart();
+    const {
+        cart,
+        updateQuantity,
+        removeFromCart,
+        addToCart,
+        applyCoupon,
+        removeCoupon,
+        couponCode,
+        discountAmount,
+    } = useCart();
+    const [couponInput, setCouponInput] = useState("");
+    const [couponMessage, setCouponMessage] = useState<{
+        type: "success" | "error";
+        text: string;
+    } | null>(null);
 
     // Enrich cart with full product details (category, etc.) for logic
     const enrichedCart = cart.map((item) => {
         const product = products.find((p) => p.id === item.id);
         return product ? { ...product, ...item } : item;
-    }) as (Product & { quantity: number })[];
+    }) as CartItem[];
 
     // Derived State
-    const totals = calculateCartTotals(enrichedCart);
+    const totals = calculateCartTotals(enrichedCart, discountAmount);
     const recommendations = getCrossSellRecommendations(enrichedCart);
+
+    const handleApplyCoupon = () => {
+        if (!couponInput) return;
+        const result = applyCoupon(couponInput);
+        if (result.success) {
+            setCouponMessage({ type: "success", text: result.message });
+            setCouponInput("");
+        } else {
+            setCouponMessage({ type: "error", text: result.message });
+        }
+    };
 
     // Hydration fix
     const [mounted, setMounted] = useState(false);
@@ -305,6 +330,20 @@ export default function CartPage() {
                                         <span>₹{totals.deliveryFee}</span>
                                     )}
                                 </div>
+                                {couponCode && (
+                                    <div className="flex justify-between text-green-600 dark:text-green-400">
+                                        <span className="flex items-center gap-1">
+                                            Discount ({couponCode})
+                                            <button
+                                                onClick={removeCoupon}
+                                                className="text-xs text-red-500 hover:underline ml-1"
+                                            >
+                                                (Remove)
+                                            </button>
+                                        </span>
+                                        <span className="font-bold">-₹{discountAmount}</span>
+                                    </div>
+                                )}
                                 <div className="pt-4 border-t border-stone-100 dark:border-white/10 flex justify-between items-end">
                                     <span className="font-bold text-lg text-espresso dark:text-ivory">
                                         Total
@@ -314,6 +353,34 @@ export default function CartPage() {
                                     </span>
                                 </div>
                             </div>
+
+                            {/* Coupon Input */}
+                            {!couponCode && (
+                                <div className="pt-4 border-t border-stone-100 dark:border-white/10">
+                                    <div className="flex gap-2">
+                                        <input
+                                            value={couponInput}
+                                            onChange={(e) => setCouponInput(e.target.value)}
+                                            placeholder="Coupon Code"
+                                            className="flex-1 bg-stone-50 dark:bg-white/5 border border-stone-200 dark:border-white/10 rounded-lg px-3 py-2 text-sm outline-none focus:border-gold"
+                                        />
+                                        <button
+                                            onClick={handleApplyCoupon}
+                                            disabled={!couponInput}
+                                            className="bg-espresso dark:bg-ivory text-ivory dark:text-espresso px-4 py-2 rounded-lg text-sm font-bold disabled:opacity-50"
+                                        >
+                                            Apply
+                                        </button>
+                                    </div>
+                                    {couponMessage && (
+                                        <p
+                                            className={`text-xs mt-2 ${couponMessage.type === "success" ? "text-green-600" : "text-red-500"}`}
+                                        >
+                                            {couponMessage.text}
+                                        </p>
+                                    )}
+                                </div>
+                            )}
 
                             {/* Trust Badge */}
                             <div className="bg-stone-50 dark:bg-white/5 rounded-lg p-3 flex items-start gap-3 border border-stone-100 dark:border-white/5">
@@ -350,7 +417,11 @@ export default function CartPage() {
                         {/* Delivery Info */}
                         <div className="mt-6 flex items-center justify-center gap-2 text-xs text-espresso-muted dark:text-ivory/50">
                             <Clock className="w-3.5 h-3.5" />
-                            <span>Order by 10 PM for next morning delivery</span>
+                            <span>
+                                {cart.some((i) => i.category === "Dairy")
+                                    ? "Order by 10 PM for next morning delivery"
+                                    : "Standard Delivery (3-5 Business Days)"}
+                            </span>
                         </div>
                     </div>
                 </div>

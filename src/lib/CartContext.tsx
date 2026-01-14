@@ -9,15 +9,7 @@ import {
     useMemo,
     useState,
 } from "react";
-
-interface CartItem {
-    id: string;
-    title: string;
-    price: string;
-    image: string;
-    quantity: number;
-    slug: string;
-}
+import { type CartItem } from "./cart-utils";
 
 interface CartContextType {
     cart: CartItem[];
@@ -25,6 +17,10 @@ interface CartContextType {
     removeFromCart: (id: string) => void;
     updateQuantity: (id: string, quantity: number) => void;
     clearCart: () => void;
+    applyCoupon: (code: string) => { success: boolean; message: string };
+    removeCoupon: () => void;
+    couponCode: string | null;
+    discountAmount: number;
     cartCount: number;
     cartTotal: number;
 }
@@ -33,6 +29,8 @@ const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: ReactNode }) {
     const [cart, setCart] = useState<CartItem[]>([]);
+    const [couponCode, setCouponCode] = useState<string | null>(null);
+    const [discountAmount, setDiscountAmount] = useState(0);
     const [mounted, setMounted] = useState(false);
 
     // Load cart from localStorage on mount
@@ -45,6 +43,12 @@ export function CartProvider({ children }: { children: ReactNode }) {
             } catch (e) {
                 console.error("Error loading cart:", e);
             }
+        }
+
+        // Load coupon
+        const savedCoupon = localStorage.getItem("amrit-coupon");
+        if (savedCoupon) {
+            setCouponCode(savedCoupon);
         }
     }, []);
 
@@ -101,6 +105,46 @@ export function CartProvider({ children }: { children: ReactNode }) {
         [cart]
     );
 
+    // Coupon Logic
+    const applyCoupon = useCallback((code: string) => {
+        const normalizedCode = code.toUpperCase().trim();
+
+        // Simple static coupon logic for now
+        if (normalizedCode === "WELCOME10") {
+            // 10% discount logic could go here, for now let's say flat ₹100 or 10%
+            // Let's implement 10% off for WELCOME10
+            setCouponCode(normalizedCode);
+            localStorage.setItem("amrit-coupon", normalizedCode);
+            return { success: true, message: "Coupon applied successfully!" };
+        }
+
+        /* 
+        // Example logic for calculating discount dynamically
+        // ideally discount is recalculated whenever cart changes
+        */
+
+        return { success: false, message: "Invalid coupon code" };
+    }, []);
+
+    const removeCoupon = useCallback(() => {
+        setCouponCode(null);
+        setDiscountAmount(0);
+        localStorage.removeItem("amrit-coupon");
+    }, []);
+
+    // Recalculate discount whenever cart or coupon changes
+    useEffect(() => {
+        if (!couponCode) {
+            setDiscountAmount(0);
+            return;
+        }
+
+        if (couponCode === "WELCOME10") {
+            const discount = Math.round(cartTotal * 0.1); // 10% off
+            setDiscountAmount(discount);
+        }
+    }, [cartTotal, couponCode]);
+
     const value = useMemo(
         () => ({
             cart,
@@ -108,10 +152,26 @@ export function CartProvider({ children }: { children: ReactNode }) {
             removeFromCart,
             updateQuantity,
             clearCart,
+            applyCoupon,
+            removeCoupon,
+            couponCode,
+            discountAmount,
             cartCount,
             cartTotal,
         }),
-        [cart, addToCart, removeFromCart, updateQuantity, clearCart, cartCount, cartTotal]
+        [
+            cart,
+            addToCart,
+            removeFromCart,
+            updateQuantity,
+            clearCart,
+            applyCoupon,
+            removeCoupon,
+            couponCode,
+            discountAmount,
+            cartCount,
+            cartTotal,
+        ]
     );
 
     return <CartContext.Provider value={value}>{children}</CartContext.Provider>;

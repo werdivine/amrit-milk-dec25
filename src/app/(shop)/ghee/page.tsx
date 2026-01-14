@@ -4,6 +4,7 @@
  */
 "use client";
 
+import { GheeSpotlight } from "@/components/patterns/v2/GheeSpotlight";
 import { Section } from "@/components/ui/section";
 import { products } from "@/lib/products";
 import {
@@ -426,6 +427,11 @@ export default function GheePage() {
                     </div>
                 </div>
             </Section>
+
+            {/* ═══════════════════════════════════════════════════════════
+                 5.5. CINEMATIC SPOTLIGHT
+            ═══════════════════════════════════════════════════════════ */}
+            <GheeSpotlight variant="page" />
 
             {/* ═══════════════════════════════════════════════════════════
                  6. FAQ SECTION
