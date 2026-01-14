@@ -1,9 +1,8 @@
 "use client";
 
 import { categories } from "@/lib/products";
-import { LayoutGrid, Utensils, Droplet, Milk, Wheat, Hexagon, Package } from "lucide-react";
+import { Droplet, Hexagon, LayoutGrid, Milk, Package, Utensils, Wheat } from "lucide-react";
 import Link from "next/link";
-import { Section } from "@/components/ui/section";
 
 const iconMap: Record<string, any> = {
     LayoutGrid,
@@ -12,7 +11,7 @@ const iconMap: Record<string, any> = {
     Milk,
     Wheat,
     Hexagon,
-    Package
+    Package,
 };
 
 export function CategoryIconStrip() {
@@ -25,11 +24,18 @@ export function CategoryIconStrip() {
                         return (
                             <Link
                                 key={cat.id}
-                                href={`#section-${cat.id}`} // Anchor link strategy for now, or could query param
+                                href={
+                                    cat.id === "all" ? "/products" : `/products?category=${cat.id}`
+                                }
                                 className="group flex flex-col items-center gap-3 min-w-[80px] cursor-pointer"
                             >
                                 <div className="w-16 h-16 rounded-full bg-creme-dark dark:bg-midnight-mid border border-espresso/10 dark:border-white/10 flex items-center justify-center transition-all duration-300 group-hover:bg-terracotta group-hover:border-terracotta dark:group-hover:bg-gold dark:group-hover:text-midnight group-hover:scale-110 shadow-sm">
-                                    {Icon && <Icon strokeWidth={1.5} className="w-7 h-7 text-espresso dark:text-ivory group-hover:text-white dark:group-hover:text-midnight transition-colors" />}
+                                    {Icon && (
+                                        <Icon
+                                            strokeWidth={1.5}
+                                            className="w-7 h-7 text-espresso dark:text-ivory group-hover:text-white dark:group-hover:text-midnight transition-colors"
+                                        />
+                                    )}
                                 </div>
                                 <span className="text-sm font-medium text-espresso/80 dark:text-ivory/80 group-hover:text-terracotta dark:group-hover:text-gold transition-colors">
                                     {cat.label}

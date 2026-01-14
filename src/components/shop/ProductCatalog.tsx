@@ -16,29 +16,35 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
     const categories = [
         { id: "all", name: "All Products", count: initialProducts.length },
         {
-            id: "Dairy",
-            name: "Dairy",
-            count: initialProducts.filter((p) => p.category === "Dairy").length,
-        },
-        {
-            id: "Atta",
-            name: "Atta (Flour)",
-            count: initialProducts.filter((p) => p.category === "Atta").length,
-        },
-        {
-            id: "Rice",
-            name: "Rice",
-            count: initialProducts.filter((p) => p.category === "Rice").length,
+            id: "vedic-essentials",
+            name: "Vedic Essentials",
+            count: initialProducts.filter((p) => ["Ghee", "Oils", "Honey"].includes(p.category))
+                .length,
         },
         {
             id: "Oils",
-            name: "Cold-Pressed Oils",
+            name: "Wood Pressed Oils",
             count: initialProducts.filter((p) => p.category === "Oils").length,
         },
         {
             id: "Honey",
-            name: "Natural Honey",
+            name: "Raw Honey",
             count: initialProducts.filter((p) => p.category === "Honey").length,
+        },
+        {
+            id: "Dairy",
+            name: "A2 Dairy",
+            count: initialProducts.filter((p) => p.category === "Dairy").length,
+        },
+        {
+            id: "Atta",
+            name: "Stone Ground Atta",
+            count: initialProducts.filter((p) => p.category === "Atta").length,
+        },
+        {
+            id: "Rice",
+            name: "Heritage Rice",
+            count: initialProducts.filter((p) => p.category === "Rice").length,
         },
         {
             id: "Sweets",
@@ -76,7 +82,9 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
     const filteredProducts =
         activeCategory === "all"
             ? initialProducts
-            : initialProducts.filter((p) => p.category === activeCategory);
+            : activeCategory === "vedic-essentials"
+              ? initialProducts.filter((p) => ["Ghee", "Oils", "Honey"].includes(p.category))
+              : initialProducts.filter((p) => p.category === activeCategory);
 
     return (
         <>

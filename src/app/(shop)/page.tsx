@@ -61,7 +61,12 @@ const TERMS = ["Ghee", "Oils", "Honey"];
 
 export default async function Home() {
     const products = await getProducts();
-    const bestSellers = products.filter((p) => p.badge || p.featured).slice(0, 8);
+    // Randomize Best Sellers
+    const bestSellers = products
+        .filter((p) => p.badge || p.featured)
+        .sort(() => 0.5 - Math.random())
+        .slice(0, 8);
+
     const pantryEssentials = products.filter((p) => TERMS.includes(p.category));
 
     const superfoods = products
@@ -86,7 +91,7 @@ export default async function Home() {
             <ProductCollection
                 items={pantryEssentials}
                 category="Oils"
-                title="Pantry Essentials"
+                title="Vedic Kitchen Treasures"
                 subtitle="Ghee • Oils • Honey"
                 description="Pure Bilona Ghee, Cold-Pressed Oils, and Raw Honey. The foundation of a healthy kitchen."
                 backgroundTheme="light"

@@ -15,9 +15,9 @@ const navLinks = [
         label: "Shop",
         children: [
             { href: "/products", label: "All Products" },
-            { href: "/products?category=milk", label: "Milk" },
-            { href: "/products?category=ghee", label: "Bilona Ghee" },
-            { href: "/products?category=paneer", label: "Paneer" },
+            { href: "/products/a2-gir-cow-milk-1l", label: "A2 Gir Cow Milk" },
+            { href: "/products/a2-cow-ghee-1kg", label: "Bilona Ghee" },
+            { href: "/products/a2-paneer-1kg", label: "A2 Paneer" },
         ],
     },
     {

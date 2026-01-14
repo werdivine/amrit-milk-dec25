@@ -15,7 +15,166 @@ export interface Product {
 
 export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
-    // A2 DAIRY
+    // GHEE (Moved to Top)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "ghee-cow-1kg",
+        title: "A2 Cow Ghee - 1 kg",
+        price: "₹2500",
+        image: "/assets/img/products/amrit_ghee_premium.png",
+        category: "Ghee",
+        description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
+        slug: "a2-cow-ghee-1kg",
+        sku: "AMRIT-DAIRY-005",
+        featured: true,
+        badge: "Pure Vedic",
+    },
+    {
+        id: "ghee-cow-500ml",
+        title: "A2 Cow Ghee - 500ml",
+        price: "₹1350",
+        image: "/assets/img/products/amrit_ghee_premium.png",
+        category: "Ghee",
+        description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
+        slug: "a2-cow-ghee-500ml",
+        sku: "AMRIT-DAIRY-005-SM",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // COLD-PRESSED OILS (Moved to Top)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "oil-yellow-mustard-1l",
+        title: "Yellow Mustard Oil - 1 L",
+        price: "₹380",
+        image: "/assets/img/products/premium_mustard_oil.png",
+        category: "Oils",
+        description: "Cold-pressed Yellow Mustard oil (Kacchi Ghani).",
+        slug: "yellow-mustard-oil-1l",
+        sku: "AMRIT-OIL-001",
+        featured: true,
+    },
+    {
+        id: "oil-black-mustard-1l",
+        title: "Black Mustard Oil - 1 L",
+        price: "₹350",
+        image: "/assets/img/products/premium_mustard_oil.png",
+        category: "Oils",
+        description: "Cold-pressed Black Mustard oil, pungent and pure.",
+        slug: "black-mustard-oil-1l",
+        sku: "AMRIT-OIL-002",
+        featured: true,
+    },
+    {
+        id: "oil-groundnut-1l",
+        title: "Groundnut Oil - 1 L",
+        price: "₹600",
+        image: "/assets/img/products/amrit_oil_groundnut_1l.png",
+        category: "Oils",
+        description: "Cold-pressed Groundnut oil, rich in flavor.",
+        slug: "groundnut-oil-1l-premium",
+        sku: "AMRIT-OIL-003",
+        featured: true,
+    },
+    {
+        id: "oil-coconut-1l",
+        title: "Coconut Oil - 1 L",
+        price: "₹1000",
+        image: "/assets/img/products/premium_coconut_oil.png",
+        category: "Oils",
+        description: "Pure cold-pressed Coconut oil for cooking and care.",
+        slug: "coconut-oil-1l-premium",
+        sku: "AMRIT-OIL-004",
+        featured: true,
+    },
+    {
+        id: "oil-sesame-1l",
+        title: "Sesame (Til) Oil - 1 L",
+        price: "₹800",
+        image: "/assets/img/products/amrit_oil_sesame_1l.png",
+        category: "Oils",
+        description: "Cold-pressed Sesame (Til) oil.",
+        slug: "sesame-til-oil-1l",
+        sku: "AMRIT-OIL-005",
+        featured: true,
+    },
+    {
+        id: "oil-tulsi-10ml",
+        title: "Tulsi Oil - 10 ml",
+        price: "₹300",
+        image: "/assets/img/products/amrit_oil_tulsi_10ml.png",
+        category: "Oils",
+        description: "Sacred Tulsi essential oil.",
+        slug: "tulsi-oil-10ml",
+        sku: "AMRIT-OIL-006",
+        featured: true,
+    },
+    {
+        id: "oil-lemongrass-10ml",
+        title: "Lemongrass Oil - 10 ml",
+        price: "₹400",
+        image: "/assets/img/products/amrit_oil_lemongrass_10ml.png",
+        category: "Oils",
+        description: "Refreshing Lemongrass essential oil.",
+        slug: "lemongrass-oil-10ml",
+        sku: "AMRIT-OIL-007",
+        featured: true,
+    },
+    {
+        id: "oil-menthol-10ml",
+        title: "Menthol Oil - 10 ml",
+        price: "₹250",
+        image: "/assets/img/products/amrit_oil_menthol_10ml.png",
+        category: "Oils",
+        description: "Cooling Menthol essential oil.",
+        slug: "menthol-oil-10ml",
+        sku: "AMRIT-OIL-008",
+        featured: true,
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // HONEY (Moved to Top)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "honey-multiflora-1kg",
+        title: "Multiflora Honey - 1 kg",
+        price: "₹1200",
+        image: "/assets/img/products/premium_multiflora_honey.png",
+        category: "Honey",
+        description: "Pure Multiflora honey collected from diverse forest flowers.",
+        slug: "multiflora-honey-1kg",
+        sku: "AMRIT-HONEY-001",
+        featured: true,
+        badge: "Raw & Pure",
+    },
+    {
+        id: "honey-jamun-1kg",
+        title: "Jamun Honey - 1 kg",
+        price: "₹1200",
+        image: "/assets/img/products/premium_jamun_honey.png",
+        category: "Honey",
+        description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
+        slug: "jamun-honey-1kg",
+        sku: "AMRIT-HONEY-002",
+        featured: true,
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // OTHER PRODUCTS (Moved Up)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "turmeric-1kg",
+        title: "Organic Turmeric - 1 kg",
+        price: "₹900",
+        image: "/assets/img/products/premium_turmeric_powder.png",
+        category: "Other",
+        description: "High-curcumin Organic Turmeric powder.",
+        slug: "organic-turmeric-1kg",
+        sku: "AMRIT-MISC-001",
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // A2 DAIRY (Moved After Shelf-Stable)
     // ═══════════════════════════════════════════════════════════
     {
         id: "milk-gir-1l",
@@ -61,28 +220,6 @@ export const products: Product[] = [
         description: "Immunity-boosting first milk (Colostrum) from A2 cows.",
         slug: "a2-colostrum-milk-1l",
         sku: "AMRIT-DAIRY-004",
-    },
-    {
-        id: "ghee-cow-1kg",
-        title: "A2 Cow Ghee - 1 kg",
-        price: "₹2500",
-        image: "/assets/img/products/amrit_ghee_premium.png",
-        category: "Ghee", // Moved to dedicated category
-        description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
-        slug: "a2-cow-ghee-1kg",
-        sku: "AMRIT-DAIRY-005",
-        featured: true,
-        badge: "Pure Vedic",
-    },
-    {
-        id: "ghee-cow-500ml",
-        title: "A2 Cow Ghee - 500ml",
-        price: "₹1350",
-        image: "/assets/img/products/amrit_ghee_premium.png",
-        category: "Ghee",
-        description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
-        slug: "a2-cow-ghee-500ml",
-        sku: "AMRIT-DAIRY-005-SM",
     },
     {
         id: "paneer-1kg",
@@ -226,98 +363,6 @@ export const products: Product[] = [
     },
 
     // ═══════════════════════════════════════════════════════════
-    // COLD-PRESSED OILS
-    // ═══════════════════════════════════════════════════════════
-    {
-        id: "oil-tulsi-10ml",
-        title: "Tulsi Oil - 10 ml",
-        price: "₹300",
-        image: "/assets/img/products/amrit_oil_tulsi_10ml.png",
-        category: "Oils",
-        description: "Sacred Tulsi essential oil.",
-        slug: "tulsi-oil-10ml",
-        sku: "AMRIT-OIL-006",
-        featured: true,
-    },
-    {
-        id: "oil-lemongrass-10ml",
-        title: "Lemongrass Oil - 10 ml",
-        price: "₹400",
-        image: "/assets/img/products/amrit_oil_lemongrass_10ml.png",
-        category: "Oils",
-        description: "Refreshing Lemongrass essential oil.",
-        slug: "lemongrass-oil-10ml",
-        sku: "AMRIT-OIL-007",
-        featured: true,
-    },
-    {
-        id: "oil-menthol-10ml",
-        title: "Menthol Oil - 10 ml",
-        price: "₹250",
-        image: "/assets/img/products/amrit_oil_menthol_10ml.png",
-        category: "Oils",
-        description: "Cooling Menthol essential oil.",
-        slug: "menthol-oil-10ml",
-        sku: "AMRIT-OIL-008",
-        featured: true,
-    },
-    {
-        id: "oil-yellow-mustard-1l",
-        title: "Yellow Mustard Oil - 1 L",
-        price: "₹380",
-        image: "/assets/img/products/premium_mustard_oil.png",
-        category: "Oils",
-        description: "Cold-pressed Yellow Mustard oil (Kacchi Ghani).",
-        slug: "yellow-mustard-oil-1l",
-        sku: "AMRIT-OIL-001",
-        featured: true,
-    },
-    {
-        id: "oil-black-mustard-1l",
-        title: "Black Mustard Oil - 1 L",
-        price: "₹350",
-        image: "/assets/img/products/premium_mustard_oil.png",
-        category: "Oils",
-        description: "Cold-pressed Black Mustard oil, pungent and pure.",
-        slug: "black-mustard-oil-1l",
-        sku: "AMRIT-OIL-002",
-        featured: true,
-    },
-    {
-        id: "oil-groundnut-1l",
-        title: "Groundnut Oil - 1 L",
-        price: "₹600",
-        image: "/assets/img/products/amrit_oil_groundnut_1l.png",
-        category: "Oils",
-        description: "Cold-pressed Groundnut oil, rich in flavor.",
-        slug: "groundnut-oil-1l-premium",
-        sku: "AMRIT-OIL-003",
-        featured: true,
-    },
-    {
-        id: "oil-coconut-1l",
-        title: "Coconut Oil - 1 L",
-        price: "₹1000",
-        image: "/assets/img/products/premium_coconut_oil.png",
-        category: "Oils",
-        description: "Pure cold-pressed Coconut oil for cooking and care.",
-        slug: "coconut-oil-1l-premium",
-        sku: "AMRIT-OIL-004",
-        featured: true,
-    },
-    {
-        id: "oil-sesame-1l",
-        title: "Sesame (Til) Oil - 1 L",
-        price: "₹800",
-        image: "/assets/img/products/amrit_oil_sesame_1l.png",
-        category: "Oils",
-        description: "Cold-pressed Sesame (Til) oil.",
-        slug: "sesame-til-oil-1l",
-        sku: "AMRIT-OIL-005",
-        featured: true,
-    },
-
-    // ═══════════════════════════════════════════════════════════
     // SWEETS & JAGGERY
     // ═══════════════════════════════════════════════════════════
     {
@@ -406,47 +451,6 @@ export const products: Product[] = [
     },
 
     // ═══════════════════════════════════════════════════════════
-    // HONEY
-    // ═══════════════════════════════════════════════════════════
-    {
-        id: "honey-multiflora-1kg",
-        title: "Multiflora Honey - 1 kg",
-        price: "₹1200",
-        image: "/assets/img/products/premium_multiflora_honey.png",
-        category: "Honey",
-        description: "Pure Multiflora honey collected from diverse forest flowers.",
-        slug: "multiflora-honey-1kg",
-        sku: "AMRIT-HONEY-001",
-        featured: true,
-        badge: "Raw & Pure",
-    },
-    {
-        id: "honey-jamun-1kg",
-        title: "Jamun Honey - 1 kg",
-        price: "₹1200",
-        image: "/assets/img/products/premium_jamun_honey.png",
-        category: "Honey",
-        description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
-        slug: "jamun-honey-1kg",
-        sku: "AMRIT-HONEY-002",
-        featured: true,
-    },
-
-    // ═══════════════════════════════════════════════════════════
-    // OTHER PRODUCTS
-    // ═══════════════════════════════════════════════════════════
-    {
-        id: "turmeric-1kg",
-        title: "Organic Turmeric - 1 kg",
-        price: "₹900",
-        image: "/assets/img/products/premium_turmeric_powder.png",
-        category: "Other",
-        description: "High-curcumin Organic Turmeric powder.",
-        slug: "organic-turmeric-1kg",
-        sku: "AMRIT-MISC-001",
-    },
-
-    // ═══════════════════════════════════════════════════════════
     // COW-BASED (GAU SEVA)
     // ═══════════════════════════════════════════════════════════
     {
@@ -483,10 +487,10 @@ export const products: Product[] = [
 
 export const categories = [
     { id: "all", label: "All Products", icon: "LayoutGrid" },
-    { id: "ghee", label: "A2 Ghee", icon: "Utensils" }, // Promoted Ghee Category
+    { id: "vedic-essentials", label: "Vedic Essentials", icon: "Utensils" }, // Combined Ghee, Oils, Honey
     { id: "oils", label: "Wood Pressed Oils", icon: "Droplet" },
+    { id: "honey", label: "Raw Honey", icon: "Hexagon" },
     { id: "dairy", label: "A2 Dairy", icon: "Milk" },
     { id: "atta", label: "Stone Ground Atta", icon: "Wheat" },
-    { id: "honey", label: "Raw Honey", icon: "Hexagon" },
     { id: "wellness", label: "Wellness", icon: "Package" },
 ] as const;
