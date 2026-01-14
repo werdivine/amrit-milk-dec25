@@ -10,6 +10,7 @@ import {
     useState,
 } from "react";
 import { type CartItem } from "./cart-utils";
+import { validateCoupon } from "./coupons";
 
 interface CartContextType {
     cart: CartItem[];
@@ -106,25 +107,18 @@ export function CartProvider({ children }: { children: ReactNode }) {
     );
 
     // Coupon Logic
-    const applyCoupon = useCallback((code: string) => {
-        const normalizedCode = code.toUpperCase().trim();
-
-        // Simple static coupon logic for now
-        if (normalizedCode === "WELCOME10") {
-            // 10% discount logic could go here, for now let's say flat ₹100 or 10%
-            // Let's implement 10% off for WELCOME10
-            setCouponCode(normalizedCode);
-            localStorage.setItem("amrit-coupon", normalizedCode);
-            return { success: true, message: "Coupon applied successfully!" };
-        }
-
-        /* 
-        // Example logic for calculating discount dynamically
-        // ideally discount is recalculated whenever cart changes
-        */
-
-        return { success: false, message: "Invalid coupon code" };
-    }, []);
+    const applyCoupon = useCallback(
+        (code: string) => {
+            const result = validateCoupon(code, cartTotal);
+            if (result.valid) {
+                setCouponCode(code.toUpperCase());
+                localStorage.setItem("amrit-coupon", code.toUpperCase());
+                return { success: true, message: result.message };
+            }
+            return { success: false, message: result.message };
+        },
+        [cartTotal]
+    );
 
     const removeCoupon = useCallback(() => {
         setCouponCode(null);
@@ -139,9 +133,14 @@ export function CartProvider({ children }: { children: ReactNode }) {
             return;
         }
 
-        if (couponCode === "WELCOME10") {
-            const discount = Math.round(cartTotal * 0.1); // 10% off
-            setDiscountAmount(discount);
+        const result = validateCoupon(couponCode, cartTotal);
+        if (result.valid) {
+            setDiscountAmount(result.discount);
+        } else {
+            // If coupon becomes invalid (e.g. cart total dropped below min), remove it?
+            // For now, let's just zero it out but keep code? Or remove it.
+            // Let's keep it simple: if invalid, 0 discount.
+            setDiscountAmount(0);
         }
     }, [cartTotal, couponCode]);
 

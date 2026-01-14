@@ -41,7 +41,71 @@ export const products: Product[] = [
     },
 
     // ═══════════════════════════════════════════════════════════
-    // COLD-PRESSED OILS (Moved to Top)
+    // ESSENTIAL OILS (Tulsi, Lemongrass, Menthol) - Requested Order
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "oil-tulsi-10ml",
+        title: "Tulsi Oil - 10 ml",
+        price: "₹300",
+        image: "/assets/img/products/amrit_oil_tulsi_10ml.png",
+        category: "Oils",
+        description: "Sacred Tulsi essential oil.",
+        slug: "tulsi-oil-10ml",
+        sku: "AMRIT-OIL-006",
+        featured: true,
+    },
+    {
+        id: "oil-lemongrass-10ml",
+        title: "Lemongrass Oil - 10 ml",
+        price: "₹400",
+        image: "/assets/img/products/amrit_oil_lemongrass_10ml.png",
+        category: "Oils",
+        description: "Refreshing Lemongrass essential oil.",
+        slug: "lemongrass-oil-10ml",
+        sku: "AMRIT-OIL-007",
+        featured: true,
+    },
+    {
+        id: "oil-menthol-10ml",
+        title: "Menthol Oil - 10 ml",
+        price: "₹250",
+        image: "/assets/img/products/amrit_oil_menthol_10ml.png",
+        category: "Oils",
+        description: "Cooling Menthol essential oil.",
+        slug: "menthol-oil-10ml",
+        sku: "AMRIT-OIL-008",
+        featured: true,
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // HONEY (Moved up, between Essential and Cooking Oils)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "honey-multiflora-1kg",
+        title: "Multiflora Honey - 1 kg",
+        price: "₹1200",
+        image: "/assets/img/products/premium_multiflora_honey.png",
+        category: "Honey",
+        description: "Pure Multiflora honey collected from diverse forest flowers.",
+        slug: "multiflora-honey-1kg",
+        sku: "AMRIT-HONEY-001",
+        featured: true,
+        badge: "Raw & Pure",
+    },
+    {
+        id: "honey-jamun-1kg",
+        title: "Jamun Honey - 1 kg",
+        price: "₹1200",
+        image: "/assets/img/products/premium_jamun_honey.png",
+        category: "Honey",
+        description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
+        slug: "jamun-honey-1kg",
+        sku: "AMRIT-HONEY-002",
+        featured: true,
+    },
+
+    // ═══════════════════════════════════════════════════════════
+    // COOKING OILS (Standard Wood Pressed)
     // ═══════════════════════════════════════════════════════════
     {
         id: "oil-yellow-mustard-1l",
@@ -98,69 +162,9 @@ export const products: Product[] = [
         sku: "AMRIT-OIL-005",
         featured: true,
     },
-    {
-        id: "oil-tulsi-10ml",
-        title: "Tulsi Oil - 10 ml",
-        price: "₹300",
-        image: "/assets/img/products/amrit_oil_tulsi_10ml.png",
-        category: "Oils",
-        description: "Sacred Tulsi essential oil.",
-        slug: "tulsi-oil-10ml",
-        sku: "AMRIT-OIL-006",
-        featured: true,
-    },
-    {
-        id: "oil-lemongrass-10ml",
-        title: "Lemongrass Oil - 10 ml",
-        price: "₹400",
-        image: "/assets/img/products/amrit_oil_lemongrass_10ml.png",
-        category: "Oils",
-        description: "Refreshing Lemongrass essential oil.",
-        slug: "lemongrass-oil-10ml",
-        sku: "AMRIT-OIL-007",
-        featured: true,
-    },
-    {
-        id: "oil-menthol-10ml",
-        title: "Menthol Oil - 10 ml",
-        price: "₹250",
-        image: "/assets/img/products/amrit_oil_menthol_10ml.png",
-        category: "Oils",
-        description: "Cooling Menthol essential oil.",
-        slug: "menthol-oil-10ml",
-        sku: "AMRIT-OIL-008",
-        featured: true,
-    },
 
     // ═══════════════════════════════════════════════════════════
-    // HONEY (Moved to Top)
-    // ═══════════════════════════════════════════════════════════
-    {
-        id: "honey-multiflora-1kg",
-        title: "Multiflora Honey - 1 kg",
-        price: "₹1200",
-        image: "/assets/img/products/premium_multiflora_honey.png",
-        category: "Honey",
-        description: "Pure Multiflora honey collected from diverse forest flowers.",
-        slug: "multiflora-honey-1kg",
-        sku: "AMRIT-HONEY-001",
-        featured: true,
-        badge: "Raw & Pure",
-    },
-    {
-        id: "honey-jamun-1kg",
-        title: "Jamun Honey - 1 kg",
-        price: "₹1200",
-        image: "/assets/img/products/premium_jamun_honey.png",
-        category: "Honey",
-        description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
-        slug: "jamun-honey-1kg",
-        sku: "AMRIT-HONEY-002",
-        featured: true,
-    },
-
-    // ═══════════════════════════════════════════════════════════
-    // OTHER PRODUCTS (Moved Up)
+    // OTHER PRODUCTS
     // ═══════════════════════════════════════════════════════════
     {
         id: "turmeric-1kg",
@@ -174,7 +178,7 @@ export const products: Product[] = [
     },
 
     // ═══════════════════════════════════════════════════════════
-    // A2 DAIRY (Moved After Shelf-Stable)
+    // A2 DAIRY
     // ═══════════════════════════════════════════════════════════
     {
         id: "milk-gir-1l",
