@@ -1,3 +1,4 @@
+import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CartProvider } from "@/lib/CartContext";
 import type { Metadata } from "next";
@@ -52,7 +53,10 @@ export default function RootLayout({
                 className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-creme dark:bg-midnight transition-colors duration-500`}
             >
                 <ThemeProvider>
-                    <CartProvider>{children}</CartProvider>
+                    <CartProvider>
+                        {children}
+                        <ChatWidget />
+                    </CartProvider>
                 </ThemeProvider>
             </body>
         </html>

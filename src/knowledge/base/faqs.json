@@ -1,0 +1,209 @@
+[
+    {
+        "id": "brand-origin",
+        "category": "Brand & Trust",
+        "question_hi": "Amrit Milk Organic ki shuruat kaise hui?",
+        "question_en": "How did Amrit Milk Organic start?",
+        "answer_hi": "Amrit Milk Organic ek movement hai, sirf brand nahi. Humari journey early 2000s mein chemical-free farming se shuru hui. 15 September 2016 se humne pure milk commercial operations start kiye. Humara maksad hai pure, milaavat-mukt doodh har ghar tak pahunchana.",
+        "answer_en": "Amrit Milk Organic is a movement, not just a brand. Our journey began in the early 2000s with chemical-free farming. On September 15, 2016, we launched our commercial milk operations.",
+        "keywords": ["origin", "history", "shuruat", "journey", "2000", "2016", "start"]
+    },
+    {
+        "id": "farm-location",
+        "category": "Brand & Trust",
+        "question_hi": "Aapka farm kahan sthit hai?",
+        "question_en": "Where is your farm located?",
+        "answer_hi": "Humara farm Lucknow ke paas, Gomti Nagar extension mein Lonapur gaon mein sthit hai. Ye prakriti ke beech ek shaant aur pradushan-mukt jagah hai.",
+        "answer_en": "Our farm is located in Lonapur village, near Gomti Nagar extension in Lucknow.",
+        "keywords": ["location", "farm", "address", "kahan", "lucknow", "lonapur", "gomti nagar"]
+    },
+    {
+        "id": "brand-philosophy",
+        "category": "Brand & Trust",
+        "question_hi": "Amrit Milk ka vision kya hai?",
+        "question_en": "What is Amrit Milk's vision?",
+        "answer_hi": "Hum mante hain ki 'Amrit sirf brand nahi, ek movement hai.' Humara vision hai chemical-free, sustainable farming ko promote karna aur har ghar tak pure dairy products pahunchana.",
+        "answer_en": "We believe 'Amrit is not just a brand, it's a movement.' Our vision is to promote chemical-free, sustainable farming and deliver pure dairy products to every home.",
+        "keywords": ["vision", "movement", "philosophy", "mission", "brand"]
+    },
+    {
+        "id": "a2-milk-definition",
+        "category": "Milk & Ghee",
+        "question_hi": "A2 milk kya hota hai?",
+        "question_en": "What is A2 milk?",
+        "answer_hi": "A2 milk wo doodh hai jo sirf Desi gayein deti hain jaise Gir aur Sahiwal. Isme A2 beta-casein protein hota hai jo pachane mein aasaan aur sehat ke liye faydemand hota hai. Foreign breeds ka A1 milk digest karna mushkil hota hai.",
+        "answer_en": "A2 milk is produced by indigenous Desi cows like Gir and Sahiwal. It contains A2 beta-casein protein which is easier to digest and healthier than A1 milk from foreign breeds.",
+        "keywords": ["a2", "milk", "doodh", "protein", "desi", "gir", "sahiwal", "digest"]
+    },
+    {
+        "id": "a2-vs-a1",
+        "category": "Milk & Ghee",
+        "question_hi": "A2 milk A1 milk se kaise alag hai?",
+        "question_en": "How is A2 milk different from A1 milk?",
+        "answer_hi": "A1 milk foreign breeds (Jersey, Holstein) se aata hai jisme BCM-7 release hota hai jo digestion problems aur health issues cause kar sakta hai. A2 milk Desi gayein se aata hai jo naturally zyada nutritious aur pach-ne mein aasaan hai.",
+        "answer_en": "A1 milk from foreign breeds (Jersey, Holstein) releases BCM-7 which can cause digestion issues. A2 milk from Desi cows is naturally more nutritious and easier to digest.",
+        "keywords": ["a1", "a2", "difference", "alag", "jersey", "holstein", "bcm7"]
+    },
+    {
+        "id": "gir-cow-benefits",
+        "category": "Milk & Ghee",
+        "question_hi": "Gir gaay ka doodh kyon special hai?",
+        "question_en": "Why is Gir cow milk special?",
+        "answer_hi": "Gir gaay ko 'Mother of all breeds' kaha jaata hai. Inka doodh Gold-hued aur immunity badhane wala hota hai. Ye naturally A2 protein aur higher fat content deti hain jo ghee banane ke liye ideal hai.",
+        "answer_en": "Gir cow is called the 'Mother of all breeds'. Their milk is gold-hued and immunity-boosting with natural A2 protein and higher fat content, ideal for making ghee.",
+        "keywords": ["gir", "cow", "gaay", "special", "breed", "immunity", "gold"]
+    },
+    {
+        "id": "bilona-process",
+        "category": "Milk & Ghee",
+        "question_hi": "Bilona Ghee kya hota hai aur kaise banta hai?",
+        "question_en": "What is Bilona Ghee and how is it made?",
+        "answer_hi": "Bilona ek paramparik Vedic method hai. Pehle doodh ko dahi banate hain, phir us dahi ko lakdi ki mathani se mathte hain (bilona), makkhan nikalte hain, aur phir dheemi aanch par ghee banate hain. Ye prakriya ghee ke saare nutrients preserve karti hai.",
+        "answer_en": "Bilona is a traditional Vedic method. First milk is curdled, then churned with a wooden churner (bilona) to extract butter, which is slow-cooked into ghee. This preserves all nutrients.",
+        "keywords": ["bilona", "ghee", "process", "traditional", "vedic", "making", "banata"]
+    },
+    {
+        "id": "ghee-benefits",
+        "category": "Milk & Ghee",
+        "question_hi": "Desi ghee khane ke kya fayde hain?",
+        "question_en": "What are the benefits of eating Desi ghee?",
+        "answer_hi": "Bilona ghee digestion improve karta hai, immunity badhata hai, joints ko lubricate karta hai, aur brain health ke liye beneficial hai. Ayurveda mein ise 'Rasayana' (rejuvenator) maana jaata hai.",
+        "answer_en": "Bilona ghee improves digestion, boosts immunity, lubricates joints, and benefits brain health. In Ayurveda, it's considered 'Rasayana' (rejuvenator).",
+        "keywords": ["ghee", "benefits", "fayde", "health", "digestion", "immunity", "ayurveda"]
+    },
+    {
+        "id": "cold-pressed-oils",
+        "category": "Oils & Atta",
+        "question_hi": "Cold-pressed oil kya hota hai?",
+        "question_en": "What is cold-pressed oil?",
+        "answer_hi": "Cold-pressed ya 'Kacchi Ghani' method mein tel ko bina garmi ke wooden presses se nikala jaata hai. Isse oils ke natural nutrients, flavor aur aroma preserve rehte hain. Humari mustard oil is paramparik method se banti hai.",
+        "answer_en": "Cold-pressed or 'Kacchi Ghani' method extracts oil using wooden presses without heat. This preserves natural nutrients, flavor, and aroma. Our mustard oil is made using this traditional method.",
+        "keywords": ["cold pressed", "kacchi ghani", "oil", "tel", "natural", "wood"]
+    },
+    {
+        "id": "stone-ground-atta",
+        "category": "Oils & Atta",
+        "question_hi": "Stone-ground atta market atte se kaise alag hai?",
+        "question_en": "How is stone-ground atta different from market atta?",
+        "answer_hi": "Stone-ground atta chakki mein dheere-dheere pisne se banta hai jisse wheat ka bran aur germ intact rehta hai. Market atta high-speed mills mein banta hai jo nutrients destroy kar deta hai. Humara atta zyada fiber aur poshak tatva rakhta hai.",
+        "answer_en": "Stone-ground atta is slowly milled preserving wheat bran and germ. Market atta uses high-speed mills that destroy nutrients. Our atta retains more fiber and nutrients.",
+        "keywords": ["atta", "flour", "stone ground", "chakki", "wheat", "fiber"]
+    },
+    {
+        "id": "honey-raw-pure",
+        "category": "Honey",
+        "question_hi": "Aapka shahad pure hai ya processed?",
+        "question_en": "Is your honey pure or processed?",
+        "answer_hi": "Humara shahad 100% raw aur unprocessed hai. Ise chhattey se seedhe bottle mein dala jaata hai bina heating ya filtering ke. Isliye isme natural enzymes aur pollen intact rehte hain.",
+        "answer_en": "Our honey is 100% raw and unprocessed. It goes directly from the hive to the bottle without heating or filtering, retaining natural enzymes and pollen.",
+        "keywords": ["honey", "shahad", "raw", "pure", "natural", "unprocessed"]
+    },
+    {
+        "id": "delivery-areas",
+        "category": "Ordering",
+        "question_hi": "Delivery kahan-kahan hoti hai?",
+        "question_en": "Where do you deliver?",
+        "answer_hi": "Fresh A2 Milk ki delivery abhi sirf Lucknow mein available hai. Lekin humara Bilona Ghee aur baaki non-perishable products pure India mein deliver kiye jaate hain.",
+        "answer_en": "Fresh A2 Milk delivery is currently limited to Lucknow. However, our Bilona Ghee and other non-perishable products are delivered across India.",
+        "keywords": ["delivery", "location", "area", "lucknow", "india", "shipping", "kahan"]
+    },
+    {
+        "id": "order-process",
+        "category": "Ordering",
+        "question_hi": "Order kaise karu?",
+        "question_en": "How do I place an order?",
+        "answer_hi": "Aap website par product select karke 'Add to Cart' karein aur checkout karein. Ya phir WhatsApp par direct message karein: +91 81306 93767. Hum COD aur Online payment dono accept karte hain.",
+        "answer_en": "Select products on our website, 'Add to Cart', and checkout. Or message us directly on WhatsApp: +91 81306 93767. We accept both COD and Online payment.",
+        "keywords": ["order", "kaise", "how", "buy", "khareed", "cart", "whatsapp"]
+    },
+    {
+        "id": "payment-methods",
+        "category": "Ordering",
+        "question_hi": "Payment ke kya options hain?",
+        "question_en": "What payment options are available?",
+        "answer_hi": "Hum Cash on Delivery (COD) aur Online Payment (UPI, Cards, Net Banking via CCAvenue) dono accept karte hain. Lucknow mein COD available hai.",
+        "answer_en": "We accept Cash on Delivery (COD) and Online Payment (UPI, Cards, Net Banking via CCAvenue). COD is available in Lucknow.",
+        "keywords": ["payment", "cod", "upi", "online", "cash", "card"]
+    },
+    {
+        "id": "farm-visit-booking",
+        "category": "Farm Visits",
+        "question_hi": "Kya hum farm visit kar sakte hain?",
+        "question_en": "Can we visit the farm?",
+        "answer_hi": "Bilkul! Hum transparency mein vishwas rakhte hain. Aap humare farm par aa kar sab dekh sakte hain. Visit ke liye pehle appointment lena zaroori hai.",
+        "answer_en": "Absolutely! We believe in transparency. You are welcome to visit and see everything. Prior appointment is required.",
+        "keywords": ["visit", "tour", "farm", "dekhna", "appointment", "booking"]
+    },
+    {
+        "id": "farm-visit-timings",
+        "category": "Farm Visits",
+        "question_hi": "Farm visit ka samay kya hai?",
+        "question_en": "What are farm visit timings?",
+        "answer_hi": "Farm visits subah 7 baje se shaam 5 baje tak available hain, sirf prior appointment par. Weekend visits ke liye advance booking recommend ki jaati hai.",
+        "answer_en": "Farm visits are available from 7 AM to 5 PM, by prior appointment only. Weekend visits require advance booking.",
+        "keywords": ["timing", "time", "samay", "hours", "weekend", "visit"]
+    },
+    {
+        "id": "quality-assurance",
+        "category": "Safety & Ethics",
+        "question_hi": "Doodh ki purity ki kya guarantee hai?",
+        "question_en": "What is the guarantee of milk purity?",
+        "answer_hi": "Humara doodh 'Farm-to-Fork' model par aata hai - seedhe humare farm se aapke ghar. Hum har batch ki lab testing karte hain aur antibiotics ya hormones ka use nahi karte.",
+        "answer_en": "Our milk follows a 'Farm-to-Fork' model. We conduct lab testing for every batch and do not use antibiotics or hormones.",
+        "keywords": ["purity", "guarantee", "test", "lab", "quality", "pure", "guarantee"]
+    },
+    {
+        "id": "animal-welfare",
+        "category": "Safety & Ethics",
+        "question_hi": "Gaayein kitni khush rehti hain?",
+        "question_en": "How well are the cows treated?",
+        "answer_hi": "Humari gaayein open grasslands mein freely graze karti hain, unhe organic feed milta hai, aur hum kabhi bhi calves ko mothers se alag nahi karte. We practice ethical dairy farming.",
+        "answer_en": "Our cows graze freely in open grasslands, receive organic feed, and we never separate calves from mothers. We practice ethical dairy farming.",
+        "keywords": ["cow", "gaay", "welfare", "ethical", "treatment", "happy"]
+    },
+    {
+        "id": "organic-certification",
+        "category": "Safety & Ethics",
+        "question_hi": "Kya aapke products certified organic hain?",
+        "question_en": "Are your products certified organic?",
+        "answer_hi": "Hum organic farming practices follow karte hain aur chemical-free production karte hain. Farm visit karke aap khud verify kar sakte hain. Formal certification process ongoing hai.",
+        "answer_en": "We follow organic farming practices with chemical-free production. You can verify by visiting our farm. Formal certification is ongoing.",
+        "keywords": ["organic", "certified", "chemical free", "natural"]
+    },
+    {
+        "id": "shelf-life-milk",
+        "category": "Products",
+        "question_hi": "A2 milk kitne din tak fresh rehta hai?",
+        "question_en": "How long does A2 milk stay fresh?",
+        "answer_hi": "Fresh A2 milk fridge mein 2-3 din tak fresh rehta hai. Hum recommend karte hain ki delivery ke din hi use karein best taste ke liye. Milk mein koi preservatives nahi hain.",
+        "answer_en": "Fresh A2 milk stays fresh for 2-3 days in the refrigerator. We recommend using it on delivery day for best taste. No preservatives are added.",
+        "keywords": ["shelf life", "fresh", "days", "fridge", "storage", "kitne din"]
+    },
+    {
+        "id": "shelf-life-ghee",
+        "category": "Products",
+        "question_hi": "Ghee kitne din tak chalega?",
+        "question_en": "What is the shelf life of ghee?",
+        "answer_hi": "Pure Bilona ghee properly stored (cool, dry place) mein 12 months tak fresh rehta hai. Natural ghee mein preservatives ki zaroorat nahi hoti.",
+        "answer_en": "Pure Bilona ghee stays fresh for 12 months when properly stored in a cool, dry place. Natural ghee doesn't need preservatives.",
+        "keywords": ["ghee", "shelf life", "expiry", "storage", "months", "kitne din"]
+    },
+    {
+        "id": "paneer-freshness",
+        "category": "Products",
+        "question_hi": "Paneer kab tak use kar sakte hain?",
+        "question_en": "How long can paneer be used?",
+        "answer_hi": "Humara fresh A2 paneer fridge mein 5-7 din tak fresh rehta hai. Best taste ke liye 3 din mein use karein. Freezer mein 1 month tak store kar sakte hain.",
+        "answer_en": "Our fresh A2 paneer stays fresh for 5-7 days in the refrigerator. Use within 3 days for best taste. Can be frozen for up to 1 month.",
+        "keywords": ["paneer", "fresh", "storage", "fridge", "freezer"]
+    },
+    {
+        "id": "milk-subscription",
+        "category": "Subscription",
+        "question_hi": "Milk subscription kaise kaam karta hai?",
+        "question_en": "How does milk subscription work?",
+        "answer_hi": "Daily milk subscription ke liye aap humare team se WhatsApp par baat karein. Wo aapko area aur schedule ke hisaab se details denge. Subscription benefits personally discuss hote hain.",
+        "answer_en": "For daily milk subscription, please contact our team on WhatsApp. They'll share details based on your area and schedule. Subscription benefits are discussed personally.",
+        "keywords": ["subscription", "daily", "monthly", "subscribe"]
+    }
+]
