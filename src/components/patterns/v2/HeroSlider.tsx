@@ -9,31 +9,34 @@ const slides = [
         id: 1,
         title: "Vedic Bilona Ghee",
         subtitle: "20,000+ Jars Dispatched",
-        description: "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
+        description:
+            "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
         image: "/assets/img/ghee-jar.png",
         cta: "Buy Now",
-        link: "/products/a2-cow-ghee-1kg"
+        link: "/products/a2-cow-ghee-1kg",
     },
     {
         id: 2,
-        title: "Pure A2 Milk & Desi Food Products",
-        subtitle: "From Our Own Farm — Trusted by Families for 12+ Years",
-        description: "Daily milk delivery, bilona ghee, cold-pressed oils & natural foods — made for children, families, and conscious living.",
+        title: "Pure A2 Milk & Kitchen Essential Agro Products",
+        subtitle: "12+ years of trusted farm-to-home dairy",
+        description:
+            "Farm-fresh A2 milk, bilona ghee, cold-pressed oils, grains, flours, rice & essential oils — crafted for children, families & conscious living.",
         image: "/assets/img/hero-luxe-bg.png",
-        cta: "Order for Your Family",
+        cta: "ORDER FOR YOUR FAMILY",
         link: "/products",
-        secondaryCta: "Know Our Farm & Process",
-        secondaryLink: "/the-farm"
+        secondaryCta: "KNOW OUR FARM & PROCESS",
+        secondaryLink: "/the-farm",
     },
     {
         id: 3,
         title: "Wild Forest Honey",
         subtitle: "Nectar of the Wild",
-        description: "Raw, Unfiltered, and Sourced from the deep forests by tribal communities. Pure healing in every drop.",
+        description:
+            "Raw, Unfiltered, and Sourced from the deep forests by tribal communities. Pure healing in every drop.",
         image: "/assets/img/honey-jar.png",
         cta: "Taste Purity",
-        link: "/products?category=honey"
-    }
+        link: "/products?category=honey",
+    },
 ];
 
 export function HeroSlider() {
@@ -57,8 +60,9 @@ export function HeroSlider() {
             {slides.map((slide, index) => (
                 <div
                     key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-                        }`}
+                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
+                        index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
+                    }`}
                 >
                     {/* Background */}
                     <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10" />
@@ -67,11 +71,13 @@ export function HeroSlider() {
                         className="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear scale-105"
                         style={{
                             backgroundImage: `url('${slide.image}')`,
-                            transform: index === currentSlide ? 'scale(1.1)' : 'scale(1.0)'
+                            transform: index === currentSlide ? "scale(1.1)" : "scale(1.0)",
                         }}
                     >
                         {/* Fallback gradient for slide 2 if it's just a product image */}
-                        {slide.id === 2 && <div className="absolute inset-0 bg-gradient-to-r from-terracotta/80 to-espresso/80 mix-blend-multiply" />}
+                        {slide.id === 2 && (
+                            <div className="absolute inset-0 bg-gradient-to-r from-terracotta/80 to-espresso/80 mix-blend-multiply" />
+                        )}
                     </div>
 
                     {/* Content */}
@@ -130,8 +136,11 @@ export function HeroSlider() {
                     <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide ? "bg-terracotta w-8" : "bg-white/50 hover:bg-white"
-                            }`}
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                            index === currentSlide
+                                ? "bg-terracotta w-8"
+                                : "bg-white/50 hover:bg-white"
+                        }`}
                     />
                 ))}
             </div>

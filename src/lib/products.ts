@@ -19,7 +19,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "ghee-cow-1kg",
-        title: "A2 Cow Ghee - 1 kg",
+        title: "Amrit Milk Organic A2 Cow Ghee - 1 kg",
         price: "₹2500",
         image: "/assets/img/products/amrit_ghee_premium.png",
         category: "Ghee",
@@ -31,7 +31,7 @@ export const products: Product[] = [
     },
     {
         id: "ghee-cow-500ml",
-        title: "A2 Cow Ghee - 500ml",
+        title: "Amrit Milk Organic A2 Cow Ghee - 500ml",
         price: "₹1350",
         image: "/assets/img/products/amrit_ghee_premium.png",
         category: "Ghee",
@@ -45,33 +45,33 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "oil-tulsi-10ml",
-        title: "Tulsi Oil - 10 ml",
+        title: "Amrit Organic Tulsi Oil - 10 ml",
         price: "₹300",
         image: "/assets/img/products/amrit_oil_tulsi_10ml.png",
-        category: "Oils",
-        description: "Sacred Tulsi essential oil.",
+        category: "Essential Oils",
+        description: "Sacred Tulsi essential oil. Cold-pressed & distilled.",
         slug: "tulsi-oil-10ml",
         sku: "AMRIT-OIL-006",
         featured: true,
     },
     {
         id: "oil-lemongrass-10ml",
-        title: "Lemongrass Oil - 10 ml",
+        title: "Amrit Organic Lemongrass Oil - 10 ml",
         price: "₹400",
         image: "/assets/img/products/amrit_oil_lemongrass_10ml.png",
-        category: "Oils",
-        description: "Refreshing Lemongrass essential oil.",
+        category: "Essential Oils",
+        description: "Refreshing Lemongrass essential oil. Cold-pressed & distilled.",
         slug: "lemongrass-oil-10ml",
         sku: "AMRIT-OIL-007",
         featured: true,
     },
     {
         id: "oil-menthol-10ml",
-        title: "Menthol Oil - 10 ml",
+        title: "Amrit Organic Mint Oil - 10 ml",
         price: "₹250",
         image: "/assets/img/products/amrit_oil_menthol_10ml.png",
-        category: "Oils",
-        description: "Cooling Menthol essential oil.",
+        category: "Essential Oils",
+        description: "Cooling Mint essential oil. Cold-pressed & distilled.",
         slug: "menthol-oil-10ml",
         sku: "AMRIT-OIL-008",
         featured: true,
@@ -109,10 +109,10 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "oil-yellow-mustard-1l",
-        title: "Yellow Mustard Oil - 1 L",
+        title: "Amrit Organic Yellow Mustard Oil - 1 L",
         price: "₹380",
         image: "/assets/img/products/premium_mustard_oil.png",
-        category: "Oils",
+        category: "Cold-Pressed Oils",
         description: "Cold-pressed Yellow Mustard oil (Kacchi Ghani).",
         slug: "yellow-mustard-oil-1l",
         sku: "AMRIT-OIL-001",
@@ -120,10 +120,10 @@ export const products: Product[] = [
     },
     {
         id: "oil-black-mustard-1l",
-        title: "Black Mustard Oil - 1 L",
+        title: "Amrit Organic Black Mustard Oil - 1 L",
         price: "₹350",
         image: "/assets/img/products/premium_mustard_oil.png",
-        category: "Oils",
+        category: "Cold-Pressed Oils",
         description: "Cold-pressed Black Mustard oil, pungent and pure.",
         slug: "black-mustard-oil-1l",
         sku: "AMRIT-OIL-002",
@@ -131,10 +131,10 @@ export const products: Product[] = [
     },
     {
         id: "oil-groundnut-1l",
-        title: "Groundnut Oil - 1 L",
+        title: "Amrit Organic Groundnut Oil - 1 L",
         price: "₹600",
         image: "/assets/img/products/amrit_oil_groundnut_1l.png",
-        category: "Oils",
+        category: "Cold-Pressed Oils",
         description: "Cold-pressed Groundnut oil, rich in flavor.",
         slug: "groundnut-oil-1l-premium",
         sku: "AMRIT-OIL-003",
@@ -142,10 +142,10 @@ export const products: Product[] = [
     },
     {
         id: "oil-coconut-1l",
-        title: "Coconut Oil - 1 L",
+        title: "Amrit Organic Coconut Oil - 1 L",
         price: "₹1000",
         image: "/assets/img/products/premium_coconut_oil.png",
-        category: "Oils",
+        category: "Cold-Pressed Oils",
         description: "Pure cold-pressed Coconut oil for cooking and care.",
         slug: "coconut-oil-1l-premium",
         sku: "AMRIT-OIL-004",
@@ -153,10 +153,10 @@ export const products: Product[] = [
     },
     {
         id: "oil-sesame-1l",
-        title: "Sesame (Til) Oil - 1 L",
+        title: "Amrit Organic Sesame (Til) Oil - 1 L",
         price: "₹800",
         image: "/assets/img/products/amrit_oil_sesame_1l.png",
-        category: "Oils",
+        category: "Cold-Pressed Oils",
         description: "Cold-pressed Sesame (Til) oil.",
         slug: "sesame-til-oil-1l",
         sku: "AMRIT-OIL-005",
@@ -182,7 +182,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "milk-gir-1l",
-        title: "A2 Gir cow milk - 1 L",
+        title: "Amrit Milk Organic A2 Gir Cow Milk - 1 L",
         price: "₹125",
         regularPrice: "₹140",
         image: "/assets/img/products/amrit_milk_gir_1l_v2.png",
@@ -195,7 +195,7 @@ export const products: Product[] = [
     },
     {
         id: "milk-sahiwal-1l",
-        title: "A2 Sahiwal cow milk - 1 L",
+        title: "Amrit Milk Organic A2 Sahiwal Cow Milk - 1 L",
         price: "₹95",
         image: "/assets/img/products/amrit_milk_sahiwal_1l_v2.png",
         category: "Dairy",
@@ -206,7 +206,7 @@ export const products: Product[] = [
     },
     {
         id: "milk-buffalo-1l",
-        title: "A2 Buffalo Milk - 1 L",
+        title: "Amrit Milk Organic A2 Buffalo Milk - 1 L",
         price: "₹110",
         image: "/assets/img/products/amrit_milk_buffalo_1l_v2.png",
         category: "Dairy",
@@ -217,7 +217,7 @@ export const products: Product[] = [
     },
     {
         id: "milk-colostrum-1l",
-        title: "A2 Colostrum Milk - 1 L",
+        title: "Amrit Milk Organic A2 Colostrum Milk - 1 L",
         price: "₹150",
         image: "/assets/img/products/amrit_milk_colostrum_1l_v2.png",
         category: "Dairy",
@@ -227,7 +227,7 @@ export const products: Product[] = [
     },
     {
         id: "paneer-1kg",
-        title: "Paneer - 1 kg",
+        title: "Amrit Milk Organic Paneer - 1 kg",
         price: "₹500",
         image: "/assets/img/products/a2desicowmilkpaneer.png",
         category: "Dairy",
@@ -237,7 +237,7 @@ export const products: Product[] = [
     },
     {
         id: "curd-1kg",
-        title: "Curd - 1 kg",
+        title: "Amrit Milk Organic Curd - 1 kg",
         price: "₹200",
         image: "/assets/img/products/amrit_curd_premium.png",
         category: "Dairy",
@@ -248,7 +248,7 @@ export const products: Product[] = [
     },
     {
         id: "khoya-1kg",
-        title: "Khoya - 1 kg",
+        title: "Amrit Milk Organic Khoya - 1 kg",
         price: "₹600",
         image: "/assets/img/products/amrit_khoya_1kg.png",
         category: "Dairy",
@@ -262,7 +262,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "atta-wheat-1kg",
-        title: "Whole Wheat Atta - 1 kg",
+        title: "Amrit Organic Whole Wheat Atta - 1 kg",
         price: "₹60",
         image: "/assets/img/products/amrit_atta_wheat_1kg.png",
         category: "Atta",
@@ -273,7 +273,7 @@ export const products: Product[] = [
     },
     {
         id: "atta-multigrain-1kg",
-        title: "Multi grain - 1 kg",
+        title: "Amrit Organic Multigrain Atta - 1 kg",
         price: "₹120",
         image: "/assets/img/products/amrit_atta_multigrain_1kg.png",
         category: "Atta",
@@ -283,7 +283,7 @@ export const products: Product[] = [
     },
     {
         id: "atta-corn-1kg",
-        title: "Corn Flour - 1 kg",
+        title: "Amrit Organic Corn Flour - 1 kg",
         price: "₹120",
         image: "/assets/img/products/amrit_atta_corn_1kg.png",
         category: "Atta",
@@ -293,7 +293,7 @@ export const products: Product[] = [
     },
     {
         id: "atta-bajra-1kg",
-        title: "Bajra - 1 kg",
+        title: "Amrit Organic Bajra Flour - 1 kg",
         price: "₹120",
         image: "/assets/img/products/amrit_atta_bajra_1kg.png",
         category: "Atta",
@@ -303,7 +303,7 @@ export const products: Product[] = [
     },
     {
         id: "atta-besan-1kg",
-        title: "Besan, Sattu - 1 kg",
+        title: "Amrit Organic Besan & Sattu - 1 kg",
         price: "₹200",
         image: "/assets/img/products/amrit_atta_besan_1kg.png",
         category: "Atta",
@@ -313,7 +313,7 @@ export const products: Product[] = [
     },
     {
         id: "grains-millet-1kg",
-        title: "Millet Grains - 1 kg",
+        title: "Amrit Organic Millet Grains - 1 kg",
         price: "₹250",
         image: "/assets/img/products/amrit_grains_millet_1kg.png",
         category: "Atta",
@@ -327,7 +327,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "rice-kala-jeera-1kg",
-        title: "Kala Jeera Rice - 1 kg",
+        title: "Amrit Organic Kala Jeera Rice - 1 kg",
         price: "₹100",
         image: "/assets/img/products/amrit_rice_kala_jeera_1kg.png",
         category: "Rice",
@@ -337,7 +337,7 @@ export const products: Product[] = [
     },
     {
         id: "rice-low-sugar-1kg",
-        title: "Kala Jeera Low-Sugar - 1 kg",
+        title: "Amrit Organic Kala Jeera Low-Sugar Rice - 1 kg",
         price: "₹120",
         image: "/assets/img/products/amrit_rice_kala_jeera_1kg.png",
         category: "Rice",
@@ -347,7 +347,7 @@ export const products: Product[] = [
     },
     {
         id: "rice-basmati-1kg",
-        title: "Premium Basmati - 1 kg",
+        title: "Amrit Organic Premium Basmati Rice - 1 kg",
         price: "₹185",
         image: "/assets/img/products/amrit_rice_basmati_1kg.png",
         category: "Rice",
@@ -357,7 +357,7 @@ export const products: Product[] = [
     },
     {
         id: "rice-kala-namak-1kg",
-        title: "Kala Namak Rice - 1 kg",
+        title: "Amrit Organic Kala Namak Rice - 1 kg",
         price: "₹350",
         image: "/assets/img/products/amrit_rice_kala_namak_1kg.png",
         category: "Rice",
@@ -491,10 +491,12 @@ export const products: Product[] = [
 
 export const categories = [
     { id: "all", label: "All Products", icon: "LayoutGrid" },
-    { id: "vedic-essentials", label: "Vedic Essentials", icon: "Utensils" }, // Combined Ghee, Oils, Honey
-    { id: "oils", label: "Wood Pressed Oils", icon: "Droplet" },
+    { id: "vedic-essentials", label: "Ghee & Vedic Essentials", icon: "Utensils" }, // Ghee + Honey
+    { id: "cold-pressed-oils", label: "Cold-Pressed Oils", icon: "Droplet" },
+    { id: "essential-oils", label: "Essential Oils", icon: "Sparkles" },
     { id: "honey", label: "Raw Honey", icon: "Hexagon" },
     { id: "dairy", label: "A2 Dairy", icon: "Milk" },
-    { id: "atta", label: "Stone Ground Atta", icon: "Wheat" },
+    { id: "atta", label: "Wheats & Flours", icon: "Wheat" },
+    { id: "rice", label: "Rice & Grains", icon: "Leaf" },
     { id: "wellness", label: "Wellness", icon: "Package" },
 ] as const;

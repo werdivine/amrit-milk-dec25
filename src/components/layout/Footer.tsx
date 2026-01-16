@@ -304,7 +304,7 @@ export function Footer() {
                 {/* Bottom Bar */}
                 <div className="flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-ivory/50 uppercase tracking-wider">
                     <p className="flex items-center gap-1.5">
-                        &copy; 2025 Amrit Milk. Crafted with{" "}
+                        &copy; 2025 Pay Amrit Organic FPO. Crafted with{" "}
                         <Heart className="w-3 h-3 text-gold fill-current" /> in India
                     </p>
                     <div className="flex gap-6">

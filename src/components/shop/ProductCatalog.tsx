@@ -17,14 +17,18 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
         { id: "all", name: "All Products", count: initialProducts.length },
         {
             id: "vedic-essentials",
-            name: "Vedic Essentials",
-            count: initialProducts.filter((p) => ["Ghee", "Oils", "Honey"].includes(p.category))
-                .length,
+            name: "Ghee & Vedic Essentials",
+            count: initialProducts.filter((p) => ["Ghee", "Honey"].includes(p.category)).length,
         },
         {
-            id: "Oils",
-            name: "Wood Pressed Oils",
-            count: initialProducts.filter((p) => p.category === "Oils").length,
+            id: "Cold-Pressed Oils",
+            name: "Cold-Pressed Oils",
+            count: initialProducts.filter((p) => p.category === "Cold-Pressed Oils").length,
+        },
+        {
+            id: "Essential Oils",
+            name: "Essential Oils",
+            count: initialProducts.filter((p) => p.category === "Essential Oils").length,
         },
         {
             id: "Honey",
@@ -38,12 +42,12 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
         },
         {
             id: "Atta",
-            name: "Stone Ground Atta",
+            name: "Wheats & Flours",
             count: initialProducts.filter((p) => p.category === "Atta").length,
         },
         {
             id: "Rice",
-            name: "Heritage Rice",
+            name: "Rice & Grains",
             count: initialProducts.filter((p) => p.category === "Rice").length,
         },
         {
@@ -83,7 +87,7 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
         activeCategory === "all"
             ? initialProducts
             : activeCategory === "vedic-essentials"
-              ? initialProducts.filter((p) => ["Ghee", "Oils", "Honey"].includes(p.category))
+              ? initialProducts.filter((p) => ["Ghee", "Honey"].includes(p.category))
               : initialProducts.filter((p) => p.category === activeCategory);
 
     return (
