@@ -82,7 +82,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "honey-multiflora-1kg",
-        title: "Multiflora Honey - 1 kg",
+        title: "Amrit Organic Multiflora Honey - 1 kg",
         price: "₹1200",
         image: "/assets/img/products/premium_multiflora_honey.png",
         category: "Honey",
@@ -94,7 +94,7 @@ export const products: Product[] = [
     },
     {
         id: "honey-jamun-1kg",
-        title: "Jamun Honey - 1 kg",
+        title: "Amrit Organic Jamun Honey - 1 kg",
         price: "₹1200",
         image: "/assets/img/products/premium_jamun_honey.png",
         category: "Honey",
@@ -168,7 +168,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "turmeric-1kg",
-        title: "Organic Turmeric - 1 kg",
+        title: "Amrit Organic Turmeric - 1 kg",
         price: "₹900",
         image: "/assets/img/products/premium_turmeric_powder.png",
         category: "Other",
@@ -371,7 +371,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "sweets-rasgulla",
-        title: "Rasgulla - 1 Jar",
+        title: "Amrit Organic Rasgulla - 1 Jar",
         price: "₹450",
         image: "/assets/img/products/premium_rasgulla.png",
         category: "Sweets",
@@ -381,7 +381,7 @@ export const products: Product[] = [
     },
     {
         id: "jaggery-bites-500g",
-        title: "Jaggery Bites (Desi Chocolate Style) - 500g",
+        title: "Amrit Organic Jaggery Bites (Desi Chocolate Style) - 500g",
         price: "₹110",
         image: "/assets/img/products/premium_jaggery_bites.png",
         category: "Sweets",
@@ -391,7 +391,7 @@ export const products: Product[] = [
     },
     {
         id: "jaggery-1kg",
-        title: "Jaggery - 1 kg",
+        title: "Amrit Organic Jaggery - 1 kg",
         price: "₹150",
         image: "/assets/img/products/premium_jaggery_bites.png",
         category: "Sweets",
@@ -405,7 +405,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "lip-balm",
-        title: "Lip Balm (Moisturizer)",
+        title: "Amrit Organic Lip Balm (Moisturizer)",
         price: "₹300",
         image: "/assets/img/products/amrit_lip_balm.png",
         category: "Wellness",
@@ -415,7 +415,7 @@ export const products: Product[] = [
     },
     {
         id: "bees-wax",
-        title: "Bees Wax (Moisturizer)",
+        title: "Amrit Organic Bees Wax (Moisturizer)",
         price: "₹500",
         image: "/assets/img/products/amrit_bees_wax.png",
         category: "Wellness",
@@ -425,7 +425,7 @@ export const products: Product[] = [
     },
     {
         id: "bull-balm-rollon",
-        title: "Bull Balm Roll-On (10ml)",
+        title: "Amrit Organic Bull Balm Roll-On (10ml)",
         price: "₹225",
         image: "/assets/img/products/premium_bull_balm.png",
         category: "Wellness",
@@ -435,7 +435,7 @@ export const products: Product[] = [
     },
     {
         id: "bull-balm-spray",
-        title: "Bull Balm Spray (10ml)",
+        title: "Amrit Organic Bull Balm Spray (10ml)",
         price: "₹250",
         image: "/assets/img/products/premium_bull_balm.png",
         category: "Wellness",
@@ -445,7 +445,7 @@ export const products: Product[] = [
     },
     {
         id: "bull-balm-dropper",
-        title: "Bull Balm Dropper (10ml)",
+        title: "Amrit Organic Bull Balm Dropper (10ml)",
         price: "₹290",
         image: "/assets/img/products/premium_bull_balm.png",
         category: "Wellness",
@@ -459,7 +459,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "cow-manure-1kg",
-        title: "Cow Manure - 1 kg",
+        title: "Amrit Organic Cow Manure - 1 kg",
         price: "₹30",
         image: "/assets/img/products/premium_cow_based_products.png",
         category: "Gau Seva",
@@ -469,7 +469,7 @@ export const products: Product[] = [
     },
     {
         id: "cow-dung-cakes-2pcs",
-        title: "Upla (Cow Dung Cakes) - 2 pcs",
+        title: "Amrit Organic Upla (Cow Dung Cakes) - 2 pcs",
         price: "₹100",
         image: "/assets/img/products/premium_cow_based_products.png",
         category: "Gau Seva",
@@ -479,7 +479,7 @@ export const products: Product[] = [
     },
     {
         id: "gaumutra-1l",
-        title: "Gaumutra - 1 L",
+        title: "Amrit Organic Gaumutra - 1 L",
         price: "₹100",
         image: "/assets/img/products/premium_cow_based_products.png",
         category: "Gau Seva",

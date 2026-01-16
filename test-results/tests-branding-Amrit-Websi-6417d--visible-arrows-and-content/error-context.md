@@ -1,0 +1,1521 @@
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+      - banner [ref=e2]:
+            - generic [ref=e4]:
+                  - link "Amrit Milk - Affordable milk rich in taste Purity Assured." [ref=e5] [cursor=pointer]:
+                        - /url: /
+                        - img "Amrit Milk - Affordable milk rich in taste" [ref=e6]
+                        - generic [ref=e7]: Purity Assured.
+                  - navigation [ref=e8]:
+                        - link "Home" [ref=e10] [cursor=pointer]:
+                              - /url: /
+                        - link "Shop" [ref=e12] [cursor=pointer]:
+                              - /url: /products
+                              - text: Shop
+                              - img [ref=e13]
+                        - link "About" [ref=e16] [cursor=pointer]:
+                              - /url: /about
+                              - text: About
+                              - img [ref=e17]
+                        - link "Tools" [ref=e20] [cursor=pointer]:
+                              - /url: /tools
+                              - text: Tools
+                              - img [ref=e21]
+                        - link "FAQs" [ref=e24] [cursor=pointer]:
+                              - /url: /faqs
+                        - link "Subscribe" [ref=e26] [cursor=pointer]:
+                              - /url: /subscription-hub
+                        - link "Contact" [ref=e28] [cursor=pointer]:
+                              - /url: /contact
+                  - generic [ref=e29]:
+                        - button "Switch to dark mode" [ref=e30] [cursor=pointer]:
+                              - img [ref=e33]
+                        - button [ref=e35] [cursor=pointer]:
+                              - img [ref=e36]
+                        - link [ref=e39] [cursor=pointer]:
+                              - /url: /account
+                              - img [ref=e40]
+                        - link [ref=e44] [cursor=pointer]:
+                              - /url: /cart
+                              - img [ref=e48]
+      - main [ref=e51]:
+            - main [ref=e52]:
+                  - generic [ref=e53]:
+                        - generic [ref=e58]:
+                              - generic [ref=e59]: 20,000+ Jars Dispatched
+                              - heading "Vedic Bilona Ghee" [level=1] [ref=e60]
+                              - paragraph [ref=e61]: Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.
+                              - button "Buy Now" [ref=e63] [cursor=pointer]:
+                                    - link "Buy Now" [ref=e64]:
+                                          - /url: /products/a2-cow-ghee-1kg
+                                          - text: Buy Now
+                                          - img [ref=e65]
+                        - button "Previous slide" [ref=e67] [cursor=pointer]:
+                              - img [ref=e68]
+                        - button "Next slide" [ref=e70] [cursor=pointer]:
+                              - img [ref=e71]
+                        - generic [ref=e73]:
+                              - button "Go to slide 1" [ref=e74] [cursor=pointer]
+                              - button "Go to slide 2" [ref=e75] [cursor=pointer]
+                              - button "Go to slide 3" [ref=e76] [cursor=pointer]
+                  - generic [ref=e79]:
+                        - link "All Products" [ref=e80] [cursor=pointer]:
+                              - /url: /products
+                              - img [ref=e82]
+                              - generic [ref=e87]: All Products
+                        - link "Ghee & Vedic Essentials" [ref=e88] [cursor=pointer]:
+                              - /url: /products?category=vedic-essentials
+                              - img [ref=e90]
+                              - generic [ref=e93]: Ghee & Vedic Essentials
+                        - link "Cold-Pressed Oils" [ref=e94] [cursor=pointer]:
+                              - /url: /products?category=cold-pressed-oils
+                              - img [ref=e96]
+                              - generic [ref=e98]: Cold-Pressed Oils
+                        - link "Essential Oils" [ref=e99] [cursor=pointer]:
+                              - /url: /products?category=essential-oils
+                              - generic [ref=e101]: Essential Oils
+                        - link "Raw Honey" [ref=e102] [cursor=pointer]:
+                              - /url: /products?category=honey
+                              - img [ref=e104]
+                              - generic [ref=e106]: Raw Honey
+                        - link "A2 Dairy" [ref=e107] [cursor=pointer]:
+                              - /url: /products?category=dairy
+                              - img [ref=e109]
+                              - generic [ref=e112]: A2 Dairy
+                        - link "Wheats & Flours" [ref=e113] [cursor=pointer]:
+                              - /url: /products?category=atta
+                              - img [ref=e115]
+                              - generic [ref=e124]: Wheats & Flours
+                        - link "Rice & Grains" [ref=e125] [cursor=pointer]:
+                              - /url: /products?category=rice
+                              - generic [ref=e127]: Rice & Grains
+                        - link "Wellness" [ref=e128] [cursor=pointer]:
+                              - /url: /products?category=wellness
+                              - img [ref=e130]
+                              - generic [ref=e134]: Wellness
+                  - generic [ref=e137]:
+                        - generic [ref=e138]:
+                              - generic [ref=e139]:
+                                    - generic [ref=e140]: Ghee • Oils • Honey
+                                    - heading "Vedic Kitchen Treasures" [level=2] [ref=e141]
+                                    - paragraph [ref=e142]: Pure Bilona Ghee, Cold-Pressed Oils, and Raw Honey. The foundation of a healthy kitchen.
+                              - link "View All" [ref=e144] [cursor=pointer]:
+                                    - /url: /products
+                                    - text: View All
+                                    - img [ref=e145]
+                        - generic [ref=e147]:
+                              - generic [ref=e148]:
+                                    - generic [ref=e149]: Pure Vedic
+                                    - link "Amrit Milk Organic A2 Cow Ghee - 1 kg" [ref=e150] [cursor=pointer]:
+                                          - /url: /products/a2-cow-ghee-1kg
+                                          - img "Amrit Milk Organic A2 Cow Ghee - 1 kg" [ref=e154]
+                                    - generic [ref=e155]:
+                                          - generic [ref=e156]: Ghee
+                                          - generic [ref=e157]:
+                                                - link "Amrit Milk Organic A2 Cow Ghee - 1 kg ₹2500" [ref=e158] [cursor=pointer]:
+                                                      - /url: /products/a2-cow-ghee-1kg
+                                                      - heading "Amrit Milk Organic A2 Cow Ghee - 1 kg" [level=3] [ref=e159]
+                                                      - paragraph [ref=e161]: ₹2500
+                                                - button "Add to cart" [ref=e162] [cursor=pointer]:
+                                                      - img [ref=e163]
+                                          - paragraph [ref=e166]: Traditional Bilona method A2 Cow Ghee. Pure gold for health.
+                                          - link "View Details" [ref=e168] [cursor=pointer]:
+                                                - /url: /products/a2-cow-ghee-1kg
+                                                - img [ref=e169]
+                                                - text: View Details
+                              - generic [ref=e171]:
+                                    - link "Amrit Milk Organic A2 Cow Ghee - 500ml" [ref=e172] [cursor=pointer]:
+                                          - /url: /products/a2-cow-ghee-500ml
+                                          - img "Amrit Milk Organic A2 Cow Ghee - 500ml" [ref=e176]
+                                    - generic [ref=e177]:
+                                          - generic [ref=e178]: Ghee
+                                          - generic [ref=e179]:
+                                                - link "Amrit Milk Organic A2 Cow Ghee - 500ml ₹1350" [ref=e180] [cursor=pointer]:
+                                                      - /url: /products/a2-cow-ghee-500ml
+                                                      - heading "Amrit Milk Organic A2 Cow Ghee - 500ml" [level=3] [ref=e181]
+                                                      - paragraph [ref=e183]: ₹1350
+                                                - button "Add to cart" [ref=e184] [cursor=pointer]:
+                                                      - img [ref=e185]
+                                          - paragraph [ref=e188]: Traditional Bilona method A2 Cow Ghee. Pure gold for health.
+                                          - link "View Details" [ref=e190] [cursor=pointer]:
+                                                - /url: /products/a2-cow-ghee-500ml
+                                                - img [ref=e191]
+                                                - text: View Details
+                              - generic [ref=e193]:
+                                    - generic [ref=e194]: Raw & Pure
+                                    - link "Amrit Organic Multiflora Honey - 1 kg" [ref=e195] [cursor=pointer]:
+                                          - /url: /products/multiflora-honey-1kg
+                                          - img "Amrit Organic Multiflora Honey - 1 kg" [ref=e199]
+                                    - generic [ref=e200]:
+                                          - generic [ref=e201]: Honey
+                                          - generic [ref=e202]:
+                                                - link "Amrit Organic Multiflora Honey - 1 kg ₹1200" [ref=e203] [cursor=pointer]:
+                                                      - /url: /products/multiflora-honey-1kg
+                                                      - heading "Amrit Organic Multiflora Honey - 1 kg" [level=3] [ref=e204]
+                                                      - paragraph [ref=e206]: ₹1200
+                                                - button "Add to cart" [ref=e207] [cursor=pointer]:
+                                                      - img [ref=e208]
+                                          - paragraph [ref=e211]: Pure Multiflora honey collected from diverse forest flowers.
+                                          - link "View Details" [ref=e213] [cursor=pointer]:
+                                                - /url: /products/multiflora-honey-1kg
+                                                - img [ref=e214]
+                                                - text: View Details
+                              - generic [ref=e216]:
+                                    - generic [ref=e217]:
+                                          - img [ref=e218]
+                                          - text: Premium
+                                    - link "Amrit Organic Jamun Honey - 1 kg" [ref=e220] [cursor=pointer]:
+                                          - /url: /products/jamun-honey-1kg
+                                          - img "Amrit Organic Jamun Honey - 1 kg" [ref=e224]
+                                    - generic [ref=e225]:
+                                          - generic [ref=e226]: Honey
+                                          - generic [ref=e227]:
+                                                - link "Amrit Organic Jamun Honey - 1 kg ₹1200" [ref=e228] [cursor=pointer]:
+                                                      - /url: /products/jamun-honey-1kg
+                                                      - heading "Amrit Organic Jamun Honey - 1 kg" [level=3] [ref=e229]
+                                                      - paragraph [ref=e231]: ₹1200
+                                                - button "Add to cart" [ref=e232] [cursor=pointer]:
+                                                      - img [ref=e233]
+                                          - paragraph [ref=e236]: Medicinal honey from Jamun flower nectar. Good for diabetics.
+                                          - link "View Details" [ref=e238] [cursor=pointer]:
+                                                - /url: /products/jamun-honey-1kg
+                                                - img [ref=e239]
+                                                - text: View Details
+                  - generic [ref=e243]:
+                        - generic [ref=e244]:
+                              - generic [ref=e245]:
+                                    - generic [ref=e246]: Best Sellers
+                                    - heading "Customer Favorites" [level=2] [ref=e247]
+                                    - paragraph [ref=e248]: The most loved products from our collection. Trusted by thousands of families.
+                              - link "View All" [ref=e250] [cursor=pointer]:
+                                    - /url: /products
+                                    - text: View All
+                                    - img [ref=e251]
+                        - generic [ref=e253]:
+                              - generic [ref=e254]:
+                                    - generic [ref=e255]:
+                                          - img [ref=e256]
+                                          - text: Premium
+                                    - link "Amrit Organic Yellow Mustard Oil - 1 L" [ref=e258] [cursor=pointer]:
+                                          - /url: /products/yellow-mustard-oil-1l
+                                          - img "Amrit Organic Yellow Mustard Oil - 1 L" [ref=e262]
+                                    - generic [ref=e263]:
+                                          - generic [ref=e264]: Cold-Pressed Oils
+                                          - generic [ref=e265]:
+                                                - link "Amrit Organic Yellow Mustard Oil - 1 L ₹380" [ref=e266] [cursor=pointer]:
+                                                      - /url: /products/yellow-mustard-oil-1l
+                                                      - heading "Amrit Organic Yellow Mustard Oil - 1 L" [level=3] [ref=e267]
+                                                      - paragraph [ref=e269]: ₹380
+                                                - button "Add to cart" [ref=e270] [cursor=pointer]:
+                                                      - img [ref=e271]
+                                          - paragraph [ref=e274]: Cold-pressed Yellow Mustard oil (Kacchi Ghani).
+                                          - link "View Details" [ref=e276] [cursor=pointer]:
+                                                - /url: /products/yellow-mustard-oil-1l
+                                                - img [ref=e277]
+                                                - text: View Details
+                              - generic [ref=e279]:
+                                    - generic [ref=e280]:
+                                          - img [ref=e281]
+                                          - text: Premium
+                                    - link "Amrit Organic Mint Oil - 10 ml" [ref=e283] [cursor=pointer]:
+                                          - /url: /products/menthol-oil-10ml
+                                          - img "Amrit Organic Mint Oil - 10 ml" [ref=e287]
+                                    - generic [ref=e288]:
+                                          - generic [ref=e289]: Essential Oils
+                                          - generic [ref=e290]:
+                                                - link "Amrit Organic Mint Oil - 10 ml ₹250" [ref=e291] [cursor=pointer]:
+                                                      - /url: /products/menthol-oil-10ml
+                                                      - heading "Amrit Organic Mint Oil - 10 ml" [level=3] [ref=e292]
+                                                      - paragraph [ref=e294]: ₹250
+                                                - button "Add to cart" [ref=e295] [cursor=pointer]:
+                                                      - img [ref=e296]
+                                          - paragraph [ref=e299]: Cooling Mint essential oil. Cold-pressed & distilled.
+                                          - link "View Details" [ref=e301] [cursor=pointer]:
+                                                - /url: /products/menthol-oil-10ml
+                                                - img [ref=e302]
+                                                - text: View Details
+                              - generic [ref=e304]:
+                                    - generic [ref=e305]: Pure Vedic
+                                    - link "Amrit Milk Organic A2 Cow Ghee - 1 kg" [ref=e306] [cursor=pointer]:
+                                          - /url: /products/a2-cow-ghee-1kg
+                                          - img "Amrit Milk Organic A2 Cow Ghee - 1 kg" [ref=e310]
+                                    - generic [ref=e311]:
+                                          - generic [ref=e312]: Ghee
+                                          - generic [ref=e313]:
+                                                - link "Amrit Milk Organic A2 Cow Ghee - 1 kg ₹2500" [ref=e314] [cursor=pointer]:
+                                                      - /url: /products/a2-cow-ghee-1kg
+                                                      - heading "Amrit Milk Organic A2 Cow Ghee - 1 kg" [level=3] [ref=e315]
+                                                      - paragraph [ref=e317]: ₹2500
+                                                - button "Add to cart" [ref=e318] [cursor=pointer]:
+                                                      - img [ref=e319]
+                                          - paragraph [ref=e322]: Traditional Bilona method A2 Cow Ghee. Pure gold for health.
+                                          - link "View Details" [ref=e324] [cursor=pointer]:
+                                                - /url: /products/a2-cow-ghee-1kg
+                                                - img [ref=e325]
+                                                - text: View Details
+                              - generic [ref=e327]:
+                                    - generic [ref=e328]: Raw & Pure
+                                    - link "Amrit Organic Multiflora Honey - 1 kg" [ref=e329] [cursor=pointer]:
+                                          - /url: /products/multiflora-honey-1kg
+                                          - img "Amrit Organic Multiflora Honey - 1 kg" [ref=e333]
+                                    - generic [ref=e334]:
+                                          - generic [ref=e335]: Honey
+                                          - generic [ref=e336]:
+                                                - link "Amrit Organic Multiflora Honey - 1 kg ₹1200" [ref=e337] [cursor=pointer]:
+                                                      - /url: /products/multiflora-honey-1kg
+                                                      - heading "Amrit Organic Multiflora Honey - 1 kg" [level=3] [ref=e338]
+                                                      - paragraph [ref=e340]: ₹1200
+                                                - button "Add to cart" [ref=e341] [cursor=pointer]:
+                                                      - img [ref=e342]
+                                          - paragraph [ref=e345]: Pure Multiflora honey collected from diverse forest flowers.
+                                          - link "View Details" [ref=e347] [cursor=pointer]:
+                                                - /url: /products/multiflora-honey-1kg
+                                                - img [ref=e348]
+                                                - text: View Details
+                              - generic [ref=e350]:
+                                    - generic [ref=e351]:
+                                          - img [ref=e352]
+                                          - text: Premium
+                                    - link "Amrit Organic Jamun Honey - 1 kg" [ref=e354] [cursor=pointer]:
+                                          - /url: /products/jamun-honey-1kg
+                                          - img "Amrit Organic Jamun Honey - 1 kg" [ref=e358]
+                                    - generic [ref=e359]:
+                                          - generic [ref=e360]: Honey
+                                          - generic [ref=e361]:
+                                                - link "Amrit Organic Jamun Honey - 1 kg ₹1200" [ref=e362] [cursor=pointer]:
+                                                      - /url: /products/jamun-honey-1kg
+                                                      - heading "Amrit Organic Jamun Honey - 1 kg" [level=3] [ref=e363]
+                                                      - paragraph [ref=e365]: ₹1200
+                                                - button "Add to cart" [ref=e366] [cursor=pointer]:
+                                                      - img [ref=e367]
+                                          - paragraph [ref=e370]: Medicinal honey from Jamun flower nectar. Good for diabetics.
+                                          - link "View Details" [ref=e372] [cursor=pointer]:
+                                                - /url: /products/jamun-honey-1kg
+                                                - img [ref=e373]
+                                                - text: View Details
+                              - generic [ref=e375]:
+                                    - generic [ref=e376]:
+                                          - img [ref=e377]
+                                          - text: Premium
+                                    - link "Amrit Organic Coconut Oil - 1 L" [ref=e379] [cursor=pointer]:
+                                          - /url: /products/coconut-oil-1l-premium
+                                          - img "Amrit Organic Coconut Oil - 1 L" [ref=e383]
+                                    - generic [ref=e384]:
+                                          - generic [ref=e385]: Cold-Pressed Oils
+                                          - generic [ref=e386]:
+                                                - link "Amrit Organic Coconut Oil - 1 L ₹1000" [ref=e387] [cursor=pointer]:
+                                                      - /url: /products/coconut-oil-1l-premium
+                                                      - heading "Amrit Organic Coconut Oil - 1 L" [level=3] [ref=e388]
+                                                      - paragraph [ref=e390]: ₹1000
+                                                - button "Add to cart" [ref=e391] [cursor=pointer]:
+                                                      - img [ref=e392]
+                                          - paragraph [ref=e395]: Pure cold-pressed Coconut oil for cooking and care.
+                                          - link "View Details" [ref=e397] [cursor=pointer]:
+                                                - /url: /products/coconut-oil-1l-premium
+                                                - img [ref=e398]
+                                                - text: View Details
+                              - generic [ref=e400]:
+                                    - generic [ref=e401]:
+                                          - img [ref=e402]
+                                          - text: Premium
+                                    - link "Amrit Organic Black Mustard Oil - 1 L" [ref=e404] [cursor=pointer]:
+                                          - /url: /products/black-mustard-oil-1l
+                                          - img "Amrit Organic Black Mustard Oil - 1 L" [ref=e408]
+                                    - generic [ref=e409]:
+                                          - generic [ref=e410]: Cold-Pressed Oils
+                                          - generic [ref=e411]:
+                                                - link "Amrit Organic Black Mustard Oil - 1 L ₹350" [ref=e412] [cursor=pointer]:
+                                                      - /url: /products/black-mustard-oil-1l
+                                                      - heading "Amrit Organic Black Mustard Oil - 1 L" [level=3] [ref=e413]
+                                                      - paragraph [ref=e415]: ₹350
+                                                - button "Add to cart" [ref=e416] [cursor=pointer]:
+                                                      - img [ref=e417]
+                                          - paragraph [ref=e420]: Cold-pressed Black Mustard oil, pungent and pure.
+                                          - link "View Details" [ref=e422] [cursor=pointer]:
+                                                - /url: /products/black-mustard-oil-1l
+                                                - img [ref=e423]
+                                                - text: View Details
+                              - generic [ref=e425]:
+                                    - generic [ref=e426]:
+                                          - img [ref=e427]
+                                          - text: Premium
+                                    - link "Amrit Organic Lemongrass Oil - 10 ml" [ref=e429] [cursor=pointer]:
+                                          - /url: /products/lemongrass-oil-10ml
+                                          - img "Amrit Organic Lemongrass Oil - 10 ml" [ref=e433]
+                                    - generic [ref=e434]:
+                                          - generic [ref=e435]: Essential Oils
+                                          - generic [ref=e436]:
+                                                - link "Amrit Organic Lemongrass Oil - 10 ml ₹400" [ref=e437] [cursor=pointer]:
+                                                      - /url: /products/lemongrass-oil-10ml
+                                                      - heading "Amrit Organic Lemongrass Oil - 10 ml" [level=3] [ref=e438]
+                                                      - paragraph [ref=e440]: ₹400
+                                                - button "Add to cart" [ref=e441] [cursor=pointer]:
+                                                      - img [ref=e442]
+                                          - paragraph [ref=e445]: Refreshing Lemongrass essential oil. Cold-pressed & distilled.
+                                          - link "View Details" [ref=e447] [cursor=pointer]:
+                                                - /url: /products/lemongrass-oil-10ml
+                                                - img [ref=e448]
+                                                - text: View Details
+                  - generic [ref=e451]:
+                        - img "Amrit Bilona Ghee Cinematic" [ref=e453]
+                        - generic [ref=e456]:
+                              - generic [ref=e457]:
+                                    - img [ref=e458]
+                                    - text: The Golden Standard
+                              - heading "A Legacy Bottled." [level=2] [ref=e460]:
+                                    - text: A Legacy
+                                    - text: Bottled.
+                              - paragraph [ref=e461]: Experience the divine aroma and healing properties of authentic Bilona Ghee. Wood-fired, hand-churned, and rooted in Vedic tradition.
+                              - generic [ref=e462]:
+                                    - link "Shop the Legacy" [ref=e463] [cursor=pointer]:
+                                          - /url: /products/a2-cow-ghee-1kg
+                                          - text: Shop the Legacy
+                                          - img [ref=e464]
+                                    - link "Watch the Process" [ref=e466] [cursor=pointer]:
+                                          - /url: /ghee
+                                          - img [ref=e467]
+                                          - text: Watch the Process
+                  - generic [ref=e472]:
+                        - generic [ref=e473]: NOT A BRAND, A MOVEMENT
+                        - heading "Food You Can Trust, Every Day" [level=2] [ref=e474]
+                        - generic [ref=e475]:
+                              - paragraph [ref=e476]: "At Amrit Milk Organic, our mission is simple: to make clean, honest food available to families on a daily basis, without noise, exaggeration, or shortcuts."
+                              - paragraph [ref=e477]: We believe good food should nourish, not confuse. It should come from practices that respect the land, the animals, and the people involved — not just efficiency or scale.
+                              - paragraph [ref=e478]: Our work begins locally, with our own farms, cows, and communities. From there, we apply discipline, learning, and responsibility so that what we build can stand anywhere — without losing its roots.
+                              - paragraph [ref=e479]: We don’t chase trends. We focus on consistency, transparency, and food that families can consume with confidence, every single day.
+                              - paragraph [ref=e480]: Amrit Milk Organic is not about being the biggest. It is about being reliable, responsible, and real.
+                        - generic [ref=e481]:
+                              - link "Explore Our Products" [ref=e482] [cursor=pointer]:
+                                    - /url: /products
+                              - link "Know Our Process" [ref=e483] [cursor=pointer]:
+                                    - /url: /the-farm
+                  - generic [ref=e486]:
+                        - heading "\"We don't just say it. We live it. Every single day, before the sun rises.\"" [level=3] [ref=e487]:
+                              - text: '"We don''t just say it. We live it.'
+                              - text: Every single day, before the sun rises."
+                        - link "Witness Our Discipline" [ref=e488] [cursor=pointer]:
+                              - /url: /the-farm
+                  - generic [ref=e493]:
+                        - generic [ref=e494]:
+                              - generic [ref=e495]: Sustainability First
+                              - heading "How We Farm Matters" [level=2] [ref=e496]
+                              - paragraph [ref=e497]: Since 2015, we've built a completely sustainable farm where every decision honors the earth, the animals, and our heritage.
+                        - generic [ref=e498]:
+                              - generic [ref=e499]:
+                                    - img [ref=e501]
+                                    - heading "Zero Waste" [level=3] [ref=e508]
+                                    - paragraph [ref=e509]: Every byproduct is reused - cow dung for biogas, waste for compost
+                              - generic [ref=e510]:
+                                    - img [ref=e512]
+                                    - heading "Native Breeds" [level=3] [ref=e514]
+                                    - paragraph [ref=e515]: Preserving indigenous Gir and Sahiwal cows from extinction
+                              - generic [ref=e516]:
+                                    - img [ref=e518]
+                                    - heading "Renewable Energy" [level=3] [ref=e524]
+                                    - paragraph [ref=e525]: Solar-powered operations and biogas from farm waste
+                              - generic [ref=e526]:
+                                    - img [ref=e528]
+                                    - heading "Water Conservation" [level=3] [ref=e531]
+                                    - paragraph [ref=e532]: Rainwater harvesting and drip irrigation systems
+                              - generic [ref=e533]:
+                                    - img [ref=e535]
+                                    - heading "Organic Feed" [level=3] [ref=e538]
+                                    - paragraph [ref=e539]: 100% chemical-free fodder grown on our own fields
+                              - generic [ref=e540]:
+                                    - img [ref=e542]
+                                    - heading "Cow Welfare" [level=3] [ref=e544]
+                                    - paragraph [ref=e545]: Free-range grazing, natural breeding, no hormones
+                        - paragraph [ref=e547]: '"We don''t just sell products. We practice a way of life that has sustained our civilization for millennia."'
+                  - generic [ref=e550]:
+                        - generic [ref=e551]:
+                              - generic [ref=e552]: Our Journey
+                              - heading "From a Dream in 2015 to Your Table Today" [level=2] [ref=e553]
+                              - paragraph [ref=e554]: Over a decade of commitment to purity, sustainability, and tradition.
+                        - generic [ref=e557]:
+                              - generic [ref=e561]:
+                                    - generic [ref=e562]:
+                                          - heading "2015" [level=3] [ref=e563]
+                                          - img [ref=e564]
+                                    - heading "The Beginning" [level=4] [ref=e566]
+                                    - paragraph [ref=e567]: Started with a vision to bring pure A2 milk to families
+                              - generic [ref=e573]:
+                                    - generic [ref=e574]:
+                                          - img [ref=e575]
+                                          - heading "2017" [level=3] [ref=e578]
+                                    - heading "Sustainable Farming" [level=4] [ref=e579]
+                                    - paragraph [ref=e580]: Implemented zero-waste practices and organic feed
+                              - generic [ref=e586]:
+                                    - generic [ref=e587]:
+                                          - heading "2020" [level=3] [ref=e588]
+                                          - img [ref=e589]
+                                    - heading "Expansion" [level=4] [ref=e591]
+                                    - paragraph [ref=e592]: Introduced wood-pressed oils and traditional grains
+                              - generic [ref=e598]:
+                                    - generic [ref=e599]:
+                                          - img [ref=e600]
+                                          - heading "2026" [level=3] [ref=e603]
+                                    - heading "Today" [level=4] [ref=e604]
+                                    - paragraph [ref=e605]: Serving thousands of families with 40+ pure products
+                  - generic [ref=e611]:
+                        - generic [ref=e612]:
+                              - generic [ref=e613]: ● Farm to Home
+                              - heading "Freshest Milk Delivered Before Sunrise" [level=2] [ref=e614]
+                              - paragraph [ref=e615]: Our cows are milked 2x daily – morning and evening. Your milk reaches your doorstep within 4 hours of milking. Choose morning, evening, or both delivery slots.
+                        - generic [ref=e616]:
+                              - generic [ref=e619]:
+                                    - img [ref=e621]
+                                    - generic [ref=e624]: 4h
+                                    - generic [ref=e625]: Farm to Home
+                                    - generic [ref=e626]: Delivered within 4 hours of milking
+                              - generic [ref=e629]:
+                                    - img [ref=e631]
+                                    - generic [ref=e633]: 4°C
+                                    - generic [ref=e634]: Cold Chain
+                                    - generic [ref=e635]: Temperature maintained throughout
+                              - generic [ref=e638]:
+                                    - img [ref=e640]
+                                    - generic [ref=e642]: 100%
+                                    - generic [ref=e643]: Pure & Fresh
+                                    - generic [ref=e644]: No UHT, no preservatives
+                        - generic [ref=e648]:
+                              - generic [ref=e649]:
+                                    - img [ref=e650]
+                                    - heading "Fresh Within 4 Hours" [level=3] [ref=e655]
+                              - paragraph [ref=e656]: Cows milked 2x daily = 2 delivery options. Choose what works for you.
+                              - generic [ref=e657]:
+                                    - generic [ref=e658]:
+                                          - img [ref=e659]
+                                          - generic [ref=e665]: 5 AM - 8 AM
+                                          - generic [ref=e666]: Morning Delivery
+                                    - generic [ref=e667]:
+                                          - img [ref=e668]
+                                          - generic [ref=e670]: 5 PM - 8 PM
+                                          - generic [ref=e671]: Evening Delivery
+                              - paragraph [ref=e672]: Our dedicated delivery fleet ensures you always get fresh milk within hours of milking — never sitting in warehouses, always straight from our farm to your kitchen.
+                        - generic [ref=e673]:
+                              - generic [ref=e674]:
+                                    - generic [ref=e675]: ⏰
+                                    - generic [ref=e676]: Same-day delivery
+                              - generic [ref=e677]:
+                                    - generic [ref=e678]: ❄️
+                                    - generic [ref=e679]: Cold chain at 4°C
+                              - generic [ref=e680]:
+                                    - generic [ref=e681]: 🔄
+                                    - generic [ref=e682]: Flexible subscriptions
+                              - generic [ref=e683]:
+                                    - generic [ref=e684]: 🚫
+                                    - generic [ref=e685]: No preservatives
+                  - generic [ref=e688]:
+                        - generic [ref=e689]:
+                              - generic [ref=e690]:
+                                    - text: Vedantic Science
+                                    - heading "The Wisdom of Native DNA." [level=2] [ref=e691]:
+                                          - text: The Wisdom of
+                                          - text: Native DNA.
+                                    - paragraph [ref=e692]: Generic milk comes from A1 breeds (HF/Jersey) which contain a mutation linked to chronic illnesses. The Gir Cow holds the original DNA of vitality.
+                              - generic [ref=e693]:
+                                    - generic [ref=e694]:
+                                          - generic [ref=e695]:
+                                                - img [ref=e696]
+                                                - heading "A2 Beta-Casein" [level=3] [ref=e698]
+                                          - paragraph [ref=e699]: Native Gir cows produce milk with A2 protein, which is easily digestible and does not cause bloating or inflammation.
+                                    - generic [ref=e700]:
+                                          - generic [ref=e701]:
+                                                - img [ref=e702]
+                                                - heading "Golden Hydroxide" [level=3] [ref=e704]
+                                          - paragraph [ref=e705]: Suryaketu Nadi in Gir cows absorbs solar energy, creating gold salts in the milk—the reason for its medicinal properties.
+                                    - generic [ref=e706]:
+                                          - generic [ref=e707]:
+                                                - img [ref=e708]
+                                                - heading "Omega-3 Rich" [level=3] [ref=e710]
+                                          - paragraph [ref=e711]: Our grass-fed cows produce milk naturally rich in Omega-3 fatty acids, improving brain health and heart function.
+                                    - generic [ref=e712]:
+                                          - generic [ref=e713]:
+                                                - img [ref=e714]
+                                                - heading "Pro-Vitamin A" [level=3] [ref=e716]
+                                          - paragraph [ref=e717]: The characteristic golden yellow color comes from Beta-Carotene, which converts to Vitamin A in the human body.
+                        - img "The Soul of the Farm" [ref=e720]
+                  - generic [ref=e725]:
+                        - generic [ref=e726]:
+                              - generic [ref=e728]: 0+
+                              - generic [ref=e729]: Happy Families
+                        - generic [ref=e730]:
+                              - generic [ref=e732]: 0+
+                              - generic [ref=e733]: Years of Heritage
+                        - generic [ref=e734]:
+                              - generic [ref=e735]: "0"
+                              - generic [ref=e736]: Days Fresh & Pure
+                        - generic [ref=e737]:
+                              - generic [ref=e739]: 0%
+                              - generic [ref=e740]: Purity Guarantee
+                  - generic [ref=e743]:
+                        - generic [ref=e744]:
+                              - generic [ref=e745]: The Silent Crisis
+                              - heading "Is Your Milk Truly Pure?" [level=2] [ref=e746]:
+                                    - text: Is Your Milk
+                                    - text: Truly Pure?
+                              - paragraph [ref=e747]:
+                                    - text: Over 68% of milk sold in India fails FSSAI standards.
+                                    - text: We don't just sell milk; we audit the toxicity out of your kitchen.
+                        - generic [ref=e748]:
+                              - generic [ref=e749]:
+                                    - img [ref=e751]
+                                    - heading "Detergent & Urea" [level=3] [ref=e754]
+                                    - paragraph [ref=e755]: Used to emulsify oil and increase SNF values. Destroys liver and kidney function over time.
+                                    - generic [ref=e756]: High Toxicity
+                              - generic [ref=e757]:
+                                    - img [ref=e759]
+                                    - heading "Formalin / Peroxide" [level=3] [ref=e761]
+                                    - paragraph [ref=e762]: Preservatives to prevent spoilage in non-refrigerated transport. Highly carcinogenic.
+                                    - generic [ref=e763]: Extreme Risk
+                              - generic [ref=e764]:
+                                    - img [ref=e766]
+                                    - heading "Antibiotics / Hormones" [level=3] [ref=e768]
+                                    - paragraph [ref=e769]: Oxytocin used for forceful milking and antibiotics to hide udder infections. Causes early puberty.
+                                    - generic [ref=e770]: Biological Hazard
+                              - generic [ref=e771]:
+                                    - img [ref=e773]
+                                    - heading "Starch & Sugar" [level=3] [ref=e779]
+                                    - paragraph [ref=e780]: Added to thicken water-diluted milk. Spikes glycemic index and affects diabetic health.
+                                    - generic [ref=e781]: Structural Adultery
+                        - generic [ref=e782]:
+                              - 'heading "Amrit Sovereign: The Antidote" [level=4] [ref=e783]'
+                              - paragraph [ref=e784]:
+                                    - text: We use zero preservatives. No urea. No oxytocin. Just raw A2 milk chilled to 4°C within minutes of milking and sealed in glass.
+                                    - strong [ref=e785]: If it's not lab-tested, it's not Amrit.
+                  - generic [ref=e791]:
+                        - generic [ref=e792]:
+                              - text: Purity Audit
+                              - generic [ref=e793]:
+                                    - heading "The Kitchen Quiz." [level=2] [ref=e794]
+                                    - generic [ref=e795]: 01 / 03
+                        - generic [ref=e796]:
+                              - paragraph [ref=e797]: How many hours after milking does your current milk arrive?
+                              - generic [ref=e798]:
+                                    - button "Less than 6h" [ref=e799] [cursor=pointer]:
+                                          - generic [ref=e800]: Less than 6h
+                                          - img [ref=e801]
+                                    - button "6-12h" [ref=e803] [cursor=pointer]:
+                                          - generic [ref=e804]: 6-12h
+                                          - img [ref=e805]
+                                    - button "More than 12h" [ref=e807] [cursor=pointer]:
+                                          - generic [ref=e808]: More than 12h
+                                          - img [ref=e809]
+                                    - button "I don't know" [ref=e811] [cursor=pointer]:
+                                          - generic [ref=e812]: I don't know
+                                          - img [ref=e813]
+                  - generic [ref=e817]:
+                        - generic [ref=e818]:
+                              - generic [ref=e819]:
+                                    - generic [ref=e820]: From Our Pure Gir Cows
+                                    - heading "Pure A2 Dairy" [level=2] [ref=e821]
+                                    - paragraph [ref=e822]: Gir Milk, Sahiwal Milk, Buffalo Milk, Ghee, Paneer, Curd, Khoya - all from A2 breeds.
+                              - link "View All" [ref=e824] [cursor=pointer]:
+                                    - /url: /products
+                                    - text: View All
+                                    - img [ref=e825]
+                        - generic [ref=e827]:
+                              - generic [ref=e828]:
+                                    - generic [ref=e829]: SALE
+                                    - link "Amrit Milk Organic A2 Gir Cow Milk - 1 L" [ref=e830] [cursor=pointer]:
+                                          - /url: /products/a2-gir-cow-milk-1l
+                                          - img "Amrit Milk Organic A2 Gir Cow Milk - 1 L" [ref=e834]
+                                    - generic [ref=e835]:
+                                          - generic [ref=e836]: Dairy
+                                          - generic [ref=e837]:
+                                                - link "Amrit Milk Organic A2 Gir Cow Milk - 1 L ₹125 ₹140" [ref=e838] [cursor=pointer]:
+                                                      - /url: /products/a2-gir-cow-milk-1l
+                                                      - heading "Amrit Milk Organic A2 Gir Cow Milk - 1 L" [level=3] [ref=e839]
+                                                      - generic [ref=e840]:
+                                                            - paragraph [ref=e841]: ₹125
+                                                            - paragraph [ref=e842]: ₹140
+                                                - button "Add to cart" [ref=e843] [cursor=pointer]:
+                                                      - img [ref=e844]
+                                          - paragraph [ref=e847]: Pure A2 beta-casein milk from indigenous Desi Gir cows. High nutritional value.
+                                          - generic [ref=e848]:
+                                                - img [ref=e849]
+                                                - generic [ref=e854]: Available as subscription
+                                          - link "View Details" [ref=e856] [cursor=pointer]:
+                                                - /url: /products/a2-gir-cow-milk-1l
+                                                - img [ref=e857]
+                                                - text: View Details
+                              - generic [ref=e859]:
+                                    - link "Amrit Milk Organic A2 Sahiwal Cow Milk - 1 L" [ref=e860] [cursor=pointer]:
+                                          - /url: /products/a2-sahiwal-cow-milk-1l
+                                          - img "Amrit Milk Organic A2 Sahiwal Cow Milk - 1 L" [ref=e864]
+                                    - generic [ref=e865]:
+                                          - generic [ref=e866]: Dairy
+                                          - generic [ref=e867]:
+                                                - link "Amrit Milk Organic A2 Sahiwal Cow Milk - 1 L ₹95" [ref=e868] [cursor=pointer]:
+                                                      - /url: /products/a2-sahiwal-cow-milk-1l
+                                                      - heading "Amrit Milk Organic A2 Sahiwal Cow Milk - 1 L" [level=3] [ref=e869]
+                                                      - paragraph [ref=e871]: ₹95
+                                                - button "Add to cart" [ref=e872] [cursor=pointer]:
+                                                      - img [ref=e873]
+                                          - paragraph [ref=e876]: Fresh A2 milk from Sahiwal breed cows.
+                                          - generic [ref=e877]:
+                                                - img [ref=e878]
+                                                - generic [ref=e883]: Available as subscription
+                                          - link "View Details" [ref=e885] [cursor=pointer]:
+                                                - /url: /products/a2-sahiwal-cow-milk-1l
+                                                - img [ref=e886]
+                                                - text: View Details
+                              - generic [ref=e888]:
+                                    - link "Amrit Milk Organic A2 Buffalo Milk - 1 L" [ref=e889] [cursor=pointer]:
+                                          - /url: /products/a2-buffalo-milk-1l
+                                          - img "Amrit Milk Organic A2 Buffalo Milk - 1 L" [ref=e893]
+                                    - generic [ref=e894]:
+                                          - generic [ref=e895]: Dairy
+                                          - generic [ref=e896]:
+                                                - link "Amrit Milk Organic A2 Buffalo Milk - 1 L ₹110" [ref=e897] [cursor=pointer]:
+                                                      - /url: /products/a2-buffalo-milk-1l
+                                                      - heading "Amrit Milk Organic A2 Buffalo Milk - 1 L" [level=3] [ref=e898]
+                                                      - paragraph [ref=e900]: ₹110
+                                                - button "Add to cart" [ref=e901] [cursor=pointer]:
+                                                      - img [ref=e902]
+                                          - paragraph [ref=e905]: Rich and creamy A2 Buffalo milk.
+                                          - generic [ref=e906]:
+                                                - img [ref=e907]
+                                                - generic [ref=e912]: Available as subscription
+                                          - link "View Details" [ref=e914] [cursor=pointer]:
+                                                - /url: /products/a2-buffalo-milk-1l
+                                                - img [ref=e915]
+                                                - text: View Details
+                              - generic [ref=e917]:
+                                    - link "Amrit Milk Organic A2 Colostrum Milk - 1 L" [ref=e918] [cursor=pointer]:
+                                          - /url: /products/a2-colostrum-milk-1l
+                                          - img "Amrit Milk Organic A2 Colostrum Milk - 1 L" [ref=e922]
+                                    - generic [ref=e923]:
+                                          - generic [ref=e924]: Dairy
+                                          - generic [ref=e925]:
+                                                - link "Amrit Milk Organic A2 Colostrum Milk - 1 L ₹150" [ref=e926] [cursor=pointer]:
+                                                      - /url: /products/a2-colostrum-milk-1l
+                                                      - heading "Amrit Milk Organic A2 Colostrum Milk - 1 L" [level=3] [ref=e927]
+                                                      - paragraph [ref=e929]: ₹150
+                                                - button "Add to cart" [ref=e930] [cursor=pointer]:
+                                                      - img [ref=e931]
+                                          - paragraph [ref=e934]: Immunity-boosting first milk (Colostrum) from A2 cows.
+                                          - link "View Details" [ref=e936] [cursor=pointer]:
+                                                - /url: /products/a2-colostrum-milk-1l
+                                                - img [ref=e937]
+                                                - text: View Details
+                              - generic [ref=e939]:
+                                    - link "Amrit Milk Organic Paneer - 1 kg" [ref=e940] [cursor=pointer]:
+                                          - /url: /products/a2-paneer-1kg
+                                          - img "Amrit Milk Organic Paneer - 1 kg" [ref=e944]
+                                    - generic [ref=e945]:
+                                          - generic [ref=e946]: Dairy
+                                          - generic [ref=e947]:
+                                                - link "Amrit Milk Organic Paneer - 1 kg ₹500" [ref=e948] [cursor=pointer]:
+                                                      - /url: /products/a2-paneer-1kg
+                                                      - heading "Amrit Milk Organic Paneer - 1 kg" [level=3] [ref=e949]
+                                                      - paragraph [ref=e951]: ₹500
+                                                - button "Add to cart" [ref=e952] [cursor=pointer]:
+                                                      - img [ref=e953]
+                                          - paragraph [ref=e956]: Freshly made Malai Paneer from A2 milk.
+                                          - link "View Details" [ref=e958] [cursor=pointer]:
+                                                - /url: /products/a2-paneer-1kg
+                                                - img [ref=e959]
+                                                - text: View Details
+                              - generic [ref=e961]:
+                                    - link "Amrit Milk Organic Curd - 1 kg" [ref=e962] [cursor=pointer]:
+                                          - /url: /products/a2-curd-1kg
+                                          - img "Amrit Milk Organic Curd - 1 kg" [ref=e966]
+                                    - generic [ref=e967]:
+                                          - generic [ref=e968]: Dairy
+                                          - generic [ref=e969]:
+                                                - link "Amrit Milk Organic Curd - 1 kg ₹200" [ref=e970] [cursor=pointer]:
+                                                      - /url: /products/a2-curd-1kg
+                                                      - heading "Amrit Milk Organic Curd - 1 kg" [level=3] [ref=e971]
+                                                      - paragraph [ref=e973]: ₹200
+                                                - button "Add to cart" [ref=e974] [cursor=pointer]:
+                                                      - img [ref=e975]
+                                          - paragraph [ref=e978]: Thick, probiotic-rich Curd made from A2 milk.
+                                          - generic [ref=e979]:
+                                                - img [ref=e980]
+                                                - generic [ref=e985]: Available as subscription
+                                          - link "View Details" [ref=e987] [cursor=pointer]:
+                                                - /url: /products/a2-curd-1kg
+                                                - img [ref=e988]
+                                                - text: View Details
+                              - generic [ref=e990]:
+                                    - link "Amrit Milk Organic Khoya - 1 kg" [ref=e991] [cursor=pointer]:
+                                          - /url: /products/a2-khoya-1kg
+                                          - img "Amrit Milk Organic Khoya - 1 kg" [ref=e995]
+                                    - generic [ref=e996]:
+                                          - generic [ref=e997]: Dairy
+                                          - generic [ref=e998]:
+                                                - link "Amrit Milk Organic Khoya - 1 kg ₹600" [ref=e999] [cursor=pointer]:
+                                                      - /url: /products/a2-khoya-1kg
+                                                      - heading "Amrit Milk Organic Khoya - 1 kg" [level=3] [ref=e1000]
+                                                      - paragraph [ref=e1002]: ₹600
+                                                - button "Add to cart" [ref=e1003] [cursor=pointer]:
+                                                      - img [ref=e1004]
+                                          - paragraph [ref=e1007]: Pure milk solids (Khoya) for traditional sweets.
+                                          - link "View Details" [ref=e1009] [cursor=pointer]:
+                                                - /url: /products/a2-khoya-1kg
+                                                - img [ref=e1010]
+                                                - text: View Details
+                  - generic [ref=e1014]:
+                        - generic [ref=e1015]:
+                              - generic [ref=e1016]:
+                                    - generic [ref=e1017]: Nature's Medicine Cabinet
+                                    - heading "Superfoods & Healing" [level=2] [ref=e1018]
+                                    - paragraph [ref=e1019]: Wild Forest Honey, Ayurvedic Balms, Organic Turmeric, and natural remedies.
+                              - link "View All" [ref=e1021] [cursor=pointer]:
+                                    - /url: /products
+                                    - text: View All
+                                    - img [ref=e1022]
+                        - generic [ref=e1024]:
+                              - generic [ref=e1025]:
+                                    - link "Amrit Organic Turmeric - 1 kg" [ref=e1026] [cursor=pointer]:
+                                          - /url: /products/organic-turmeric-1kg
+                                          - img "Amrit Organic Turmeric - 1 kg" [ref=e1030]
+                                    - generic [ref=e1031]:
+                                          - generic [ref=e1032]: Other
+                                          - generic [ref=e1033]:
+                                                - link "Amrit Organic Turmeric - 1 kg ₹900" [ref=e1034] [cursor=pointer]:
+                                                      - /url: /products/organic-turmeric-1kg
+                                                      - heading "Amrit Organic Turmeric - 1 kg" [level=3] [ref=e1035]
+                                                      - paragraph [ref=e1037]: ₹900
+                                                - button "Add to cart" [ref=e1038] [cursor=pointer]:
+                                                      - img [ref=e1039]
+                                          - paragraph [ref=e1042]: High-curcumin Organic Turmeric powder.
+                                          - link "View Details" [ref=e1044] [cursor=pointer]:
+                                                - /url: /products/organic-turmeric-1kg
+                                                - img [ref=e1045]
+                                                - text: View Details
+                              - generic [ref=e1047]:
+                                    - link "Amrit Organic Lip Balm (Moisturizer)" [ref=e1048] [cursor=pointer]:
+                                          - /url: /products/lip-balm-moisturizer
+                                          - img "Amrit Organic Lip Balm (Moisturizer)" [ref=e1052]
+                                    - generic [ref=e1053]:
+                                          - generic [ref=e1054]: Wellness
+                                          - generic [ref=e1055]:
+                                                - link "Amrit Organic Lip Balm (Moisturizer) ₹300" [ref=e1056] [cursor=pointer]:
+                                                      - /url: /products/lip-balm-moisturizer
+                                                      - heading "Amrit Organic Lip Balm (Moisturizer)" [level=3] [ref=e1057]
+                                                      - paragraph [ref=e1059]: ₹300
+                                                - button "Add to cart" [ref=e1060] [cursor=pointer]:
+                                                      - img [ref=e1061]
+                                          - paragraph [ref=e1064]: Natural moisturizing Lip Balm.
+                                          - link "View Details" [ref=e1066] [cursor=pointer]:
+                                                - /url: /products/lip-balm-moisturizer
+                                                - img [ref=e1067]
+                                                - text: View Details
+                              - generic [ref=e1069]:
+                                    - link "Amrit Organic Bees Wax (Moisturizer)" [ref=e1070] [cursor=pointer]:
+                                          - /url: /products/bees-wax-moisturizer
+                                          - img "Amrit Organic Bees Wax (Moisturizer)" [ref=e1074]
+                                    - generic [ref=e1075]:
+                                          - generic [ref=e1076]: Wellness
+                                          - generic [ref=e1077]:
+                                                - link "Amrit Organic Bees Wax (Moisturizer) ₹500" [ref=e1078] [cursor=pointer]:
+                                                      - /url: /products/bees-wax-moisturizer
+                                                      - heading "Amrit Organic Bees Wax (Moisturizer)" [level=3] [ref=e1079]
+                                                      - paragraph [ref=e1081]: ₹500
+                                                - button "Add to cart" [ref=e1082] [cursor=pointer]:
+                                                      - img [ref=e1083]
+                                          - paragraph [ref=e1086]: Pure Bees Wax for skin hydration.
+                                          - link "View Details" [ref=e1088] [cursor=pointer]:
+                                                - /url: /products/bees-wax-moisturizer
+                                                - img [ref=e1089]
+                                                - text: View Details
+                              - generic [ref=e1091]:
+                                    - link "Amrit Organic Bull Balm Roll-On (10ml)" [ref=e1092] [cursor=pointer]:
+                                          - /url: /products/bull-balm-rollon
+                                          - img "Amrit Organic Bull Balm Roll-On (10ml)" [ref=e1096]
+                                    - generic [ref=e1097]:
+                                          - generic [ref=e1098]: Wellness
+                                          - generic [ref=e1099]:
+                                                - link "Amrit Organic Bull Balm Roll-On (10ml) ₹225" [ref=e1100] [cursor=pointer]:
+                                                      - /url: /products/bull-balm-rollon
+                                                      - heading "Amrit Organic Bull Balm Roll-On (10ml)" [level=3] [ref=e1101]
+                                                      - paragraph [ref=e1103]: ₹225
+                                                - button "Add to cart" [ref=e1104] [cursor=pointer]:
+                                                      - img [ref=e1105]
+                                          - paragraph [ref=e1108]: Ancient formula for pain relief in a handy roll-on.
+                                          - link "View Details" [ref=e1110] [cursor=pointer]:
+                                                - /url: /products/bull-balm-rollon
+                                                - img [ref=e1111]
+                                                - text: View Details
+                              - generic [ref=e1113]:
+                                    - link "Amrit Organic Bull Balm Spray (10ml)" [ref=e1114] [cursor=pointer]:
+                                          - /url: /products/bull-balm-spray
+                                          - img "Amrit Organic Bull Balm Spray (10ml)" [ref=e1118]
+                                    - generic [ref=e1119]:
+                                          - generic [ref=e1120]: Wellness
+                                          - generic [ref=e1121]:
+                                                - link "Amrit Organic Bull Balm Spray (10ml) ₹250" [ref=e1122] [cursor=pointer]:
+                                                      - /url: /products/bull-balm-spray
+                                                      - heading "Amrit Organic Bull Balm Spray (10ml)" [level=3] [ref=e1123]
+                                                      - paragraph [ref=e1125]: ₹250
+                                                - button "Add to cart" [ref=e1126] [cursor=pointer]:
+                                                      - img [ref=e1127]
+                                          - paragraph [ref=e1130]: Targeted pain relief spray.
+                                          - link "View Details" [ref=e1132] [cursor=pointer]:
+                                                - /url: /products/bull-balm-spray
+                                                - img [ref=e1133]
+                                                - text: View Details
+                              - generic [ref=e1135]:
+                                    - link "Amrit Organic Bull Balm Dropper (10ml)" [ref=e1136] [cursor=pointer]:
+                                          - /url: /products/bull-balm-dropper
+                                          - img "Amrit Organic Bull Balm Dropper (10ml)" [ref=e1140]
+                                    - generic [ref=e1141]:
+                                          - generic [ref=e1142]: Wellness
+                                          - generic [ref=e1143]:
+                                                - link "Amrit Organic Bull Balm Dropper (10ml) ₹290" [ref=e1144] [cursor=pointer]:
+                                                      - /url: /products/bull-balm-dropper
+                                                      - heading "Amrit Organic Bull Balm Dropper (10ml)" [level=3] [ref=e1145]
+                                                      - paragraph [ref=e1147]: ₹290
+                                                - button "Add to cart" [ref=e1148] [cursor=pointer]:
+                                                      - img [ref=e1149]
+                                          - paragraph [ref=e1152]: Concentrated formula for deep tissue relief.
+                                          - link "View Details" [ref=e1154] [cursor=pointer]:
+                                                - /url: /products/bull-balm-dropper
+                                                - img [ref=e1155]
+                                                - text: View Details
+                  - generic [ref=e1159]:
+                        - generic [ref=e1160]:
+                              - generic [ref=e1161]:
+                                    - generic [ref=e1162]: Traditional Atta & Rice
+                                    - heading "Stone-Ground Grains" [level=2] [ref=e1163]
+                                    - paragraph [ref=e1164]: Wheat, Multigrain, Bajra, Besan, Millet, Kala Jeera, Basmati - freshly milled.
+                              - link "View All" [ref=e1166] [cursor=pointer]:
+                                    - /url: /products
+                                    - text: View All
+                                    - img [ref=e1167]
+                        - generic [ref=e1169]:
+                              - generic [ref=e1170]:
+                                    - link "Amrit Organic Whole Wheat Atta - 1 kg" [ref=e1171] [cursor=pointer]:
+                                          - /url: /products/whole-wheat-atta-1kg
+                                          - img "Amrit Organic Whole Wheat Atta - 1 kg" [ref=e1175]
+                                    - generic [ref=e1176]:
+                                          - generic [ref=e1177]: Atta
+                                          - generic [ref=e1178]:
+                                                - link "Amrit Organic Whole Wheat Atta - 1 kg ₹60" [ref=e1179] [cursor=pointer]:
+                                                      - /url: /products/whole-wheat-atta-1kg
+                                                      - heading "Amrit Organic Whole Wheat Atta - 1 kg" [level=3] [ref=e1180]
+                                                      - paragraph [ref=e1182]: ₹60
+                                                - button "Add to cart" [ref=e1183] [cursor=pointer]:
+                                                      - img [ref=e1184]
+                                          - paragraph [ref=e1187]: Stone-ground whole wheat flour.
+                                          - generic [ref=e1188]:
+                                                - img [ref=e1189]
+                                                - generic [ref=e1194]: Available as subscription
+                                          - link "View Details" [ref=e1196] [cursor=pointer]:
+                                                - /url: /products/whole-wheat-atta-1kg
+                                                - img [ref=e1197]
+                                                - text: View Details
+                              - generic [ref=e1199]:
+                                    - link "Amrit Organic Multigrain Atta - 1 kg" [ref=e1200] [cursor=pointer]:
+                                          - /url: /products/multigrain-atta-1kg
+                                          - img "Amrit Organic Multigrain Atta - 1 kg" [ref=e1204]
+                                    - generic [ref=e1205]:
+                                          - generic [ref=e1206]: Atta
+                                          - generic [ref=e1207]:
+                                                - link "Amrit Organic Multigrain Atta - 1 kg ₹120" [ref=e1208] [cursor=pointer]:
+                                                      - /url: /products/multigrain-atta-1kg
+                                                      - heading "Amrit Organic Multigrain Atta - 1 kg" [level=3] [ref=e1209]
+                                                      - paragraph [ref=e1211]: ₹120
+                                                - button "Add to cart" [ref=e1212] [cursor=pointer]:
+                                                      - img [ref=e1213]
+                                          - paragraph [ref=e1216]: Nutritious blend of multiple grains.
+                                          - link "View Details" [ref=e1218] [cursor=pointer]:
+                                                - /url: /products/multigrain-atta-1kg
+                                                - img [ref=e1219]
+                                                - text: View Details
+                              - generic [ref=e1221]:
+                                    - link "Amrit Organic Corn Flour - 1 kg" [ref=e1222] [cursor=pointer]:
+                                          - /url: /products/corn-flour-1kg
+                                          - img "Amrit Organic Corn Flour - 1 kg" [ref=e1226]
+                                    - generic [ref=e1227]:
+                                          - generic [ref=e1228]: Atta
+                                          - generic [ref=e1229]:
+                                                - link "Amrit Organic Corn Flour - 1 kg ₹120" [ref=e1230] [cursor=pointer]:
+                                                      - /url: /products/corn-flour-1kg
+                                                      - heading "Amrit Organic Corn Flour - 1 kg" [level=3] [ref=e1231]
+                                                      - paragraph [ref=e1233]: ₹120
+                                                - button "Add to cart" [ref=e1234] [cursor=pointer]:
+                                                      - img [ref=e1235]
+                                          - paragraph [ref=e1238]: Pure yellow corn flour.
+                                          - link "View Details" [ref=e1240] [cursor=pointer]:
+                                                - /url: /products/corn-flour-1kg
+                                                - img [ref=e1241]
+                                                - text: View Details
+                              - generic [ref=e1243]:
+                                    - link "Amrit Organic Bajra Flour - 1 kg" [ref=e1244] [cursor=pointer]:
+                                          - /url: /products/bajra-flour-1kg
+                                          - img "Amrit Organic Bajra Flour - 1 kg" [ref=e1248]
+                                    - generic [ref=e1249]:
+                                          - generic [ref=e1250]: Atta
+                                          - generic [ref=e1251]:
+                                                - link "Amrit Organic Bajra Flour - 1 kg ₹120" [ref=e1252] [cursor=pointer]:
+                                                      - /url: /products/bajra-flour-1kg
+                                                      - heading "Amrit Organic Bajra Flour - 1 kg" [level=3] [ref=e1253]
+                                                      - paragraph [ref=e1255]: ₹120
+                                                - button "Add to cart" [ref=e1256] [cursor=pointer]:
+                                                      - img [ref=e1257]
+                                          - paragraph [ref=e1260]: Traditional pearl millet (Bajra) flour.
+                                          - link "View Details" [ref=e1262] [cursor=pointer]:
+                                                - /url: /products/bajra-flour-1kg
+                                                - img [ref=e1263]
+                                                - text: View Details
+                              - generic [ref=e1265]:
+                                    - link "Amrit Organic Besan & Sattu - 1 kg" [ref=e1266] [cursor=pointer]:
+                                          - /url: /products/besan-sattu-1kg
+                                          - img "Amrit Organic Besan & Sattu - 1 kg" [ref=e1270]
+                                    - generic [ref=e1271]:
+                                          - generic [ref=e1272]: Atta
+                                          - generic [ref=e1273]:
+                                                - link "Amrit Organic Besan & Sattu - 1 kg ₹200" [ref=e1274] [cursor=pointer]:
+                                                      - /url: /products/besan-sattu-1kg
+                                                      - heading "Amrit Organic Besan & Sattu - 1 kg" [level=3] [ref=e1275]
+                                                      - paragraph [ref=e1277]: ₹200
+                                                - button "Add to cart" [ref=e1278] [cursor=pointer]:
+                                                      - img [ref=e1279]
+                                          - paragraph [ref=e1282]: Pure Gram flour (Besan) and roasted gram flour (Sattu).
+                                          - link "View Details" [ref=e1284] [cursor=pointer]:
+                                                - /url: /products/besan-sattu-1kg
+                                                - img [ref=e1285]
+                                                - text: View Details
+                              - generic [ref=e1287]:
+                                    - link "Amrit Organic Millet Grains - 1 kg" [ref=e1288] [cursor=pointer]:
+                                          - /url: /products/millet-grains-1kg
+                                          - img "Amrit Organic Millet Grains - 1 kg" [ref=e1292]
+                                    - generic [ref=e1293]:
+                                          - generic [ref=e1294]: Atta
+                                          - generic [ref=e1295]:
+                                                - link "Amrit Organic Millet Grains - 1 kg ₹250" [ref=e1296] [cursor=pointer]:
+                                                      - /url: /products/millet-grains-1kg
+                                                      - heading "Amrit Organic Millet Grains - 1 kg" [level=3] [ref=e1297]
+                                                      - paragraph [ref=e1299]: ₹250
+                                                - button "Add to cart" [ref=e1300] [cursor=pointer]:
+                                                      - img [ref=e1301]
+                                          - paragraph [ref=e1304]: Assorted ancient millet grains.
+                                          - link "View Details" [ref=e1306] [cursor=pointer]:
+                                                - /url: /products/millet-grains-1kg
+                                                - img [ref=e1307]
+                                                - text: View Details
+                              - generic [ref=e1309]:
+                                    - link "Amrit Organic Kala Jeera Rice - 1 kg" [ref=e1310] [cursor=pointer]:
+                                          - /url: /products/kala-jeera-rice-1kg
+                                          - img "Amrit Organic Kala Jeera Rice - 1 kg" [ref=e1314]
+                                    - generic [ref=e1315]:
+                                          - generic [ref=e1316]: Rice
+                                          - generic [ref=e1317]:
+                                                - link "Amrit Organic Kala Jeera Rice - 1 kg ₹100" [ref=e1318] [cursor=pointer]:
+                                                      - /url: /products/kala-jeera-rice-1kg
+                                                      - heading "Amrit Organic Kala Jeera Rice - 1 kg" [level=3] [ref=e1319]
+                                                      - paragraph [ref=e1321]: ₹100
+                                                - button "Add to cart" [ref=e1322] [cursor=pointer]:
+                                                      - img [ref=e1323]
+                                          - paragraph [ref=e1326]: Aromatic small-grain Kala Jeera rice.
+                                          - link "View Details" [ref=e1328] [cursor=pointer]:
+                                                - /url: /products/kala-jeera-rice-1kg
+                                                - img [ref=e1329]
+                                                - text: View Details
+                              - generic [ref=e1331]:
+                                    - link "Amrit Organic Kala Jeera Low-Sugar Rice - 1 kg" [ref=e1332] [cursor=pointer]:
+                                          - /url: /products/kala-jeera-low-sugar-1kg
+                                          - img "Amrit Organic Kala Jeera Low-Sugar Rice - 1 kg" [ref=e1336]
+                                    - generic [ref=e1337]:
+                                          - generic [ref=e1338]: Rice
+                                          - generic [ref=e1339]:
+                                                - link "Amrit Organic Kala Jeera Low-Sugar Rice - 1 kg ₹120" [ref=e1340] [cursor=pointer]:
+                                                      - /url: /products/kala-jeera-low-sugar-1kg
+                                                      - heading "Amrit Organic Kala Jeera Low-Sugar Rice - 1 kg" [level=3] [ref=e1341]
+                                                      - paragraph [ref=e1343]: ₹120
+                                                - button "Add to cart" [ref=e1344] [cursor=pointer]:
+                                                      - img [ref=e1345]
+                                          - paragraph [ref=e1348]: Diabetes-friendly low-sugar Kala Jeera rice.
+                                          - link "View Details" [ref=e1350] [cursor=pointer]:
+                                                - /url: /products/kala-jeera-low-sugar-1kg
+                                                - img [ref=e1351]
+                                                - text: View Details
+                              - generic [ref=e1353]:
+                                    - link "Amrit Organic Premium Basmati Rice - 1 kg" [ref=e1354] [cursor=pointer]:
+                                          - /url: /products/premium-basmati-rice-1kg
+                                          - img "Amrit Organic Premium Basmati Rice - 1 kg" [ref=e1358]
+                                    - generic [ref=e1359]:
+                                          - generic [ref=e1360]: Rice
+                                          - generic [ref=e1361]:
+                                                - link "Amrit Organic Premium Basmati Rice - 1 kg ₹185" [ref=e1362] [cursor=pointer]:
+                                                      - /url: /products/premium-basmati-rice-1kg
+                                                      - heading "Amrit Organic Premium Basmati Rice - 1 kg" [level=3] [ref=e1363]
+                                                      - paragraph [ref=e1365]: ₹185
+                                                - button "Add to cart" [ref=e1366] [cursor=pointer]:
+                                                      - img [ref=e1367]
+                                          - paragraph [ref=e1370]: Long-grain aged premium Basmati rice.
+                                          - link "View Details" [ref=e1372] [cursor=pointer]:
+                                                - /url: /products/premium-basmati-rice-1kg
+                                                - img [ref=e1373]
+                                                - text: View Details
+                              - generic [ref=e1375]:
+                                    - link "Amrit Organic Kala Namak Rice - 1 kg" [ref=e1376] [cursor=pointer]:
+                                          - /url: /products/kala-namak-rice-1kg
+                                          - img "Amrit Organic Kala Namak Rice - 1 kg" [ref=e1380]
+                                    - generic [ref=e1381]:
+                                          - generic [ref=e1382]: Rice
+                                          - generic [ref=e1383]:
+                                                - link "Amrit Organic Kala Namak Rice - 1 kg ₹350" [ref=e1384] [cursor=pointer]:
+                                                      - /url: /products/kala-namak-rice-1kg
+                                                      - heading "Amrit Organic Kala Namak Rice - 1 kg" [level=3] [ref=e1385]
+                                                      - paragraph [ref=e1387]: ₹350
+                                                - button "Add to cart" [ref=e1388] [cursor=pointer]:
+                                                      - img [ref=e1389]
+                                          - paragraph [ref=e1392]: Buddha's gift - highly aromatic and nutritious Kala Namak rice.
+                                          - link "View Details" [ref=e1394] [cursor=pointer]:
+                                                - /url: /products/kala-namak-rice-1kg
+                                                - img [ref=e1395]
+                                                - text: View Details
+                  - generic [ref=e1399]:
+                        - generic [ref=e1400]:
+                              - generic [ref=e1401]:
+                                    - text: Uncompromising Truth
+                                    - heading "Total Transparency." [level=2] [ref=e1402]:
+                                          - text: Total
+                                          - text: Transparency.
+                                    - paragraph [ref=e1403]: Trust is earned through evidence. We publish our random batch test results from NABL accredited labs, so you never have to take our word for it.
+                              - generic [ref=e1404]:
+                                    - generic [ref=e1405]:
+                                          - generic [ref=e1406]:
+                                                - img [ref=e1408]
+                                                - generic [ref=e1411]:
+                                                      - heading "Pesticide Residue Audit" [level=4] [ref=e1412]
+                                                      - paragraph [ref=e1413]: Dec 2025
+                                          - generic [ref=e1414]:
+                                                - generic [ref=e1415]: 0.00% Found
+                                                - button "PDF" [ref=e1416] [cursor=pointer]:
+                                                      - img [ref=e1417]
+                                                      - text: PDF
+                                    - generic [ref=e1420]:
+                                          - generic [ref=e1421]:
+                                                - img [ref=e1423]
+                                                - generic [ref=e1426]:
+                                                      - heading "A2 Protein Certification" [level=4] [ref=e1427]
+                                                      - paragraph [ref=e1428]: Nov 2025
+                                          - generic [ref=e1429]:
+                                                - generic [ref=e1430]: 100% Pure A2
+                                                - button "PDF" [ref=e1431] [cursor=pointer]:
+                                                      - img [ref=e1432]
+                                                      - text: PDF
+                                    - generic [ref=e1435]:
+                                          - generic [ref=e1436]:
+                                                - img [ref=e1438]
+                                                - generic [ref=e1441]:
+                                                      - heading "Bacterial Count TPC" [level=4] [ref=e1442]
+                                                      - paragraph [ref=e1443]: Last Batched
+                                          - generic [ref=e1444]:
+                                                - generic [ref=e1445]: Below Limit
+                                                - button "PDF" [ref=e1446] [cursor=pointer]:
+                                                      - img [ref=e1447]
+                                                      - text: PDF
+                              - link "View All Audit History" [ref=e1451] [cursor=pointer]:
+                                    - /url: /lab-reports
+                        - generic [ref=e1454]:
+                              - generic [ref=e1455]:
+                                    - img [ref=e1456]
+                                    - generic [ref=e1459]: Passed Audit
+                              - heading "NABL Laboratory Report" [level=5] [ref=e1460]
+                              - generic [ref=e1474]:
+                                    - img [ref=e1475]
+                                    - generic [ref=e1478]: Verified Sovereign Source
+                  - generic [ref=e1483]:
+                        - generic [ref=e1484]:
+                              - img [ref=e1486]
+                              - heading "Indian Desi Cows (A2)" [level=3] [ref=e1489]
+                              - paragraph [ref=e1490]: Strictly Desi Gir Cow & Buffalo Milk
+                        - generic [ref=e1491]:
+                              - img [ref=e1493]
+                              - heading "Own Farm, Not Aggregated" [level=3] [ref=e1496]
+                              - paragraph [ref=e1497]: We raise our own cows, we don't buy milk.
+                        - generic [ref=e1498]:
+                              - img [ref=e1500]
+                              - heading "Trusted by 700+ Families" [level=3] [ref=e1503]
+                              - paragraph [ref=e1504]: Serving healthy families & children for 12+ years
+                        - generic [ref=e1505]:
+                              - img [ref=e1507]
+                              - heading "Delivered Fresh" [level=3] [ref=e1510]
+                              - paragraph [ref=e1511]: Milked at 4AM, delivered by 8AM daily
+                  - generic [ref=e1514]:
+                        - generic [ref=e1515]:
+                              - generic [ref=e1516]:
+                                    - generic [ref=e1517]: Wellness Bundles
+                                    - heading "Healthy Combo Packs" [level=2] [ref=e1518]
+                              - generic [ref=e1519]:
+                                    - button [ref=e1520] [cursor=pointer]:
+                                          - img [ref=e1521]
+                                    - button [ref=e1523] [cursor=pointer]:
+                                          - img [ref=e1524]
+                        - link "View All" [ref=e1528] [cursor=pointer]:
+                              - /url: /combos
+                              - generic [ref=e1529]: View All
+                              - img [ref=e1530]
+                  - generic [ref=e1534]:
+                        - generic [ref=e1535]:
+                              - generic [ref=e1536]:
+                                    - text: Medical Trust
+                                    - heading "The Expert Perspective." [level=2] [ref=e1537]
+                              - paragraph [ref=e1538]: Top healthcare professionals and traditional healers recommend Amrit Sovereign for its uncompromising quality standards.
+                        - generic [ref=e1539]:
+                              - generic [ref=e1540]:
+                                    - img "Dr. Aniruddh Sharma" [ref=e1542]
+                                    - generic [ref=e1543]:
+                                          - img [ref=e1544]
+                                          - paragraph [ref=e1547]: '"For growing children, A2 milk is the only choice that ensures proper cognitive development without the inflammatory triggers of A1 milk."'
+                                          - generic [ref=e1548]:
+                                                - heading "Dr. Aniruddh Sharma" [level=4] [ref=e1549]
+                                                - paragraph [ref=e1550]: Pediatrician & Nutritionist
+                              - generic [ref=e1551]:
+                                    - img "Vaidya Rajeshwari" [ref=e1553]
+                                    - generic [ref=e1554]:
+                                          - img [ref=e1555]
+                                          - paragraph [ref=e1558]: '"Our ancient texts call Desi Cow Ghee &apos;Maha-Aushadhi&apos;. Amrit Sovereign preserves this potency by following the Bilona method strictly."'
+                                          - generic [ref=e1559]:
+                                                - heading "Vaidya Rajeshwari" [level=4] [ref=e1560]
+                                                - paragraph [ref=e1561]: Ayurvedic Practitioner
+                  - generic [ref=e1564]:
+                        - generic [ref=e1565]:
+                              - text: The Verdict
+                              - heading "Wall of Love." [level=2] [ref=e1566]
+                        - generic [ref=e1567]:
+                              - generic [ref=e1568]:
+                                    - generic [ref=e1569]:
+                                          - generic [ref=e1570]:
+                                                - img [ref=e1571]
+                                                - img [ref=e1573]
+                                                - img [ref=e1575]
+                                                - img [ref=e1577]
+                                                - img [ref=e1579]
+                                          - img [ref=e1581]
+                                          - paragraph [ref=e1584]: '"We stopped getting ''Mother Dairy'' because my daughter''s skin issues vanished within a month of switching to Amrit Gir Milk. The taste is nostalgic."'
+                                    - generic [ref=e1585]:
+                                          - heading "Meera Oberoi" [level=4] [ref=e1586]
+                                          - paragraph [ref=e1587]: Gomti Nagar
+                              - generic [ref=e1588]:
+                                    - generic [ref=e1589]:
+                                          - generic [ref=e1590]:
+                                                - img [ref=e1591]
+                                                - img [ref=e1593]
+                                                - img [ref=e1595]
+                                                - img [ref=e1597]
+                                                - img [ref=e1599]
+                                          - img [ref=e1601]
+                                          - paragraph [ref=e1604]: '"The Ghee is exactly like what we used to have at our village. Grainy texture, nutty aroma. Truly the gold standard of Bilona."'
+                                    - generic [ref=e1605]:
+                                          - heading "Capt. Vikram Singh" [level=4] [ref=e1606]
+                                          - paragraph [ref=e1607]: Hazratganj
+                              - generic [ref=e1608]:
+                                    - generic [ref=e1609]:
+                                          - generic [ref=e1610]:
+                                                - img [ref=e1611]
+                                                - img [ref=e1613]
+                                                - img [ref=e1615]
+                                                - img [ref=e1617]
+                                                - img [ref=e1619]
+                                          - img [ref=e1621]
+                                          - paragraph [ref=e1624]: '"Being a doctor, I analyze the cold chain. Amrit is the only service in Lucknow that genuinely maintains 4°C from farm to fridge."'
+                                    - generic [ref=e1625]:
+                                          - heading "Dr. S. K. Gupta" [level=4] [ref=e1626]
+                                          - paragraph [ref=e1627]: Indira Nagar
+                  - generic [ref=e1630]:
+                        - generic [ref=e1631]:
+                              - generic [ref=e1632]:
+                                    - img [ref=e1633]
+                                    - text: Follow Our Journey
+                              - heading "Life at Amrit Farm" [level=2] [ref=e1636]
+                              - paragraph [ref=e1637]: See behind the scenes - our cows, our team, the daily rituals that bring pure food to your table.
+                              - link "Follow @amritmilk on Instagram" [ref=e1638] [cursor=pointer]:
+                                    - /url: https://www.instagram.com/amritmilk
+                                    - img [ref=e1639]
+                                    - text: Follow @amritmilk on Instagram
+                                    - img [ref=e1642]
+                        - generic [ref=e1646]:
+                              - generic [ref=e1647]:
+                                    - link "Pure A2 Gir Cow Ghee - The essence of tradition. Pure A2 Gir Cow Ghee - The essence of tradition." [ref=e1648] [cursor=pointer]:
+                                          - /url: https://www.instagram.com/amritmilk/
+                                          - img "Pure A2 Gir Cow Ghee - The essence of tradition." [ref=e1649]
+                                          - img [ref=e1651]
+                                          - paragraph [ref=e1655]: Pure A2 Gir Cow Ghee - The essence of tradition.
+                                    - link "Harvest season at Amrit Farms. From soil to soul. Harvest season at Amrit Farms. From soil to soul." [ref=e1656] [cursor=pointer]:
+                                          - /url: https://www.instagram.com/amritmilk/
+                                          - img "Harvest season at Amrit Farms. From soil to soul." [ref=e1657]
+                                          - img [ref=e1659]
+                                          - paragraph [ref=e1663]: Harvest season at Amrit Farms. From soil to soul.
+                                    - link "Cold pressed mustard oil - purity you can smell. Cold pressed mustard oil - purity you can smell." [ref=e1664] [cursor=pointer]:
+                                          - /url: https://www.instagram.com/amritmilk/
+                                          - img "Cold pressed mustard oil - purity you can smell." [ref=e1665]
+                                          - img [ref=e1667]
+                                          - paragraph [ref=e1671]: Cold pressed mustard oil - purity you can smell.
+                                    - link "Sweetness straight from the wild forests. Sweetness straight from the wild forests." [ref=e1672] [cursor=pointer]:
+                                          - /url: https://www.instagram.com/amritmilk/
+                                          - img "Sweetness straight from the wild forests." [ref=e1673]
+                                          - img [ref=e1675]
+                                          - paragraph [ref=e1679]: Sweetness straight from the wild forests.
+                              - paragraph [ref=e1680]: Follow us @amritmilk for daily farm stories
+                  - generic [ref=e1683]:
+                        - generic [ref=e1684]:
+                              - generic [ref=e1685]:
+                                    - img [ref=e1686]
+                                    - text: Community Love
+                              - heading "Words from our Family" [level=2] [ref=e1689]
+                              - generic [ref=e1690]:
+                                    - generic [ref=e1691]: "4.9"
+                                    - generic [ref=e1692]:
+                                          - img [ref=e1693]
+                                          - img [ref=e1695]
+                                          - img [ref=e1697]
+                                          - img [ref=e1699]
+                                          - img [ref=e1701]
+                                    - generic [ref=e1703]: (150+ Reviews)
+                        - generic [ref=e1704]:
+                              - generic [ref=e1705]:
+                                    - generic [ref=e1706]:
+                                          - img [ref=e1707]
+                                          - img [ref=e1709]
+                                          - img [ref=e1711]
+                                          - img [ref=e1713]
+                                          - img [ref=e1715]
+                                    - generic [ref=e1717]:
+                                          - img [ref=e1718]
+                                          - paragraph [ref=e1721]: '"Absolutely the best A2 milk in the city. The glass bottles are a great touch, and the taste reminds me of my village."'
+                                    - generic [ref=e1722]:
+                                          - generic [ref=e1723]: P
+                                          - generic [ref=e1724]:
+                                                - paragraph [ref=e1725]: Priya Sharma
+                                                - paragraph [ref=e1726]: 2 weeks ago
+                                          - img "Google" [ref=e1727]
+                              - generic [ref=e1728]:
+                                    - generic [ref=e1729]:
+                                          - img [ref=e1730]
+                                          - img [ref=e1732]
+                                          - img [ref=e1734]
+                                          - img [ref=e1736]
+                                          - img [ref=e1738]
+                                    - generic [ref=e1740]:
+                                          - img [ref=e1741]
+                                          - paragraph [ref=e1744]: '"Switched to Amrit Milk 6 months ago. The difference in quality is noticeable. The ghee is aromatic and pure."'
+                                    - generic [ref=e1745]:
+                                          - generic [ref=e1746]: R
+                                          - generic [ref=e1747]:
+                                                - paragraph [ref=e1748]: Rahul Verma
+                                                - paragraph [ref=e1749]: 1 month ago
+                                          - img "Google" [ref=e1750]
+                              - generic [ref=e1751]:
+                                    - generic [ref=e1752]:
+                                          - img [ref=e1753]
+                                          - img [ref=e1755]
+                                          - img [ref=e1757]
+                                          - img [ref=e1759]
+                                          - img [ref=e1761]
+                                    - generic [ref=e1763]:
+                                          - img [ref=e1764]
+                                          - paragraph [ref=e1767]: '"Prompt delivery and excellent customer service. Highly recommend their organic mustard oil as well."'
+                                    - generic [ref=e1768]:
+                                          - generic [ref=e1769]: A
+                                          - generic [ref=e1770]:
+                                                - paragraph [ref=e1771]: Amit Patel
+                                                - paragraph [ref=e1772]: 2 months ago
+                                          - img "Google" [ref=e1773]
+                              - generic [ref=e1774]:
+                                    - generic [ref=e1775]:
+                                          - img [ref=e1776]
+                                          - img [ref=e1778]
+                                          - img [ref=e1780]
+                                          - img [ref=e1782]
+                                    - generic [ref=e1784]:
+                                          - img [ref=e1785]
+                                          - paragraph [ref=e1788]: '"Great quality products. Would love to see more paneer availability."'
+                                    - generic [ref=e1789]:
+                                          - generic [ref=e1790]: S
+                                          - generic [ref=e1791]:
+                                                - paragraph [ref=e1792]: Sneha Gupta
+                                                - paragraph [ref=e1793]: 3 months ago
+                                          - img "Google" [ref=e1794]
+                        - link "See all reviews on Google" [ref=e1796] [cursor=pointer]:
+                              - /url: https://g.page/r/YOUR_GMB_LINK_HERE
+                              - img [ref=e1797]
+                              - text: See all reviews on Google
+                              - img [ref=e1800]
+                  - generic [ref=e1808]:
+                        - heading "The Living Sanctuary" [level=2] [ref=e1809]
+                        - paragraph [ref=e1810]: Our cows aren't milk machines. They are members of the family. They feed on hydroponic green fodder, listen to Vedic chants, and roam free.
+                        - generic [ref=e1811]:
+                              - link "Book Private Tour" [ref=e1812] [cursor=pointer]:
+                                    - /url: https://wa.me/919876543210
+                              - link "Virtual 360° Tour" [ref=e1813] [cursor=pointer]:
+                                    - /url: /the-farm
+                  - generic [ref=e1815]:
+                        - generic [ref=e1816]:
+                              - generic [ref=e1817]: Got Questions?
+                              - heading "Frequently Asked" [level=2] [ref=e1818]
+                        - generic [ref=e1819]:
+                              - generic [ref=e1820]:
+                                    - button "What makes A2 milk different from regular milk?" [ref=e1821] [cursor=pointer]:
+                                          - generic [ref=e1822]: What makes A2 milk different from regular milk?
+                                          - img [ref=e1823]
+                                    - paragraph [ref=e1826]: A2 milk comes from cows that only produce the A2 type of beta-casein protein. Regular milk contains both A1 and A2 proteins. Many people who experience digestive discomfort with regular milk find A2 milk easier to digest because it doesn't contain the A1 protein.
+                              - generic [ref=e1827]:
+                                    - button "Why is Gir cow milk considered superior?" [ref=e1828] [cursor=pointer]:
+                                          - generic [ref=e1829]: Why is Gir cow milk considered superior?
+                                          - img [ref=e1830]
+                                    - paragraph [ref=e1832]: Gir cows are an indigenous Indian breed that naturally produce only A2 milk. They also have a unique hump (Suryaketu Nadi) that is believed to absorb beneficial solar energy. Their milk is richer in beta-carotene, giving it a natural golden color, and contains higher levels of omega fatty acids.
+                              - generic [ref=e1833]:
+                                    - button "How is the milk delivered so quickly?" [ref=e1834] [cursor=pointer]:
+                                          - generic [ref=e1835]: How is the milk delivered so quickly?
+                                          - img [ref=e1836]
+                                    - paragraph [ref=e1838]: We milk our cows between 3:30-4:00 AM, immediately chill the milk to 4°C using solar-powered chillers, bottle it in sterilized glass by 5:30 AM, and dispatch using our electric delivery fleet. Your milk reaches you before 7:00 AM - within 4 hours of milking.
+                              - generic [ref=e1839]:
+                                    - button "Why glass bottles instead of plastic pouches?" [ref=e1840] [cursor=pointer]:
+                                          - generic [ref=e1841]: Why glass bottles instead of plastic pouches?
+                                          - img [ref=e1842]
+                                    - paragraph [ref=e1844]: Glass is inert and doesn't leach chemicals into the milk. Plastic pouches, especially when exposed to heat, can release BPA and microplastics. Glass also preserves the taste and freshness better. Plus, our bottles are returnable and reusable, reducing environmental impact.
+                              - generic [ref=e1845]:
+                                    - button "Is the milk pasteurized or raw?" [ref=e1846] [cursor=pointer]:
+                                          - generic [ref=e1847]: Is the milk pasteurized or raw?
+                                          - img [ref=e1848]
+                                    - paragraph [ref=e1850]: Our milk is gently pasteurized at low temperatures (63°C for 30 minutes - the LTLT method) to ensure safety while preserving maximum nutrients and beneficial enzymes. This is different from UHT or high-heat pasteurization that destroys most nutrients.
+                  - generic [ref=e1853]:
+                        - generic [ref=e1854]:
+                              - generic [ref=e1855]: Join the Elite
+                              - heading "The Amrit Family." [level=2] [ref=e1856]
+                              - paragraph [ref=e1857]: Become part of Lucknow's most discerning community. Get early access to seasonal harvests, Vedic wisdom, and farm-to-table events.
+                        - generic [ref=e1858]:
+                              - textbox "Enter your royal email..." [ref=e1859]
+                              - button "Apply for Entry" [ref=e1860] [cursor=pointer]
+                        - paragraph [ref=e1861]: No spam. Just pure gold content and exclusive farm updates.
+      - link "Chat on WhatsApp" [ref=e1862] [cursor=pointer]:
+            - /url: https://wa.me/918130693767
+            - img [ref=e1863]
+      - contentinfo [ref=e1865]:
+            - generic [ref=e1866]:
+                  - generic [ref=e1867]:
+                        - generic [ref=e1868]:
+                              - link "Amrit Milk" [ref=e1869] [cursor=pointer]:
+                                    - /url: /
+                                    - img "Amrit Milk" [ref=e1870]
+                              - paragraph [ref=e1871]: Affordable milk, rich in taste. Pure A2 Gir Cow Milk from indigenous breeds, delivered fresh to your doorstep in glass bottles.
+                              - generic [ref=e1872]:
+                                    - paragraph [ref=e1873]: '"Not a brand, a movement."'
+                                    - paragraph [ref=e1874]: Reclaiming Real Food
+                              - generic [ref=e1875]:
+                                    - link [ref=e1876] [cursor=pointer]:
+                                          - /url: https://instagram.com
+                                          - img [ref=e1877]
+                                    - link [ref=e1880] [cursor=pointer]:
+                                          - /url: https://facebook.com
+                                          - img [ref=e1881]
+                                    - link [ref=e1883] [cursor=pointer]:
+                                          - /url: https://twitter.com
+                                          - img [ref=e1884]
+                                    - link [ref=e1886] [cursor=pointer]:
+                                          - /url: https://wa.me/918130693767
+                                          - img [ref=e1887]
+                        - generic [ref=e1889]:
+                              - heading "Shop" [level=4] [ref=e1890]: Shop
+                              - list [ref=e1892]:
+                                    - listitem [ref=e1893]:
+                                          - link "All Products" [ref=e1894] [cursor=pointer]:
+                                                - /url: /products
+                                                - text: All Products
+                                    - listitem [ref=e1895]:
+                                          - link "A2 Gir Cow Milk" [ref=e1896] [cursor=pointer]:
+                                                - /url: /products?category=milk
+                                                - text: A2 Gir Cow Milk
+                                    - listitem [ref=e1897]:
+                                          - link "Vedic Bilona Ghee" [ref=e1898] [cursor=pointer]:
+                                                - /url: /products?category=ghee
+                                                - text: Vedic Bilona Ghee
+                                    - listitem [ref=e1899]:
+                                          - link "Malai Paneer" [ref=e1900] [cursor=pointer]:
+                                                - /url: /products?category=paneer
+                                                - text: Malai Paneer
+                                    - listitem [ref=e1901]:
+                                          - link "Subscriptions" [ref=e1902] [cursor=pointer]:
+                                                - /url: /subscription-hub
+                                                - text: Subscriptions
+                        - generic [ref=e1903]:
+                              - heading "Company" [level=4] [ref=e1904]: Company
+                              - list [ref=e1906]:
+                                    - listitem [ref=e1907]:
+                                          - link "Our Story" [ref=e1908] [cursor=pointer]:
+                                                - /url: /about
+                                                - text: Our Story
+                                    - listitem [ref=e1909]:
+                                          - link "The Farm" [ref=e1910] [cursor=pointer]:
+                                                - /url: /the-farm
+                                                - text: The Farm
+                                    - listitem [ref=e1911]:
+                                          - link "Genetic Library" [ref=e1912] [cursor=pointer]:
+                                                - /url: /genetic-library
+                                                - text: Genetic Library
+                                    - listitem [ref=e1913]:
+                                          - link "Sustainability" [ref=e1914] [cursor=pointer]:
+                                                - /url: /sustainability
+                                                - text: Sustainability
+                                    - listitem [ref=e1915]:
+                                          - link "Lab Reports" [ref=e1916] [cursor=pointer]:
+                                                - /url: /lab-reports
+                                                - text: Lab Reports
+                        - generic [ref=e1917]:
+                              - heading "Support" [level=4] [ref=e1918]: Support
+                              - list [ref=e1920]:
+                                    - listitem [ref=e1921]:
+                                          - link "FAQs" [ref=e1922] [cursor=pointer]:
+                                                - /url: /faqs
+                                                - text: FAQs
+                                    - listitem [ref=e1923]:
+                                          - link "Contact Us" [ref=e1924] [cursor=pointer]:
+                                                - /url: /contact
+                                                - text: Contact Us
+                                    - listitem [ref=e1925]:
+                                          - link "Savings Calculator" [ref=e1926] [cursor=pointer]:
+                                                - /url: /calculator
+                                                - text: Savings Calculator
+                                    - listitem [ref=e1927]:
+                                          - link "Kitchen Quiz" [ref=e1928] [cursor=pointer]:
+                                                - /url: /quiz
+                                                - text: Kitchen Quiz
+                                    - listitem [ref=e1929]:
+                                          - link "Blog" [ref=e1930] [cursor=pointer]:
+                                                - /url: /blog
+                                                - text: Blog
+                  - generic [ref=e1932]:
+                        - link "+91 81306 93767" [ref=e1933] [cursor=pointer]:
+                              - /url: tel:+918130693767
+                              - img [ref=e1935]
+                              - text: +91 81306 93767
+                        - generic [ref=e1937]:
+                              - link "info@amritmilkorganic.com" [ref=e1938] [cursor=pointer]:
+                                    - /url: mailto:info@amritmilkorganic.com
+                                    - img [ref=e1940]
+                                    - text: info@amritmilkorganic.com
+                              - link "support@amritmilkorganic.com" [ref=e1943] [cursor=pointer]:
+                                    - /url: mailto:support@amritmilkorganic.com
+                                    - img [ref=e1945]
+                                    - text: support@amritmilkorganic.com
+                        - generic [ref=e1948]:
+                              - img [ref=e1950]
+                              - text: Lucknow, Uttar Pradesh
+                  - generic [ref=e1953]:
+                        - paragraph [ref=e1954]:
+                              - text: © 2025 Pay Amrit Organic FPO. Crafted with
+                              - img [ref=e1955]
+                              - text: in India
+                        - generic [ref=e1957]:
+                              - link "Privacy Policy" [ref=e1958] [cursor=pointer]:
+                                    - /url: /privacy
+                              - link "Terms of Service" [ref=e1959] [cursor=pointer]:
+                                    - /url: /terms
+                              - link "Refund Policy" [ref=e1960] [cursor=pointer]:
+                                    - /url: /refund
+      - link "Chat on WhatsApp" [ref=e1961] [cursor=pointer]:
+            - /url: https://wa.me/918130693767
+            - img [ref=e1962]
+      - button [ref=e1964] [cursor=pointer]:
+            - img [ref=e1965]
+      - alert [ref=e1967]
+```

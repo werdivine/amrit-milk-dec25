@@ -92,18 +92,18 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
 
     return (
         <>
-            {/* Category Filters - Sticky */}
-            <section className="sticky top-24 z-40 bg-theme-secondary/95 backdrop-blur-xl border-y border-theme-light py-6 shadow-lg">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex gap-4 overflow-x-auto pb-4 md:pb-0 md:justify-center flex-nowrap md:flex-wrap no-scrollbar -mx-6 px-6 md:mx-0 md:px-0 scroll-smooth snap-x">
+            {/* Category Filters - Sticky - Optimized for Compact Single Line */}
+            <section className="sticky top-24 z-40 bg-theme-secondary/95 backdrop-blur-xl border-y border-theme-light py-4 shadow-sm md:py-4">
+                <div className="max-w-7xl mx-auto px-4 md:px-6">
+                    <div className="flex gap-3 overflow-x-auto pb-2 md:pb-2 md:justify-start flex-nowrap no-scrollbar -mx-4 px-4 md:mx-0 md:px-0 scroll-smooth snap-x items-center">
                         {categories.map((cat) => (
                             <button
                                 key={cat.id}
                                 onClick={() => setActiveCategory(cat.id)}
-                                className={`flex-shrink-0 snap-center px-6 py-3 rounded-full font-bold text-sm uppercase tracking-wider transition-all duration-300 ${
+                                className={`flex-shrink-0 snap-center px-4 py-2 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 border ${
                                     activeCategory === cat.id
-                                        ? "bg-terracotta dark:bg-gold text-white dark:text-midnight shadow-[0_0_20px_rgba(199,91,57,0.4)] dark:shadow-[0_0_20px_rgba(212,175,55,0.4)]"
-                                        : "bg-transparent text-terracotta dark:text-gold border-2 border-terracotta dark:border-gold hover:bg-terracotta/10 dark:hover:bg-gold/10"
+                                        ? "bg-terracotta dark:bg-gold text-white dark:text-midnight border-terracotta dark:border-gold shadow-md"
+                                        : "bg-transparent text-terracotta dark:text-gold border-terracotta/30 dark:border-gold/30 hover:bg-terracotta/5 dark:hover:bg-gold/5"
                                 }`}
                             >
                                 {cat.name} ({cat.count})

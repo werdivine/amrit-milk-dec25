@@ -1,6 +1,7 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { AnimatePresence, motion } from "framer-motion";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -55,79 +56,104 @@ export function HeroSlider() {
         return () => clearInterval(timer);
     }, []);
 
+    const swipeConfidenceThreshold = 10000;
+    const swipePower = (offset: number, velocity: number) => {
+        return Math.abs(offset) * velocity;
+    };
+
     return (
         <section className="relative w-full h-[90vh] md:h-[100vh] overflow-hidden bg-creme dark:bg-midnight -mt-20">
-            {slides.map((slide, index) => (
-                <div
-                    key={slide.id}
-                    className={`absolute inset-0 transition-opacity duration-1000 ease-in-out ${
-                        index === currentSlide ? "opacity-100 z-10" : "opacity-0 z-0"
-                    }`}
+            <AnimatePresence initial={false}>
+                <motion.div
+                    key={currentSlide}
+                    className="absolute inset-0 w-full h-full"
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
+                    transition={{ duration: 1 }}
+                    drag="x"
+                    dragConstraints={{ left: 0, right: 0 }}
+                    dragElastic={1}
+                    onDragEnd={(e, { offset, velocity }) => {
+                        const swipe = swipePower(offset.x, velocity.x);
+
+                        if (swipe < -swipeConfidenceThreshold) {
+                            nextSlide();
+                        } else if (swipe > swipeConfidenceThreshold) {
+                            prevSlide();
+                        }
+                    }}
                 >
                     {/* Background */}
                     <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10" />
-                    {/* Placeholder for actual background image treatment - using a gradient for 2nd slide if image is small product shot */}
+
                     <div
-                        className="absolute inset-0 bg-cover bg-center transition-transform duration-[10000ms] ease-linear scale-105"
+                        className="absolute inset-0 bg-cover bg-center"
                         style={{
-                            backgroundImage: `url('${slide.image}')`,
-                            transform: index === currentSlide ? "scale(1.1)" : "scale(1.0)",
+                            backgroundImage: `url('${slides[currentSlide].image}')`,
                         }}
                     >
                         {/* Fallback gradient for slide 2 if it's just a product image */}
-                        {slide.id === 2 && (
+                        {slides[currentSlide].id === 2 && (
                             <div className="absolute inset-0 bg-gradient-to-r from-terracotta/80 to-espresso/80 mix-blend-multiply" />
                         )}
                     </div>
 
                     {/* Content */}
                     <div className="absolute inset-0 z-20 flex items-center justify-center text-center px-4 pt-20">
-                        <div className="max-w-4xl space-y-6 md:space-y-8 animate-fade-in-up">
+                        <div className="max-w-4xl space-y-6 md:space-y-8">
                             <span className="inline-block px-6 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white font-bold tracking-[0.2em] text-xs md:text-sm uppercase">
-                                {slide.subtitle}
+                                {slides[currentSlide].subtitle}
                             </span>
                             <h1 className="font-serif text-5xl md:text-8xl font-black leading-tight text-white drop-shadow-2xl">
-                                {slide.title}
+                                {slides[currentSlide].title}
                             </h1>
                             <p className="text-lg md:text-2xl text-white/90 font-light max-w-2xl mx-auto leading-relaxed drop-shadow-lg">
-                                {slide.description}
+                                {slides[currentSlide].description}
                             </p>
                             <div className="pt-4 flex flex-wrap justify-center gap-4">
                                 <Button
-                                    href={slide.link}
+                                    asChild
                                     size="lg"
-                                    className="bg-terracotta text-white hover:bg-espresso border-2 border-transparent hover:border-white transition-all duration-300 text-lg px-10 py-6 h-auto"
+                                    className="bg-terracotta text-white hover:bg-espresso border-2 border-transparent hover:border-white transition-all duration-300 text-lg px-10 py-6 h-auto cursor-pointer"
                                 >
-                                    {slide.cta} <ArrowRight className="ml-2 w-5 h-5" />
+                                    <a href={slides[currentSlide].link}>
+                                        {slides[currentSlide].cta}{" "}
+                                        <ArrowRight className="ml-2 w-5 h-5" />
+                                    </a>
                                 </Button>
-                                {(slide as any).secondaryCta && (
+                                {(slides[currentSlide] as any).secondaryCta && (
                                     <Button
-                                        href={(slide as any).secondaryLink}
+                                        asChild
                                         size="lg"
                                         variant="outline"
-                                        className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-espresso transition-all duration-300 text-lg px-10 py-6 h-auto"
+                                        className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-espresso transition-all duration-300 text-lg px-10 py-6 h-auto cursor-pointer"
                                     >
-                                        {(slide as any).secondaryCta}
+                                        <a href={(slides[currentSlide] as any).secondaryLink}>
+                                            {(slides[currentSlide] as any).secondaryCta}
+                                        </a>
                                     </Button>
                                 )}
                             </div>
                         </div>
                     </div>
-                </div>
-            ))}
+                </motion.div>
+            </AnimatePresence>
 
-            {/* Controls */}
+            {/* Controls - Visible on Mobile now */}
             <button
                 onClick={prevSlide}
-                className="absolute left-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all hidden md:block"
+                className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
+                aria-label="Previous slide"
             >
-                <ChevronLeft className="w-8 h-8" />
+                <ChevronLeft className="w-6 h-6 md:w-8 md:h-8" />
             </button>
             <button
                 onClick={nextSlide}
-                className="absolute right-4 top-1/2 -translate-y-1/2 z-30 p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all hidden md:block"
+                className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 z-30 p-2 md:p-3 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-white hover:bg-white/20 transition-all"
+                aria-label="Next slide"
             >
-                <ChevronRight className="w-8 h-8" />
+                <ChevronRight className="w-6 h-6 md:w-8 md:h-8" />
             </button>
 
             {/* Dots */}
@@ -141,6 +167,7 @@ export function HeroSlider() {
                                 ? "bg-terracotta w-8"
                                 : "bg-white/50 hover:bg-white"
                         }`}
+                        aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}
             </div>
