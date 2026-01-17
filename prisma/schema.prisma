@@ -37,6 +37,10 @@ model Order {
   trackingId    String?  // CCAvenue tracking ID
   bankRefNo     String?  // Bank reference number
   
+  // Coupon Info
+  couponCode    String?
+  discount      Float?   @default(0)
+  
   // Order Status
   orderStatus   String   @default("pending") // "pending" | "processing" | "shipped" | "delivered" | "cancelled"
   
@@ -50,4 +54,19 @@ model Order {
   @@index([orderStatus])
   @@index([paymentStatus])
   @@index([createdAt])
+}
+
+model Coupon {
+  id            String   @id @default(cuid())
+  code          String   @unique
+  type          String   // "percentage" | "fixed"
+  value         Float
+  minOrderValue Float?   @default(0)
+  isActive      Boolean  @default(true)
+  usageCount    Int      @default(0)
+  
+  description   String?
+  
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
 }

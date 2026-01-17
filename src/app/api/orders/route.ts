@@ -5,8 +5,11 @@
 
 import { sendOrderNotifications } from "@/lib/notifications";
 import { createOrder } from "@/lib/sanity-orders";
+import { PrismaClient } from "@prisma/client";
 import { NextRequest, NextResponse } from "next/server";
 import { z } from "zod";
+
+const prisma = new PrismaClient();
 
 // Validation schema for new orders
 const orderSchema = z.object({
@@ -29,6 +32,8 @@ const orderSchema = z.object({
     ),
     subtotal: z.number(),
     deliveryFee: z.number().optional().default(0),
+    discount: z.number().optional().default(0),
+    couponCode: z.string().optional(),
     total: z.number(),
     paymentMethod: z.enum(["cod", "ccavenue"]),
 });
@@ -68,6 +73,21 @@ export async function POST(req: NextRequest) {
 
         const data = validationResult.data;
 
+        // If coupon used, increment usage count in SQLite
+        if (data.couponCode) {
+            try {
+                await prisma.coupon.update({
+                    where: { code: data.couponCode },
+                    data: {
+                        usageCount: { increment: 1 },
+                    },
+                });
+            } catch (e) {
+                console.warn(`Failed to increment usage for coupon ${data.couponCode}`, e);
+                // Don't fail the order just because of this
+            }
+        }
+
         // Create order in Sanity
         const { orderNumber, id } = await createOrder({
             customerName: data.customerName,
@@ -84,6 +104,8 @@ export async function POST(req: NextRequest) {
             })),
             subtotal: data.subtotal,
             deliveryFee: data.deliveryFee || 0,
+            discount: data.discount,
+            couponCode: data.couponCode,
             total: data.total,
             paymentMethod: data.paymentMethod,
         });
@@ -138,10 +160,6 @@ export async function POST(req: NextRequest) {
  */
 export async function GET(req: NextRequest) {
     try {
-        // Simple auth check (can be enhanced)
-        // For now, relies on route protection or obscure URL if needed
-        // Since this is an admin route, usually protected by middleware
-
         // Fetch orders from Sanity
         const { getOrders } = await import("@/lib/sanity-orders");
         const orders = await getOrders(50);

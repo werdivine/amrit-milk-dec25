@@ -33,6 +33,8 @@ interface CreateOrderData {
     deliveryFee?: number;
     total: number;
     paymentMethod: "cod" | "ccavenue";
+    couponCode?: string;
+    discount?: number;
 }
 
 /**
@@ -73,6 +75,8 @@ export async function createOrder(
         })),
         subtotal: data.subtotal,
         deliveryFee: data.deliveryFee || 0,
+        discount: data.discount || 0,
+        couponCode: data.couponCode,
         total: data.total,
         paymentMethod: data.paymentMethod,
         paymentStatus: "pending",

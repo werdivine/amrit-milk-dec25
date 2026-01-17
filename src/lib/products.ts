@@ -471,7 +471,7 @@ export const products: Product[] = [
         id: "cow-dung-cakes-2pcs",
         title: "Amrit Organic Upla (Cow Dung Cakes) - 2 pcs",
         price: "₹100",
-        image: "/assets/img/products/premium_cow_based_products.png",
+        image: "/assets/img/products/amrit_cow_dung_upla.png",
         category: "Gau Seva",
         description: "Traditionally dried Cow Dung cakes for rituals and fuel.",
         slug: "cow-dung-cakes-2pcs",

@@ -10,7 +10,6 @@ import {
     useState,
 } from "react";
 import { type CartItem } from "./cart-utils";
-import { validateCoupon } from "./coupons";
 
 interface CartContextType {
     cart: CartItem[];
@@ -18,7 +17,7 @@ interface CartContextType {
     removeFromCart: (id: string) => void;
     updateQuantity: (id: string, quantity: number) => void;
     clearCart: () => void;
-    applyCoupon: (code: string) => { success: boolean; message: string };
+    applyCoupon: (code: string) => Promise<{ success: boolean; message: string }>;
     removeCoupon: () => void;
     couponCode: string | null;
     discountAmount: number;
@@ -108,14 +107,32 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
     // Coupon Logic
     const applyCoupon = useCallback(
-        (code: string) => {
-            const result = validateCoupon(code, cartTotal);
-            if (result.valid) {
-                setCouponCode(code.toUpperCase());
-                localStorage.setItem("amrit-coupon", code.toUpperCase());
-                return { success: true, message: result.message };
+        async (code: string) => {
+            try {
+                const res = await fetch("/api/coupons/validate", {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ code, cartTotal }),
+                });
+
+                const data = await res.json();
+
+                if (data.valid) {
+                    setCouponCode(code.toUpperCase());
+                    setDiscountAmount(data.discount);
+                    localStorage.setItem("amrit-coupon", code.toUpperCase()); // Persist
+                    return { success: true, message: data.message };
+                } else {
+                    // Start fresh if invalid
+                    setCouponCode(null);
+                    setDiscountAmount(0);
+                    localStorage.removeItem("amrit-coupon");
+                    return { success: false, message: data.message };
+                }
+            } catch (err) {
+                console.error("Coupon check failed", err);
+                return { success: false, message: "Failed to validate coupon" };
             }
-            return { success: false, message: result.message };
         },
         [cartTotal]
     );
@@ -126,23 +143,36 @@ export function CartProvider({ children }: { children: ReactNode }) {
         localStorage.removeItem("amrit-coupon");
     }, []);
 
-    // Recalculate discount whenever cart or coupon changes
+    // Re-validate coupon when cart total changes (e.g. items added/removed)
     useEffect(() => {
-        if (!couponCode) {
-            setDiscountAmount(0);
-            return;
+        if (couponCode && mounted) {
+            // We need to re-verify in case the new total invalidates the coupon (e.g. min order)
+            // Debounce this slightly to avoid spamming API on rapid clicks?
+            // For now, simple re-check
+            const revalidate = async () => {
+                try {
+                    const res = await fetch("/api/coupons/validate", {
+                        method: "POST",
+                        headers: { "Content-Type": "application/json" },
+                        body: JSON.stringify({ code: couponCode, cartTotal }),
+                    });
+                    const data = await res.json();
+                    if (data.valid) {
+                        setDiscountAmount(data.discount);
+                    } else {
+                        // Silently remove if no longer valid (or create toast?)
+                        // For user experience, maybe better to keep it but show 0 discount?
+                        // But logic says: invalid.
+                        setDiscountAmount(0);
+                        // Optional: setCouponCode(null) if strict.
+                    }
+                } catch (e) {
+                    console.error("Revalidation failed");
+                }
+            };
+            revalidate();
         }
-
-        const result = validateCoupon(couponCode, cartTotal);
-        if (result.valid) {
-            setDiscountAmount(result.discount);
-        } else {
-            // If coupon becomes invalid (e.g. cart total dropped below min), remove it?
-            // For now, let's just zero it out but keep code? Or remove it.
-            // Let's keep it simple: if invalid, 0 discount.
-            setDiscountAmount(0);
-        }
-    }, [cartTotal, couponCode]);
+    }, [cartTotal, couponCode, mounted]);
 
     const value = useMemo(
         () => ({
