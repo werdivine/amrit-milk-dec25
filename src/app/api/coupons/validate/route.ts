@@ -1,8 +1,16 @@
+import { createClient } from "@sanity/client";
 import { NextRequest, NextResponse } from "next/server";
 
-// Hardcoded coupons for production (Vercel doesn't support SQLite)
-// To add new coupons, add them to this list
-const COUPONS = [
+// Sanity client for reading coupons
+const sanityClient = createClient({
+    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "fqzgs92z",
+    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    apiVersion: "2024-01-01",
+    useCdn: true, // Use CDN for faster reads
+});
+
+// Fallback coupons in case Sanity is empty or fails
+const FALLBACK_COUPONS = [
     { code: "IBS20", type: "percentage", value: 20, minOrderValue: 0, isActive: true },
     { code: "CMS25", type: "percentage", value: 25, minOrderValue: 0, isActive: true },
     { code: "FRIENDS30", type: "percentage", value: 30, minOrderValue: 0, isActive: true },
@@ -25,7 +33,23 @@ export async function POST(req: NextRequest) {
             );
         }
 
-        const coupon = COUPONS.find((c) => c.code.toUpperCase() === code.trim().toUpperCase());
+        const upperCode = code.trim().toUpperCase();
+
+        // Try to find coupon in Sanity first
+        let coupon = null;
+        try {
+            const query = `*[_type == "coupon" && code == $code && isActive == true][0]{
+                code, type, value, minOrderValue, isActive
+            }`;
+            coupon = await sanityClient.fetch(query, { code: upperCode });
+        } catch (sanityError) {
+            console.warn("Sanity fetch failed, using fallback:", sanityError);
+        }
+
+        // If not found in Sanity, check fallback list
+        if (!coupon) {
+            coupon = FALLBACK_COUPONS.find((c) => c.code === upperCode && c.isActive);
+        }
 
         if (!coupon) {
             return NextResponse.json(
