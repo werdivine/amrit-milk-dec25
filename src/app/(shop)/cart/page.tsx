@@ -47,14 +47,25 @@ export default function CartPage() {
     const totals = calculateCartTotals(enrichedCart, discountAmount);
     const recommendations = getCrossSellRecommendations(enrichedCart);
 
-    const handleApplyCoupon = () => {
-        if (!couponInput) return;
-        const result = applyCoupon(couponInput);
-        if (result.success) {
-            setCouponMessage({ type: "success", text: result.message });
-            setCouponInput("");
-        } else {
-            setCouponMessage({ type: "error", text: result.message });
+    const [isApplying, setIsApplying] = useState(false);
+
+    const handleApplyCoupon = async () => {
+        if (!couponInput || isApplying) return;
+        setIsApplying(true);
+        setCouponMessage(null);
+
+        try {
+            const result = await applyCoupon(couponInput);
+            if (result.success) {
+                setCouponMessage({ type: "success", text: result.message });
+                setCouponInput("");
+            } else {
+                setCouponMessage({ type: "error", text: result.message });
+            }
+        } catch (err) {
+            setCouponMessage({ type: "error", text: "Failed to apply coupon" });
+        } finally {
+            setIsApplying(false);
         }
     };
 
@@ -366,10 +377,10 @@ export default function CartPage() {
                                         />
                                         <button
                                             onClick={handleApplyCoupon}
-                                            disabled={!couponInput}
+                                            disabled={!couponInput || isApplying}
                                             className="bg-espresso dark:bg-ivory text-ivory dark:text-espresso px-4 py-2 rounded-lg text-sm font-bold disabled:opacity-50"
                                         >
-                                            Apply
+                                            {isApplying ? "..." : "Apply"}
                                         </button>
                                     </div>
                                     {couponMessage && (
