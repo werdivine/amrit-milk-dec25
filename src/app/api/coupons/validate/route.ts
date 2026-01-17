@@ -1,7 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
-import { PrismaClient } from "@prisma/client";
 
-const prisma = new PrismaClient();
+// Hardcoded coupons for production (Vercel doesn't support SQLite)
+// To add new coupons, add them to this list
+const COUPONS = [
+    { code: "IBS20", type: "percentage", value: 20, minOrderValue: 0, isActive: true },
+    { code: "CMS25", type: "percentage", value: 25, minOrderValue: 0, isActive: true },
+    { code: "FRIENDS30", type: "percentage", value: 30, minOrderValue: 0, isActive: true },
+    { code: "AMRIT5", type: "percentage", value: 5, minOrderValue: 0, isActive: true },
+    { code: "AMRIT10", type: "percentage", value: 10, minOrderValue: 0, isActive: true },
+    { code: "AMRIT15", type: "percentage", value: 15, minOrderValue: 0, isActive: true },
+    { code: "AMRIT20", type: "percentage", value: 20, minOrderValue: 0, isActive: true },
+    { code: "GAGAN30", type: "percentage", value: 30, minOrderValue: 0, isActive: true },
+    { code: "WELCOME10", type: "percentage", value: 10, minOrderValue: 0, isActive: true },
+];
 
 export async function POST(req: NextRequest) {
     try {
@@ -10,18 +21,16 @@ export async function POST(req: NextRequest) {
         if (!code) {
             return NextResponse.json(
                 { valid: false, message: "Please enter a coupon code" },
-                { status: 400 }
+                { status: 200 }
             );
         }
 
-        const coupon = await prisma.coupon.findUnique({
-            where: { code: code.trim() },
-        });
+        const coupon = COUPONS.find((c) => c.code.toUpperCase() === code.trim().toUpperCase());
 
         if (!coupon) {
             return NextResponse.json(
                 { valid: false, message: "Invalid coupon code" },
-                { status: 200 } // Return 200 so frontend handles it gracefully
+                { status: 200 }
             );
         }
 
