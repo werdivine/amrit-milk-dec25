@@ -127,6 +127,11 @@ export async function POST(req: NextRequest) {
                         quantity: item.quantity,
                         price: item.price,
                     })),
+                    // Include delivery address
+                    address: data.address,
+                    city: data.city,
+                    state: data.state,
+                    pincode: data.pincode,
                 });
             } catch (err) {
                 console.error("Notification error:", err);

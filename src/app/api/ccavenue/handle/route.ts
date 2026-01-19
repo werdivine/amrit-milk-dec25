@@ -71,6 +71,11 @@ export async function POST(req: NextRequest) {
                                 quantity: item.quantity,
                                 price: item.price,
                             })),
+                            // Include delivery address
+                            address: updatedOrder.address,
+                            city: updatedOrder.city,
+                            state: updatedOrder.state,
+                            pincode: updatedOrder.pincode,
                         });
                     }
                 } else {

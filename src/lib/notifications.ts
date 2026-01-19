@@ -11,6 +11,11 @@ interface OrderNotificationData {
     total: number;
     paymentMethod: string;
     items: { title: string; quantity: number; price: string }[];
+    // Delivery address fields
+    address?: string;
+    city?: string;
+    state?: string;
+    pincode?: string;
 }
 
 import nodemailer from "nodemailer";
@@ -60,13 +65,16 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
         .join("\n");
 
     const paymentStatus = formatPaymentStatus(order.paymentMethod);
+    const fullAddress = [order.address, order.city, order.state, order.pincode]
+        .filter(Boolean)
+        .join(", ");
 
     try {
         await transporter.sendMail({
             from: `"Amrit Milk Orders" <${smtpUser}>`,
             to: merchantEmail.split(",").map((e) => e.trim()),
             subject: `🛒 New Order: ${order.orderNumber} - ₹${order.total}`,
-            text: `New Order Received!\n\nOrder Number: ${order.orderNumber}\nCustomer: ${order.customerName}\nPhone: ${order.phone}\nEmail: ${order.email}\nPayment: ${paymentStatus}\n\nItems:\n${itemsList}\n\nTotal: ₹${order.total}`,
+            text: `New Order Received!\n\nOrder Number: ${order.orderNumber}\nCustomer: ${order.customerName}\nPhone: ${order.phone}\nEmail: ${order.email}\nDelivery Address: ${fullAddress || "Not provided"}\nPayment: ${paymentStatus}\n\nItems:\n${itemsList}\n\nTotal: ₹${order.total}`,
             html: `
                 <div style="font-family: sans-serif; max-width: 600px; border: 1px solid #eee; padding: 20px;">
                     <h2 style="color: #D4AF37;">New Order Received!</h2>
@@ -74,6 +82,11 @@ export async function sendOrderEmailNotification(order: OrderNotificationData): 
                     <p><strong>Customer:</strong> ${order.customerName}</p>
                     <p><strong>Phone:</strong> ${order.phone}</p>
                     <p><strong>Email:</strong> ${order.email}</p>
+                    <div style="background: #fff8e1; padding: 12px; border-radius: 6px; margin: 10px 0; border-left: 4px solid #D4AF37;">
+                        <p style="margin: 0;"><strong>📍 Delivery Address:</strong></p>
+                        <p style="margin: 5px 0 0 0;">${order.address || "N/A"}</p>
+                        <p style="margin: 5px 0 0 0;">${order.city || ""}${order.state ? ", " + order.state : ""} - ${order.pincode || ""}</p>
+                    </div>
                     <p><strong>Payment:</strong> <span style="background: #e8f5e9; padding: 4px 8px; border-radius: 4px; color: #2e7d32; font-weight: bold;">${paymentStatus}</span></p>
                     <hr>
                     <h3>Items:</h3>
@@ -111,6 +124,10 @@ export async function sendCustomerConfirmationEmail(
 
     const paymentStatus = formatPaymentStatus(order.paymentMethod);
 
+    const fullAddress = [order.address, order.city, order.state, order.pincode]
+        .filter(Boolean)
+        .join(", ");
+
     try {
         await transporter.sendMail({
             from: `"Amrit Milk" <${smtpUser}>`,
@@ -129,6 +146,12 @@ export async function sendCustomerConfirmationEmail(
                                 ${paymentStatus}
                             </span>
                         </p>
+                    </div>
+                    
+                    <div style="background: #f5f5f5; padding: 15px; border-radius: 8px; margin: 20px 0;">
+                        <h4 style="margin: 0 0 10px 0; color: #333;">📍 Delivering To:</h4>
+                        <p style="margin: 0; color: #555;">${order.address || "Address not provided"}</p>
+                        <p style="margin: 5px 0 0 0; color: #555;">${order.city || ""}${order.state ? ", " + order.state : ""} - ${order.pincode || ""}</p>
                     </div>
                     
                     <h3 style="border-bottom: 2px solid #D4AF37; padding-bottom: 5px;">Order Summary:</h3>
@@ -169,11 +192,13 @@ export async function sendWhatsAppNotification(order: OrderNotificationData): Pr
         return false;
     }
 
+    const fullAddress = [order.address, order.city, order.pincode].filter(Boolean).join(", ");
     const message = encodeURIComponent(
         `🛒 *New Order!*\n\n` +
             `Order: ${order.orderNumber}\n` +
             `Customer: ${order.customerName}\n` +
             `Phone: ${order.phone}\n` +
+            `📍 Address: ${fullAddress || "N/A"}\n` +
             `Total: ₹${order.total}\n` +
             `Payment: ${formatPaymentStatus(order.paymentMethod)}`
     );
@@ -200,6 +225,9 @@ export async function sendResendEmail(order: OrderNotificationData): Promise<boo
         .join("<br>");
 
     const paymentStatus = formatPaymentStatus(order.paymentMethod);
+    const fullAddress = [order.address, order.city, order.state, order.pincode]
+        .filter(Boolean)
+        .join(", ");
 
     try {
         await resend.emails.send({
@@ -212,6 +240,7 @@ export async function sendResendEmail(order: OrderNotificationData): Promise<boo
                     <p><strong>Order:</strong> ${order.orderNumber}</p>
                     <p><strong>Customer:</strong> ${order.customerName}</p>
                     <p><strong>Phone:</strong> ${order.phone}</p>
+                    <p><strong>📍 Deliver To:</strong> ${fullAddress || "Not provided"}</p>
                     <p><strong>Total:</strong> ₹${order.total}</p>
                      <p><strong>Payment:</strong> ${paymentStatus}</p>
                     <hr>
@@ -268,11 +297,13 @@ export async function sendTelegramNotification(order: OrderNotificationData): Pr
     if (!botToken || !chatId) return false;
 
     const paymentStatus = formatPaymentStatus(order.paymentMethod);
+    const fullAddress = [order.address, order.city, order.pincode].filter(Boolean).join(", ");
 
     const text =
         `🛒 *New Order: ${order.orderNumber}*\n\n` +
         `👤 *Customer:* ${order.customerName}\n` +
         `📞 *Phone:* ${order.phone}\n` +
+        `📍 *Address:* ${fullAddress || "N/A"}\n` +
         `💰 *Total:* ₹${order.total}\n` +
         `💳 *Payment:* ${paymentStatus}\n\n` +
         `📦 *Items:*\n` +
