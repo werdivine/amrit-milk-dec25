@@ -3,51 +3,45 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
     try {
-        const { url } = await request.json();
+        const { url, imageUrl, caption } = await request.json();
 
         if (!url) {
             return NextResponse.json({ success: false, error: "URL is required" }, { status: 400 });
         }
 
-        // 1. Get Access Token
-        const settings = await client.fetch(`*[_type == "siteSettings"][0]{instagramAccessToken}`);
-        const accessToken = settings?.instagramAccessToken || process.env.INSTAGRAM_ACCESS_TOKEN;
-
-        if (!accessToken) {
+        // If imageUrl is provided (from scraper), use it directly
+        // Otherwise, we'd need an API token which we want to avoid
+        if (!imageUrl) {
             return NextResponse.json(
-                { success: false, error: "Instagram not connected" },
+                {
+                    success: false,
+                    error: "Image URL is required. Use the Fetch button first to scrape the post.",
+                },
                 { status: 400 }
             );
         }
 
-        // 2. Fetch OEmbed Data
-        const oembedUrl = `https://graph.facebook.com/v22.0/instagram_oembed?url=${encodeURIComponent(url)}&access_token=${accessToken}&omitscript=true`;
-        const res = await fetch(oembedUrl);
-        const data = await res.json();
-
-        if (data.error) {
-            throw new Error(data.error.message || "Failed to fetch Instagram data");
-        }
-
-        // 3. Upload Image to Sanity
+        // Upload Image to Sanity from the provided URL
         let imageAsset;
-        if (data.thumbnail_url) {
-            const imageRes = await fetch(data.thumbnail_url);
+        try {
+            const imageRes = await fetch(imageUrl);
             if (imageRes.ok) {
                 const blob = await imageRes.blob();
                 imageAsset = await client.assets.upload("image", blob, {
                     filename: `instagram-import-${Date.now()}.jpg`,
                 });
             }
+        } catch (e) {
+            console.warn("Failed to upload image:", e);
         }
 
-        // 4. Create Document
+        // Create Document
         const newPost = {
             _type: "instagramPost",
-            instagramId: data.media_id || `manual-${Date.now()}`, // OEmbed sometimes doesn't return media_id, fallback
-            caption: data.title || data.caption || "Imported from Instagram", // OEmbed uses title
+            instagramId: `manual-${Date.now()}`,
+            caption: caption || "Imported from Instagram",
             url: url,
-            mediaType: "IMAGE", // OEmbed doesn't always specify, assume image/video defaults
+            mediaType: "IMAGE",
             isVisible: true,
             order: 0,
             image: imageAsset

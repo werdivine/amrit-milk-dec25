@@ -203,17 +203,20 @@ export default function AdminSocialsPage() {
 function ImportPostForm() {
     const [url, setUrl] = useState("");
     const [loading, setLoading] = useState(false);
+    const [saving, setSaving] = useState(false);
+    const [preview, setPreview] = useState<{ imageUrl: string; caption: string } | null>(null);
     const [message, setMessage] = useState<{ type: "success" | "error"; text: string } | null>(
         null
     );
 
-    const handleImport = async (e: React.FormEvent) => {
+    const handleFetch = async (e: React.FormEvent) => {
         e.preventDefault();
         setLoading(true);
         setMessage(null);
+        setPreview(null);
 
         try {
-            const res = await fetch("/api/admin/import-instagram", {
+            const res = await fetch("/api/admin/scrape-instagram", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ url }),
@@ -221,48 +224,105 @@ function ImportPostForm() {
             const data = await res.json();
 
             if (data.success) {
-                setMessage({ type: "success", text: "Post imported successfully!" });
-                setUrl("");
+                setPreview(data.data);
+                setMessage({ type: "success", text: "Post fetched! Review and save below." });
             } else {
-                setMessage({ type: "error", text: data.error || "Failed to import post" });
+                setMessage({ type: "error", text: data.error || "Failed to fetch post" });
             }
-        } catch (error) {
+        } catch {
             setMessage({ type: "error", text: "Network error occurred" });
         } finally {
             setLoading(false);
         }
     };
 
+    const handleSave = async () => {
+        if (!preview) return;
+        setSaving(true);
+        setMessage(null);
+
+        try {
+            const res = await fetch("/api/admin/import-instagram", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    url,
+                    imageUrl: preview.imageUrl,
+                    caption: preview.caption,
+                }),
+            });
+            const data = await res.json();
+
+            if (data.success) {
+                setMessage({ type: "success", text: "Post saved to Sanity!" });
+                setUrl("");
+                setPreview(null);
+            } else {
+                setMessage({ type: "error", text: data.error || "Failed to save post" });
+            }
+        } catch {
+            setMessage({ type: "error", text: "Network error occurred" });
+        } finally {
+            setSaving(false);
+        }
+    };
+
     return (
-        <form onSubmit={handleImport} className="space-y-4">
-            <div className="flex gap-4">
-                <input
-                    type="url"
-                    value={url}
-                    onChange={(e) => setUrl(e.target.value)}
-                    placeholder="https://www.instagram.com/p/..."
-                    className="flex-1 px-4 py-3 bg-creme dark:bg-midnight border border-creme-dark dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold/50"
-                    required
-                />
-                <button
-                    type="submit"
-                    disabled={loading}
-                    className="px-6 py-3 bg-gold hover:bg-gold/80 text-white font-bold rounded-xl transition-colors disabled:opacity-50"
-                >
-                    {loading ? "Importing..." : "Import"}
-                </button>
-            </div>
+        <div className="space-y-6">
+            <form onSubmit={handleFetch} className="space-y-4">
+                <div className="flex gap-4">
+                    <input
+                        type="url"
+                        value={url}
+                        onChange={(e) => setUrl(e.target.value)}
+                        placeholder="https://www.instagram.com/p/..."
+                        className="flex-1 px-4 py-3 bg-creme dark:bg-midnight border border-creme-dark dark:border-white/10 rounded-xl focus:outline-none focus:ring-2 focus:ring-gold/50"
+                        required
+                    />
+                    <button
+                        type="submit"
+                        disabled={loading}
+                        className="px-6 py-3 bg-pink-500 hover:bg-pink-600 text-white font-bold rounded-xl transition-colors disabled:opacity-50"
+                    >
+                        {loading ? "Fetching..." : "Fetch"}
+                    </button>
+                </div>
+            </form>
+
+            {preview && (
+                <div className="border border-creme-dark dark:border-white/10 rounded-2xl p-4 space-y-4">
+                    <p className="text-sm font-bold text-espresso-muted dark:text-ivory/40 uppercase">
+                        Preview
+                    </p>
+                    <div className="flex gap-4">
+                        <img
+                            src={preview.imageUrl}
+                            alt="Preview"
+                            className="w-32 h-32 object-cover rounded-xl"
+                        />
+                        <div className="flex-1">
+                            <p className="text-espresso dark:text-ivory text-sm line-clamp-4">
+                                {preview.caption || "(No caption)"}
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        onClick={handleSave}
+                        disabled={saving}
+                        className="w-full py-3 bg-gold hover:bg-gold/80 text-white font-bold rounded-xl transition-colors disabled:opacity-50"
+                    >
+                        {saving ? "Saving..." : "Save to Sanity"}
+                    </button>
+                </div>
+            )}
+
             {message && (
                 <div
-                    className={`p-3 rounded-lg text-sm font-bold ${
-                        message.type === "success"
-                            ? "bg-green-500/10 text-green-500"
-                            : "bg-red-500/10 text-red-500"
-                    }`}
+                    className={`p-3 rounded-lg text-sm font-bold ${message.type === "success" ? "bg-green-500/10 text-green-500" : "bg-red-500/10 text-red-500"}`}
                 >
                     {message.text}
                 </div>
             )}
-        </form>
+        </div>
     );
 }
