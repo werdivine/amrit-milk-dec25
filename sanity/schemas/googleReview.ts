@@ -6,9 +6,16 @@ export default defineType({
     type: "document",
     fields: [
         defineField({
+            name: "reviewId",
+            title: "Review ID",
+            type: "string",
+            hidden: true,
+        }),
+        defineField({
             name: "authorName",
             title: "Author Name",
             type: "string",
+            description: "Name of the reviewer",
         }),
         defineField({
             name: "rating",

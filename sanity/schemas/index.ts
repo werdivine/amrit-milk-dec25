@@ -5,6 +5,7 @@ import googleReview from "./googleReview";
 import instagramPost from "./instagramPost";
 import order from "./order";
 import product from "./product";
+import siteSettings from "./siteSettings";
 
 export const schemaTypes = [
     product,
@@ -14,4 +15,5 @@ export const schemaTypes = [
     instagramPost,
     googleReview,
     coupon,
+    siteSettings,
 ];

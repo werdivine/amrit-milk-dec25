@@ -7,10 +7,9 @@ export default defineType({
     fields: [
         defineField({
             name: "instagramId",
-            title: "Instagram ID",
+            title: "Instagram ID (Optional)",
             type: "string",
-            readOnly: true,
-            hidden: true,
+            description: "Auto-filled for synced posts. Verification ID for manual posts.",
         }),
         defineField({
             name: "isVisible",

@@ -1,0 +1,17 @@
+import { syncGoogleReviewsToSanity } from "@/lib/services/google";
+import { NextResponse } from "next/server";
+
+export async function GET(request: Request) {
+    try {
+        const results = await syncGoogleReviewsToSanity();
+
+        return NextResponse.json({
+            success: true,
+            message: "Google Reviews sync completed successfully",
+            stats: results,
+        });
+    } catch (error: any) {
+        console.error("Google Sync failed:", error);
+        return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    }
+}

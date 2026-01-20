@@ -28,10 +28,19 @@ export async function fetchInstagramMedia(accessToken: string): Promise<Instagra
 }
 
 export async function syncInstagramToSanity() {
-    const accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+    // 1. Try to get token from Sanity Settings first
+    const settings = await client.fetch(`*[_type == "siteSettings"][0]{instagramAccessToken}`);
+    let accessToken = settings?.instagramAccessToken;
+
+    // 2. Fallback to Env Var
+    if (!accessToken) {
+        accessToken = process.env.INSTAGRAM_ACCESS_TOKEN;
+    }
 
     if (!accessToken) {
-        throw new Error("Missing INSTAGRAM_ACCESS_TOKEN in environment variables");
+        throw new Error(
+            "Missing Instagram Access Token. Please connect Instagram in Admin Settings."
+        );
     }
 
     const mediaList = await fetchInstagramMedia(accessToken);
