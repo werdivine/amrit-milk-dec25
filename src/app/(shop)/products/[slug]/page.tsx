@@ -1,5 +1,9 @@
 import { AddToCartButton } from "@/components/shop/AddToCartButton";
+import { BenefitsSection } from "@/components/shop/BenefitsSection";
+import { HowToUseSection } from "@/components/shop/HowToUseSection";
+import { IngredientsSection } from "@/components/shop/IngredientsSection";
 import { ProductCard } from "@/components/shop/ProductCard";
+import { ProductHighlightsSection } from "@/components/shop/ProductHighlightsSection";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { getProductBySlug, getProducts } from "@/lib/fetchProducts";
@@ -195,6 +199,23 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                     </span>
                                 </div>
                             </div>
+
+                            {/* New Product Detail Sections */}
+                            {(basicProduct.highlights ||
+                                basicProduct.ingredients ||
+                                basicProduct.benefits ||
+                                basicProduct.howToUse) && (
+                                <div className="space-y-8 p-6 rounded-2xl bg-gradient-to-br from-theme-elevated to-theme-secondary/30 border border-theme-light">
+                                    <ProductHighlightsSection
+                                        highlights={basicProduct.highlights || []}
+                                    />
+                                    <IngredientsSection
+                                        ingredients={basicProduct.ingredients || []}
+                                    />
+                                    <BenefitsSection benefits={basicProduct.benefits || []} />
+                                    <HowToUseSection steps={basicProduct.howToUse || []} />
+                                </div>
+                            )}
                         </div>
                     </div>
                 </div>

@@ -11,6 +11,10 @@ export interface Product {
     subscription?: boolean;
     featured?: boolean;
     badge?: string;
+    highlights?: string[];
+    ingredients?: string[];
+    benefits?: string[];
+    howToUse?: string[];
 }
 
 export const products: Product[] = [
@@ -28,6 +32,26 @@ export const products: Product[] = [
         sku: "AMRIT-DAIRY-005",
         featured: true,
         badge: "Pure Vedic",
+        highlights: [
+            "Made using traditional Bilona hand-churning method",
+            "100% A2 beta-casein protein from Desi Gir cows",
+            "Rich golden color and aromatic fragrance",
+            "Chemical-free | Preservative-free | Grain-fed cows",
+        ],
+        ingredients: ["Pure A2 Desi Gir Cow Milk", "Natural cultures for curd formation"],
+        benefits: [
+            "Strengthens immunity and digestive fire (Agni)",
+            "Promotes healthy bones, brain development",
+            "Rich in Omega-3 fatty acids and fat-soluble vitamins (A, D, E, K)",
+            "Ideal for cooking, tadka, and spiritual offerings",
+            "Supports healthy cholesterol levels",
+        ],
+        howToUse: [
+            "Use for daily cooking, especially for tadka and sautéing",
+            "Consume 1-2 teaspoons with warm milk or meals",
+            "Apply topically for skin nourishment and massage",
+            "Ideal for traditional Indian sweets and rituals",
+        ],
     },
     {
         id: "ghee-cow-500ml",
@@ -38,6 +62,26 @@ export const products: Product[] = [
         description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
         slug: "a2-cow-ghee-500ml",
         sku: "AMRIT-DAIRY-005-SM",
+        highlights: [
+            "Made using traditional Bilona hand-churning method",
+            "100% A2 beta-casein protein from Desi Gir cows",
+            "Compact 500ml size perfect for trying or gifting",
+            "Chemical-free | Preservative-free | Grain-fed cows",
+        ],
+        ingredients: ["Pure A2 Desi Gir Cow Milk", "Natural cultures for curd formation"],
+        benefits: [
+            "Strengthens immunity and digestive fire (Agni)",
+            "Promotes healthy bones, brain development",
+            "Rich in Omega-3 fatty acids and fat-soluble vitamins (A, D, E, K)",
+            "Ideal for cooking, tadka, and spiritual offerings",
+            "Supports healthy cholesterol levels",
+        ],
+        howToUse: [
+            "Use for daily cooking, especially for tadka and sautéing",
+            "Consume 1-2 teaspoons with warm milk or meals",
+            "Apply topically for skin nourishment and massage",
+            "Ideal for traditional Indian sweets and rituals",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -53,6 +97,26 @@ export const products: Product[] = [
         slug: "tulsi-oil-10ml",
         sku: "AMRIT-OIL-006",
         featured: true,
+        highlights: [
+            "Pure steam-distilled Tulsi (Holy Basil) oil",
+            "Therapeutic grade essential oil",
+            "Potent adaptogenic properties",
+            "100% natural | No synthetic additives",
+        ],
+        ingredients: ["Pure Tulsi (Ocimum sanctum) leaves and flowers"],
+        benefits: [
+            "Reduces stress, anxiety, and promotes mental clarity",
+            "Boosts immunity and respiratory health",
+            "Natural antimicrobial and anti-inflammatory",
+            "Ideal for aromatherapy and diffusion",
+            "Supports skin health when diluted",
+        ],
+        howToUse: [
+            "Add 2-3 drops to a diffuser for aromatherapy",
+            "Dilute with carrier oil for topical application",
+            "Mix 1-2 drops with steam water for inhalation (cold relief)",
+            "Never consume undiluted essential oil",
+        ],
     },
     {
         id: "oil-lemongrass-10ml",
@@ -64,6 +128,26 @@ export const products: Product[] = [
         slug: "lemongrass-oil-10ml",
         sku: "AMRIT-OIL-007",
         featured: true,
+        highlights: [
+            "Pure steam-distilled Lemongrass oil",
+            "Fresh, citrusy, uplifting aroma",
+            "Therapeutic grade essential oil",
+            "100% natural | No synthetic fragrances",
+        ],
+        ingredients: ["Pure Lemongrass (Cymbopogon citratus) leaves"],
+        benefits: [
+            "Natural insect and mosquito repellent",
+            "Relieves headaches, body pain, and fatigue",
+            "Antimicrobial and anti-fungal properties",
+            "Boosts mood and mental energy",
+            "Detoxifies and tones skin when diluted",
+        ],
+        howToUse: [
+            "Add 3-4 drops to diffuser for fresh, clean air",
+            "Dilute with carrier oil for massage or skin application",
+            "Mix with water in spray bottle for natural air freshener",
+            "Add to bathwater for relaxation (2-3 drops with carrier oil)",
+        ],
     },
     {
         id: "oil-menthol-10ml",
@@ -75,6 +159,26 @@ export const products: Product[] = [
         slug: "menthol-oil-10ml",
         sku: "AMRIT-OIL-008",
         featured: true,
+        highlights: [
+            "Pure steam-distilled Peppermint/Mentha oil",
+            "Intensely cooling and refreshing",
+            "Therapeutic grade essential oil",
+            "100% natural | No synthetic menthol",
+        ],
+        ingredients: ["Pure Peppermint (Mentha piperita) leaves"],
+        benefits: [
+            "Instant relief from headaches and migraines",
+            "Clears nasal congestion and respiratory issues",
+            "Reduces muscle pain and inflammation",
+            "Boosts energy, focus, and mental alertness",
+            "Soothes digestive discomfort when diluted",
+        ],
+        howToUse: [
+            "Add 2-3 drops to diffuser for cooling aromatherapy",
+            "Dilute with carrier oil, apply to temples for headache relief",
+            "Inhale directly from bottle or add to steam for congestion",
+            "Mix 1 drop with carrier oil for cooling massage",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -91,6 +195,26 @@ export const products: Product[] = [
         sku: "AMRIT-HONEY-001",
         featured: true,
         badge: "Raw & Pure",
+        highlights: [
+            "100% raw, unprocessed, unpasteurized honey",
+            "Collected from diverse forest wildflowers",
+            "Rich amber color with complex flavor profile",
+            "No added sugar | No heating | Single-origin",
+        ],
+        ingredients: ["Pure nectar from wildflowers (multiflora)"],
+        benefits: [
+            "Natural energy booster and immunity enhancer",
+            "Rich in antioxidants, enzymes, and minerals",
+            "Soothes cough, cold, and sore throat",
+            "Supports digestive health and gut flora",
+            "Natural wound healer and skin moisturizer",
+        ],
+        howToUse: [
+            "Consume 1-2 teaspoons daily on empty stomach or with warm water",
+            "Use as natural sweetener in tea, smoothies, or desserts",
+            "Apply topically on skin for glow and healing",
+            "Do not heat above 40°C to preserve enzymes",
+        ],
     },
     {
         id: "honey-jamun-1kg",
@@ -102,6 +226,26 @@ export const products: Product[] = [
         slug: "jamun-honey-1kg",
         sku: "AMRIT-HONEY-002",
         featured: true,
+        highlights: [
+            "100% raw, unprocessed Jamun (Indian Blackberry) honey",
+            "Low glycemic index - Diabetes-friendly",
+            "Dark purple-black color with unique tangy flavor",
+            "No added sugar | No heating | Single-origin",
+        ],
+        ingredients: ["Pure nectar from Jamun (Syzygium cumini) flowers"],
+        benefits: [
+            "Helps regulate blood sugar levels naturally",
+            "Rich in antioxidants and iron",
+            "Supports digestive health and metabolism",
+            "Boosts immunity and respiratory health",
+            "Ayurvedic remedy for diabetes management",
+        ],
+        howToUse: [
+            "Consume 1 teaspoon daily on empty stomach for diabetes management",
+            "Mix with warm water or herbal tea (do not heat above 40°C)",
+            "Use as natural sweetener in desserts and beverages",
+            "Consult with doctor if diabetic before regular consumption",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -117,6 +261,26 @@ export const products: Product[] = [
         slug: "yellow-mustard-oil-1l",
         sku: "AMRIT-OIL-001",
         featured: true,
+        highlights: [
+            "Traditional wood-pressed (Kacchi Ghani) method",
+            "100% pure yellow mustard seeds",
+            "Rich, pungent aroma with golden color",
+            "No chemicals | No refining | Single-pressed",
+        ],
+        ingredients: ["Pure Yellow Mustard Seeds (Brassica hirta)"],
+        benefits: [
+            "Rich in Omega-3 fatty acids and antioxidants",
+            "Boosts immunity and heart health",
+            "Natural antibacterial and antifungal properties",
+            "Ideal for pickling, cooking, and massage",
+            "Promotes healthy skin and hair growth",
+        ],
+        howToUse: [
+            "Heat lightly for cooking to reduce pungency",
+            "Use for tempering (tadka) in Indian cuisine",
+            "Ideal for pickling vegetables and chutneys",
+            "Warm and massage for joint pain relief and hair nourishment",
+        ],
     },
     {
         id: "oil-black-mustard-1l",
@@ -128,6 +292,26 @@ export const products: Product[] = [
         slug: "black-mustard-oil-1l",
         sku: "AMRIT-OIL-002",
         featured: true,
+        highlights: [
+            "Traditional wood-pressed (Kacchi Ghani) method",
+            "100% pure black mustard seeds",
+            "Intense pungent flavor with dark amber color",
+            "No chemicals | No refining | Single-pressed",
+        ],
+        ingredients: ["Pure Black Mustard Seeds (Brassica jun cea)"],
+        benefits: [
+            "Higher antioxidant content than yellow mustard oil",
+            "Stimulates circulation and metabolism",
+            "Natural pain reliever for arthritis and muscle aches",
+            "Promotes healthy digestion and appetite",
+            "Excellent for skin and hair care",
+        ],
+        howToUse: [
+            "Heat lightly for cooking to reduce pungency",
+            "Use for tempering (tadka) in Bengali and North Indian cuisine",
+            "Ideal for pickling and marinades",
+            "Warm and massage for joint pain, hair growth",
+        ],
     },
     {
         id: "oil-groundnut-1l",
@@ -139,6 +323,26 @@ export const products: Product[] = [
         slug: "groundnut-oil-1l-premium",
         sku: "AMRIT-OIL-003",
         featured: true,
+        highlights: [
+            "Traditional wood-pressed (Kacchi Ghani) method",
+            "100% pure groundnut (peanut) kernels",
+            "Mild, nutty flavor with golden color",
+            "High smoke point | No refining | Single-pressed",
+        ],
+        ingredients: ["Pure Groundnut Kernels (Arachis hypogaea)"],
+        benefits: [
+            "Rich in monounsaturated fats (heart-healthy)",
+            "High in Vitamin E and antioxidants",
+            "Supports healthy cholesterol levels",
+            "Ideal for deep frying and high-heat cooking",
+            "Promotes skin elasticity and moisture",
+        ],
+        howToUse: [
+            "Perfect for deep frying, sautéing, and stir-frying",
+            "Use in salad dressings and marinades",
+            "Ideal for Indian, Chinese, and Southeast Asian cuisine",
+            "Apply topically for skin nourishment and massage",
+        ],
     },
     {
         id: "oil-coconut-1l",
@@ -150,6 +354,26 @@ export const products: Product[] = [
         slug: "coconut-oil-1l-premium",
         sku: "AMRIT-OIL-004",
         featured: true,
+        highlights: [
+            "Traditional wood-pressed (Kacchi Ghani) virgin coconut oil",
+            "100% pure coconut kernel (copra)",
+            "Natural coconut aroma with pristine white color",
+            "No heat treatment | No chemicals | Single-pressed",
+        ],
+        ingredients: ["Pure Coconut Kernel (Cocos nucifera)"],
+        benefits: [
+            "Rich in MCT (Medium Chain Triglycerides) for energy",
+            "Natural antibacterial and antiviral properties",
+            "Promotes healthy skin, hair, and scalp",
+            "Supports metabolism and weight management",
+            "Ideal for oil pulling and Ayurvedic therapies",
+        ],
+        howToUse: [
+            "Use for cooking (solidifies below 24°C, liquifies when heated)",
+            "Apply on skin and hair for deep nourishment",
+            "Use for oil pulling (swish 1 tablespoon for 10-15 min on empty stomach)",
+            "Ideal for baking, smoothies, and bulletproof coffee",
+        ],
     },
     {
         id: "oil-sesame-1l",
@@ -161,6 +385,26 @@ export const products: Product[] = [
         slug: "sesame-til-oil-1l",
         sku: "AMRIT-OIL-005",
         featured: true,
+        highlights: [
+            "Traditional wood-pressed (Kacchi Ghani) method",
+            "100% pure sesame seeds (white til)",
+            "Rich, nutty aroma with golden color",
+            "No chemicals | No refining | Single-pressed",
+        ],
+        ingredients: ["Pure White Sesame Seeds (Sesamum indicum)"],
+        benefits: [
+            "Rich in antioxidants (sesamol, sesamin)",
+            "Supports bone health and calcium absorption",
+            "Anti-inflammatory properties for joints",
+            "Promotes healthy cholesterol and blood pressure",
+            "Excellent for Ayurvedic massage and oil therapies",
+        ],
+        howToUse: [
+            "Use for tempering, stir-frying, and sautéing",
+            "Add to salads and Asian cuisine for nutty flavor",
+            "Warm and massage for detoxification (Abhyanga)",
+            "Ideal for oil pulling and scalp massage",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -175,6 +419,26 @@ export const products: Product[] = [
         description: "High-curcumin Organic Turmeric powder.",
         slug: "organic-turmeric-1kg",
         sku: "AMRIT-MISC-001",
+        highlights: [
+            "100% pure organic turmeric rhizomes",
+            "High curcumin content (5-7%)",
+            "Vibrant golden-yellow color with earthy aroma",
+            "No additives | No artificial colors | Stone-ground",
+        ],
+        ingredients: ["Pure Organic Turmeric Rhizomes (Curcuma longa)"],
+        benefits: [
+            "Powerful anti-inflammatory and antioxidant properties",
+            "Boosts immunity and supports joint health",
+            "Aids digestion and liver detoxification",
+            "Natural remedy for colds, wounds, and skin health",
+            "Ayurvedic superfood for overall wellness",
+        ],
+        howToUse: [
+            "Add 1/2 teaspoon to warm milk (Golden Milk/Haldi Doodh)",
+            "Use in curries, dal, rice, and vegetable dishes",
+            "Mix with honey for face masks and wound healing",
+            "Consume daily for anti-inflammatory benefits",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -192,6 +456,26 @@ export const products: Product[] = [
         slug: "a2-gir-cow-milk-1l",
         sku: "AMRIT-DAIRY-001",
         subscription: true,
+        highlights: [
+            "100% pure A2 beta-casein protein",
+            "From indigenous Desi Gir cows",
+            "Farm-fresh daily delivery",
+            "No hormones | No antibiotics | Grass-fed cows",
+        ],
+        ingredients: ["Pure A2 Gir Cow Milk (full-fat, unadulterated)"],
+        benefits: [
+            "Easier to digest than regular A1 milk",
+            "Rich in calcium, protein, and essential vitamins",
+            "Supports bone health, immunity, and growth",
+            "Ideal for children, elderly, and lactose-sensitive individuals",
+            "Traditional Ayurvedic superfood for vitality",
+        ],
+        howToUse: [
+            "Boil and consume warm or at room temperature",
+            "Use for making curd, paneer, ghee, or sweets",
+            "Add to tea, coffee, or smoothies",
+            "Best consumed fresh within 24 hours",
+        ],
     },
     {
         id: "milk-sahiwal-1l",
@@ -203,6 +487,26 @@ export const products: Product[] = [
         slug: "a2-sahiwal-cow-milk-1l",
         sku: "AMRIT-DAIRY-002",
         subscription: true,
+        highlights: [
+            "100% pure A2 beta-casein protein",
+            "From indigenous Sahiwal breed cows",
+            "Farm-fresh daily delivery",
+            "No hormones | No antibiotics | Grass-fed cows",
+        ],
+        ingredients: ["Pure A2 Sahiwal Cow Milk (full-fat, unadulterated)"],
+        benefits: [
+            "Easier to digest than regular A1 milk",
+            "Rich in calcium, protein, and essential vitamins",
+            "Supports bone health, immunity, and growth",
+            "Ideal for children, elderly, and lactose-sensitive individuals",
+            "Traditional Ayurvedic superfood for vitality",
+        ],
+        howToUse: [
+            "Boil and consume warm or at room temperature",
+            "Use for making curd, paneer, ghee, or sweets",
+            "Add to tea, coffee, or smoothies",
+            "Best consumed fresh within 24 hours",
+        ],
     },
     {
         id: "milk-buffalo-1l",
@@ -214,6 +518,26 @@ export const products: Product[] = [
         slug: "a2-buffalo-milk-1l",
         sku: "AMRIT-DAIRY-003",
         subscription: true,
+        highlights: [
+            "100% pure A2 beta-casein protein from buffalo",
+            "Higher fat content (7-8%) for rich, creamy texture",
+            "Farm-fresh daily delivery",
+            "No hormones | No antibiotics | Grass-fed buffalo",
+        ],
+        ingredients: ["Pure A2 Buffalo Milk (full-fat, unadulterated)"],
+        benefits: [
+            "Rich in calcium, phosphorus, and protein",
+            "High in vitamins A, B12, and D",
+            "Ideal for making thick curd, paneer, and ghee",
+            "Supports bone density and muscle growth",
+            "Perfect for traditional Indian sweets (kheer, rabri)",
+        ],
+        howToUse: [
+            "Boil and consume warm for best digestion",
+            "Use for making thick curd, paneer, and khoya",
+            "Ideal for traditional sweets and desserts",
+            "Best consumed fresh within 24 hours",
+        ],
     },
     {
         id: "milk-colostrum-1l",
@@ -224,6 +548,26 @@ export const products: Product[] = [
         description: "Immunity-boosting first milk (Colostrum) from A2 cows.",
         slug: "a2-colostrum-milk-1l",
         sku: "AMRIT-DAIRY-004",
+        highlights: [
+            "First milk (Colostrum) rich in antibodies",
+            "From A2 Desi cows within 24-48 hours post-calving",
+            "Thick, creamy, yellowish liquid gold",
+            "No hormones | Naturally nutrient-dense",
+        ],
+        ingredients: ["Pure A2 Colostrum Milk (first milk from cows)"],
+        benefits: [
+            "Supercharges immunity with immunoglobulins (IgG)",
+            "Rich in growth factors and lactoferrin",
+            "Supports gut health and tissue repair",
+            "Ideal for children, athletes, and recovery",
+            "Traditional Ayurvedic remedy for strength and vitality",
+        ],
+        howToUse: [
+            "Consume 50-100ml daily on empty stomach (dilute with warm water if needed)",
+            "Boil gently to preserve nutrients",
+            "Ideal for post-illness recovery and immunity boost",
+            "Consult Ayurvedic practitioner for therapeutic use",
+        ],
     },
     {
         id: "paneer-1kg",
@@ -234,6 +578,26 @@ export const products: Product[] = [
         description: "Freshly made Malai Paneer from A2 milk.",
         slug: "a2-paneer-1kg",
         sku: "AMRIT-DAIRY-006",
+        highlights: [
+            "Freshly made daily from A2 Desi Gir cow milk",
+            "Soft, spongy texture with rich malai (cream)",
+            "No preservatives | No additives",
+            "Hand-crafted using traditional methods",
+        ],
+        ingredients: ["Pure A2 Cow Milk", "Natural curdling agent (lemon juice or vinegar)"],
+        benefits: [
+            "High in protein and calcium for muscle growth",
+            "Rich source of conjugated linoleic acid (CLA)",
+            "Supports bone health and weight management",
+            "Ideal for vegetarians and fitness enthusiasts",
+            "Pure, digestible protein source",
+        ],
+        howToUse: [
+            "Use in curries (Paneer Butter Masala, Palak Paneer)",
+            "Grill or shallow fry for tikkas and kebabs",
+            "Add to salads, sandwiches, or wraps",
+            "Consume fresh within 2-3 days (refrigerate)",
+        ],
     },
     {
         id: "curd-1kg",
@@ -245,6 +609,26 @@ export const products: Product[] = [
         slug: "a2-curd-1kg",
         sku: "AMRIT-DAIRY-007",
         subscription: true,
+        highlights: [
+            "Freshly made daily from A2 Desi Gir cow milk",
+            "Thick, creamy texture with live probiotic cultures",
+            "No preservatives | No additives | Hand-set",
+            "Traditional clay-pot setting for authentic taste",
+        ],
+        ingredients: ["Pure A2 Cow Milk", "Live active cultures (Lactobacillus)"],
+        benefits: [
+            "Rich in probiotics for gut health and digestion",
+            "High in protein, calcium, and B-vitamins",
+            "Supports immunity and nutrient absorption",
+            "Cooling effect for stomach and skin",
+            "Ideal for weight management and metabolism",
+        ],
+        howToUse: [
+            "Consume 1 bowl daily with meals or as a snack",
+            "Use in raita, lassi, smoothies, or chaas",
+            "Apply as a face mask for glowing skin",
+            "Consume fresh within 2-3 days (refrigerate)",
+        ],
     },
     {
         id: "khoya-1kg",
@@ -255,6 +639,26 @@ export const products: Product[] = [
         description: "Pure milk solids (Khoya) for traditional sweets.",
         slug: "a2-khoya-1kg",
         sku: "AMRIT-DAIRY-008",
+        highlights: [
+            "Made from pure A2 Desi Gir cow milk",
+            "Slow-cooked to perfection for rich flavor",
+            "100% milk solids | No adulteration",
+            "Hand-crafted using traditional methods",
+        ],
+        ingredients: ["Pure A2 Cow Milk (reduced to solids)"],
+        benefits: [
+            "Rich source of protein, calcium, and energy",
+            "Contains all milk nutrients in concentrated form",
+            "Ideal for traditional Indian sweets and desserts",
+            "Supports muscle growth and bone health",
+            "Pure, digestible, and highly nutritious",
+        ],
+        howToUse: [
+            "Use for making gulab jamun, kalakand, barfi, and peda",
+            "Add to halwa, kheer, and traditional sweets",
+            "Cook with sugar and ghee for instant mithai",
+            "Store in refrigerator, consume within 3-4 days",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -270,6 +674,26 @@ export const products: Product[] = [
         slug: "whole-wheat-atta-1kg",
         sku: "AMRIT-ATTA-001",
         subscription: true,
+        highlights: [
+            "Stone-ground (chakki-ground) traditional method",
+            "Retains bran, germ, and endosperm for nutrition",
+            "Soft, fluffy rotis with authentic taste",
+            "No maida | No preservatives | Fresh-ground",
+        ],
+        ingredients: ["Pure Organic Whole Wheat Grains (Triticum aestivum)"],
+        benefits: [
+            "Rich in dietary fiber for digestive health",
+            "High in B-vitamins, iron, and magnesium",
+            "Supports heart health and blood sugar control",
+            "Provides sustained energy and satiety",
+            "Ideal for daily rotis and parathas",
+        ],
+        howToUse: [
+            "Knead with water to make soft dough",
+            "Use for rotis, parathas, puris, naan",
+            "Ideal for baking bread and healthy snacks",
+            "Store in airtight container",
+        ],
     },
     {
         id: "atta-multigrain-1kg",
@@ -280,6 +704,26 @@ export const products: Product[] = [
         description: "Nutritious blend of multiple grains.",
         slug: "multigrain-atta-1kg",
         sku: "AMRIT-ATTA-002",
+        highlights: [
+            "Blend of wheat, oats, ragi, bajra, jowar",
+            "High in protein, fiber, and micronutrients",
+            "Nutty flavor with soft texture",
+            "Ideal for health-conscious families",
+        ],
+        ingredients: ["Wheat, Oats, Ragi, Bajra, Jowar, Barley"],
+        benefits: [
+            "Rich in complex carbs and dietary fiber",
+            "Supports weight management and digestion",
+            "High in antioxidants and minerals",
+            "Stabilizes blood sugar levels",
+            "Boosts energy and immunity",
+        ],
+        howToUse: [
+            "Knead with water for nutritious rotis",
+            "Use for multigrain bread and pizza base",
+            "Mix with whole wheat for balanced flavor",
+            "Store in cool, dry place",
+        ],
     },
     {
         id: "atta-corn-1kg",
@@ -290,6 +734,26 @@ export const products: Product[] = [
         description: "Pure yellow corn flour.",
         slug: "corn-flour-1kg",
         sku: "AMRIT-ATTA-003",
+        highlights: [
+            "100% pure yellow corn kernels",
+            "Stone-ground for fine texture",
+            "Naturally gluten-free flour",
+            "Bright yellow color with sweet aroma",
+        ],
+        ingredients: ["Pure Yellow Corn Kernels (Zea mays)"],
+        benefits: [
+            "Gluten-free alternative for celiacs",
+            "Rich in fiber and antioxidants",
+            "Supports eye health (vitamin A)",
+            "Ideal for baking and thickening",
+            "Easy to digest",
+        ],
+        howToUse: [
+            "Use for makki ki roti (corn flatbread)",
+            "Add to baked goods for flavor and color",
+            "Use as thickening agent in soups",
+            "Mix with wheat for hybrid rotis",
+        ],
     },
     {
         id: "atta-bajra-1kg",
@@ -300,6 +764,26 @@ export const products: Product[] = [
         description: "Traditional pearl millet (Bajra) flour.",
         slug: "bajra-flour-1kg",
         sku: "AMRIT-ATTA-004",
+        highlights: [
+            "100% pure pearl millet (bajra) grains",
+            "Traditional winter superfood",
+            "Naturally gluten-free and warming",
+            "Rajasthani heritage grain",
+        ],
+        ingredients: ["Pure Pearl Millet Grains (Pennisetum glaucum)"],
+        benefits: [
+            "Keeps body warm in winter months",
+            "Rich in iron, magnesium, and protein",
+            "Supports heart health and diabetes control",
+            "High in fiber for digestion",
+            "Boosts energy and stamina",
+        ],
+        howToUse: [
+            "Make traditional bajra roti/bhakri",
+            "Use in khichdi and porridge",
+            "Mix with wheat for softer texture",
+            "Best consumed in winter season",
+        ],
     },
     {
         id: "atta-besan-1kg",
@@ -310,6 +794,26 @@ export const products: Product[] = [
         description: "Pure Gram flour (Besan) and roasted gram flour (Sattu).",
         slug: "besan-sattu-1kg",
         sku: "AMRIT-ATTA-005",
+        highlights: [
+            "100% pure chickpea (chana) flour",
+            "Fine texture with nutty aroma",
+            "Naturally gluten-free and protein-rich",
+            "Versatile for sweet and savory dishes",
+        ],
+        ingredients: ["Pure Chickpeas (Cicer arietinum)"],
+        benefits: [
+            "High in plant-based protein and fiber",
+            "Supports muscle growth and satiety",
+            "Good source of iron and folate",
+            "Ideal for diabetics (low GI)",
+            "Versatile for snacks and face packs",
+        ],
+        howToUse: [
+            "Make pakoras, dhokla, and sev",
+            "Use in ladoo, halwa, and sweets",
+            "Mix with yogurt for face mask",
+            "Add to smoothies for protein boost",
+        ],
     },
     {
         id: "grains-millet-1kg",
@@ -320,6 +824,26 @@ export const products: Product[] = [
         description: "Assorted ancient millet grains.",
         slug: "millet-grains-1kg",
         sku: "AMRIT-ATTA-006",
+        highlights: [
+            "Mix of foxtail, little, kodo, proso millets",
+            "Ancient supergrains revived",
+            "Naturally gluten-free and alkaline",
+            "Climate-resilient heritage grains",
+        ],
+        ingredients: ["Foxtail, Little, Kodo, Proso, Barnyard Millets"],
+        benefits: [
+            "Rich in minerals, antioxidants, protein",
+            "Supports heart health and weight loss",
+            "Regulates blood sugar naturally",
+            "Easily digestible superfood",
+            "Eco-friendly sustainable grains",
+        ],
+        howToUse: [
+            "Cook as rice substitute or khichdi",
+            "Use in porridge, upma, and dosa",
+            "Grind into flour for rotis",
+            "Soak overnight, cook until fluffy",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -334,6 +858,26 @@ export const products: Product[] = [
         description: "Aromatic small-grain Kala Jeera rice.",
         slug: "kala-jeera-rice-1kg",
         sku: "AMRIT-RICE-001",
+        highlights: [
+            "Aromatic small-grain black cumin rice",
+            "Traditional variety from Terai region",
+            "Fluffy texture with nutty flavor",
+            "100% organic | Aged for 1 year",
+        ],
+        ingredients: ["Pure Organic Kala Jeera Rice (Oryza sativa)"],
+        benefits: [
+            "Low glycemic index for diabetics",
+            "Rich in fiber and micronutrients",
+            "Easy to digest compared to white rice",
+            "Aromatic and flavorful",
+            "Ideal for daily consumption",
+        ],
+        howToUse: [
+            "Wash and soak for 20 minutes",
+            "Cook with 1:2 rice-to-water ratio",
+            "Perfect for biryani, pulao, and dal-chawal",
+            "Store in airtight container",
+        ],
     },
     {
         id: "rice-low-sugar-1kg",
@@ -344,6 +888,26 @@ export const products: Product[] = [
         description: "Diabetes-friendly low-sugar Kala Jeera rice.",
         slug: "kala-jeera-low-sugar-1kg",
         sku: "AMRIT-RICE-002",
+        highlights: [
+            "Specially processed for low glycemic index",
+            "Diabetes-friendly rice variety",
+            "Retains nutrients with low sugar release",
+            "Doctor-recommended for diabetics",
+        ],
+        ingredients: ["Low-GI Kala Jeera Rice (processed)"],
+        benefits: [
+            "Minimal blood sugar spike after eating",
+            "Rich in resistant starch",
+            "Supports diabetes management",
+            "High in fiber and minerals",
+            "Suitable for weight management",
+        ],
+        howToUse: [
+            "Wash, soak for 30 minutes before cooking",
+            "Cook with 1:2.5 rice-to-water ratio",
+            "Consume in moderation (controlled portions)",
+            "Consult doctor for dietary guidance",
+        ],
     },
     {
         id: "rice-basmati-1kg",
@@ -354,6 +918,26 @@ export const products: Product[] = [
         description: "Long-grain aged premium Basmati rice.",
         slug: "premium-basmati-rice-1kg",
         sku: "AMRIT-RICE-003",
+        highlights: [
+            "Extra-long grain premium basmati",
+            "Aged for 2 years for aroma and texture",
+            "Elongates 2x on cooking",
+            "Traditional Pusa variety | Export quality",
+        ],
+        ingredients: ["Pure Organic Basmati Rice (Pusa 1121)"],
+        benefits: [
+            "Lower GI than regular white rice",
+            "Rich aroma and delicate flavor",
+            "Fluffy, non-sticky grains",
+            "Premium quality for special occasions",
+            "Easy to digest",
+        ],
+        howToUse: [
+            "Wash, soak for 30 minutes",
+            "Cook with 1:2 rice-to-water ratio",
+            "Perfect for biryani, pulao, and jeera rice",
+            "Fluff with fork after cooking",
+        ],
     },
     {
         id: "rice-kala-namak-1kg",
@@ -364,6 +948,26 @@ export const products: Product[] = [
         description: "Buddha's gift - highly aromatic and nutritious Kala Namak rice.",
         slug: "kala-namak-rice-1kg",
         sku: "AMRIT-RICE-004",
+        highlights: [
+            "Rare heritage rice variety (Buddha's gift)",
+            "Intensely aromatic like pandan leaves",
+            "Short, bold grains with black husk tip",
+            "Premium artisanal rice | Limited harvest",
+        ],
+        ingredients: ["Pure Organic Kala Namak Rice (Siddharta cultivar)"],
+        benefits: [
+            "Rich in antioxidants and iron",
+            "Unique aroma and  taste profile",
+            "Heritage variety with cultural significance",
+            "High nutritional value",
+            "Sought after by gourmet chefs",
+        ],
+        howToUse: [
+            "Wash gently, soak for 30-45 minutes",
+            "Cook with 1:2.5 rice-to-water ratio",
+            "Ideal for special occasions and festivals",
+            "Best enjoyed plain to savor aroma",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -378,6 +982,26 @@ export const products: Product[] = [
         description: "Soft and spongy Rasgullas made from A2 milk paneer.",
         slug: "rasgulla-jar",
         sku: "AMRIT-SWEET-001",
+        highlights: [
+            "Made from pure A2 Desi Gir cow milk paneer",
+            "Soft, spongy, melt-in-mouth texture",
+            "Soaked in light sugar syrup",
+            "Traditional Bengali delicacy | Handcrafted",
+        ],
+        ingredients: ["A2 Cow Milk Paneer", "Sugar Syrup", "Cardamom"],
+        benefits: [
+            "High in protein and calcium",
+            "Lighter than most Indian sweets",
+            "Instant energy booster",
+            "Perfect festive treat",
+            "Made fresh with pure ingredients",
+        ],
+        howToUse: [
+            "Serve chilled or at room temperature",
+            "Consume within 3-4 days (refrigerate)",
+            "Perfect for celebrations and festivals",
+            "Pair with rabri or ice cream for fusion dessert",
+        ],
     },
     {
         id: "jaggery-bites-500g",
@@ -388,6 +1012,26 @@ export const products: Product[] = [
         description: "Healthy jaggery bites, a natural substitute for chocolates.",
         slug: "jaggery-bites-500g",
         sku: "AMRIT-SWEET-002",
+        highlights: [
+            "Healthy alternative to commercial chocolates",
+            "Bite-sized jaggery cubes",
+            "No added sugar or chemicals",
+            "Kids love these natural treats",
+        ],
+        ingredients: ["Pure Organic Jaggery (Gur)"],
+        benefits: [
+            "Natural iron and mineral boost",
+            "Healthier than refined sugar treats",
+            "Aids digestion and metabolism",
+            "Satisfies sweet cravings naturally",
+            "Good source of instant energy",
+        ],
+        howToUse: [
+            "Enjoy 2-3 bites as a healthy snack",
+            "Perfect for kids' lunchboxes",
+            "Consume post-meals for digestion",
+            "Store in cool, dry place",
+        ],
     },
     {
         id: "jaggery-1kg",
@@ -398,6 +1042,26 @@ export const products: Product[] = [
         description: "Pure chemical-free Organic Jaggery.",
         slug: "jaggery-1kg-pure",
         sku: "AMRIT-SWEET-003",
+        highlights: [
+            "100% pure sugarcane jaggery (gur)",
+            "Traditional open-pan boiling method",
+            "No chemicals | No preservatives",
+            "Rich golden-brown color with earthy aroma",
+        ],
+        ingredients: ["Pure Organic Sugarcane Juice"],
+        benefits: [
+            "Rich source of iron and minerals",
+            "Aids digestion and detoxification",
+            "Boosts immunity and hemoglobin",
+            "Healthier alternative to white sugar",
+            "Ayurvedic superfood for winters",
+        ],
+        howToUse: [
+            "Use as natural sweetener in tea, milk, desserts",
+            "Make traditional sweets like chikki and ladoo",
+            "Consume small piece post-meals for digestion",
+            "Store in airtight container",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -412,6 +1076,26 @@ export const products: Product[] = [
         description: "Natural moisturizing Lip Balm.",
         slug: "lip-balm-moisturizer",
         sku: "AMRIT-WELL-001",
+        highlights: [
+            "100% natural and chemical-free formula",
+            "Deeply moisturizes and heals chapped lips",
+            "Long-lasting protection",
+            "Compact stick for on-the-go use",
+        ],
+        ingredients: ["Beeswax", "Coconut Oil", "Shea Butter", "Vitamin E", "Natural Flavor"],
+        benefits: [
+            "Heals dry, cracked, and chapped lips",
+            "Provides SPF-like natural sun protection",
+            "Non-sticky, lightweight formula",
+            "Suitable for all skin types",
+            "Safe for daily use",
+        ],
+        howToUse: [
+            "Apply generously on lips as needed",
+            "Use before going outdoors for sun protection",
+            "Apply at night for overnight healing",
+            "Reapply after eating or drinking",
+        ],
     },
     {
         id: "bees-wax",
@@ -422,6 +1106,26 @@ export const products: Product[] = [
         description: "Pure Bees Wax for skin hydration.",
         slug: "bees-wax-moisturizer",
         sku: "AMRIT-WELL-002",
+        highlights: [
+            "100% pure, raw beeswax from organic hives",
+            "Multi-purpose beauty and skincare ingredient",
+            "Natural golden color with honey aroma",
+            "Chemical-free | Unrefined | Handcrafted",
+        ],
+        ingredients: ["Pure Organic Beeswax"],
+        benefits: [
+            "Natural emollient for deep skin hydration",
+            "Forms protective barrier on skin",
+            "Anti-inflammatory and antibacterial",
+            "Ideal for DIY skincare and lip balms",
+            "Soothes eczema and dry skin",
+        ],
+        howToUse: [
+            "Melt and mix with carrier oils for balms",
+            "Use in DIY lotions, creams, and salves",
+            "Apply on dry elbows, heels, and cuticles",
+            "Store in cool, dry place away from heat",
+        ],
     },
     {
         id: "bull-balm-rollon",
@@ -432,6 +1136,33 @@ export const products: Product[] = [
         description: "Ancient formula for pain relief in a handy roll-on.",
         slug: "bull-balm-rollon",
         sku: "AMRIT-WELL-003",
+        highlights: [
+            "Powerful blend of natural oils",
+            "Smooth roll-on application",
+            "Instant cooling + warming relief",
+            "Travel-friendly | Non-sticky | Farm-crafted",
+        ],
+        ingredients: [
+            "Base Oil (Nourishing + Lubricating)",
+            "Menthol Essence",
+            "Tulsi Oil",
+            "Lemongrass Oil",
+            "Eucalyptus Oil",
+            "Kapoor Extract",
+        ],
+        benefits: [
+            "Relieves body pain, stiffness, muscle tension",
+            "Helps with cold, congestion, blocked nose",
+            "Useful for bruises & minor injuries",
+            "Ideal for massage therapy",
+            "Provides refreshment & rejuvenation when inhaled",
+        ],
+        howToUse: [
+            "Roll on the affected area",
+            "Massage gently for 20-30 seconds",
+            "For cold relief – inhale lightly OR apply on chest/neck",
+            "Apply on temples/behind ears for instant freshness",
+        ],
     },
     {
         id: "bull-balm-spray",
@@ -442,6 +1173,33 @@ export const products: Product[] = [
         description: "Targeted pain relief spray.",
         slug: "bull-balm-spray",
         sku: "AMRIT-WELL-004",
+        highlights: [
+            "Powerful blend of natural oils",
+            "Convenient spray application",
+            "Instant cooling + warming relief",
+            "Travel-friendly | Quick-dry | Farm-crafted",
+        ],
+        ingredients: [
+            "Base Oil (Nourishing + Lubricating)",
+            "Menthol Essence",
+            "Tulsi Oil",
+            "Lemongrass Oil",
+            "Eucalyptus Oil",
+            "Kapoor Extract",
+        ],
+        benefits: [
+            "Relieves body pain, stiffness, muscle tension",
+            "Helps with cold, congestion, blocked nose",
+            "Useful for bruises & minor injuries",
+            "Ideal for targeted relief",
+            "Provides refreshment & rejuvenation when inhaled",
+        ],
+        howToUse: [
+            "Spray on the affected area from 6 inches away",
+            "Massage gently for 20-30 seconds",
+            "For cold relief – spray lightly on chest/neck",
+            "Spray on temples for instant freshness",
+        ],
     },
     {
         id: "bull-balm-dropper",
@@ -452,6 +1210,33 @@ export const products: Product[] = [
         description: "Concentrated formula for deep tissue relief.",
         slug: "bull-balm-dropper",
         sku: "AMRIT-WELL-005",
+        highlights: [
+            "Powerful blend of natural oils",
+            "Precise dropper application",
+            "Concentrated formula for deep relief",
+            "Travel-friendly | Controlled dosing | Farm-crafted",
+        ],
+        ingredients: [
+            "Base Oil (Nourishing + Lubricating)",
+            "Menthol Essence",
+            "Tulsi Oil",
+            "Lemongrass Oil",
+            "Eucalyptus Oil",
+            "Kapoor Extract",
+        ],
+        benefits: [
+            "Relieves body pain, stiffness, muscle tension",
+            "Helps with cold, congestion, blocked nose",
+            "Useful for bruises & minor injuries",
+            "Ideal for deep tissue massage therapy",
+            "Provides refreshment & rejuvenation when inhaled",
+        ],
+        howToUse: [
+            "Apply 2-3 drops on the affected area",
+            "Massage deeply for 30-60 seconds",
+            "For cold relief – apply drops on chest/neck, inhale vapors",
+            "Apply 1 drop on temples for instant freshness",
+        ],
     },
 
     // ═══════════════════════════════════════════════════════════
@@ -466,6 +1251,26 @@ export const products: Product[] = [
         description: "Organic manure from Desi Gir cows for your garden.",
         slug: "cow-manure-1kg",
         sku: "AMRIT-GAU-001",
+        highlights: [
+            "100% organic from grass-fed Desi Gir cows",
+            "Naturally composted and aged",
+            "Rich in NPK and beneficial microbes",
+            "Eco-friendly | Chemical-free fertilizer",
+        ],
+        ingredients: ["Pure Organic Cow Dung (composted)"],
+        benefits: [
+            "Enriches soil with organic matter and nutrients",
+            "Improves soil structure and water retention",
+            "Promotes healthy plant growth naturally",
+            "Sustainable alternative to chemical fertilizers",
+            "Supports beneficial soil microorganisms",
+        ],
+        howToUse: [
+            "Mix with soil before planting (1:3 ratio)",
+            "Use as top dressing for potted plants",
+            "Prepare liquid manure by soaking in water",
+            "Apply every 2-3 weeks for best results",
+        ],
     },
     {
         id: "cow-dung-cakes-2pcs",
@@ -476,6 +1281,26 @@ export const products: Product[] = [
         description: "Traditionally dried Cow Dung cakes for rituals and fuel.",
         slug: "cow-dung-cakes-2pcs",
         sku: "AMRIT-GAU-002",
+        highlights: [
+            "Hand-crafted from Desi Gir cow dung",
+            "Sun-dried naturally for weeks",
+            "Traditional fuel and ritual use",
+            "Sacred in Vedic traditions | Eco-friendly",
+        ],
+        ingredients: ["Pure Organic Cow Dung (sun-dried)"],
+        benefits: [
+            "Used in traditional havans and yajnas",
+            "Purifies air when burned (removes toxins)",
+            "Eco-friendly biomass fuel",
+            "Repels mosquitoes and insects naturally",
+            "Part of Gau Seva (service to cows)",
+        ],
+        howToUse: [
+            "Use in havans, pujas, and religious ceremonies",
+            "Burn slowly for air purification",
+            "Place in corners to repel insects",
+            "Store in dry place away from moisture",
+        ],
     },
     {
         id: "gaumutra-1l",
@@ -486,6 +1311,26 @@ export const products: Product[] = [
         description: "Distilled Gaumutra for spiritual and medicinal use.",
         slug: "gaumutra-1l",
         sku: "AMRIT-GAU-003",
+        highlights: [
+            "From Desi Gir cows (grass-fed, hormone-free)",
+            "Filtered and distilled for purity",
+            "Traditional Ayurvedic ingredient",
+            "Spiritual purification use",
+        ],
+        ingredients: ["Pure Organic Cow Urine (distilled)"],
+        benefits: [
+            "Used in Ayurvedic medicine preparations",
+            "Natural pesticide for organic farming",
+            "Purification in spiritual rituals",
+            "Supports plant growth (diluted as fertilizer)",
+            "Traditional remedy in Panchagavya therapy",
+        ],
+        howToUse: [
+            "Dilute 1:10 with water for plant spray (pest control)",
+            "Use in Ayurvedic preparations as directed",
+            "Consult Ayurvedic practitioner for medicinal use",
+            "Store in cool, dark place",
+        ],
     },
 ];
 
