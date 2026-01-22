@@ -40,9 +40,21 @@ export async function generateMetadata({
 
     const title = `${product.title} | Amrit Milk Organic`;
     const description = product.description;
-    const imageUrl = product.image.startsWith("http")
-        ? product.image
-        : `https://amritmilkorganic.com${product.image}`;
+    // Check for optimized smaller variants for WhatsApp/Social (<300KB)
+    let socialImageUrl = product.image;
+    if (socialImageUrl.includes("gir_1l_v2.png")) {
+        socialImageUrl = "/assets/img/products/amrit_milk_gir_1l_single.png";
+    } else if (socialImageUrl.includes("sahiwal_1l_v2.png")) {
+        socialImageUrl = "/assets/img/products/amrit_milk_sahiwal_1l_single.png";
+    } else {
+        // Fallback to the optimized brand logo (266KB) for all other heavy images (>800KB)
+        // This ensures WhatsApp ALWAYS shows an image instead of failing due to size
+        socialImageUrl = "/assets/img/amrit-logo-transparent.png";
+    }
+
+    const imageUrl = socialImageUrl.startsWith("http")
+        ? socialImageUrl
+        : `https://amritmilkorganic.com${socialImageUrl}`;
 
     return {
         title,
@@ -58,7 +70,11 @@ export async function generateMetadata({
             images: [
                 {
                     url: imageUrl,
+                    secureUrl: imageUrl,
+                    width: 1200,
+                    height: 630,
                     alt: product.title,
+                    type: "image/png",
                 },
             ],
             type: "website",

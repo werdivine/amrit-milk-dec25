@@ -25,8 +25,11 @@ export const metadata: Metadata = {
         url: "https://amritmilkorganic.com",
         images: [
             {
-                url: "https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png",
-                alt: "Amrit Milk A2 Bilona Ghee",
+                url: "https://amritmilkorganic.com/assets/img/amrit-logo-transparent.png",
+                width: 1200,
+                height: 630,
+                alt: "Amrit Milk Organic - Purity Assured",
+                type: "image/png",
             },
         ],
     },
@@ -35,7 +38,7 @@ export const metadata: Metadata = {
         title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
         description:
             "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-        images: ["https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png"],
+        images: ["https://amritmilkorganic.com/assets/img/amrit-logo-transparent.png"],
     },
     icons: {
         icon: "/favicon.ico",
