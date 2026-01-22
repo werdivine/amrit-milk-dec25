@@ -53,7 +53,7 @@ function formatPaymentStatus(method: string): string {
  */
 export async function sendOrderEmailNotification(order: OrderNotificationData): Promise<boolean> {
     const smtpUser = process.env.SMTP_USER;
-    const merchantEmail = process.env.MERCHANT_EMAIL || "hello@amritmilk.com";
+    const merchantEmail = process.env.MERCHANT_EMAIL || "hello@amritmilkorganic.com";
 
     if (!smtpUser) {
         console.warn("Email notification skipped: SMTP_USER not configured");

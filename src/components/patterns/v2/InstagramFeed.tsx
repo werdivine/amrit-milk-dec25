@@ -21,13 +21,13 @@ export function InstagramFeed() {
                         pure food to your table.
                     </p>
                     <a
-                        href="https://www.instagram.com/amritmilk"
+                        href="https://www.instagram.com/amritmilkorganic"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-pink-500 to-purple-600 text-white rounded-lg hover:from-pink-600 hover:to-purple-700 transition-all shadow-lg hover:shadow-xl font-semibold"
                     >
                         <Instagram className="w-5 h-5" />
-                        Follow @amritmilk on Instagram
+                        Follow @amritmilkorganic on Instagram
                         <ExternalLink className="w-4 h-4" />
                     </a>
                 </div>
@@ -48,7 +48,7 @@ export function InstagramFeed() {
                     <p className="text-center text-sm text-espresso/50 dark:text-ivory/50 mt-6">
                         Follow us{" "}
                         <span className="font-semibold text-terracotta dark:text-gold">
-                            @amritmilk
+                            @amritmilkorganic
                         </span>{" "}
                         for daily farm stories
                     </p>

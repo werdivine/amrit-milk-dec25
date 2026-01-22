@@ -60,7 +60,7 @@ export function Footer() {
                         {/* Social Icons with premium styling */}
                         <div className="flex gap-3">
                             <a
-                                href="https://instagram.com"
+                                href="https://instagram.com/amritmilkorganic"
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-gold hover:border-gold hover:text-espresso transition-all duration-300 text-ivory shadow-sm hover:shadow-lg"
