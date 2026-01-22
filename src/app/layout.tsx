@@ -16,9 +16,6 @@ export const metadata: Metadata = {
     },
     description:
         "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-    alternates: {
-        canonical: "/",
-    },
     openGraph: {
         type: "website",
         siteName: "Amrit Milk Organic",

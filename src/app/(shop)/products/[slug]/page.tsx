@@ -4,6 +4,7 @@ import { HowToUseSection } from "@/components/shop/HowToUseSection";
 import { IngredientsSection } from "@/components/shop/IngredientsSection";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ProductHighlightsSection } from "@/components/shop/ProductHighlightsSection";
+import { ShareButton } from "@/components/shop/ShareButton";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { getProductBySlug, getProducts } from "@/lib/fetchProducts";
@@ -18,6 +19,7 @@ import {
     Truck,
     Zap,
 } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
 
@@ -45,6 +47,9 @@ export async function generateMetadata({
     return {
         title,
         description,
+        alternates: {
+            canonical: `https://amritmilkorganic.com/products/${params.slug}`,
+        },
         openGraph: {
             title,
             description,
@@ -217,6 +222,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                     category={basicProduct.category}
                                     description={basicProduct.description}
                                     sku={basicProduct.sku}
+                                />
+                                <ShareButton
+                                    title={basicProduct.title}
+                                    text={basicProduct.description}
+                                    url={`https://amritmilkorganic.com/products/${basicProduct.slug}`}
                                 />
                                 <button className="w-16 h-16 flex items-center justify-center bg-theme-elevated border border-theme-light rounded-full hover:bg-terracotta/10 dark:hover:bg-gold/10 hover:border-terracotta/30 dark:hover:border-gold/30 transition-all group">
                                     <Heart className="w-6 h-6 text-theme-primary group-hover:text-theme-accent transition-colors" />
