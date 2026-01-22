@@ -16,6 +16,11 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
     const categories = [
         { id: "all", name: "All Products", count: initialProducts.length },
         {
+            id: "Combos",
+            name: "Combo Packs",
+            count: initialProducts.filter((p) => p.category === "Combos").length,
+        },
+        {
             id: "vedic-essentials",
             name: "Ghee & Vedic Essentials",
             count: initialProducts.filter((p) => ["Ghee", "Honey"].includes(p.category)).length,
@@ -83,12 +88,19 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
         }
     }, [searchParams]);
 
+    // Sort products: Combos first, then rest
+    const sortedProducts = [...initialProducts].sort((a, b) => {
+        if (a.category === "Combos" && b.category !== "Combos") return -1;
+        if (a.category !== "Combos" && b.category === "Combos") return 1;
+        return 0;
+    });
+
     const filteredProducts =
         activeCategory === "all"
-            ? initialProducts
+            ? sortedProducts
             : activeCategory === "vedic-essentials"
-              ? initialProducts.filter((p) => ["Ghee", "Honey"].includes(p.category))
-              : initialProducts.filter((p) => p.category === activeCategory);
+              ? sortedProducts.filter((p) => ["Ghee", "Honey"].includes(p.category))
+              : sortedProducts.filter((p) => p.category === activeCategory);
 
     return (
         <>

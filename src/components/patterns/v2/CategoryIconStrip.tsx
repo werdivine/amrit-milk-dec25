@@ -1,7 +1,18 @@
 "use client";
 
 import { categories } from "@/lib/products";
-import { Droplet, Hexagon, LayoutGrid, Milk, Package, Utensils, Wheat } from "lucide-react";
+import {
+    Droplet,
+    Gift,
+    Hexagon,
+    LayoutGrid,
+    Leaf,
+    Milk,
+    Package,
+    Sparkles,
+    Utensils,
+    Wheat,
+} from "lucide-react";
 import Link from "next/link";
 
 const iconMap: Record<string, any> = {
@@ -12,6 +23,9 @@ const iconMap: Record<string, any> = {
     Wheat,
     Hexagon,
     Package,
+    Gift,
+    Sparkles,
+    Leaf,
 };
 
 export function CategoryIconStrip() {
