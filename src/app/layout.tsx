@@ -40,6 +40,11 @@ export const metadata: Metadata = {
             "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
         images: ["https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png"],
     },
+    icons: {
+        icon: "/favicon.ico",
+        shortcut: "/favicon-32x32.png",
+        apple: "/apple-touch-icon.png",
+    },
 };
 
 export default function RootLayout({

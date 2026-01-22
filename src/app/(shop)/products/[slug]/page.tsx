@@ -28,6 +28,45 @@ export async function generateStaticParams() {
     }));
 }
 
+export async function generateMetadata({
+    params,
+}: {
+    params: { slug: string };
+}): Promise<Metadata> {
+    const product = await getProductBySlug(params.slug);
+    if (!product) return {};
+
+    const title = `${product.title} | Amrit Milk Organic`;
+    const description = product.description;
+    const imageUrl = product.image.startsWith("http")
+        ? product.image
+        : `https://amritmilkorganic.com${product.image}`;
+
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            url: `https://amritmilkorganic.com/products/${params.slug}`,
+            siteName: "Amrit Milk Organic",
+            images: [
+                {
+                    url: imageUrl,
+                    alt: product.title,
+                },
+            ],
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [imageUrl],
+        },
+    };
+}
+
 export default async function ProductPage({ params }: { params: { slug: string } }) {
     const { slug } = params;
     const products = await getProducts();
