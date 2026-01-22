@@ -3,13 +3,8 @@
 import { Section } from "@/components/ui/section";
 import { ExternalLink, Instagram } from "lucide-react";
 
-import { InstagramPost } from "@/data/instagram";
-
-interface InstagramFeedProps {
-    posts: InstagramPost[];
-}
-
-export function InstagramFeed({ posts }: InstagramFeedProps) {
+// Using SociableKit widget instead of Sanity Instagram import
+export function InstagramFeed() {
     return (
         <Section className="bg-gradient-to-b from-white to-creme dark:from-midnight-light to-midnight py-20">
             <div className="container mx-auto px-4">
@@ -37,34 +32,18 @@ export function InstagramFeed({ posts }: InstagramFeedProps) {
                     </a>
                 </div>
 
-                {/* Instagram curated feed */}
-                <div className="bg-white dark:bg-midnight-mid rounded-2xl border border-espresso/10 dark:border-white/10 p-8 shadow-lg">
-                    <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-                        {posts.map((post) => (
-                            <a
-                                key={post.id}
-                                href={post.url}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative aspect-square bg-neutral-100 dark:bg-neutral-800 rounded-xl overflow-hidden shadow-sm hover:shadow-md transition-all hover:scale-[1.02]"
-                            >
-                                {/* We use basic img tag here since we might map external URLs later, or use Next Image if local */}
-                                {/* eslint-disable-next-line @next/next/no-img-element */}
-                                <img
-                                    src={post.imageUrl}
-                                    alt={post.caption}
-                                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/40 transition-colors duration-300 flex items-center justify-center">
-                                    <Instagram className="w-8 h-8 text-white opacity-0 group-hover:opacity-100 transform scale-50 group-hover:scale-100 transition-all duration-300" />
-                                </div>
-                                <div className="absolute bottom-0 left-0 right-0 p-3 bg-gradient-to-t from-black/80 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                    <p className="text-white text-xs font-medium truncate">
-                                        {post.caption}
-                                    </p>
-                                </div>
-                            </a>
-                        ))}
+                {/* SociableKit Instagram Widget */}
+                <div className="bg-white dark:bg-midnight-mid rounded-2xl border border-espresso/10 dark:border-white/10 p-4 md:p-8 shadow-lg overflow-hidden">
+                    <div className="w-full flex justify-center">
+                        <iframe
+                            src="https://widgets.sociablekit.com/instagram-hashtag-feed/iframe/25646019"
+                            frameBorder="0"
+                            width="100%"
+                            height="600"
+                            className="max-w-full rounded-lg"
+                            title="Amrit Milk Instagram Feed"
+                            loading="lazy"
+                        />
                     </div>
                     <p className="text-center text-sm text-espresso/50 dark:text-ivory/50 mt-6">
                         Follow us{" "}

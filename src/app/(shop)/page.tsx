@@ -171,7 +171,7 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <InstagramFeed posts={posts} />
+            <InstagramFeed />
             <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 
