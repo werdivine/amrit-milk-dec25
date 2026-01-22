@@ -1,5 +1,6 @@
 "use client";
 
+import { AvailableOffers } from "@/components/shop/AvailableOffers";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { calculateCartTotals, getCrossSellRecommendations, type CartItem } from "@/lib/cart-utils";
@@ -363,6 +364,15 @@ export default function CartPage() {
                                         ₹{totals.total}
                                     </span>
                                 </div>
+                            </div>
+
+                            {/* Available Offers */}
+                            <div className="pt-4">
+                                <AvailableOffers
+                                    onApplyCoupon={(code) => {
+                                        setCouponInput(code);
+                                    }}
+                                />
                             </div>
 
                             {/* Coupon Input */}

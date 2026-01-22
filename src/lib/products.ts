@@ -1332,10 +1332,141 @@ export const products: Product[] = [
             "Store in cool, dark place",
         ],
     },
+
+    // ═══════════════════════════════════════════════════════════
+    // COMBO PACKS (Value Bundles)
+    // ═══════════════════════════════════════════════════════════
+    {
+        id: "combo-healthy-starter",
+        title: "Healthy Starter Pack",
+        price: "₹3,500",
+        regularPrice: "₹3,860",
+        image: "/assets/img/products/combo_starter_pack.png",
+        category: "Combos",
+        description:
+            "1kg A2 Ghee + 1kg Multiflora Honey + 1kg Wheat Atta. The foundation of a healthy Indian kitchen.",
+        slug: "healthy-starter-pack",
+        sku: "AMRIT-COMBO-001",
+        featured: true,
+        badge: "Best Value",
+        highlights: [
+            "Complete wellness trio for your kitchen",
+            "Save ₹360 compared to individual prices",
+            "Premium A2 Bilona Ghee + Raw Forest Honey + Stone-Ground Atta",
+            "Perfect for health-conscious families",
+        ],
+        benefits: [
+            "Ghee: Strengthens immunity, promotes digestion",
+            "Honey: Natural energy booster, antioxidant-rich",
+            "Atta: High fiber, sustained energy source",
+            "All products are 100% organic and chemical-free",
+        ],
+    },
+    {
+        id: "combo-wellness-family",
+        title: "Wellness Family Pack",
+        price: "₹2,050",
+        regularPrice: "₹2,270",
+        image: "/assets/img/products/combo_family_pack.png",
+        category: "Combos",
+        description:
+            "500ml A2 Ghee + 1L Groundnut Oil + 1kg Multigrain Atta. Balanced nutrition for the whole family.",
+        slug: "wellness-family-pack",
+        sku: "AMRIT-COMBO-002",
+        featured: true,
+        badge: "Family Favorite",
+        highlights: [
+            "Perfect combo for daily cooking needs",
+            "Save ₹220 compared to individual prices",
+            "Heart-healthy oils + nutrient-rich atta",
+            "Ideal for families of 4-5 members",
+        ],
+        benefits: [
+            "Ghee: Traditional Bilona method, rich in vitamins",
+            "Groundnut Oil: High smoke point, heart-healthy fats",
+            "Multigrain Atta: Blend of 6 grains for complete nutrition",
+            "Supports immunity and digestive health",
+        ],
+    },
+    {
+        id: "combo-kitchen-essentials",
+        title: "Kitchen Essentials Combo",
+        price: "₹750",
+        regularPrice: "₹850",
+        image: "/assets/img/products/combo_kitchen_essentials.png",
+        category: "Combos",
+        description:
+            "1L Yellow Mustard Oil + 1L Black Mustard Oil + 1kg Wheat Atta. Daily cooking essentials at best prices.",
+        slug: "kitchen-essentials-combo",
+        sku: "AMRIT-COMBO-003",
+        badge: "Budget Friendly",
+        highlights: [
+            "Essential trio for everyday Indian cooking",
+            "Save ₹100 compared to individual prices",
+            "Cold-pressed Kacchi Ghani oils",
+            "Stone-ground whole wheat flour",
+        ],
+        benefits: [
+            "Yellow Mustard: Rich in Omega-3, great for tadka",
+            "Black Mustard: More pungent, ideal for pickles",
+            "Wheat Atta: Soft rotis with authentic taste",
+            "All products are wood-pressed and chemical-free",
+        ],
+    },
+    {
+        id: "combo-pure-gold",
+        title: "Pure Gold Combo",
+        price: "₹3,200",
+        regularPrice: "₹3,400",
+        image: "/assets/img/products/combo_pure_gold.png",
+        category: "Combos",
+        description: "1kg A2 Ghee + 1kg Organic Turmeric. The golden duo for immunity and healing.",
+        slug: "pure-gold-combo",
+        sku: "AMRIT-COMBO-004",
+        badge: "Immunity Booster",
+        highlights: [
+            "The 'Golden' health duo of Ayurveda",
+            "Save ₹200 compared to individual prices",
+            "High-curcumin turmeric + Pure Bilona ghee",
+            "Perfect for making golden milk (Haldi Doodh)",
+        ],
+        benefits: [
+            "Combined anti-inflammatory properties",
+            "Ghee enhances curcumin absorption",
+            "Natural immunity booster combo",
+            "Traditional Ayurvedic wellness pair",
+        ],
+    },
+    {
+        id: "combo-oil-trio",
+        title: "Oil Trio Pack",
+        price: "₹2,250",
+        regularPrice: "₹2,400",
+        image: "/assets/img/products/combo_oil_trio.png",
+        category: "Combos",
+        description:
+            "1L Groundnut Oil + 1L Coconut Oil + 1L Sesame Oil. Complete cooking oil solution for every cuisine.",
+        slug: "oil-trio-pack",
+        sku: "AMRIT-COMBO-005",
+        badge: "Complete Kitchen",
+        highlights: [
+            "Three premium cold-pressed oils",
+            "Save ₹150 compared to individual prices",
+            "Perfect for diverse Indian cooking styles",
+            "All wood-pressed using traditional methods",
+        ],
+        benefits: [
+            "Groundnut: High smoke point, ideal for frying",
+            "Coconut: Rich in MCTs, for South Indian dishes",
+            "Sesame: Nutty flavor, excellent for Asian cuisine",
+            "All oils retain natural nutrients and flavors",
+        ],
+    },
 ];
 
 export const categories = [
     { id: "all", label: "All Products", icon: "LayoutGrid" },
+    { id: "combos", label: "Combo Packs", icon: "Gift" },
     { id: "vedic-essentials", label: "Ghee & Vedic Essentials", icon: "Utensils" }, // Ghee + Honey
     { id: "cold-pressed-oils", label: "Cold-Pressed Oils", icon: "Droplet" },
     { id: "essential-oils", label: "Essential Oils", icon: "Sparkles" },

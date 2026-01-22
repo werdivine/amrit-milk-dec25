@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 
+import { AvailableOffers } from "@/components/shop/AvailableOffers";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/CartContext";
 import { calculateCartTotals, type CartItem } from "@/lib/cart-utils"; // Use the new consistent util
@@ -528,6 +529,11 @@ function CheckoutContent() {
                                         </div>
                                     );
                                 })}
+                            </div>
+
+                            {/* Available Offers */}
+                            <div className="mb-6">
+                                <AvailableOffers />
                             </div>
 
                             <div className="space-y-3 py-6 border-t border-stone-100 dark:border-white/10 bg-stone-50 dark:bg-white/5 -mx-6 px-6 lg:-mx-8 lg:px-8 mb-6">
