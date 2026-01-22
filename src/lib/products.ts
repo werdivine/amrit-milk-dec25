@@ -1341,7 +1341,7 @@ export const products: Product[] = [
         title: "Healthy Starter Pack",
         price: "₹3,500",
         regularPrice: "₹3,860",
-        image: "/assets/img/products/combo_starter_pack.png",
+        image: "/assets/img/products/amrit_ghee_premium.png",
         category: "Combos",
         description:
             "1kg A2 Ghee + 1kg Multiflora Honey + 1kg Wheat Atta. The foundation of a healthy Indian kitchen.",
@@ -1367,7 +1367,7 @@ export const products: Product[] = [
         title: "Wellness Family Pack",
         price: "₹2,050",
         regularPrice: "₹2,270",
-        image: "/assets/img/products/combo_family_pack.png",
+        image: "/assets/img/products/amrit_oil_groundnut_1l_v2.png",
         category: "Combos",
         description:
             "500ml A2 Ghee + 1L Groundnut Oil + 1kg Multigrain Atta. Balanced nutrition for the whole family.",
@@ -1393,7 +1393,7 @@ export const products: Product[] = [
         title: "Kitchen Essentials Combo",
         price: "₹750",
         regularPrice: "₹850",
-        image: "/assets/img/products/combo_kitchen_essentials.png",
+        image: "/assets/img/products/yellow_mustard_oil.png",
         category: "Combos",
         description:
             "1L Yellow Mustard Oil + 1L Black Mustard Oil + 1kg Wheat Atta. Daily cooking essentials at best prices.",
@@ -1418,7 +1418,7 @@ export const products: Product[] = [
         title: "Pure Gold Combo",
         price: "₹3,200",
         regularPrice: "₹3,400",
-        image: "/assets/img/products/combo_pure_gold.png",
+        image: "/assets/img/products/premium_turmeric_powder.png",
         category: "Combos",
         description: "1kg A2 Ghee + 1kg Organic Turmeric. The golden duo for immunity and healing.",
         slug: "pure-gold-combo",
@@ -1442,7 +1442,7 @@ export const products: Product[] = [
         title: "Oil Trio Pack",
         price: "₹2,250",
         regularPrice: "₹2,400",
-        image: "/assets/img/products/combo_oil_trio.png",
+        image: "/assets/img/products/coconut_oil.png",
         category: "Combos",
         description:
             "1L Groundnut Oil + 1L Coconut Oil + 1L Sesame Oil. Complete cooking oil solution for every cuisine.",
