@@ -3,7 +3,10 @@ import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CartProvider } from "@/lib/CartContext";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
+
+const GA_MEASUREMENT_ID = "G-1C4LN7YY4D";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 const playfair = Playfair_Display({ subsets: ["latin"], variable: "--font-playfair" });
@@ -54,6 +57,19 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en" suppressHydrationWarning>
+            {/* Google Analytics */}
+            <Script
+                src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+                strategy="afterInteractive"
+            />
+            <Script id="google-analytics" strategy="afterInteractive">
+                {`
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag(){dataLayer.push(arguments);}
+                    gtag('js', new Date());
+                    gtag('config', '${GA_MEASUREMENT_ID}');
+                `}
+            </Script>
             <body
                 className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-creme dark:bg-midnight transition-colors duration-500`}
             >
