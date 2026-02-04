@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { ProductImage } from "@/components/ui/ProductImage";
 import { useCart } from "@/lib/CartContext";
-import { ArrowRight, Check, Repeat, ShoppingBag, Star } from "lucide-react";
+import { ArrowRight, Check, Repeat, ShoppingCart, Star } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
 
@@ -128,7 +128,7 @@ export function ProductCard({
                         {added ? (
                             <Check className="w-5 h-5" />
                         ) : (
-                            <ShoppingBag className="w-5 h-5" />
+                            <ShoppingCart className="w-5 h-5" />
                         )}
                     </button>
                 </div>

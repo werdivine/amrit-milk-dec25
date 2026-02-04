@@ -2,7 +2,7 @@
 
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/CartContext";
-import { Check, ShoppingBag } from "lucide-react";
+import { Check, ShoppingCart } from "lucide-react";
 import { useState } from "react";
 
 interface AddToCartButtonProps {
@@ -58,7 +58,7 @@ export function AddToCartButton({
                 </>
             ) : (
                 <>
-                    <ShoppingBag className="w-5 h-5 mr-2" />
+                    <ShoppingCart className="w-5 h-5 mr-2" />
                     Add to Cart
                 </>
             )}

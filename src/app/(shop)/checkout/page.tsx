@@ -496,7 +496,7 @@ function CheckoutContent() {
                             </div>
 
                             <h3 className="text-xl font-serif font-bold mb-6 text-espresso dark:text-ivory border-b border-stone-100 dark:border-white/10 pb-4">
-                                In Your Bag
+                                In Your Cart
                             </h3>
 
                             <div className="space-y-4 mb-8 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">

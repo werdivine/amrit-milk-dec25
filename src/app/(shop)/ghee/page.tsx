@@ -15,7 +15,7 @@ import {
     Plus,
     ScrollText,
     ShieldCheck,
-    ShoppingBag,
+    ShoppingCart,
     Star,
 } from "lucide-react";
 import Image from "next/image";
@@ -72,7 +72,7 @@ export default function GheePage() {
                             href={`/products/${gheeProduct?.slug}`}
                             className="w-full sm:w-auto px-10 py-5 bg-terracotta hover:bg-terracotta-dark text-white rounded-full font-bold text-xl shadow-gold/20 shadow-2xl transition-all transform hover:scale-105 flex items-center justify-center gap-2 group"
                         >
-                            <ShoppingBag className="w-6 h-6 group-hover:animate-bounce" />
+                            <ShoppingCart className="w-6 h-6 group-hover:animate-bounce" />
                             Buy Now - {gheeProduct?.price}
                         </Link>
                         <a
@@ -422,7 +422,7 @@ export default function GheePage() {
                             href={`/products/${gheeProduct?.slug}`}
                             className="inline-flex items-center gap-2 px-8 py-4 bg-terracotta hover:bg-terracotta-dark text-white rounded-full font-bold shadow-lg transition-all transform hover:-translate-y-1"
                         >
-                            <ShoppingBag className="w-5 h-5" /> Experience the Process
+                            <ShoppingCart className="w-5 h-5" /> Experience the Process
                         </Link>
                     </div>
                 </div>
@@ -575,7 +575,7 @@ export default function GheePage() {
                     href={`/products/${gheeProduct?.slug}`}
                     className="bg-terracotta hover:bg-terracotta-dark text-white font-bold py-4 px-8 rounded-full shadow-2xl flex items-center gap-3 hover:scale-105 transition-transform"
                 >
-                    <ShoppingBag className="w-5 h-5" /> Buy Ghee - {gheeProduct?.price}
+                    <ShoppingCart className="w-5 h-5" /> Buy Ghee - {gheeProduct?.price}
                 </Link>
             </div>
         </div>

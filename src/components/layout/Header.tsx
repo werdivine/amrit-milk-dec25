@@ -3,7 +3,7 @@
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 import { useCart } from "@/lib/CartContext";
 import { AnimatePresence, motion } from "framer-motion";
-import { ChevronDown, Menu, Search, ShoppingBag, User, X } from "lucide-react";
+import { ChevronDown, Menu, Search, ShoppingCart, User, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
@@ -162,7 +162,7 @@ export function Header() {
                                     }}
                                     className="relative z-10"
                                 >
-                                    <ShoppingBag className="w-8 h-8 text-ivory group-hover:text-gold transition-colors duration-300 drop-shadow-md" />
+                                    <ShoppingCart className="w-8 h-8 text-ivory group-hover:text-gold transition-colors duration-300 drop-shadow-md" />
                                 </motion.div>
                                 <AnimatePresence>
                                     {cartCount > 0 && (
