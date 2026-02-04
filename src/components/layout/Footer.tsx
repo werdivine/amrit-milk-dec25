@@ -296,7 +296,7 @@ export function Footer() {
                             <div className="p-2.5 bg-gold/20 rounded-xl border border-gold/30">
                                 <MapPin className="w-4 h-4 text-gold" />
                             </div>
-                            Lucknow, Uttar Pradesh
+                            Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN
                         </span>
                     </div>
                 </div>

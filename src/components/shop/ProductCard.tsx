@@ -60,20 +60,20 @@ export function ProductCard({
         <div className="group relative bg-white dark:bg-glass-bg border border-creme-dark dark:border-glass-border rounded-2xl overflow-hidden hover:border-terracotta/40 dark:hover:border-gold/40 transition-all duration-500 hover:shadow-lifted dark:hover:shadow-[0_20px_60px_rgba(212,175,55,0.2)] hover:-translate-y-2">
             {/* Badge */}
             {badge && (
-                <span className="absolute top-4 left-4 z-50 bg-terracotta dark:bg-gold text-white dark:text-midnight text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-xl">
+                <span className="absolute top-4 left-4 z-30 bg-terracotta dark:bg-gold text-white dark:text-midnight text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-xl">
                     {badge}
                 </span>
             )}
 
             {featured && !badge && (
-                <span className="absolute top-4 left-4 z-50 bg-espresso dark:bg-ivory text-white dark:text-midnight text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-xl flex items-center gap-1">
+                <span className="absolute top-4 left-4 z-30 bg-espresso dark:bg-ivory text-white dark:text-midnight text-[10px] font-black uppercase tracking-[0.2em] px-3 py-1.5 rounded-full shadow-xl flex items-center gap-1">
                     <Star className="w-3 h-3 fill-current" /> Premium
                 </span>
             )}
 
             {/* Sale Badge */}
             {isOnSale && (
-                <span className="absolute top-4 right-4 z-50 bg-red-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
+                <span className="absolute top-4 right-4 z-30 bg-red-500 text-white text-xs font-bold uppercase tracking-widest px-3 py-1 rounded-full shadow-lg">
                     SALE
                 </span>
             )}

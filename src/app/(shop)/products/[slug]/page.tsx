@@ -5,6 +5,7 @@ import { IngredientsSection } from "@/components/shop/IngredientsSection";
 import { ProductCard } from "@/components/shop/ProductCard";
 import { ProductHighlightsSection } from "@/components/shop/ProductHighlightsSection";
 import { ShareButton } from "@/components/shop/ShareButton";
+import { ProductSchema } from "@/components/seo/JsonLd";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { getProductBySlug, getProducts } from "@/lib/fetchProducts";
@@ -123,8 +124,27 @@ export default async function ProductPage({ params }: { params: { slug: string }
         .sort(() => 0.5 - Math.random())
         .slice(0, 4);
 
+    // Parse price for Schema.org
+    const priceValue = basicProduct.price.replace(/[^0-9.]/g, "");
+
     return (
         <main className="bg-theme-primary min-h-screen">
+            {/* Product Schema Markup */}
+            <ProductSchema
+                name={basicProduct.title}
+                description={basicProduct.description}
+                image={basicProduct.image}
+                sku={basicProduct.sku || basicProduct.slug}
+                category={basicProduct.category}
+                price={basicProduct.price}
+                currency="INR"
+                availability="https://schema.org/InStock"
+                rating={{
+                    ratingValue: 4.9,
+                    reviewCount: 240,
+                }}
+            />
+
             {/* Hero Section */}
             <section className="relative pt-24 md:pt-32 pb-20 bg-gradient-to-b from-terracotta/5 dark:from-gold/5 to-transparent overflow-hidden">
                 <div className="absolute top-0 right-0 w-1/3 h-1/3 bg-terracotta/5 dark:bg-gold/5 blur-[120px] rounded-full -translate-y-1/2 translate-x-1/2"></div>

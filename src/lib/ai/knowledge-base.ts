@@ -30,10 +30,9 @@ export const KNOWLEDGE_BASE: FAQEntry[] = [
         category: "Brand & Trust",
         question_hi: "Aapka farm kahan sthit hai?",
         question_en: "Where is your farm located?",
-        answer_hi:
-            "Humara farm Lucknow ke paas, Gomti Nagar extension mein Lonapur gaon mein sthit hai.",
-        answer_en: "Our farm is located in Lonapur village, near Gomti Nagar extension in Lucknow.",
-        keywords: ["location", "farm", "address", "kahan", "lucknow", "lonapur", "gomti nagar"],
+        answer_hi: "Humara farm Lucknow mein sthit hai. Address: Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN.",
+        answer_en: "Our farm is located at Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN.",
+        keywords: ["location", "farm", "address", "kahan", "lucknow", "amrit milk marg"],
     },
     {
         id: "a2-milk-definition",

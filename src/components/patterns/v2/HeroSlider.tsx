@@ -12,7 +12,7 @@ const slides = [
         subtitle: "20,000+ Jars Dispatched",
         description:
             "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
-        image: "/assets/img/ghee-jar.png",
+        image: "/assets/img/products/combo_wellness_trio_v7.png",
         cta: "Buy Now",
         link: "/products/a2-cow-ghee-1kg",
     },
@@ -34,7 +34,7 @@ const slides = [
         subtitle: "Nectar of the Wild",
         description:
             "Raw, Unfiltered, and Sourced from the deep forests by tribal communities. Pure healing in every drop.",
-        image: "/assets/img/honey-jar.png",
+        image: "/assets/img/products/amrit_honey_premium_v7.png",
         cta: "Taste Purity",
         link: "/products?category=honey",
     },

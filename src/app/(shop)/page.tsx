@@ -3,6 +3,7 @@ import { ComboCarousel } from "@/components/patterns/v2/ComboCarousel";
 import { HeroSlider } from "@/components/patterns/v2/HeroSlider";
 import { ProductCollection } from "@/components/patterns/v2/ProductCollection";
 import { TrustStrip } from "@/components/patterns/v2/TrustStrip";
+import { FAQPageSchema, HowToSchema } from "@/components/seo/JsonLd";
 import { getProducts } from "@/lib/fetchProducts";
 import { getGoogleReviews, getInstagramPosts } from "@/lib/fetchSocials";
 import type { Metadata } from "next";
@@ -30,31 +31,93 @@ import { ExpertPanel } from "@/components/patterns/ExpertPanel";
 import { FAQSection } from "@/components/patterns/FAQSection";
 import { Newsletter } from "@/components/patterns/Newsletter";
 import { WallOfLove } from "@/components/patterns/WallOfLove";
-export const metadata: Metadata = {
-    title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
-    description:
-        "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-    openGraph: {
-        title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
+
+export async function generateMetadata(): Promise<Metadata> {
+    return {
+        title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee in Lucknow",
         description:
-            "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-        url: "https://amritmilkorganic.com",
-        siteName: "Amrit Milk Organic",
-        images: [
-            {
-                url: "https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png",
-                alt: "Amrit Milk A2 Bilona Ghee",
-            },
+            "Pure A2 Gir Cow Milk with authentic bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered daily from our own farm in Lucknow since 2015. Order now!",
+        keywords: [
+            "A2 milk Lucknow",
+            "Gir cow milk",
+            "bilona ghee online",
+            "organic milk delivery",
+            "pure desi ghee",
+            "farm fresh milk",
         ],
-        type: "website",
+        alternates: {
+            canonical: "https://amritmilkorganic.com",
+        },
+        openGraph: {
+            title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
+            description:
+                "Pure A2 Gir Cow Milk with authentic bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
+            url: "https://amritmilkorganic.com",
+            siteName: "Amrit Milk Organic",
+            images: [
+                {
+                    url: "https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png",
+                    alt: "Amrit Milk A2 Bilona Ghee",
+                    width: 1200,
+                    height: 630,
+                },
+            ],
+            type: "website",
+            locale: "en_IN",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
+            description:
+                "Pure A2 Gir Cow Milk with authentic bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
+            images: ["https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png"],
+        },
+    };
+}
+
+// FAQ Schema data
+const homePageFAQs = [
+    {
+        question: "What is A2 milk and why is it better?",
+        answer:
+            "A2 milk comes from indigenous Indian cows like Gir and Sahiwal breeds. It contains the A2 beta-casein protein which is easier to digest compared to A1 protein found in regular milk. A2 milk is naturally richer in nutrients and doesn't cause digestive discomfort.",
     },
-    twitter: {
-        card: "summary_large_image",
-        title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
-        description:
-            "Pure A2 Gir Cow Milk with bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-        images: ["https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png"],
+    {
+        question: "Do you deliver A2 milk daily in Lucknow?",
+        answer:
+            "Yes, we deliver fresh A2 Gir cow milk daily across Lucknow. Our milk is milked at 4 AM and delivered by 8 AM the same morning, ensuring maximum freshness and nutritional value.",
     },
+    {
+        question: "What is Bilona ghee and how is it different?",
+        answer:
+            "Bilona ghee is made using the traditional Vedic method where curd is churned to extract butter, which is then heated to make ghee. Unlike commercial ghee made from cream, Bilona ghee retains more nutrients and has a richer flavor.",
+    },
+    {
+        question: "Is your milk lab tested?",
+        answer:
+            "Yes, all our products are regularly tested in certified laboratories for purity, adulteration, and nutritional content. We publish our lab reports transparently so you can verify the quality yourself.",
+    },
+];
+
+// HowTo Schema data for making ghee at home
+const gheeHowTo = {
+    name: "How to Use Bilona Ghee for Maximum Health Benefits",
+    description:
+        "Learn the traditional ways to use pure A2 Bilona ghee in your daily diet for optimal health and wellness.",
+    steps: [
+        {
+            name: "Daily Consumption",
+            text: "Consume 1-2 teaspoons of pure Bilona ghee daily on an empty stomach or with warm milk for improved digestion and immunity.",
+        },
+        {
+            name: "Cooking",
+            text: "Use Bilona ghee for cooking instead of refined oils. It has a high smoke point and adds a rich, nutty flavor to your dishes.",
+        },
+        {
+            name: "Skin Care",
+            text: "Apply a small amount of ghee on dry skin or lips for natural moisturization and healing properties.",
+        },
+    ],
 };
 
 const TERMS = ["Ghee", "Oils", "Honey"];
@@ -81,6 +144,10 @@ export default async function Home() {
 
     return (
         <main className="flex min-h-screen flex-col bg-creme dark:bg-midnight transition-colors duration-500">
+            {/* JSON-LD Schema Markup */}
+            <FAQPageSchema faqs={homePageFAQs} />
+            <HowToSchema {...gheeHowTo} />
+
             {/* 1. THE PROMISE */}
             <HeroSlider />
 

@@ -1,0 +1,645 @@
+{
+  "servers": {
+    // === BROWSER AUTOMATION & WEB CONTROL ===
+    "playwright": {
+      "command": "npx",
+      "args": ["@playwright/mcp@latest"],
+      "type": "stdio"
+    },
+    "browserbase": {
+      "command": "npx",
+      "args": ["-y", "@browserbase/mcp-server-browserbase@latest"],
+      "type": "stdio",
+      "env": {
+        "BROWSERBASE_API_KEY": "${input:browserbase_api_key}"
+      }
+    },
+    "puppeteer": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-puppeteer@latest"],
+      "type": "stdio"
+    },
+    "hyperbrowser": {
+      "command": "npx",
+      "args": ["-y", "@hyperbrowser/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "HYPERBROWSER_API_KEY": "${input:hyperbrowser_api_key}"
+      }
+    },
+
+    // === SYSTEM & PC CONTROL ===
+    "filesystem": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-filesystem"],
+      "type": "stdio"
+    },
+    "e2b-sandbox": {
+      "command": "npx",
+      "args": ["-y", "@e2b/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "E2B_API_KEY": "${input:e2b_api_key}"
+      }
+    },
+    "forevervm": {
+      "command": "npx",
+      "args": ["-y", "@jamsocket/forevervm-mcp@latest"],
+      "type": "stdio"
+    },
+
+    // === VERSION CONTROL & CODE MANAGEMENT ===
+    "git": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-git"],
+      "type": "stdio"
+    },
+    "github": {
+      "command": "npx",
+      "args": ["-y", "@github/github-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "GITHUB_TOKEN": "${input:github_token}"
+      }
+    },
+    "gitlab": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-gitlab@latest"],
+      "type": "stdio",
+      "env": {
+        "GITLAB_TOKEN": "${input:gitlab_token}"
+      }
+    },
+
+    // === DATABASES & DATA MANAGEMENT ===
+    "postgres": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-postgres@latest"],
+      "type": "stdio",
+      "env": {
+        "POSTGRES_CONNECTION_STRING": "${input:postgres_connection}"
+      }
+    },
+    "sqlite": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sqlite@latest"],
+      "type": "stdio"
+    },
+    "mongodb": {
+      "command": "npx",
+      "args": ["-y", "@mongodb-js/mongodb-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "MONGODB_URI": "${input:mongodb_uri}"
+      }
+    },
+    "redis": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-redis@latest"],
+      "type": "stdio",
+      "env": {
+        "REDIS_URL": "${input:redis_url}"
+      }
+    },
+
+    // === CLOUD PLATFORMS & DEPLOYMENT ===
+    "aws": {
+      "command": "npx",
+      "args": ["-y", "@awslabs/mcp-server-aws@latest"],
+      "type": "stdio",
+      "env": {
+        "AWS_ACCESS_KEY_ID": "${input:aws_access_key}",
+        "AWS_SECRET_ACCESS_KEY": "${input:aws_secret_key}",
+        "AWS_REGION": "us-east-1"
+      }
+    },
+    "azure": {
+      "command": "npx",
+      "args": ["-y", "@azure/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "AZURE_CLIENT_ID": "${input:azure_client_id}",
+        "AZURE_CLIENT_SECRET": "${input:azure_client_secret}",
+        "AZURE_TENANT_ID": "${input:azure_tenant_id}"
+      }
+    },
+    "google-cloud": {
+      "command": "npx",
+      "args": ["-y", "@google-cloud/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "GOOGLE_CLOUD_PROJECT": "${input:gcp_project_id}"
+      }
+    },
+    "cloudflare": {
+      "command": "npx",
+      "args": ["-y", "@cloudflare/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "CLOUDFLARE_API_TOKEN": "${input:cloudflare_token}"
+      }
+    },
+    "netlify": {
+      "command": "npx",
+      "args": ["-y", "@netlify/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "NETLIFY_ACCESS_TOKEN": "${input:netlify_token}"
+      }
+    },
+    "heroku": {
+      "command": "npx",
+      "args": ["-y", "@heroku/heroku-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "HEROKU_API_KEY": "${input:heroku_api_key}"
+      }
+    },
+    "pulumi": {
+      "command": "npx",
+      "args": ["-y", "@pulumi/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "PULUMI_ACCESS_TOKEN": "${input:pulumi_token}"
+      }
+    },
+
+    // === CONTAINERIZATION & ORCHESTRATION ===
+    "docker": {
+      "command": "npx",
+      "args": ["-y", "@docker/mcp-server@latest"],
+      "type": "stdio"
+    },
+    "kubernetes": {
+      "command": "npx",
+      "args": ["-y", "@kubernetes/mcp-server@latest"],
+      "type": "stdio"
+    },
+
+    // === CI/CD & DEVELOPMENT TOOLS ===
+    "github-actions": {
+      "command": "npx",
+      "args": ["-y", "@github/actions-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "GITHUB_TOKEN": "${input:github_token}"
+      }
+    },
+    "jenkins": {
+      "command": "npx",
+      "args": ["-y", "@jenkins/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "JENKINS_URL": "${input:jenkins_url}",
+        "JENKINS_TOKEN": "${input:jenkins_token}"
+      }
+    },
+    "bitrise": {
+      "command": "npx",
+      "args": ["-y", "@bitrise-io/bitrise-mcp@latest"],
+      "type": "stdio",
+      "env": {
+        "BITRISE_ACCESS_TOKEN": "${input:bitrise_token}"
+      }
+    },
+    "circleci": {
+      "command": "npx",
+      "args": ["-y", "@circleci/mcp-server-circleci@latest"],
+      "type": "stdio",
+      "env": {
+        "CIRCLE_TOKEN": "${input:circleci_token}"
+      }
+    },
+
+    // === API TESTING & DEVELOPMENT ===
+    "postman": {
+      "command": "npx",
+      "args": ["-y", "@postman/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "POSTMAN_API_KEY": "${input:postman_api_key}"
+      }
+    },
+    "graphql": {
+      "command": "npx",
+      "args": ["-y", "@apollo/apollo-mcp-server@latest"],
+      "type": "stdio"
+    },
+
+    // === MONITORING & OBSERVABILITY ===
+    "datadog": {
+      "command": "npx",
+      "args": ["-y", "@datadog/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "DATADOG_API_KEY": "${input:datadog_api_key}"
+      }
+    },
+    "newrelic": {
+      "command": "npx",
+      "args": ["-y", "@newrelic/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "NEW_RELIC_API_KEY": "${input:newrelic_api_key}"
+      }
+    },
+    "sentry": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-sentry@latest"],
+      "type": "stdio",
+      "env": {
+        "SENTRY_AUTH_TOKEN": "${input:sentry_token}"
+      }
+    },
+    "grafana": {
+      "command": "npx",
+      "args": ["-y", "@grafana/mcp-grafana@latest"],
+      "type": "stdio",
+      "env": {
+        "GRAFANA_URL": "${input:grafana_url}",
+        "GRAFANA_API_KEY": "${input:grafana_api_key}"
+      }
+    },
+
+    // === SEARCH & CONTENT ===
+    "exa-search": {
+      "command": "npx",
+      "args": ["-y", "@exa-labs/exa-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "EXA_API_KEY": "${input:exa_api_key}"
+      }
+    },
+    "brave-search": {
+      "command": "npx",
+      "args": ["-y", "@brave/brave-search-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "BRAVE_API_KEY": "${input:brave_api_key}"
+      }
+    },
+    "fetch": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-fetch@latest"],
+      "type": "stdio"
+    },
+    "firecrawl": {
+      "command": "npx",
+      "args": ["-y", "@mendableai/firecrawl-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "FIRECRAWL_API_KEY": "${input:firecrawl_api_key}"
+      }
+    },
+
+    // === COMMUNICATION & COLLABORATION ===
+    "slack": {
+      "command": "npx",
+      "args": ["-y", "@zencoder/slack-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "SLACK_BOT_TOKEN": "${input:slack_bot_token}"
+      }
+    },
+    "discord": {
+      "command": "npx",
+      "args": ["-y", "@discord/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "DISCORD_TOKEN": "${input:discord_token}"
+      }
+    },
+    "linear": {
+      "command": "npx",
+      "args": ["-y", "@linear/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "LINEAR_API_KEY": "${input:linear_api_key}"
+      }
+    },
+    "notion": {
+      "command": "npx",
+      "args": ["-y", "@notion/notion-mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "NOTION_API_KEY": "${input:notion_api_key}"
+      }
+    },
+
+    // === CODE QUALITY & SECURITY ===
+    "codacy": {
+      "command": "npx",
+      "args": ["-y", "@codacy/codacy-mcp"],
+      "env": {
+        "CODACY_ACCOUNT_TOKEN": "${input:codacy_account_token}"
+      },
+      "type": "stdio"
+    },
+    "snyk": {
+      "command": "npx",
+      "args": ["-y", "@snyk/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "SNYK_TOKEN": "${input:snyk_token}"
+      }
+    },
+    "sonarqube": {
+      "command": "npx",
+      "args": ["-y", "@sonarqube/mcp-server@latest"],
+      "type": "stdio",
+      "env": {
+        "SONAR_HOST_URL": "${input:sonar_host_url}",
+        "SONAR_TOKEN": "${input:sonar_token}"
+      }
+    },
+
+    // === EXISTING SERVERS ===
+    "huggingface": {
+      "url": "https://hf.co/mcp",
+      "type": "http"
+    },
+    "deepwiki": {
+      "url": "https://mcp.deepwiki.com/sse",
+      "type": "http"
+    },
+    "microsoft-docs": {
+      "url": "https://learn.microsoft.com/api/mcp",
+      "type": "http"
+    },
+    "context7": {
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp@latest"],
+      "type": "stdio"
+    },
+    "imagesorcery": {
+      "command": "python",
+      "args": ["-m", "imagesorcery_mcp"],
+      "type": "stdio"
+    },
+
+    // === UTILITY & TOOLS ===
+    "ripgrep": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-ripgrep"],
+      "type": "stdio"
+    },
+    "time": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-time@latest"],
+      "type": "stdio"
+    },
+    "memory": {
+      "command": "npx",
+      "args": ["-y", "@modelcontextprotocol/server-memory@latest"],
+      "type": "stdio"
+    }
+  },
+  "inputs": [
+    // Browser Control
+    {
+      "id": "browserbase_api_key",
+      "type": "promptString",
+      "description": "Browserbase API Key for cloud browser automation",
+      "password": true
+    },
+    {
+      "id": "hyperbrowser_api_key",
+      "type": "promptString",
+      "description": "Hyperbrowser API Key for advanced browser automation",
+      "password": true
+    },
+    // Sandboxes
+    {
+      "id": "e2b_api_key",
+      "type": "promptString",
+      "description": "E2B API Key for secure code sandboxes",
+      "password": true
+    },
+    // Version Control
+    {
+      "id": "github_token",
+      "type": "promptString",
+      "description": "GitHub Personal Access Token",
+      "password": true
+    },
+    {
+      "id": "gitlab_token",
+      "type": "promptString",
+      "description": "GitLab Access Token",
+      "password": true
+    },
+    // Databases
+    {
+      "id": "postgres_connection",
+      "type": "promptString",
+      "description": "PostgreSQL Connection String",
+      "password": true
+    },
+    {
+      "id": "mongodb_uri",
+      "type": "promptString",
+      "description": "MongoDB Connection URI",
+      "password": true
+    },
+    {
+      "id": "redis_url",
+      "type": "promptString",
+      "description": "Redis Connection URL",
+      "password": true
+    },
+    // Cloud Platforms
+    {
+      "id": "aws_access_key",
+      "type": "promptString",
+      "description": "AWS Access Key ID",
+      "password": true
+    },
+    {
+      "id": "aws_secret_key",
+      "type": "promptString",
+      "description": "AWS Secret Access Key",
+      "password": true
+    },
+    {
+      "id": "azure_client_id",
+      "type": "promptString",
+      "description": "Azure Client ID",
+      "password": true
+    },
+    {
+      "id": "azure_client_secret",
+      "type": "promptString",
+      "description": "Azure Client Secret",
+      "password": true
+    },
+    {
+      "id": "azure_tenant_id",
+      "type": "promptString",
+      "description": "Azure Tenant ID",
+      "password": false
+    },
+    {
+      "id": "gcp_project_id",
+      "type": "promptString",
+      "description": "Google Cloud Project ID",
+      "password": false
+    },
+    {
+      "id": "cloudflare_token",
+      "type": "promptString",
+      "description": "Cloudflare API Token",
+      "password": true
+    },
+    {
+      "id": "netlify_token",
+      "type": "promptString",
+      "description": "Netlify Access Token",
+      "password": true
+    },
+    {
+      "id": "heroku_api_key",
+      "type": "promptString",
+      "description": "Heroku API Key",
+      "password": true
+    },
+    {
+      "id": "pulumi_token",
+      "type": "promptString",
+      "description": "Pulumi Access Token",
+      "password": true
+    },
+    // CI/CD
+    {
+      "id": "jenkins_url",
+      "type": "promptString",
+      "description": "Jenkins Server URL",
+      "password": false
+    },
+    {
+      "id": "jenkins_token",
+      "type": "promptString",
+      "description": "Jenkins API Token",
+      "password": true
+    },
+    {
+      "id": "bitrise_token",
+      "type": "promptString",
+      "description": "Bitrise Access Token",
+      "password": true
+    },
+    {
+      "id": "circleci_token",
+      "type": "promptString",
+      "description": "CircleCI API Token",
+      "password": true
+    },
+    // API Testing
+    {
+      "id": "postman_api_key",
+      "type": "promptString",
+      "description": "Postman API Key",
+      "password": true
+    },
+    // Monitoring
+    {
+      "id": "datadog_api_key",
+      "type": "promptString",
+      "description": "Datadog API Key",
+      "password": true
+    },
+    {
+      "id": "newrelic_api_key",
+      "type": "promptString",
+      "description": "New Relic API Key",
+      "password": true
+    },
+    {
+      "id": "sentry_token",
+      "type": "promptString",
+      "description": "Sentry Auth Token",
+      "password": true
+    },
+    {
+      "id": "grafana_url",
+      "type": "promptString",
+      "description": "Grafana Server URL",
+      "password": false
+    },
+    {
+      "id": "grafana_api_key",
+      "type": "promptString",
+      "description": "Grafana API Key",
+      "password": true
+    },
+    // Search & Content
+    {
+      "id": "exa_api_key",
+      "type": "promptString",
+      "description": "Exa Search API Key",
+      "password": true
+    },
+    {
+      "id": "brave_api_key",
+      "type": "promptString",
+      "description": "Brave Search API Key",
+      "password": true
+    },
+    {
+      "id": "firecrawl_api_key",
+      "type": "promptString",
+      "description": "Firecrawl API Key",
+      "password": true
+    },
+    // Communication
+    {
+      "id": "slack_bot_token",
+      "type": "promptString",
+      "description": "Slack Bot Token",
+      "password": true
+    },
+    {
+      "id": "discord_token",
+      "type": "promptString",
+      "description": "Discord Bot Token",
+      "password": true
+    },
+    {
+      "id": "linear_api_key",
+      "type": "promptString",
+      "description": "Linear API Key",
+      "password": true
+    },
+    {
+      "id": "notion_api_key",
+      "type": "promptString",
+      "description": "Notion Integration Token",
+      "password": true
+    },
+    // Code Quality
+    {
+      "id": "codacy_account_token",
+      "type": "promptString",
+      "description": "Codacy Account Token for API access",
+      "password": true
+    },
+    {
+      "id": "snyk_token",
+      "type": "promptString",
+      "description": "Snyk API Token",
+      "password": true
+    },
+    {
+      "id": "sonar_host_url",
+      "type": "promptString",
+      "description": "SonarQube Host URL",
+      "password": false
+    },
+    {
+      "id": "sonar_token",
+      "type": "promptString",
+      "description": "SonarQube Token",
+      "password": true
+    }
+  ]
+}
+

@@ -190,37 +190,69 @@ export function Header() {
             </header>
 
             {/* Mobile Menu */}
-            {mobileMenuOpen && (
-                <div className="fixed inset-0 z-40 bg-[#8B4513] dark:bg-midnight pt-24">
-                    <nav className="p-6 space-y-2">
-                        {navLinks.map((link) => (
-                            <div key={link.href}>
-                                <Link
-                                    href={link.href}
-                                    className="block text-xl font-medium text-ivory py-3 px-4 rounded-xl hover:bg-white/10 border-b border-white/10 transition-all"
-                                    onClick={() => setMobileMenuOpen(false)}
-                                >
-                                    {link.label}
-                                </Link>
-                                {link.children && (
-                                    <div className="pl-6 space-y-1 py-2">
-                                        {link.children.map((child) => (
+            <AnimatePresence>
+                {mobileMenuOpen && (
+                    <>
+                        <motion.div
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            exit={{ opacity: 0 }}
+                            className="fixed inset-0 z-40 bg-midnight/60 backdrop-blur-md"
+                            onClick={() => setMobileMenuOpen(false)}
+                        />
+                        <motion.div
+                            initial={{ x: "-100%" }}
+                            animate={{ x: 0 }}
+                            exit={{ x: "-100%" }}
+                            transition={{ type: "spring", damping: 25, stiffness: 200 }}
+                            className="fixed top-0 left-0 bottom-0 w-[80%] max-w-sm z-50 bg-[#8B4513] dark:bg-midnight shadow-2xl overflow-y-auto"
+                        >
+                            <div className="p-6 pt-24 space-y-2">
+                                {navLinks.map((link) => (
+                                    <div key={link.href} className="border-b border-white/5 py-2">
+                                        <div className="flex items-center justify-between">
                                             <Link
-                                                key={child.href}
-                                                href={child.href}
-                                                className="block text-ivory/70 py-2 px-4 rounded-lg hover:bg-white/10 hover:text-gold transition-all"
+                                                href={link.href}
+                                                className="text-xl font-serif font-bold text-ivory py-2 px-2 hover:text-gold transition-colors"
                                                 onClick={() => setMobileMenuOpen(false)}
                                             >
-                                                {child.label}
+                                                {link.label}
                                             </Link>
-                                        ))}
+                                            {link.children && (
+                                                <ChevronDown className="w-5 h-5 text-ivory/50" />
+                                            )}
+                                        </div>
+                                        {link.children && (
+                                            <div className="pl-4 space-y-1 mt-2 mb-4 bg-white/5 rounded-xl p-2">
+                                                {link.children.map((child) => (
+                                                    <Link
+                                                        key={child.href}
+                                                        href={child.href}
+                                                        className="block text-ivory/70 py-2.5 px-4 rounded-lg hover:bg-white/10 hover:text-gold transition-all text-sm uppercase tracking-wider"
+                                                        onClick={() => setMobileMenuOpen(false)}
+                                                    >
+                                                        {child.label}
+                                                    </Link>
+                                                ))}
+                                            </div>
+                                        )}
                                     </div>
-                                )}
+                                ))}
                             </div>
-                        ))}
-                    </nav>
-                </div>
-            )}
+
+                            <div className="absolute top-6 left-6 flex items-center gap-4">
+                                <button
+                                    onClick={() => setMobileMenuOpen(false)}
+                                    className="p-3 rounded-full bg-white/10 text-ivory"
+                                >
+                                    <X className="w-6 h-6" />
+                                </button>
+                                <span className="font-serif italic text-gold">Amrit Purity</span>
+                            </div>
+                        </motion.div>
+                    </>
+                )}
+            </AnimatePresence>
         </>
     );
 }

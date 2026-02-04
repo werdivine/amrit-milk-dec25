@@ -181,11 +181,9 @@ export default function ContactPage() {
                                         Farm Location
                                     </h3>
                                     <p className="text-theme-secondary">
-                                        Amrit Gir Cow Farm
+                                        Amrit Milk Farms, 1, Amrit Milk Marg
                                         <br />
-                                        Village Naimisharanya, Sitapur Road
-                                        <br />
-                                        Lucknow, Uttar Pradesh 226401
+                                        Lucknow, 226028, IN
                                     </p>
                                 </div>
                             </div>
