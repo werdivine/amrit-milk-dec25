@@ -15,9 +15,18 @@ export function InstagramFeed() {
         async function fetchPosts() {
             try {
                 const data = await getInstagramPosts();
+                // Ensure we have at least 4 posts by combining if needed
+                let combined = [...(data || [])];
+                if (combined.length < 4) {
+                    staticInstagramPosts.forEach(p => {
+                        if (!combined.find(cp => cp.id === p.id)) {
+                            combined.push(p);
+                        }
+                    });
+                }
+                
                 // Randomize posts as requested by user
-                const combined = data && data.length > 0 ? data : staticInstagramPosts;
-                const randomized = [...combined].sort(() => 0.5 - Math.random());
+                const randomized = combined.sort(() => 0.5 - Math.random()).slice(0, 8);
                 setPosts(randomized);
             } catch (error) {
                 console.error("Failed to fetch Instagram posts", error);

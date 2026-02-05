@@ -11,8 +11,18 @@ interface GoogleReviewsProps {
 }
 
 export function GoogleReviews({ reviews }: GoogleReviewsProps) {
-    // If no reviews are provided, use static ones as a safety fallback
-    const displayReviews = reviews && reviews.length > 0 ? reviews : staticGoogleReviews;
+    // Combine dynamic and static reviews to ensure we always have plenty to show
+    // We prioritize dynamic but append static ones if we have fewer than 6
+    const combinedReviews = [...(reviews || [])];
+    
+    // Add static reviews that aren't already represented (simple deduplication by author name)
+    staticGoogleReviews.forEach(staticReview => {
+        if (!combinedReviews.find(r => r.authorName === staticReview.authorName)) {
+            combinedReviews.push(staticReview);
+        }
+    });
+
+    const displayReviews = combinedReviews.slice(0, 6); // Show top 6
 
     return (
         <Section className="bg-[#FDFBF7] dark:bg-midnight-light py-24 border-t border-espresso/5 dark:border-white/5 overflow-hidden">
