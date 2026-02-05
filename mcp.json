@@ -280,7 +280,7 @@
     },
     "fetch": {
       "command": "npx",
-      "args": ["-y", "@modelcontextprotocol/server-fetch@latest", "--timeout", "30000"],
+      "args": ["-y", "@modelcontextprotocol/fetch@latest"],
       "type": "stdio"
     },
     "firecrawl": {

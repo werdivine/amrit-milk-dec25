@@ -127,14 +127,14 @@ Always represent the purity and traditional values of Amrit Milk.`;
         console.log("[Amrit AI] Request Body:", JSON.stringify({ messages }, null, 2));
 
         const result = await streamText({
-            model: openai("gpt-4o"),
+            model: openai("gpt-4o-mini"),
             system: systemPrompt,
             messages: messages.map((m: { role: string; content: string }) => ({
                 role: m.role as "user" | "assistant" | "system",
                 content: m.content,
             })),
             maxTokens: 500,
-            temperature: 0.7,
+            temperature: 0.5, // Lower temperature for more factual responses from KB
         });
 
         console.log("[Amrit AI] streamText success");

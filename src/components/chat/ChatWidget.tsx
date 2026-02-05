@@ -86,43 +86,69 @@ export function ChatWidget() {
 
             if (reader) {
                 let hasReceivedContent = false;
+                let buffer = "";
+
                 while (true) {
                     const { done, value } = await reader.read();
                     if (done) break;
 
-                    const chunk = decoder.decode(value);
-                    const lines = chunk.split("\n");
+                    buffer += decoder.decode(value, { stream: true });
+                    
+                    // Process lines from the buffer
+                    const lines = buffer.split("\n");
+                    // Keep the last partial line in the buffer
+                    buffer = lines.pop() || "";
+
                     for (const line of lines) {
-                        if (line.startsWith("0:")) {
+                        const trimmedLine = line.trim();
+                        if (!trimmedLine) continue;
+
+                        // Handle both 0: (text) and other parts of the data stream protocol
+                        // If it starts with 0:, it's a text chunk in the Vercel AI SDK protocol
+                        if (trimmedLine.startsWith('0:')) {
                             try {
-                                const text = JSON.parse(line.slice(2));
-                                if (text) {
+                                const jsonStr = trimmedLine.slice(2);
+                                const text = JSON.parse(jsonStr);
+                                if (typeof text === 'string') {
                                     assistantContent += text;
                                     hasReceivedContent = true;
-                                    setMessages((prev) =>
-                                        prev.map((m) =>
-                                            m.id === assistantMessage.id
-                                                ? { ...m, content: assistantContent }
-                                                : m
-                                        )
-                                    );
+                                    updateAssistantMessage(assistantMessage.id, assistantContent);
                                 }
-                            } catch {
-                                // Skip malformed chunks
+                            } catch (e) {
+                                // Fallback: if it's not valid JSON but looks like text, try to extract it
+                                const match = trimmedLine.match(/^0:"(.*)"$/);
+                                if (match && match[1]) {
+                                    assistantContent += match[1];
+                                    hasReceivedContent = true;
+                                    updateAssistantMessage(assistantMessage.id, assistantContent);
+                                }
                             }
+                        } 
+                        // If it doesn't start with a protocol prefix, it might be raw text (unlikely with toDataStreamResponse)
+                        else if (!trimmedLine.match(/^[a-z]:/)) {
+                            // Only append if it doesn't look like other protocol parts (e:, d:, etc.)
+                            assistantContent += trimmedLine;
+                            hasReceivedContent = true;
+                            updateAssistantMessage(assistantMessage.id, assistantContent);
                         }
                     }
                 }
 
+                // Process remaining buffer
+                if (buffer.startsWith('0:')) {
+                    try {
+                        const text = JSON.parse(buffer.slice(2));
+                        if (typeof text === 'string') {
+                            assistantContent += text;
+                            hasReceivedContent = true;
+                            updateAssistantMessage(assistantMessage.id, assistantContent);
+                        }
+                    } catch (e) {}
+                }
+
                 // If no content was received after the stream ends, show a fallback
                 if (!hasReceivedContent) {
-                    setMessages((prev) =>
-                        prev.map((m) =>
-                            m.id === assistantMessage.id
-                                ? { ...m, content: "Maaf kijiyega, main abhi samajh nahi pa raha hoon. Kripya WhatsApp par contact karein। 🙏" }
-                                : m
-                        )
-                    );
+                    updateAssistantMessage(assistantMessage.id, "Maaf kijiyega, main abhi samajh nahi pa raha hoon. Kripya WhatsApp par contact karein। 🙏");
                 }
             }
         } catch (error: any) {
@@ -146,6 +172,14 @@ export function ChatWidget() {
         } finally {
             setIsLoading(false);
         }
+    };
+
+    const updateAssistantMessage = (id: string, content: string) => {
+        setMessages((prev) =>
+            prev.map((m) =>
+                m.id === id ? { ...m, content } : m
+            )
+        );
     };
 
     const handleQuickReply = (value: string) => {

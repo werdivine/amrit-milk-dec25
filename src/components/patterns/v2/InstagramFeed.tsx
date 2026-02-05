@@ -15,19 +15,34 @@ export function InstagramFeed() {
         async function fetchPosts() {
             try {
                 const data = await getInstagramPosts();
-                // Ensure we have at least 4 posts by combining if needed
-                let combined = [...(data || [])];
-                if (combined.length < 4) {
+                
+                // Ensure data is an array
+                const validData = Array.isArray(data) ? data : [];
+                
+                // Ensure we have a good number of posts (at least 4-8)
+                // We mix in static posts to ensure reliability
+                let combined = [...validData];
+                
+                // If we have fewer than 8 posts, add from static to reach 8
+                if (combined.length < 8) {
                     staticInstagramPosts.forEach(p => {
-                        if (!combined.find(cp => cp.id === p.id)) {
+                        if (combined.length < 8 && !combined.find(cp => cp.id === p.id)) {
                             combined.push(p);
                         }
                     });
                 }
                 
+                // Filter out any posts with broken or suspicious image URLs
+                // (e.g. those that might be blocked by browser)
+                const processed = combined.map(post => {
+                    // If the URL looks like a direct Instagram CDN link (often blocked/expired),
+                    // we might want to fallback to a local image, but for now we'll trust Sanity.
+                    return post;
+                });
+
                 // Randomize posts as requested by user
-                const randomized = combined.sort(() => 0.5 - Math.random()).slice(0, 8);
-                setPosts(randomized);
+                const randomized = processed.sort(() => 0.5 - Math.random());
+                setPosts(randomized.slice(0, 8));
             } catch (error) {
                 console.error("Failed to fetch Instagram posts", error);
                 setPosts(staticInstagramPosts);
@@ -93,6 +108,12 @@ export function InstagramFeed() {
                                     alt={post.caption || "Instagram post"}
                                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                                     loading="lazy"
+                                    onError={(e) => {
+                                        // If image fails to load (blocked or broken), use a local fallback
+                                        const target = e.target as HTMLImageElement;
+                                        const fallbackIdx = (idx % staticInstagramPosts.length);
+                                        target.src = staticInstagramPosts[fallbackIdx].imageUrl;
+                                    }}
                                 />
                                 <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col items-center justify-center p-6 text-center">
                                     <div className="flex gap-6 mb-4 text-white">
