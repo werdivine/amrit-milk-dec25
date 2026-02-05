@@ -7,11 +7,11 @@ import { createClient } from "@sanity/client";
 
 // Create a write-enabled Sanity client
 const writeClient = createClient({
-    projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "fqzgs92z",
-    dataset: process.env.NEXT_PUBLIC_SANITY_DATASET || "production",
+    projectId: (process.env.NEXT_PUBLIC_SANITY_PROJECT_ID || "fqzgs92z").trim(),
+    dataset: (process.env.NEXT_PUBLIC_SANITY_DATASET || "production").trim(),
     apiVersion: "2024-01-01",
     useCdn: false, // Must be false for writes
-    token: process.env.SANITY_WRITE_TOKEN, // Required for mutations
+    token: (process.env.SANITY_WRITE_TOKEN || "").trim(), // Required for mutations
 });
 
 interface OrderItem {

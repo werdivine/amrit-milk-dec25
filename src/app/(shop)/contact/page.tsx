@@ -2,13 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import { Clock, Mail, MapPin, Headset, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Phone } from "lucide-react";
+import { FarmerIcon } from "@/components/ui/FarmerIcon";
 import { useState } from "react";
 
 const contactInfo = [
     { icon: Phone, label: "Phone", value: "+91 81306 93767", href: "tel:+918130693767" },
     {
-        icon: Headset,
+        icon: FarmerIcon,
         label: "WhatsApp Support",
         value: "Chat with a human",
         href: "https://wa.me/918130693767",
@@ -208,7 +209,7 @@ export default function ContactPage() {
                             target="_blank"
                             className="block glass-theme p-6 rounded-3xl border-green-500/30 hover:border-green-500/50 transition-all text-center group"
                         >
-                            <Headset className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                            <FarmerIcon className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
                             <p className="text-theme-primary font-bold text-lg">Talk to a Human</p>
                             <p className="text-theme-muted text-sm">
                                 Chat with us on WhatsApp for support
