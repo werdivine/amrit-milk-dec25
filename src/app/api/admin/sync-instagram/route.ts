@@ -1,6 +1,8 @@
 import { syncInstagramToSanity } from "@/lib/services/instagram";
 import { NextResponse } from "next/server";
 
+export const dynamic = "force-dynamic";
+
 export async function GET(request: Request) {
     try {
         // In a real app, add authentication check here

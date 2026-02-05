@@ -12,12 +12,14 @@ import { getProductBySlug, getProducts } from "@/lib/fetchProducts";
 import { getContentForProduct } from "@/lib/product-content";
 import {
     ArrowRight,
+    Award,
     Check,
     Heart,
     Package,
     ShieldCheck,
     Star,
     Truck,
+    Zap,
 } from "lucide-react";
 import { FarmerIcon } from "@/components/ui/FarmerIcon";
 import type { Metadata } from "next";
