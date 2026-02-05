@@ -6,7 +6,7 @@
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, Loader2, MessageCircle, Send, User, X } from "lucide-react";
+import { Bot, Loader2, MessageCircle, Send, User, X, ArrowRight } from "lucide-react";
 import { SupportIcon } from "../ui/SupportIcon";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
@@ -162,15 +162,15 @@ export function ChatWidget() {
                         {/* Header with WhatsApp Integration */}
                         <div className="px-5 py-4 border-b border-white/20 bg-gradient-to-r from-amber-500/10 to-amber-600/10 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-inner">
-                                    <SupportIcon className="w-6 h-6 text-white" />
+                                <div className="w-12 h-12 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-lg border-2 border-white/20">
+                                    <SupportIcon className="w-7 h-7 text-white" />
                                 </div>
                                 <div>
                                     <h3 className="font-bold text-neutral-800 dark:text-white flex items-center gap-2">
                                         Amrit Support
-                                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
+                                        <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
                                     </h3>
-                                    <p className="text-[10px] uppercase tracking-wider text-neutral-500 font-medium">AI + Human Support</p>
+                                    <p className="text-[10px] uppercase tracking-wider text-neutral-500 font-bold">Online & Ready to Help</p>
                                 </div>
                             </div>
                             
@@ -178,12 +178,10 @@ export function ChatWidget() {
                                 href="https://wa.me/918130693767"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex flex-col items-center gap-0.5 group"
+                                className="flex flex-col items-center gap-1 group bg-[#25D366] hover:bg-[#20bd5a] px-3 py-2 rounded-2xl transition-all shadow-md hover:shadow-lg"
                             >
-                                <div className="bg-[#25D366] hover:bg-[#20bd5a] text-white p-2 rounded-full transition-all hover:rotate-12 shadow-sm">
-                                    <MessageCircle className="w-4 h-4 fill-current" />
-                                </div>
-                                <span className="text-[9px] font-bold text-neutral-500 uppercase tracking-tighter group-hover:text-[#25D366]">WhatsApp</span>
+                                <MessageCircle className="w-5 h-5 text-white fill-current" />
+                                <span className="text-[9px] font-black text-white uppercase tracking-tighter">WhatsApp</span>
                             </a>
                         </div>
 
@@ -229,20 +227,40 @@ export function ChatWidget() {
                         </div>
 
                         {/* Quick Replies */}
-                        {messages.length <= 2 && (
-                            <div className="px-4 pb-2 flex flex-wrap gap-2">
-                                {QUICK_REPLIES.map((r) => (
-                                    <button
-                                        key={r.id}
-                                        onClick={() => handleQuickReply(r.value)}
-                                        className="px-3 py-1.5 text-xs rounded-full bg-amber-100 dark:bg-amber-900/30
-                             text-amber-700 dark:text-amber-300 hover:bg-amber-200"
-                                    >
-                                        {r.label}
-                                    </button>
-                                ))}
-                            </div>
-                        )}
+                        <div className="px-4 pb-2 flex flex-col gap-3">
+                            {messages.length <= 2 && (
+                                <div className="flex flex-wrap gap-2">
+                                    {QUICK_REPLIES.map((r) => (
+                                        <button
+                                            key={r.id}
+                                            onClick={() => handleQuickReply(r.value)}
+                                            className="px-3 py-1.5 text-xs rounded-full bg-amber-100 dark:bg-amber-900/30
+                                 text-amber-700 dark:text-amber-300 hover:bg-amber-200"
+                                        >
+                                            {r.label}
+                                        </button>
+                                    ))}
+                                </div>
+                            )}
+
+                            <a
+                                href="https://wa.me/918130693767"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="w-full bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 rounded-xl p-3 flex items-center justify-between group transition-all"
+                            >
+                                <div className="flex items-center gap-3">
+                                    <div className="bg-[#25D366] p-2 rounded-lg text-white">
+                                        <MessageCircle className="w-4 h-4 fill-current" />
+                                    </div>
+                                    <div className="text-left">
+                                        <p className="text-xs font-bold text-neutral-800 dark:text-white">Talk to a Human</p>
+                                        <p className="text-[10px] text-neutral-500">Fast response on WhatsApp</p>
+                                    </div>
+                                </div>
+                                <ArrowRight className="w-4 h-4 text-[#25D366] group-hover:translate-x-1 transition-transform" />
+                            </a>
+                        </div>
 
                         {/* Input */}
                         <form

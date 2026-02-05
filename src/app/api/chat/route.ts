@@ -4,6 +4,7 @@
  */
 
 import { products } from "@/lib/products";
+import { KNOWLEDGE_BASE } from "@/lib/ai/knowledge-base";
 import { openai } from "@ai-sdk/openai";
 import { streamText } from "ai";
 
@@ -83,6 +84,11 @@ Aap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi
         // Get product pricing context
         const pricingContext = findProductPricing(userInput);
 
+        // Prepare knowledge base context
+        const kbContext = KNOWLEDGE_BASE.map(
+            (faq) => `Q: ${faq.question_en} / ${faq.question_hi}\nA: ${faq.answer_en} / ${faq.answer_hi}`
+        ).join("\n\n");
+
         const systemPrompt = `You are Amrit AI, the brand guide for Amrit Milk Organic.
 
 ## Your Identity
@@ -90,6 +96,9 @@ Aap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi
 - "Premium calm + desi warmth" tone
 - NOT a sales bot - you educate and build trust
 - Farm location: Lonapur village, near Gomti Nagar, Lucknow
+
+## Knowledge Base (Use this for all answers)
+${kbContext}
 
 ## Brand Story
 "Amrit sirf brand nahi, ek movement hai."
@@ -109,14 +118,6 @@ Aap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi
 ❌ Bulk/wholesale pricing
 ❌ Internal margins
 ${pricingContext}
-
-## Key Products & Prices
-- A2 Cow Ghee 1kg: ₹2500
-- A2 Cow Ghee 500ml: ₹1350
-- A2 Milk 1 Liter: ₹100
-- Mustard Oil 1L: ₹450
-- Raw Honey 500g: ₹650
-- Essential Oils: ₹350-₹450
 
 ## Response Style
 - Answer in Hindi/Hinglish
