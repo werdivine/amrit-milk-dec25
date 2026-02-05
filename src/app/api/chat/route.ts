@@ -57,6 +57,15 @@ function findProductPricing(query: string): string {
 
 export async function POST(req: Request) {
     try {
+        // Check for OpenAI API Key
+        if (!process.env.OPENAI_API_KEY) {
+            console.error("[Amrit AI] Missing OPENAI_API_KEY environment variable");
+            return Response.json({ 
+                error: "Technical issue: AI configuration missing.",
+                details: "OPENAI_API_KEY is not configured on the server."
+            }, { status: 500 });
+        }
+
         const { messages } = await req.json();
         const lastMessage = messages[messages.length - 1];
         const userInput = lastMessage?.content || "";

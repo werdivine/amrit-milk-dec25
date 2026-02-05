@@ -36,9 +36,25 @@ export const googleReviews: GoogleReview[] = [
     {
         id: "4",
         authorName: "Sneha Gupta",
-        rating: 4,
-        text: "Great quality products. Would love to see more paneer availability.",
+        rating: 5,
+        text: "The quality of A2 milk is unmatched. I've tried many brands in Lucknow, but Amrit Milk is by far the most consistent and pure.",
         date: "3 months ago",
+        platform: "google",
+    },
+    {
+        id: "5",
+        authorName: "Vikram Singh",
+        rating: 5,
+        text: "Their Bilona Ghee is just like what my grandmother used to make. The aroma fills the whole house. Highly recommended!",
+        date: "1 month ago",
+        platform: "google",
+    },
+    {
+        id: "6",
+        authorName: "Meera Reddy",
+        rating: 5,
+        text: "Excellent service and top-notch products. The delivery is always on time, and the customer support team is very helpful.",
+        date: "2 weeks ago",
         platform: "google",
     },
 ];
