@@ -6,7 +6,7 @@
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, Loader2, MessageCircle, Send, User, X } from "lucide-react";
+import { Bot, Loader2, Headset, Send, User, X } from "lucide-react";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 interface Message {
@@ -154,7 +154,7 @@ export function ChatWidget() {
                 {isOpen ? (
                     <X className="w-6 h-6 text-white" />
                 ) : (
-                    <MessageCircle className="w-6 h-6 text-white" />
+                    <Headset className="w-6 h-6 text-white" />
                 )}
             </motion.button>
 

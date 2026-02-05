@@ -130,19 +130,19 @@ export default function NotFound() {
                     <p>
                         Contact us on{" "}
                         <a
-                            href="https://wa.me/919919999123"
+                            href="https://wa.me/918130693767"
                             target="_blank"
                             rel="noopener noreferrer"
                             className="text-terracotta dark:text-gold hover:underline"
                         >
-                            WhatsApp
+                            WhatsApp Support
                         </a>{" "}
                         or call{" "}
                         <a
-                            href="tel:+919919999123"
+                            href="tel:+918130693767"
                             className="text-terracotta dark:text-gold hover:underline"
                         >
-                            +91 991-999-9123
+                            +91 81306 93767
                         </a>
                     </p>
                 </div>

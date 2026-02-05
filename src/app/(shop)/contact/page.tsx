@@ -2,15 +2,15 @@
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { Clock, Mail, MapPin, Headset, Phone } from "lucide-react";
 import { useState } from "react";
 
 const contactInfo = [
     { icon: Phone, label: "Phone", value: "+91 81306 93767", href: "tel:+918130693767" },
     {
-        icon: MessageCircle,
-        label: "WhatsApp",
-        value: "Chat with us",
+        icon: Headset,
+        label: "WhatsApp Support",
+        value: "Chat with a human",
         href: "https://wa.me/918130693767",
     },
     {

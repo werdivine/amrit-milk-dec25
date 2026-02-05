@@ -4,7 +4,7 @@ import {
     Instagram,
     Mail,
     MapPin,
-    MessageCircle,
+    Headset,
     Phone,
     Twitter,
 } from "lucide-react";
@@ -87,9 +87,10 @@ export function Footer() {
                                 href="https://wa.me/918130693767"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-green-500 hover:border-green-500 hover:text-white transition-all duration-300 text-ivory shadow-sm hover:shadow-lg"
+                                className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-gold hover:border-gold hover:text-espresso transition-all duration-300 text-ivory shadow-sm hover:shadow-lg"
+                                aria-label="WhatsApp Support"
                             >
-                                <MessageCircle className="w-4 h-4" />
+                                <Headset className="w-4 h-4" />
                             </a>
                         </div>
                     </div>

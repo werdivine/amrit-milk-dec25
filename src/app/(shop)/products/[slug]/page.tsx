@@ -14,7 +14,7 @@ import {
     ArrowRight,
     Award,
     Heart,
-    MessageCircle,
+    Headset,
     ShieldCheck,
     Star,
     Truck,
@@ -450,13 +450,13 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
                         <div className="inline-block">
                             <a
-                                href="https://wa.me/919919999123"
+                                href="https://wa.me/918130693767"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="flex items-center gap-3 bg-[#25D366] hover:bg-[#20bd5a] text-white px-8 py-4 rounded-full text-lg font-bold transition-transform hover:scale-105"
+                                className="flex items-center gap-3 bg-espresso hover:bg-espresso/90 text-white px-8 py-4 rounded-full text-lg font-bold transition-transform hover:scale-105"
                             >
-                                <MessageCircle className="w-6 h-6" />
-                                Have a question? Talk to us on WhatsApp
+                                <Headset className="w-6 h-6" />
+                                Have a question? Talk to a human on WhatsApp
                             </a>
                         </div>
                     </div>
