@@ -8,7 +8,6 @@ import {
     Twitter,
     MessageCircle,
 } from "lucide-react";
-import { SupportIcon } from "../ui/FarmerIcon";
 import Image from "next/image";
 import Link from "next/link";
 

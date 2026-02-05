@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
-import { SupportIcon } from "@/components/ui/FarmerIcon";
+import { SupportIcon } from "@/components/ui/SupportIcon";
 import { useState } from "react";
 
 const contactInfo = [
@@ -209,7 +209,7 @@ export default function ContactPage() {
                             target="_blank"
                             className="block glass-theme p-6 rounded-3xl border-green-500/30 hover:border-green-500/50 transition-all text-center group"
                         >
-                            <FarmerIcon className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                            <SupportIcon className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
                             <p className="text-theme-primary font-bold text-lg">Talk to a Human</p>
                             <p className="text-theme-muted text-sm">
                                 Chat with us on WhatsApp for support

@@ -22,7 +22,6 @@ import {
     Zap,
     MessageCircle,
 } from "lucide-react";
-import { SupportIcon } from "@/components/ui/FarmerIcon";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";

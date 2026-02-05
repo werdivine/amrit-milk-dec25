@@ -7,7 +7,7 @@
 
 import { AnimatePresence, motion } from "framer-motion";
 import { Bot, Loader2, MessageCircle, Send, User, X } from "lucide-react";
-import { SupportIcon } from "../ui/FarmerIcon";
+import { SupportIcon } from "../ui/SupportIcon";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 interface Message {
