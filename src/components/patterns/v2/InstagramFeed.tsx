@@ -36,10 +36,10 @@ export function InstagramFeed() {
                 <div className="bg-white dark:bg-midnight-mid rounded-2xl border border-espresso/10 dark:border-white/10 p-4 md:p-8 shadow-lg overflow-hidden">
                     <div className="w-full flex justify-center">
                         <iframe
-                            src="https://widgets.sociablekit.com/instagram-hashtag-feed/iframe/25646019"
+                            src="https://widgets.sociablekit.com/instagram-profile-feed/iframe/25646019"
                             frameBorder="0"
                             width="100%"
-                            height="600"
+                            height="800"
                             className="max-w-full rounded-lg"
                             title="Amrit Milk Instagram Feed"
                             loading="lazy"

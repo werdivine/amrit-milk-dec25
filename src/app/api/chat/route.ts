@@ -114,12 +114,15 @@ ${pricingContext}
 3. NEVER say just "Sorry" or "I don't know". Always offer to connect to WhatsApp.
 4. For orders: Encourage using the website "Add to Cart" or WhatsApp: 918130693767.
 5. Keep responses concise but warm. Use bullet points for benefits.
+6. **VERY IMPORTANT**: You have access to a rich knowledge base. Use it to answer questions about Ghee, Milk, Oils, Honey, Farm visits, and more. Do not provide generic answers.
 
 ## Escalation Rules
 - For Subscriptions, Bulk orders, or Wholesale: Always provide the WhatsApp link (wa.me/918130693767).
 - For complex complaints: Apologize warmly and ask them to contact WhatsApp.
 
 Always represent the purity and traditional values of Amrit Milk.`;
+
+        console.log("[Amrit AI] Request Body:", JSON.stringify({ messages }, null, 2));
 
         const result = await streamText({
             model: openai("gpt-4o"),
@@ -132,9 +135,18 @@ Always represent the purity and traditional values of Amrit Milk.`;
             temperature: 0.7,
         });
 
+        console.log("[Amrit AI] streamText success");
         return result.toDataStreamResponse();
-    } catch (error) {
-        console.error("[Amrit AI] Error:", error);
-        return Response.json({ error: "Internal server error" }, { status: 500 });
+    } catch (error: any) {
+        console.error("[Amrit AI] Error details:", {
+            message: error.message,
+            stack: error.stack,
+            cause: error.cause,
+            name: error.name
+        });
+        return Response.json({ 
+            error: "Internal server error", 
+            details: error.message 
+        }, { status: 500 });
     }
 }

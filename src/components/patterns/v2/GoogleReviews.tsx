@@ -79,7 +79,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
 
                 <div className="text-center mt-12">
                     <a
-                        href="https://g.page/r/YOUR_GMB_LINK_HERE"
+                        href="https://www.google.com/search?q=Amrit+Milk+Organic+Reviews"
                         target="_blank"
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 px-8 py-3 bg-white dark:bg-transparent border-2 border-espresso/10 dark:border-white/10 hover:border-blue-500 dark:hover:border-blue-400 text-espresso dark:text-white rounded-lg hover:shadow-lg transition-all font-semibold"
