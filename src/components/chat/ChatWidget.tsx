@@ -16,10 +16,15 @@ interface Message {
     content: string;
 }
 
-const WELCOME_MESSAGE = `🙏 नमस्ते! मैं हूँ Amrit AI।
-Amrit Milk Organic के बारे में कोई भी सवाल पूछिए।
+const WELCOME_MESSAGE = `🙏 नमस्ते! मैं हूँ Amrit AI, आपका ब्रांड गाइड।
+मैं शुद्ध और ताज़ा Amrit Milk Organic के बारे में आपके सभी सवालों के जवाब दे सकता हूँ।
 
-"Ghee ka price?" | "A2 milk kya hai?" | "Farm visit kaise karein?"`;
+आप मुझसे पूछ सकते हैं:
+• "Ghee ka price kya hai?"
+• "A2 milk ke kya fayde hain?"
+• "Farm visit kaise karein?"
+
+Main aapki kaise madad kar sakta hoon?`;
 
 const QUICK_REPLIES = [
     { id: "ghee-price", label: "Ghee ka price?", value: "Ghee ka price kya hai?" },
@@ -80,30 +85,44 @@ export function ChatWidget() {
             setMessages((prev) => [...prev, assistantMessage]);
 
             if (reader) {
+                let hasReceivedContent = false;
                 while (true) {
                     const { done, value } = await reader.read();
                     if (done) break;
 
                     const chunk = decoder.decode(value);
-                    // Parse SSE data
                     const lines = chunk.split("\n");
                     for (const line of lines) {
                         if (line.startsWith("0:")) {
                             try {
                                 const text = JSON.parse(line.slice(2));
-                                assistantContent += text;
-                                setMessages((prev) =>
-                                    prev.map((m) =>
-                                        m.id === assistantMessage.id
-                                            ? { ...m, content: assistantContent }
-                                            : m
-                                    )
-                                );
+                                if (text) {
+                                    assistantContent += text;
+                                    hasReceivedContent = true;
+                                    setMessages((prev) =>
+                                        prev.map((m) =>
+                                            m.id === assistantMessage.id
+                                                ? { ...m, content: assistantContent }
+                                                : m
+                                        )
+                                    );
+                                }
                             } catch {
                                 // Skip malformed chunks
                             }
                         }
                     }
+                }
+
+                // If no content was received after the stream ends, show a fallback
+                if (!hasReceivedContent) {
+                    setMessages((prev) =>
+                        prev.map((m) =>
+                            m.id === assistantMessage.id
+                                ? { ...m, content: "Maaf kijiyega, main abhi samajh nahi pa raha hoon. Kripya WhatsApp par contact karein। 🙏" }
+                                : m
+                        )
+                    );
                 }
             }
         } catch (error) {
@@ -128,25 +147,55 @@ export function ChatWidget() {
 
     return (
         <>
-            {/* Unified Chat FAB */}
-            <motion.button
-                className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-2xl
-                   bg-gradient-to-br from-amber-500 to-amber-700
-                   border-2 border-white/30 flex items-center justify-center text-white"
-                onClick={() => setIsOpen(!isOpen)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                aria-label="Support"
-            >
-                {isOpen ? (
-                    <X className="w-8 h-8" />
-                ) : (
-                    <div className="relative">
-                        <SupportIcon className="w-8 h-8" />
-                        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
-                    </div>
-                )}
-            </motion.button>
+            {/* Unified Chat FAB with Greeting */}
+            <div className="fixed bottom-6 right-6 z-50 flex items-center gap-4">
+                <AnimatePresence>
+                    {!isOpen && (
+                        <motion.div
+                            initial={{ opacity: 0, x: 20, scale: 0.8 }}
+                            animate={{ opacity: 1, x: 0, scale: 1 }}
+                            exit={{ opacity: 0, x: 20, scale: 0.8 }}
+                            transition={{ delay: 1, duration: 0.5 }}
+                            className="bg-black text-white px-6 py-3.5 rounded-[2rem] shadow-2xl flex items-center gap-2 whitespace-nowrap relative group border border-white/10"
+                        >
+                            <span className="font-bold text-base tracking-tight">Hi 👋 How can I help you today?</span>
+                            <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 bg-black rotate-45 border-r border-t border-white/10" />
+                            
+                            {/* Close button for greeting */}
+                            <button 
+                                onClick={(e) => {
+                                    e.stopPropagation();
+                                    // Local state to hide bubble
+                                    const bubble = e.currentTarget.parentElement;
+                                    if (bubble) bubble.style.display = 'none';
+                                }}
+                                className="absolute -top-2 -right-2 bg-white text-black rounded-full p-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity border border-black/10 hover:bg-neutral-100"
+                            >
+                                <X className="w-2.5 h-2.5" />
+                            </button>
+                        </motion.div>
+                    )}
+                </AnimatePresence>
+
+                <motion.button
+                    className="w-16 h-16 rounded-full shadow-2xl
+                       bg-gradient-to-br from-amber-500 to-amber-700
+                       border-2 border-white/30 flex items-center justify-center text-white relative"
+                    onClick={() => setIsOpen(!isOpen)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    aria-label="Support"
+                >
+                    {isOpen ? (
+                        <X className="w-8 h-8" />
+                    ) : (
+                        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full">
+                            <SupportIcon className="w-10 h-10" />
+                            <span className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
+                        </div>
+                    )}
+                </motion.button>
+            </div>
 
             {/* Panel */}
             <AnimatePresence>
