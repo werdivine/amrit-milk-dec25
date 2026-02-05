@@ -6,8 +6,9 @@ import {
     MapPin,
     Phone,
     Twitter,
+    MessageCircle,
 } from "lucide-react";
-import { FarmerIcon } from "../ui/FarmerIcon";
+import { SupportIcon } from "../ui/FarmerIcon";
 import Image from "next/image";
 import Link from "next/link";
 
@@ -90,7 +91,7 @@ export function Footer() {
                                 className="p-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl hover:bg-gold hover:border-gold hover:text-espresso transition-all duration-300 text-ivory shadow-sm hover:shadow-lg"
                                 aria-label="WhatsApp Support"
                             >
-                                <FarmerIcon className="w-4 h-4" />
+                                <MessageCircle className="w-4 h-4" />
                             </a>
                         </div>
                     </div>

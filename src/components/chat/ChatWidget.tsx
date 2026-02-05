@@ -6,8 +6,8 @@
  */
 
 import { AnimatePresence, motion } from "framer-motion";
-import { Bot, Loader2, Send, User, X } from "lucide-react";
-import { FarmerIcon } from "../ui/FarmerIcon";
+import { Bot, Loader2, MessageCircle, Send, User, X } from "lucide-react";
+import { SupportIcon } from "../ui/FarmerIcon";
 import { FormEvent, useEffect, useRef, useState } from "react";
 
 interface Message {
@@ -128,32 +128,23 @@ export function ChatWidget() {
 
     return (
         <>
-            {/* WhatsApp Button - Above Chat FAB */}
-            <a
-                href="https://wa.me/918130693767"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="fixed bottom-24 right-6 z-50 w-14 h-14 rounded-full shadow-lg
-                   bg-[#25D366] hover:bg-[#20bd5a] flex items-center justify-center
-                   hover:scale-105 transition-transform"
-                aria-label="Chat on WhatsApp"
-            >
-                <FarmerIcon className="w-7 h-7 text-white" />
-            </a>
-
-            {/* Chat FAB */}
+            {/* Unified Chat FAB */}
             <motion.button
-                className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full shadow-lg
+                className="fixed bottom-6 right-6 z-50 w-16 h-16 rounded-full shadow-2xl
                    bg-gradient-to-br from-amber-500 to-amber-700
-                   border-2 border-white/30 flex items-center justify-center"
+                   border-2 border-white/30 flex items-center justify-center text-white"
                 onClick={() => setIsOpen(!isOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
+                aria-label="Support"
             >
                 {isOpen ? (
-                    <X className="w-6 h-6 text-white" />
+                    <X className="w-8 h-8" />
                 ) : (
-                    <FarmerIcon className="w-6 h-6 text-white" />
+                    <div className="relative">
+                        <SupportIcon className="w-8 h-8" />
+                        <span className="absolute -top-1 -right-1 w-3 h-3 bg-green-500 border-2 border-white rounded-full"></span>
+                    </div>
                 )}
             </motion.button>
 
@@ -162,25 +153,38 @@ export function ChatWidget() {
                 {isOpen && (
                     <motion.div
                         className="fixed bottom-24 right-6 z-50 w-[380px] max-h-[600px]
-                       rounded-3xl overflow-hidden bg-white/90 dark:bg-neutral-900/90
+                       rounded-3xl overflow-hidden bg-white/95 dark:bg-neutral-900/95
                        backdrop-blur-xl border border-white/30 shadow-2xl flex flex-col"
                         initial={{ opacity: 0, y: 20, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.95 }}
                     >
-                        {/* Header */}
-                        <div className="px-5 py-4 border-b border-white/20 bg-gradient-to-r from-amber-500/10 to-amber-600/10">
+                        {/* Header with WhatsApp Integration */}
+                        <div className="px-5 py-4 border-b border-white/20 bg-gradient-to-r from-amber-500/10 to-amber-600/10 flex items-center justify-between">
                             <div className="flex items-center gap-3">
-                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center">
-                                    <span className="text-white text-lg">🙏</span>
+                                <div className="w-10 h-10 rounded-full bg-gradient-to-br from-amber-500 to-amber-700 flex items-center justify-center shadow-inner">
+                                    <SupportIcon className="w-6 h-6 text-white" />
                                 </div>
                                 <div>
-                                    <h3 className="font-semibold text-neutral-800 dark:text-white">
-                                        Amrit AI
+                                    <h3 className="font-bold text-neutral-800 dark:text-white flex items-center gap-2">
+                                        Amrit Support
+                                        <span className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></span>
                                     </h3>
-                                    <p className="text-xs text-neutral-500">Hindi / English</p>
+                                    <p className="text-[10px] uppercase tracking-wider text-neutral-500 font-medium">AI + Human Support</p>
                                 </div>
                             </div>
+                            
+                            <a
+                                href="https://wa.me/918130693767"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="flex flex-col items-center gap-0.5 group"
+                            >
+                                <div className="bg-[#25D366] hover:bg-[#20bd5a] text-white p-2 rounded-full transition-all hover:rotate-12 shadow-sm">
+                                    <MessageCircle className="w-4 h-4 fill-current" />
+                                </div>
+                                <span className="text-[9px] font-bold text-neutral-500 uppercase tracking-tighter group-hover:text-[#25D366]">WhatsApp</span>
+                            </a>
                         </div>
 
                         {/* Messages */}

@@ -20,8 +20,9 @@ import {
     Star,
     Truck,
     Zap,
+    MessageCircle,
 } from "lucide-react";
-import { FarmerIcon } from "@/components/ui/FarmerIcon";
+import { SupportIcon } from "@/components/ui/FarmerIcon";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { notFound } from "next/navigation";
@@ -457,7 +458,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                 rel="noopener noreferrer"
                                 className="flex items-center gap-3 bg-espresso hover:bg-espresso/90 text-white px-8 py-4 rounded-full text-lg font-bold transition-transform hover:scale-105"
                             >
-                                <FarmerIcon className="w-6 h-6" />
+                                <MessageCircle className="w-6 h-6" />
                                 Have a question? Talk to a human on WhatsApp
                             </a>
                         </div>

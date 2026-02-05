@@ -143,4 +143,59 @@ export const KNOWLEDGE_BASE: FAQEntry[] = [
             "Our honey is 100% raw and unprocessed, going directly from the hive to the bottle.",
         keywords: ["honey", "shahad", "raw", "pure", "natural", "unprocessed"],
     },
+    {
+        id: "cow-diet",
+        category: "Safety & Ethics",
+        question_hi: "Aapki gaayein kya khaati hain?",
+        question_en: "What do your cows eat?",
+        answer_hi:
+            "Humari gaayon ko sirf organic fodder diya jaata hai jo hum apne farm par hi ugate hain. Isme koi chemical pesticides ya fertilizers nahi hote. Hum unhe natural khali aur gur bhi dete hain.",
+        answer_en:
+            "Our cows eat only organic fodder grown on our own farm without chemical pesticides or fertilizers. We also give them natural oil cakes and jaggery.",
+        keywords: ["diet", "fodder", "food", "organic", "khana", "pesticides", "fertilizer"],
+    },
+    {
+        id: "cruelty-free-milking",
+        category: "Safety & Ethics",
+        question_hi: "Kya aap calves ko unka hissa dete hain?",
+        question_en: "Do you give the calves their share of milk?",
+        answer_hi:
+            "Haan, Amrit Milk mein 'Calf First' policy hai. Pehle bachhde ko do than (udders) se pet bhar doodh pilaya jaata hai, uske baad hi bacha hua doodh hum nikaalte hain.",
+        answer_en:
+            "Yes, we follow a 'Calf First' policy. The calf drinks its fill from two udders first, and only then do we extract the remaining milk.",
+        keywords: ["calf", "cruelty free", "milking", "bachhda", "policy", "ethical"],
+    },
+    {
+        id: "glass-bottles",
+        category: "Safety & Ethics",
+        question_hi: "Aap plastic use kyun nahi karte?",
+        question_en: "Why don't you use plastic bottles?",
+        answer_hi:
+            "Hum 100% plastic-free hain. Plastic se doodh mein toxins aa sakte hain. Isliye hum glass bottles use karte hain jo eco-friendly aur health ke liye safe hain.",
+        answer_en:
+            "We are 100% plastic-free. Plastic can leach toxins into milk. We use glass bottles which are eco-friendly and safe for health.",
+        keywords: ["plastic", "glass", "bottle", "toxins", "eco friendly", "safety"],
+    },
+    {
+        id: "shelf-life-milk",
+        category: "Milk & Ghee",
+        question_hi: "Fresh milk kitne din tak chalta hai?",
+        question_en: "What is the shelf life of your fresh milk?",
+        answer_hi:
+            "Humara doodh bina kisi preservative ke aata hai. Fridge mein rakhne par ye 2-3 din tak fresh rehta hai. Isse ubaal kar (boil) hi use karein.",
+        answer_en:
+            "Our milk has no preservatives. It stays fresh for 2-3 days when refrigerated. Always boil before use.",
+        keywords: ["shelf life", "fresh", "expiry", "milk", "fridge", "boil"],
+    },
+    {
+        id: "subscription-benefits",
+        category: "Ordering",
+        question_hi: "Subscription ke kya fayde hain?",
+        question_en: "What are the benefits of a subscription?",
+        answer_hi:
+            "Subscription lene par aapko regular delivery milti hai, koi delivery charge nahi lagta, aur price lock ho jata hai. Aap kabhi bhi pause ya resume kar sakte hain.",
+        answer_en:
+            "Subscriptions offer regular delivery with zero delivery charges and price protection. You can pause or resume anytime.",
+        keywords: ["subscription", "benefits", "fayde", "delivery", "pause", "resume"],
+    },
 ];

@@ -2,14 +2,14 @@
 
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
-import { Clock, Mail, MapPin, Phone } from "lucide-react";
-import { FarmerIcon } from "@/components/ui/FarmerIcon";
+import { Clock, Mail, MapPin, MessageCircle, Phone } from "lucide-react";
+import { SupportIcon } from "@/components/ui/FarmerIcon";
 import { useState } from "react";
 
 const contactInfo = [
     { icon: Phone, label: "Phone", value: "+91 81306 93767", href: "tel:+918130693767" },
     {
-        icon: FarmerIcon,
+        icon: MessageCircle,
         label: "WhatsApp Support",
         value: "Chat with a human",
         href: "https://wa.me/918130693767",
