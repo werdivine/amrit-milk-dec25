@@ -4,7 +4,7 @@ import { Section } from "@/components/ui/section";
 import { ExternalLink, Instagram, Heart, MessageCircle } from "lucide-react";
 import { useEffect, useState } from "react";
 import { getInstagramPosts } from "@/lib/fetchSocials";
-import { InstagramPost } from "@/data/instagram";
+import { InstagramPost, instagramPosts as staticInstagramPosts } from "@/data/instagram";
 import { motion } from "framer-motion";
 
 export function InstagramFeed() {
@@ -16,10 +16,12 @@ export function InstagramFeed() {
             try {
                 const data = await getInstagramPosts();
                 // Randomize posts as requested by user
-                const randomized = [...data].sort(() => 0.5 - Math.random());
+                const combined = data && data.length > 0 ? data : staticInstagramPosts;
+                const randomized = [...combined].sort(() => 0.5 - Math.random());
                 setPosts(randomized);
             } catch (error) {
                 console.error("Failed to fetch Instagram posts", error);
+                setPosts(staticInstagramPosts);
             } finally {
                 setLoading(false);
             }

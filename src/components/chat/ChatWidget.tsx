@@ -125,15 +125,22 @@ export function ChatWidget() {
                     );
                 }
             }
-        } catch (error) {
+        } catch (error: any) {
             console.error("Chat error:", error);
+            
+            let errorMessage = "Kshama karein, kuch technical issue hai. Kripya thodi der baad try karein. 🙏";
+            
+            // If it's a specific configuration error, let the user know (helpful for dev/testing)
+            if (error.message?.includes("configuration missing") || error.message?.includes("API key")) {
+                errorMessage = "Amrit AI is currently in maintenance (Missing API Key). Please contact us via WhatsApp! 🙏";
+            }
+
             setMessages((prev) => [
                 ...prev,
                 {
                     id: Date.now().toString(),
                     role: "assistant",
-                    content:
-                        "Kshama karein, kuch technical issue hai. Kripya thodi der baad try karein. 🙏",
+                    content: errorMessage,
                 },
             ]);
         } finally {

@@ -15,8 +15,13 @@ export async function getInstagramPosts() {
       "caption": caption
     }`;
 
-        const posts = await client.fetch(query);
-        return posts && posts.length > 0 ? posts : staticInstagramPosts;
+        const dynamicPosts = await client.fetch(query);
+        
+        // Combine dynamic with static and remove duplicates by URL
+        const combined = [...(dynamicPosts || []), ...staticInstagramPosts];
+        const unique = Array.from(new Map(combined.map(p => [p.url, p])).values());
+        
+        return unique.length > 0 ? unique : staticInstagramPosts;
     } catch (error) {
         console.error("Error fetching Instagram posts:", error);
         return staticInstagramPosts;
@@ -37,8 +42,13 @@ export async function getGoogleReviews() {
       "date": date
     }`;
 
-        const reviews = await client.fetch(query);
-        return reviews && reviews.length > 0 ? reviews : staticGoogleReviews;
+        const dynamicReviews = await client.fetch(query);
+        
+        // Combine dynamic with static and remove duplicates by authorName and text
+        const combined = [...(dynamicReviews || []), ...staticGoogleReviews];
+        const unique = Array.from(new Map(combined.map(r => [`${r.authorName}-${r.text.slice(0, 20)}`, r])).values());
+        
+        return unique.length > 0 ? unique : staticGoogleReviews;
     } catch (error) {
         console.error("Error fetching Google reviews:", error);
         return staticGoogleReviews;

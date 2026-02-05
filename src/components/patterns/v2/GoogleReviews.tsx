@@ -4,15 +4,15 @@ import { Section } from "@/components/ui/section";
 import { ExternalLink, MapPin, Quote, Star } from "lucide-react";
 import { motion } from "framer-motion";
 
-import { GoogleReview } from "@/data/reviews";
+import { GoogleReview, googleReviews as staticGoogleReviews } from "@/data/reviews";
 
 interface GoogleReviewsProps {
     reviews: GoogleReview[];
 }
 
 export function GoogleReviews({ reviews }: GoogleReviewsProps) {
-    // If no reviews are provided, use a reasonable subset or default to an empty array
-    const displayReviews = reviews && reviews.length > 0 ? reviews : [];
+    // If no reviews are provided, use static ones as a safety fallback
+    const displayReviews = reviews && reviews.length > 0 ? reviews : staticGoogleReviews;
 
     return (
         <Section className="bg-[#FDFBF7] dark:bg-midnight-light py-24 border-t border-espresso/5 dark:border-white/5 overflow-hidden">
@@ -94,13 +94,8 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                                     <div className="w-12 h-12 rounded-full bg-gradient-to-br from-blue-50 to-blue-100 dark:from-blue-900/40 dark:to-blue-800/40 flex items-center justify-center text-blue-600 dark:text-blue-300 font-bold text-lg border border-blue-100 dark:border-blue-800">
                                         {review.authorName.charAt(0)}
                                     </div>
-                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-midnight-mid rounded-full flex items-center justify-center shadow-sm">
-                                        <img
-                                            src="/assets/icons/google-g.svg"
-                                            alt="G"
-                                            className="w-3 h-3"
-                                            onError={(e) => (e.currentTarget.style.display = "none")}
-                                        />
+                                    <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-white dark:bg-midnight-mid rounded-full flex items-center justify-center shadow-sm border border-gray-100 dark:border-gray-800">
+                                        <div className="w-3 h-3 bg-blue-500 rounded-full" />
                                     </div>
                                 </div>
                                 <div>
@@ -132,11 +127,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                         rel="noopener noreferrer"
                         className="group inline-flex items-center gap-3 px-10 py-4 bg-espresso dark:bg-ivory text-white dark:text-espresso rounded-full hover:shadow-2xl transition-all duration-300 font-bold text-lg transform hover:-translate-y-1"
                     >
-                        <img 
-                            src="/assets/icons/google-g.svg" 
-                            alt="Google" 
-                            className="w-5 h-5 brightness-0 invert dark:brightness-100 dark:invert-0"
-                        />
+                        <Star className="w-5 h-5 text-yellow-500 fill-current" />
                         Write a Review on Google
                         <ExternalLink className="w-5 h-5 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                     </a>
