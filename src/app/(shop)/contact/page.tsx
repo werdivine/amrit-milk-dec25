@@ -208,10 +208,10 @@ export default function ContactPage() {
                             target="_blank"
                             className="block glass-theme p-6 rounded-3xl border-green-500/30 hover:border-green-500/50 transition-all text-center group"
                         >
-                            <MessageCircle className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
-                            <p className="text-theme-primary font-bold text-lg">Prefer WhatsApp?</p>
+                            <Headset className="w-10 h-10 text-green-500 mx-auto mb-3 group-hover:scale-110 transition-transform" />
+                            <p className="text-theme-primary font-bold text-lg">Talk to a Human</p>
                             <p className="text-theme-muted text-sm">
-                                Get instant responses on WhatsApp
+                                Chat with us on WhatsApp for support
                             </p>
                         </a>
                     </div>
