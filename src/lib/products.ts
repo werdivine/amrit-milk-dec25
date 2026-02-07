@@ -1341,7 +1341,7 @@ export const products: Product[] = [
         title: "Wellness Trio Pack",
         price: "₹3,500",
         regularPrice: "₹3,900",
-        image: "/assets/img/products/combo_wellness_trio_v7.png",
+        image: "/assets/img/products/combo_wellness_trio_v6.png",
         category: "Combos",
         description:
             "1kg A2 Ghee + 1kg Multiflora Honey + 10ml Tulsi Oil. The ultimate Ayurvedic wellness bundle.",
@@ -1367,7 +1367,7 @@ export const products: Product[] = [
         title: "Immunity Booster Pack",
         price: "₹2,600",
         regularPrice: "₹2,900",
-        image: "/assets/img/products/combo_immunity_booster_v6.png",
+        image: "/assets/img/products/combo_immunity_booster_v5.png",
         category: "Combos",
         description:
             "1kg Multiflora Honey + 10ml Tulsi Oil + 10ml Mint Oil. Natural immunity power combo.",
@@ -1418,7 +1418,7 @@ export const products: Product[] = [
         title: "Golden Healing Duo",
         price: "₹3,600",
         regularPrice: "₹3,900",
-        image: "/assets/img/products/combo_golden_healing_v6.png",
+        image: "/assets/img/products/combo_golden_healing_v5.png",
         category: "Combos",
         description:
             "1kg A2 Ghee + 1kg Jamun Honey. The golden Ayurvedic healing pair for digestion & immunity.",
@@ -1443,7 +1443,7 @@ export const products: Product[] = [
         title: "Complete Care Pack",
         price: "₹4,200",
         regularPrice: "₹4,650",
-        image: "/assets/img/products/combo_complete_care_v6.png",
+        image: "/assets/img/products/combo_complete_care_v5.png",
         category: "Combos",
         description:
             "1kg A2 Ghee + 1kg Honey + 10ml Tulsi + 10ml Lemongrass + 10ml Mint Oil. Ultimate wellness bundle.",

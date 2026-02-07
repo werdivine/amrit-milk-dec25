@@ -25,13 +25,13 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
         async function fetchPosts() {
             try {
                 const data = await getInstagramPosts();
-                
+
                 // Ensure data is an array
                 const validData = Array.isArray(data) ? data : [];
-                
+
                 // Ensure we have a good number of posts (at least 10)
                 let combined = [...validData];
-                
+
                 // If we have fewer than 10 posts, add from static to reach 10
                 if (combined.length < 10) {
                     staticInstagramPosts.forEach(p => {
@@ -40,7 +40,7 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
                         }
                     });
                 }
-                
+
                 // No more randomization here, keep the order from getInstagramPosts
                 setPosts(combined.slice(0, 10));
             } catch (error) {
@@ -58,7 +58,7 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
                     <div className="max-w-2xl">
-                        <motion.div 
+                        <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             whileInView={{ opacity: 1, x: 0 }}
                             className="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-500/10 text-pink-600 dark:text-pink-400 rounded-full text-xs font-bold uppercase tracking-widest border border-pink-500/20 mb-6"
@@ -70,7 +70,7 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
                             Life at <span className="text-pink-600 dark:text-pink-400">Amrit Farm</span>
                         </h2>
                         <p className="text-lg text-espresso/70 dark:text-ivory/70 leading-relaxed">
-                            Experience the purity of farm-to-table living. Follow our journey of organic farming, 
+                            Experience the purity of farm-to-table living. Follow our journey of organic farming,
                             happy cows, and traditional rituals in the heart of Lucknow.
                         </p>
                     </div>
@@ -108,19 +108,18 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 transition={{ duration: 0.5, delay: idx * 0.05 }}
-                                className={`group relative overflow-hidden rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-espresso/5 dark:border-white/5 transition-all duration-700 hover:-translate-y-3 ${
-                                    idx === 0 ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-square"
-                                }`}
+                                className={`group relative overflow-hidden rounded-[2rem] md:rounded-[3rem] shadow-2xl border border-espresso/5 dark:border-white/5 transition-all duration-700 hover:-translate-y-3 ${idx === 0 ? "md:col-span-2 md:row-span-2 aspect-square" : "aspect-square"
+                                    }`}
                             >
                                 <Image
-                                    src={post.imageUrl}
+                                    src={post.imageUrl || "/assets/img/products/amrit_ghee_premium.png"}
                                     alt={post.caption || "Instagram post"}
                                     fill
                                     className="object-cover transition-transform duration-1000 group-hover:scale-110"
                                     sizes="(max-width: 768px) 50vw, (max-width: 1200px) 20vw, 20vw"
                                     loading="lazy"
                                 />
-                                
+
                                 {/* Overlay */}
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-6 md:p-10">
                                     <div className="flex gap-6 mb-4 text-white">
@@ -148,15 +147,15 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
                                         <Play className="w-5 h-5 fill-current ml-0.5" />
                                     </div>
                                 )}
-                                
+
                                 {/* Hover "Float" Effect */}
                                 <div className="absolute inset-0 border-4 border-white/0 group-hover:border-white/20 transition-all duration-700 rounded-[2rem] md:rounded-[3rem] pointer-events-none" />
                             </motion.a>
                         ))}
                     </div>
                 )}
-                
-                <motion.div 
+
+                <motion.div
                     initial={{ opacity: 0 }}
                     whileInView={{ opacity: 1 }}
                     className="flex flex-col items-center mt-20"
