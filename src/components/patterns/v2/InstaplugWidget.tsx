@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Section } from "@/components/ui/section";
 import { Instagram, ExternalLink } from "lucide-react";
+import Script from "next/script";
 
 const INSTAPLUG_CONTAINER_ID = "b7572c48-53c9-4ace-ae3c-32e92f1c8441";
 
@@ -30,14 +31,13 @@ export function InstaplugWidget() {
         return () => observer.disconnect();
     }, []);
 
-    // Load Instaplug script when visible
+    // Load Instaplug script when visible - now handled by Script component
     useEffect(() => {
         if (!isVisible || isLoaded) return;
 
-        // Check if script already exists
-        if (document.getElementById("instaplug-script")) {
-            // Script exists, just render the app
-            if (typeof window !== "undefined" && (window as any).renderApp) {
+        // Check if script already exists (e.g. from previous navigation)
+        if (typeof window !== "undefined" && (window as any).renderApp && document.getElementById("instaplug-script")) {
+            try {
                 (window as any).renderApp({
                     containerId: INSTAPLUG_CONTAINER_ID,
                     domain: "https://app.instaplug.app/",
@@ -48,48 +48,42 @@ export function InstaplugWidget() {
                     colorLinkActive: "",
                     colorLinkHover: "",
                 });
+                setIsLoaded(true);
+            } catch (e) {
+                console.error("Instaplug manual render failed:", e);
             }
-            setIsLoaded(true);
-            return;
         }
-
-        // Add Google Fonts
-        const fontLink = document.createElement("link");
-        fontLink.href = "https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lexend:wght@100..900&family=Lobster&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap";
-        fontLink.rel = "stylesheet";
-        document.head.appendChild(fontLink);
-
-        // Create and load the script
-        const script = document.createElement("script");
-        script.id = "instaplug-script";
-        script.src = "https://app.instaplug.app/platform/instaplug.js";
-        script.async = true;
-        script.onload = () => {
-            // Delay slightly to ensure fonts might be loading? Unnecessary but safe.
-            if (typeof window !== "undefined" && (window as any).renderApp) {
-                (window as any).renderApp({
-                    containerId: INSTAPLUG_CONTAINER_ID,
-                    domain: "https://app.instaplug.app/",
-                    widgetClass: "",
-                    fontFamily: "",
-                    color: "",
-                    colorLink: "",
-                    colorLinkActive: "",
-                    colorLinkHover: "",
-                });
-            }
-            setIsLoaded(true);
-        };
-
-        document.body.appendChild(script);
-
-        return () => {
-            // Cleanup if needed
-        };
     }, [isVisible, isLoaded]);
 
     return (
         <Section className="bg-gradient-to-b from-white to-[#FDFBF7] dark:from-midnight-light to-midnight py-32 overflow-hidden">
+            {/* Google Fonts - Loaded safely */}
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lexend:wght@100..900&family=Lobster&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
+
+            <Script
+                src="https://app.instaplug.app/platform/instaplug.js"
+                strategy="lazyOnload"
+                onLoad={() => {
+                    try {
+                        if (typeof window !== "undefined" && (window as any).renderApp) {
+                            (window as any).renderApp({
+                                containerId: INSTAPLUG_CONTAINER_ID,
+                                domain: "https://app.instaplug.app/",
+                                widgetClass: "",
+                                fontFamily: "",
+                                color: "",
+                                colorLink: "",
+                                colorLinkActive: "",
+                                colorLinkHover: "",
+                            });
+                            setIsLoaded(true);
+                        }
+                    } catch (e) {
+                        console.error("Instaplug render failed:", e);
+                    }
+                }}
+            />
+
             <div className="container mx-auto px-4">
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
                     <div className="max-w-2xl">
