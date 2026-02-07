@@ -12,6 +12,7 @@ export function InstaplugWidget() {
     const [isVisible, setIsVisible] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
+    const hasRenderedRef = useRef(false);
 
     // Intersection Observer to detect when widget is in view
     useEffect(() => {
@@ -22,7 +23,7 @@ export function InstaplugWidget() {
                     observer.disconnect();
                 }
             },
-            { threshold: 0.1, rootMargin: "200px" }
+            { threshold: 0.01, rootMargin: "600px" } // Load even earlier to avoid jank on scroll
         );
 
         if (containerRef.current) {
@@ -32,25 +33,41 @@ export function InstaplugWidget() {
         return () => observer.disconnect();
     }, []);
 
-    // Function to safely render or re-render the app
+    // Function to safely render or re-render the app with retry logic
     const renderInstaplug = () => {
-        try {
-            if (typeof window !== "undefined" && (window as any).renderApp) {
-                (window as any).renderApp({
-                    containerId: INSTAPLUG_CONTAINER_ID,
-                    domain: "https://app.instaplug.app/",
-                    widgetClass: "",
-                    fontFamily: "",
-                    color: "",
-                    colorLink: "",
-                    colorLinkActive: "",
-                    colorLinkHover: "",
-                });
-                setIsLoaded(true);
+        if (hasRenderedRef.current) return;
+
+        const attemptRender = (count = 0) => {
+            if (typeof window === "undefined") return;
+
+            if ((window as any).renderApp) {
+                try {
+                    // Wrap in setTimeout to prioritize scroll fluidity
+                    setTimeout(() => {
+                        if (hasRenderedRef.current) return;
+                        (window as any).renderApp({
+                            containerId: INSTAPLUG_CONTAINER_ID,
+                            domain: "https://app.instaplug.app/",
+                            widgetClass: "",
+                            fontFamily: "",
+                            color: "",
+                            colorLink: "",
+                            colorLinkActive: "",
+                            colorLinkHover: "",
+                        });
+                        setIsLoaded(true);
+                        hasRenderedRef.current = true;
+                    }, 200);
+                } catch (e) {
+                    console.error("Instaplug render failed:", e);
+                }
+            } else if (count < 15) {
+                // If script is loaded but renderApp isn't ready yet, retry
+                setTimeout(() => attemptRender(count + 1), 300);
             }
-        } catch (e) {
-            console.error("Instaplug render failed:", e);
-        }
+        };
+
+        attemptRender();
     };
 
     // Re-render if script is already loaded but widget becomes visible later
@@ -62,13 +79,10 @@ export function InstaplugWidget() {
 
     return (
         <Section className="bg-gradient-to-b from-white to-[#FDFBF7] dark:from-midnight-light to-midnight py-24 md:py-32 overflow-hidden">
-            {/* Google Fonts - Loaded safely */}
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lexend:wght@100..900&family=Lobster&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
-
             {isVisible && (
                 <Script
                     src="https://app.instaplug.app/platform/instaplug.js"
-                    strategy="afterInteractive"
+                    strategy="lazyOnload"
                     onLoad={renderInstaplug}
                 />
             )}
