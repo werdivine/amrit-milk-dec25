@@ -38,57 +38,65 @@ export async function generateMetadata({
 }: {
     params: { slug: string };
 }): Promise<Metadata> {
-    const product = await getProductBySlug(params.slug);
-    if (!product) return {};
+    try {
+        const product = await getProductBySlug(params.slug);
+        if (!product) return {};
 
-    const title = `${product.title} | Amrit Milk Organic`;
-    const description = product.description;
-    // Check for optimized smaller variants for WhatsApp/Social (<300KB)
-    let socialImageUrl = product.image || "";
-    if (socialImageUrl.includes("gir_1l_v2.png")) {
-        socialImageUrl = "/assets/img/products/amrit_milk_gir_1l_single.png";
-    } else if (socialImageUrl.includes("sahiwal_1l_v2.png")) {
-        socialImageUrl = "/assets/img/products/amrit_milk_sahiwal_1l_single.png";
-    } else {
-        // Fallback to the optimized brand logo (266KB) for all other heavy images (>800KB)
-        // This ensures WhatsApp ALWAYS shows an image instead of failing due to size
-        socialImageUrl = "/assets/img/amrit-logo-transparent.png";
+        const title = `${product.title} | Amrit Milk Organic`;
+        const description = product.description;
+        // Check for optimized smaller variants for WhatsApp/Social (<300KB)
+        let socialImageUrl = product.image || "";
+        if (socialImageUrl.includes("gir_1l_v2.png")) {
+            socialImageUrl = "/assets/img/products/amrit_milk_gir_1l_single.png";
+        } else if (socialImageUrl.includes("sahiwal_1l_v2.png")) {
+            socialImageUrl = "/assets/img/products/amrit_milk_sahiwal_1l_single.png";
+        } else {
+            // Fallback to the optimized brand logo (266KB) for all other heavy images (>800KB)
+            // This ensures WhatsApp ALWAYS shows an image instead of failing due to size
+            socialImageUrl = "/assets/img/amrit-logo-transparent.png";
+        }
+
+        const imageUrl = (socialImageUrl || "").startsWith("http")
+            ? socialImageUrl
+            : `https://amritmilkorganic.com${socialImageUrl}`;
+
+        return {
+            title,
+            description,
+            alternates: {
+                canonical: `https://amritmilkorganic.com/products/${params.slug}`,
+            },
+            openGraph: {
+                title,
+                description,
+                url: `https://amritmilkorganic.com/products/${params.slug}`,
+                siteName: "Amrit Milk Organic",
+                images: [
+                    {
+                        url: imageUrl,
+                        secureUrl: imageUrl,
+                        width: 1200,
+                        height: 630,
+                        alt: product.title,
+                        type: "image/png",
+                    },
+                ],
+                type: "website",
+            },
+            twitter: {
+                card: "summary_large_image",
+                title,
+                description,
+                images: [imageUrl],
+            },
+        };
+    } catch (error) {
+        console.error(`Error generating metadata for ${params.slug}:`, error);
+        return {
+            title: "Amrit Milk Organic Product",
+            description: "View our premium organic milk products.",
+        };
     }
-
-    const imageUrl = socialImageUrl.startsWith("http")
-        ? socialImageUrl
-        : `https://amritmilkorganic.com${socialImageUrl}`;
-
-    return {
-        title,
-        description,
-        alternates: {
-            canonical: `https://amritmilkorganic.com/products/${params.slug}`,
-        },
-        openGraph: {
-            title,
-            description,
-            url: `https://amritmilkorganic.com/products/${params.slug}`,
-            siteName: "Amrit Milk Organic",
-            images: [
-                {
-                    url: imageUrl,
-                    secureUrl: imageUrl,
-                    width: 1200,
-                    height: 630,
-                    alt: product.title,
-                    type: "image/png",
-                },
-            ],
-            type: "website",
-        },
-        twitter: {
-            card: "summary_large_image",
-            title,
-            description,
-            images: [imageUrl],
-        },
-    };
 }
 
 export default async function ProductPage({ params }: { params: { slug: string } }) {
