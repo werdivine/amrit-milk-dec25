@@ -1,5 +1,6 @@
 import { syncInstagramToSanity } from "@/lib/services/instagram";
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 export const dynamic = "force-dynamic";
 
@@ -10,6 +11,9 @@ export async function GET(request: Request) {
         // if (authHeader !== `Bearer ${process.env.CRON_SECRET}`) return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
 
         const results = await syncInstagramToSanity();
+
+        // Trigger revalidation for the UI
+        revalidateTag("instagramPost");
 
         return NextResponse.json({
             success: true,

@@ -1,4 +1,4 @@
-import { client } from "../sanity";
+import { client, writeClient } from "../sanity";
 
 const GOOGLE_CLIENT_ID = process.env.GOOGLE_CLIENT_ID;
 const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
@@ -27,7 +27,7 @@ async function refreshGoogleToken(refreshToken: string) {
     const expiryDate = new Date(Date.now() + expiresInSeconds * 1000).toISOString();
 
     // Update Sanity
-    await client
+    await writeClient
         .patch("siteSettings")
         .set({
             googleAccessToken: newAccessToken,
@@ -43,7 +43,9 @@ async function getValidGoogleToken() {
         googleAccessToken,
         googleRefreshToken,
         googleTokenExpiry
-    }`);
+    }`, {}, {
+        next: { tags: ["siteSettings"] }
+    });
 
     if (!settings?.googleAccessToken || !settings?.googleRefreshToken) {
         throw new Error("Google is not connected. Please connect in Admin Settings.");
@@ -143,7 +145,7 @@ export async function syncGoogleReviewsToSanity() {
             originalJson: JSON.stringify(review),
         };
 
-        await client.create(doc);
+        await writeClient.create(doc);
         results.created++;
     }
 

@@ -5,21 +5,21 @@ import { Section } from "@/components/ui/section";
 import { Calculator, Heart, Leaf, TrendingUp } from "lucide-react";
 import { useMemo, useState } from "react";
 
+const PRICING = {
+    amrit: 120, // per liter
+    packet: 60,
+    loose: 50,
+    tetra: 80,
+};
+
 export default function CalculatorPage() {
     const [familySize, setFamilySize] = useState(4);
     const [currentMilkType, setCurrentMilkType] = useState<"packet" | "loose" | "tetra">("packet");
     const [dailyConsumption, setDailyConsumption] = useState(1);
 
-    const pricing = {
-        amrit: 120, // per liter
-        packet: 60,
-        loose: 50,
-        tetra: 80,
-    };
-
     const calculations = useMemo(() => {
-        const currentCost = pricing[currentMilkType] * dailyConsumption * 30;
-        const amritCost = pricing.amrit * dailyConsumption * 30;
+        const currentCost = PRICING[currentMilkType] * dailyConsumption * 30;
+        const amritCost = PRICING.amrit * dailyConsumption * 30;
         const difference = amritCost - currentCost;
         const yearlyDifference = difference * 12;
 
@@ -39,7 +39,7 @@ export default function CalculatorPage() {
             isNetPositive,
             dailyCostDiff: difference / 30,
         };
-    }, [familySize, currentMilkType, dailyConsumption, pricing]);
+    }, [familySize, currentMilkType, dailyConsumption]);
 
     return (
         <main className="bg-creme dark:bg-midnight transition-colors duration-500 min-h-screen">

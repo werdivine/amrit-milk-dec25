@@ -41,7 +41,9 @@ export async function POST(req: NextRequest) {
             const query = `*[_type == "coupon" && code == $code && isActive == true][0]{
                 code, type, value, minOrderValue, isActive
             }`;
-            coupon = await sanityClient.fetch(query, { code: upperCode });
+            coupon = await sanityClient.fetch(query, { code: upperCode }, {
+                next: { tags: ["coupon"] }
+            });
         } catch (sanityError) {
             console.warn("Sanity fetch failed, using fallback:", sanityError);
         }

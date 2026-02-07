@@ -60,6 +60,7 @@ export function ChatWidget() {
         setIsLoading(true);
 
         try {
+            console.log("Sending chat request...");
             const response = await fetch("/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
@@ -71,7 +72,30 @@ export function ChatWidget() {
                 }),
             });
 
-            if (!response.ok) throw new Error("Failed to get response");
+            if (!response.ok) {
+                const errorData = await response.json().catch(() => ({}));
+                console.error("Chat API error:", response.status, errorData);
+                throw new Error(errorData.error || "Failed to get response from Amrit AI");
+            }
+
+            const contentType = response.headers.get("Content-Type");
+            
+            // Handle non-streaming JSON response (e.g., for subscription escalations or errors)
+            if (contentType?.includes("application/json")) {
+                const data = await response.json();
+                if (data.content) {
+                    setMessages((prev) => [
+                        ...prev,
+                        {
+                            id: (Date.now() + 1).toString(),
+                            role: "assistant",
+                            content: data.content,
+                        },
+                    ]);
+                    setIsLoading(false);
+                    return;
+                }
+            }
 
             const reader = response.body?.getReader();
             const decoder = new TextDecoder();
@@ -94,20 +118,37 @@ export function ChatWidget() {
 
                     buffer += decoder.decode(value, { stream: true });
                     
-                    // Process lines from the buffer
-                    const lines = buffer.split("\n");
-                    // Keep the last partial line in the buffer
-                    buffer = lines.pop() || "";
+                    // If the buffer doesn't look like the Data Stream Protocol (no "0:"),
+                    // treat it as raw text and update the UI immediately
+                    if (!buffer.includes('0:') && !buffer.includes('e:') && !buffer.includes('1:')) {
+                        assistantContent += buffer;
+                        buffer = ""; // Clear buffer since we consumed it all
+                        hasReceivedContent = true;
+                        updateAssistantMessage(assistantMessage.id, assistantContent);
+                        continue;
+                    }
 
-                    for (const line of lines) {
-                        const trimmedLine = line.trim();
-                        if (!trimmedLine) continue;
+                    // Process the buffer line by line for Data Stream Protocol
+                    let boundary = buffer.indexOf('\n');
+                    while (boundary !== -1) {
+                        const line = buffer.slice(0, boundary).trim();
+                        buffer = buffer.slice(boundary + 1);
+                        boundary = buffer.indexOf('\n');
 
-                        // Handle both 0: (text) and other parts of the data stream protocol
-                        // If it starts with 0:, it's a text chunk in the Vercel AI SDK protocol
-                        if (trimmedLine.startsWith('0:')) {
+                        if (!line) continue;
+
+                        // Protocol prefixes for Vercel AI SDK Data Stream Protocol:
+                        // 0: text chunk
+                        // 1: data
+                        // 2: error
+                        // 3: error
+                        // 8: data
+                        // 9: metadata
+                        // e: error (legacy/custom)
+                        // d: data (legacy/custom)
+                        if (line.startsWith('0:')) {
                             try {
-                                const jsonStr = trimmedLine.slice(2);
+                                const jsonStr = line.slice(2);
                                 const text = JSON.parse(jsonStr);
                                 if (typeof text === 'string') {
                                     assistantContent += text;
@@ -115,39 +156,29 @@ export function ChatWidget() {
                                     updateAssistantMessage(assistantMessage.id, assistantContent);
                                 }
                             } catch (e) {
-                                // Fallback: if it's not valid JSON but looks like text, try to extract it
-                                const match = trimmedLine.match(/^0:"(.*)"$/);
-                                if (match && match[1]) {
-                                    assistantContent += match[1];
-                                    hasReceivedContent = true;
-                                    updateAssistantMessage(assistantMessage.id, assistantContent);
-                                }
+                                // Fallback for raw text
+                                const rawText = line.slice(2).replace(/^"(.*)"$/, '$1');
+                                assistantContent += rawText;
+                                hasReceivedContent = true;
+                                updateAssistantMessage(assistantMessage.id, assistantContent);
                             }
-                        } 
-                        // If it doesn't start with a protocol prefix, it might be raw text (unlikely with toDataStreamResponse)
-                        else if (!trimmedLine.match(/^[a-z]:/)) {
-                            // Only append if it doesn't look like other protocol parts (e:, d:, etc.)
-                            assistantContent += trimmedLine;
-                            hasReceivedContent = true;
-                            updateAssistantMessage(assistantMessage.id, assistantContent);
+                        } else if (line.startsWith('e:') || line.startsWith('2:') || line.startsWith('3:')) {
+                            // Error chunk
+                            try {
+                                const errorData = JSON.parse(line.slice(2));
+                                console.error("Stream error:", errorData);
+                                assistantContent = "Maaf kijiyega, abhi server se connect karne mein samasya ho rahi hai. Kripya WhatsApp par contact karein. 🙏";
+                                updateAssistantMessage(assistantMessage.id, assistantContent);
+                                break;
+                            } catch (e) {
+                                console.error("Raw error chunk:", line);
+                            }
                         }
                     }
                 }
 
-                // Process remaining buffer
-                if (buffer.startsWith('0:')) {
-                    try {
-                        const text = JSON.parse(buffer.slice(2));
-                        if (typeof text === 'string') {
-                            assistantContent += text;
-                            hasReceivedContent = true;
-                            updateAssistantMessage(assistantMessage.id, assistantContent);
-                        }
-                    } catch (e) {}
-                }
-
                 // If no content was received after the stream ends, show a fallback
-                if (!hasReceivedContent) {
+                if (!hasReceivedContent && !assistantContent) {
                     updateAssistantMessage(assistantMessage.id, "Maaf kijiyega, main abhi samajh nahi pa raha hoon. Kripya WhatsApp par contact karein। 🙏");
                 }
             }

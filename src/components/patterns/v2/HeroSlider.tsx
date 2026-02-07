@@ -113,25 +113,21 @@ export function HeroSlider() {
                             </p>
                             <div className="pt-4 flex flex-wrap justify-center gap-4">
                                 <Button
-                                    asChild
+                                    href={slides[currentSlide].link}
                                     size="lg"
                                     className="bg-terracotta text-white hover:bg-espresso border-2 border-transparent hover:border-white transition-all duration-300 text-lg px-10 py-6 h-auto cursor-pointer"
                                 >
-                                    <a href={slides[currentSlide].link}>
-                                        {slides[currentSlide].cta}{" "}
-                                        <ArrowRight className="ml-2 w-5 h-5" />
-                                    </a>
+                                    {slides[currentSlide].cta}{" "}
+                                    <ArrowRight className="ml-2 w-5 h-5" />
                                 </Button>
                                 {(slides[currentSlide] as any).secondaryCta && (
                                     <Button
-                                        asChild
+                                        href={(slides[currentSlide] as any).secondaryLink}
                                         size="lg"
                                         variant="outline"
                                         className="bg-transparent text-white border-2 border-white hover:bg-white hover:text-espresso transition-all duration-300 text-lg px-10 py-6 h-auto cursor-pointer"
                                     >
-                                        <a href={(slides[currentSlide] as any).secondaryLink}>
-                                            {(slides[currentSlide] as any).secondaryCta}
-                                        </a>
+                                        {(slides[currentSlide] as any).secondaryCta}
                                     </Button>
                                 )}
                             </div>

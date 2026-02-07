@@ -1,0 +1,20 @@
+{
+    "keep": {
+        "days": true,
+        "amount": 14
+    },
+    "auditLog": "c:\\IDE-PROJECTS\\ANTIGRAVITY\\PATHAK\\projects\\amrit-wp-nextjs\\logs\\.71b0b5b6e4b29d01ea80017a5178f28ba423b5f5-audit.json",
+    "files": [
+        {
+            "date": 1770308977922,
+            "name": "c:\\IDE-PROJECTS\\ANTIGRAVITY\\PATHAK\\projects\\amrit-wp-nextjs\\logs\\mcp-puppeteer-2026-02-05.log",
+            "hash": "507a5b3de09ff624e51de1c49f0f07268f491fe96b42556ec795e8ec33fa3a9c"
+        },
+        {
+            "date": 1770367549581,
+            "name": "c:\\IDE-PROJECTS\\ANTIGRAVITY\\PATHAK\\projects\\amrit-wp-nextjs\\logs\\mcp-puppeteer-2026-02-06.log",
+            "hash": "e5b30d6dbc6ffe93a32fa8b4916f72e46c80a7c4df53a3e28f4725052a3305b8"
+        }
+    ],
+    "hashType": "sha256"
+}

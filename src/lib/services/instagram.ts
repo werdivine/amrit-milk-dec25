@@ -1,4 +1,4 @@
-import { client } from "../sanity";
+import { client, writeClient } from "../sanity";
 
 const INSTAGRAM_API_URL = "https://graph.instagram.com/me/media";
 
@@ -29,7 +29,9 @@ export async function fetchInstagramMedia(accessToken: string): Promise<Instagra
 
 export async function syncInstagramToSanity() {
     // 1. Try to get token from Sanity Settings first
-    const settings = await client.fetch(`*[_type == "siteSettings"][0]{instagramAccessToken}`);
+    const settings = await client.fetch(`*[_type == "siteSettings"][0]{instagramAccessToken}`, {}, {
+        next: { tags: ["siteSettings"] }
+    });
     let accessToken = settings?.instagramAccessToken;
 
     // 2. Fallback to Env Var
@@ -77,7 +79,7 @@ export async function syncInstagramToSanity() {
             const imageRes = await fetch(imageUrl);
             if (imageRes.ok) {
                 const blob = await imageRes.blob();
-                imageAsset = await client.assets.upload("image", blob, {
+                imageAsset = await writeClient.assets.upload("image", blob, {
                     filename: `instagram-${media.id}.jpg`,
                 });
             }
@@ -91,7 +93,7 @@ export async function syncInstagramToSanity() {
             caption: media.caption || "",
             url: media.permalink,
             mediaType: media.media_type,
-            isVisible: false, // User must manually approve
+            isVisible: true, // Set to true by default as requested by user for real-time sync
             order: 0,
             image: imageAsset
                 ? {
@@ -104,7 +106,7 @@ export async function syncInstagramToSanity() {
                 : undefined,
         };
 
-        await client.create(doc);
+        await writeClient.create(doc);
         results.created++;
     }
 

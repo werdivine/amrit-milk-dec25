@@ -1,0 +1,29 @@
+[33mcommit ad4f3068cfe8cc4712b0113433f3ea431f113a77[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: werdivine <cafesuncity77@gmail.com>
+Date:   Fri Feb 6 18:07:20 2026 +0530
+
+    fix: resolve HeroSlider type error and finalize push
+
+[33mcommit c8f045ddc19917f461bb6175e174ab196b4aa6a5[m
+Author: werdivine <cafesuncity77@gmail.com>
+Date:   Fri Feb 6 18:03:11 2026 +0530
+
+    fix: comprehensive build and deployment fixes
+
+[33mcommit 782d7f07d67f4e758f7c744faf4936c5307a5686[m[33m ([m[1;31morigin/main[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: werdivine <cafesuncity77@gmail.com>
+Date:   Fri Feb 6 16:04:26 2026 +0530
+
+    FINAL FIX: Resolve Prisma conflict and terminal crashes
+
+[33mcommit 416060530620f724acaa3c41dca767f4a7f2cd39[m
+Author: werdivine <cafesuncity77@gmail.com>
+Date:   Fri Feb 6 14:15:59 2026 +0530
+
+    Fix next.config.mjs: Reduce remotePatterns to under 50 and fix invalid entries
+
+[33mcommit cb22c772708a612c013668067f6ce5fa16a8b8b9[m
+Author: werdivine <cafesuncity77@gmail.com>
+Date:   Fri Feb 6 13:56:35 2026 +0530
+
+    Fix Vercel build error: Remove invalid payload and i18n imports from next.config.mjs

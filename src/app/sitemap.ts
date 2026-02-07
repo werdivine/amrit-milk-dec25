@@ -23,6 +23,10 @@ const staticPages = [
     { path: "/privacy", priority: 0.3, changefreq: "yearly" },
     { path: "/terms", priority: 0.3, changefreq: "yearly" },
     { path: "/refund", priority: 0.3, changefreq: "yearly" },
+    // Additional high-priority pages
+    { path: "/why-amrit-milk", priority: 0.9, changefreq: "weekly" },
+    { path: "/a2-milk-benefits", priority: 0.9, changefreq: "weekly" },
+    { path: "/bilona-ghee-benefits", priority: 0.9, changefreq: "weekly" },
 ];
 
 // SEO landing pages
@@ -31,6 +35,9 @@ const landingPages = [
     { path: "/lp/bilona-ghee-lucknow", priority: 0.9, changefreq: "weekly" },
     { path: "/lp/farm-fresh-milk-lucknow", priority: 0.9, changefreq: "weekly" },
     { path: "/lp/why-families-choose-amrit", priority: 0.8, changefreq: "monthly" },
+    // Additional landing pages
+    { path: "/lp/organic-milk-delivery-lucknow", priority: 0.9, changefreq: "weekly" },
+    { path: "/lp/pure-a2-gir-cow-milk", priority: 0.9, changefreq: "weekly" },
 ];
 
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
@@ -90,29 +97,34 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     // Blog posts (if available)
     let blogEntries: MetadataRoute.Sitemap = [];
     try {
-        // Import dynamically to avoid issues if the module doesn't exist
-        const { getAllBlogs } = await import("@/lib/wordpressBlog");
-        const blogs = await getAllBlogs();
-        blogEntries = blogs.map((blog: any) => ({
-            url: `${BASE_URL}/blog/${blog.slug}`,
-            lastModified: blog.modified
-                ? new Date(blog.modified)
-                : currentDate,
-            changeFrequency: "monthly" as const,
-            priority: 0.7,
-            images: blog.featuredImage
-                ? [
-                      {
-                          loc: blog.featuredImage,
-                          caption: blog.title.rendered,
-                          title: blog.title.rendered,
-                      },
-                  ]
-                : undefined,
-        }));
-    } catch {
+        // Use getBlogPosts from wordpressBlog
+        const { getBlogPosts } = await import("@/lib/wordpressBlog");
+        
+        if (typeof getBlogPosts === 'function') {
+            const blogs = await getBlogPosts();
+            if (Array.isArray(blogs)) {
+                blogEntries = blogs.map((blog: any) => ({
+                    url: `${BASE_URL}/blog/${blog.slug}`,
+                    lastModified: blog.modified
+                        ? new Date(blog.modified)
+                        : currentDate,
+                    changeFrequency: "monthly" as const,
+                    priority: 0.7,
+                    images: blog.featuredImage
+                        ? [
+                              {
+                                  loc: blog.featuredImage,
+                                  caption: blog.title?.rendered || blog.title,
+                                  title: blog.title?.rendered || blog.title,
+                              },
+                          ]
+                        : undefined,
+                }));
+            }
+        }
+    } catch (error) {
         // Blog fetching is optional
-        console.log("Blog posts not available for sitemap");
+        console.log("Blog posts not available for sitemap:", error);
     }
 
     return [...staticEntries, ...landingEntries, ...productEntries, ...blogEntries];

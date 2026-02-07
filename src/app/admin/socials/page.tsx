@@ -3,6 +3,7 @@
 import { Section } from "@/components/ui/section";
 import { CheckCircle, ExternalLink, Instagram, MapPin, RefreshCw, XCircle } from "lucide-react";
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 interface SocialStatus {
     instagram: boolean;
@@ -112,18 +113,19 @@ export default function AdminSocialsPage() {
                                     )}
                                 </div>
 
-                                <p className="text-espresso-muted dark:text-ivory/60 mb-8 h-12">
-                                    Connect your Instagram account to automatically sync your latest
-                                    posts to the website homepage.
-                                </p>
+                                <div className="flex flex-col gap-4">
+                                    <button
+                                        onClick={() => handleConnect("instagram")}
+                                        className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                                    >
+                                        {status.instagram ? "Reconnect Instagram" : "Connect Instagram"}
+                                        <ExternalLink className="w-4 h-4" />
+                                    </button>
 
-                                <button
-                                    onClick={() => handleConnect("instagram")}
-                                    className="w-full py-4 bg-gradient-to-r from-purple-500 to-pink-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
-                                >
-                                    {status.instagram ? "Reconnect Instagram" : "Connect Instagram"}
-                                    <ExternalLink className="w-4 h-4" />
-                                </button>
+                                    {status.instagram && (
+                                        <SyncButton platform="instagram" />
+                                    )}
+                                </div>
                             </div>
                         </div>
 
@@ -166,18 +168,19 @@ export default function AdminSocialsPage() {
                                     )}
                                 </div>
 
-                                <p className="text-espresso-muted dark:text-ivory/60 mb-8 h-12">
-                                    Connect your Google Business Profile to display your latest
-                                    5-star reviews and build trust.
-                                </p>
+                                <div className="flex flex-col gap-4">
+                                    <button
+                                        onClick={() => handleConnect("google")}
+                                        className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
+                                    >
+                                        {status.google ? "Reconnect Google" : "Connect Google"}
+                                        <ExternalLink className="w-4 h-4" />
+                                    </button>
 
-                                <button
-                                    onClick={() => handleConnect("google")}
-                                    className="w-full py-4 bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-bold rounded-xl shadow-lg hover:shadow-xl hover:scale-[1.02] transition-all flex items-center justify-center gap-2"
-                                >
-                                    {status.google ? "Reconnect Google" : "Connect Google"}
-                                    <ExternalLink className="w-4 h-4" />
-                                </button>
+                                    {status.google && (
+                                        <SyncButton platform="google" />
+                                    )}
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -199,6 +202,53 @@ export default function AdminSocialsPage() {
         </main>
     );
 }
+
+function SyncButton({ platform }: { platform: "instagram" | "google" }) {
+    const [syncing, setSyncing] = useState(false);
+    const [result, setResult] = useState<any>(null);
+
+    const handleSync = async () => {
+        setSyncing(true);
+        setResult(null);
+        try {
+            const endpoint = platform === "instagram" 
+                ? "/api/admin/sync-instagram" 
+                : "/api/admin/sync-google-reviews";
+            const res = await fetch(endpoint);
+            const data = await res.json();
+            setResult(data);
+        } catch (error) {
+            setResult({ success: false, error: "Sync failed" });
+        } finally {
+            setSyncing(false);
+        }
+    };
+
+    return (
+        <div className="space-y-2">
+            <button
+                onClick={handleSync}
+                disabled={syncing}
+                className="w-full py-3 bg-white dark:bg-white/5 border border-creme-dark dark:border-white/10 text-espresso dark:text-white font-bold rounded-xl hover:bg-creme-dark/20 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            >
+                {syncing ? (
+                    <RefreshCw className="w-4 h-4 animate-spin" />
+                ) : (
+                    <RefreshCw className="w-4 h-4" />
+                )}
+                {syncing ? "Syncing..." : `Sync ${platform === 'instagram' ? 'Feed' : 'Reviews'} Now`}
+            </button>
+            {result && (
+                <p className={`text-[10px] text-center font-bold uppercase tracking-wider ${result.success ? 'text-green-500' : 'text-red-500'}`}>
+                    {result.success 
+                        ? `Success: ${result.stats?.created || 0} created, ${result.stats?.skipped || 0} skipped` 
+                        : `Error: ${result.error}`}
+                </p>
+            )}
+        </div>
+    );
+}
+
 
 function ImportPostForm() {
     const [url, setUrl] = useState("");
@@ -295,11 +345,14 @@ function ImportPostForm() {
                         Preview
                     </p>
                     <div className="flex gap-4">
-                        <img
-                            src={preview.imageUrl}
-                            alt="Preview"
-                            className="w-32 h-32 object-cover rounded-xl"
-                        />
+                        <div className="relative w-32 h-32 overflow-hidden rounded-xl">
+                            <Image
+                                src={preview.imageUrl}
+                                alt="Preview"
+                                fill
+                                className="object-cover"
+                            />
+                        </div>
                         <div className="flex-1">
                             <p className="text-espresso dark:text-ivory text-sm line-clamp-4">
                                 {preview.caption || "(No caption)"}

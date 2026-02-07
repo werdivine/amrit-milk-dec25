@@ -1,0 +1,21 @@
+{
+  "name": "Amrit Milk Organic",
+  "short_name": "Amrit Milk",
+  "description": "Pure A2 Gir Cow Milk & Bilona Ghee in Lucknow",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f5f3e9",
+  "theme_color": "#d4a76a",
+  "icons": [
+    {
+      "src": "/assets/img/amrit-logo-transparent.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/assets/img/amrit-logo-transparent.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}

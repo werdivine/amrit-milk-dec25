@@ -1,2 +1,4 @@
 // Placeholder - Payload CMS removed
-export default {}
+const payloadConfig = {};
+const finalConfig = payloadConfig;
+export default finalConfig;

@@ -1,0 +1,12 @@
+User-agent: *
+Allow: /
+
+# Block admin and API routes
+Disallow: /admin/
+Disallow: /api/
+
+# Block internal search and user pages
+Disallow: /*?*
+
+# Sitemap reference
+Sitemap: https://amritmilkorganic.com/sitemap.xml

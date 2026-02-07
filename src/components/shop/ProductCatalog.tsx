@@ -3,7 +3,7 @@
 import { ProductCard } from "@/components/shop/ProductCard";
 import { Section } from "@/components/ui/section";
 import { useSearchParams } from "next/navigation";
-import { Suspense, useEffect, useState } from "react";
+import { Suspense, useEffect, useMemo, useState } from "react";
 
 interface ProductCatalogProps {
     initialProducts: any[];
@@ -13,7 +13,7 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
     const searchParams = useSearchParams();
     const [activeCategory, setActiveCategory] = useState("all");
 
-    const categories = [
+    const categories = useMemo(() => [
         { id: "all", name: "All Products", count: initialProducts.length },
         {
             id: "Combos",
@@ -75,7 +75,7 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
             name: "Other",
             count: initialProducts.filter((p) => p.category === "Other").length,
         },
-    ];
+    ], [initialProducts]);
 
     useEffect(() => {
         const cat = searchParams.get("category");
@@ -86,7 +86,7 @@ function ProductCatalogContent({ initialProducts }: ProductCatalogProps) {
                 setActiveCategory(matched.id);
             }
         }
-    }, [searchParams]);
+    }, [searchParams, categories]);
 
     // Sort products: Combos first, then rest
     const sortedProducts = [...initialProducts].sort((a, b) => {

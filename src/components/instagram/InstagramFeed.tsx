@@ -182,7 +182,7 @@ export function InstagramFeed({
               <InstagramPostCard key={post.id} post={post} showMetrics={showMetrics} showCaption={showCaption} aspectRatio={aspectRatio} />
             ))}
           </div>
-          {refreshing && <div className="mt-4 flex justify-center"><div className="h-6 w-6 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" />}</div>}
+          {refreshing && <div className="mt-4 flex justify-center"><div className="h-6 w-6 animate-spin rounded-full border-2 border-amber-500 border-t-transparent" /></div>}
         </>
       )}
     </section>

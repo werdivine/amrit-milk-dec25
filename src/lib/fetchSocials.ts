@@ -1,40 +1,60 @@
 import { instagramPosts as staticInstagramPosts } from "@/data/instagram";
 import { googleReviews as staticGoogleReviews } from "@/data/reviews";
-import { client } from "./sanity";
+import { client, projectId } from "./sanity";
 
 export async function getInstagramPosts() {
     try {
-        if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+        if (!projectId) {
             return staticInstagramPosts;
         }
 
-        const query = `*[_type == "instagramPost" && isVisible == true] | order(order asc) {
+        // Fetch a larger pool of posts to allow for randomization
+        const query = `*[_type == "instagramPost" && isVisible == true] | order(_createdAt desc) [0...100] {
       "id": _id,
       "url": url,
       "imageUrl": image.asset->url,
-      "caption": caption
+      "caption": caption,
+      "mediaType": mediaType
     }`;
 
-        const dynamicPosts = await client.fetch(query);
+        const dynamicPosts = await client.fetch(query, {}, {
+            next: { 
+                revalidate: 60,
+                tags: ["instagramPost", "all"]
+            }
+        });
         
-        // Combine dynamic with static and remove duplicates by URL
-        const combined = [...(dynamicPosts || []), ...staticInstagramPosts];
+        // Combine dynamic with static
+        // Prioritize dynamic posts (real content from Sanity)
+        const dynamicPostsList = dynamicPosts || [];
+        
+        // Remove duplicates by URL
+        const combined = [...dynamicPostsList, ...staticInstagramPosts];
         const unique = Array.from(new Map(combined.map(p => [p.url, p])).values());
         
-        return unique.length > 0 ? unique : staticInstagramPosts;
+        // If we have dynamic posts, show them first
+        if (dynamicPostsList.length > 0) {
+            // Return unique posts, prioritizing dynamic ones
+            // We take the latest 12 dynamic posts for a nice grid
+            return unique.slice(0, 12);
+        }
+        
+        // Fallback to static, maybe slightly randomized but keep latest first if possible
+        return unique.slice(0, 12);
     } catch (error) {
         console.error("Error fetching Instagram posts:", error);
-        return staticInstagramPosts;
+        return staticInstagramPosts.slice(0, 12);
     }
 }
 
 export async function getGoogleReviews() {
     try {
-        if (!process.env.NEXT_PUBLIC_SANITY_PROJECT_ID) {
+        if (!projectId) {
             return staticGoogleReviews;
         }
 
-        const query = `*[_type == "googleReview"] | order(displayOrder asc) {
+        // Fetch more reviews
+        const query = `*[_type == "googleReview"] | order(date desc) [0...50] {
       "id": _id,
       "authorName": authorName,
       "rating": rating,
@@ -42,15 +62,22 @@ export async function getGoogleReviews() {
       "date": date
     }`;
 
-        const dynamicReviews = await client.fetch(query);
+        const dynamicReviews = await client.fetch(query, {}, {
+            next: { 
+                revalidate: 60,
+                tags: ["googleReview", "all"]
+            }
+        });
         
-        // Combine dynamic with static and remove duplicates by authorName and text
-        const combined = [...(dynamicReviews || []), ...staticGoogleReviews];
+        // Combine dynamic with static
+        const dynamicReviewsList = dynamicReviews || [];
+        const combined = [...dynamicReviewsList, ...staticGoogleReviews];
         const unique = Array.from(new Map(combined.map(r => [`${r.authorName}-${r.text.slice(0, 20)}`, r])).values());
         
-        return unique.length > 0 ? unique : staticGoogleReviews;
+        // Return latest reviews
+        return unique.slice(0, 20);
     } catch (error) {
         console.error("Error fetching Google reviews:", error);
-        return staticGoogleReviews;
+        return staticGoogleReviews.slice(0, 20);
     }
 }

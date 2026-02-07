@@ -4,6 +4,7 @@ export interface InstagramPost {
     imageUrl: string;
     caption: string;
     likes?: number;
+    mediaType?: string;
 }
 
 export const instagramPosts: InstagramPost[] = [

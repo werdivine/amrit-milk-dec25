@@ -84,9 +84,14 @@ export const metadata: Metadata = {
     manifest: "/manifest.json",
     alternates: {
         canonical: "https://amritmilkorganic.com",
+        languages: {
+            "en-IN": "https://amritmilkorganic.com",
+            "en-US": "https://amritmilkorganic.com",
+            "hi-IN": "https://amritmilkorganic.com/hi",
+        },
     },
     verification: {
-        google: "your-google-site-verification-code",
+        google: "G-1C4LN7YY4D",
     },
     other: {
         "geo.region": "IN-UP",
@@ -98,34 +103,31 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
     children,
-}: Readonly<{
+}: {
     children: React.ReactNode;
-}>) {
+}) {
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
-                <OrganizationSchema />
-                <LocalBusinessSchema />
-                <WebsiteSchema />
+                <Script
+                    src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
+                    strategy="afterInteractive"
+                />
+                <Script id="google-analytics" strategy="afterInteractive">
+                    {`
+                        window.dataLayer = window.dataLayer || [];
+                        function gtag(){dataLayer.push(arguments);}
+                        gtag('js', new Date());
+                        gtag('config', '${GA_MEASUREMENT_ID}');
+                    `}
+                </Script>
             </head>
-            {/* Google Analytics */}
-            <Script
-                src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
-                strategy="afterInteractive"
-            />
-            <Script id="google-analytics" strategy="afterInteractive">
-                {`
-                    window.dataLayer = window.dataLayer || [];
-                    function gtag(){dataLayer.push(arguments);}
-                    gtag('js', new Date());
-                    gtag('config', '${GA_MEASUREMENT_ID}');
-                `}
-            </Script>
-            <body
-                className={`${inter.variable} ${playfair.variable} antialiased flex flex-col min-h-screen bg-creme dark:bg-midnight transition-colors duration-500`}
-            >
+            <body className={`${inter.variable} ${playfair.variable} font-sans bg-midnight text-ivory antialiased`}>
                 <ThemeProvider>
                     <CartProvider>
+                        <OrganizationSchema />
+                        <LocalBusinessSchema />
+                        <WebsiteSchema />
                         {children}
                         <ChatWidget />
                     </CartProvider>

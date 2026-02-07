@@ -8,6 +8,7 @@ import { getProducts } from "@/lib/fetchProducts";
 import { getGoogleReviews, getInstagramPosts } from "@/lib/fetchSocials";
 import type { Metadata } from "next";
 
+
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
 import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
@@ -238,7 +239,7 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <InstagramFeed />
+            <InstagramFeed initialPosts={posts} />
             <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 

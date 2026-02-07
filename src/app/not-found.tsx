@@ -59,6 +59,18 @@ export default function NotFound() {
                 ]}
             />
 
+            {/* Organization Schema for 404 page */}
+            <script type="application/ld+json">
+                {JSON.stringify({
+                    "@context": "https://schema.org",
+                    "@type": "WebPage",
+                    "url": "https://amritmilkorganic.com/404",
+                    "name": "Page Not Found",
+                    "description": "The requested page could not be found on Amrit Milk Organic website. Please check the URL or use our search function to find what you're looking for.",
+                    "inLanguage": "en-IN"
+                })}
+            </script>
+
             <div className="max-w-2xl w-full text-center">
                 {/* 404 Illustration */}
                 <div className="mb-8">

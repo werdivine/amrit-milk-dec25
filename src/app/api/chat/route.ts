@@ -70,13 +70,17 @@ export async function POST(req: Request) {
         const lastMessage = messages[messages.length - 1];
         const userInput = lastMessage?.content || "";
 
+        console.log(`[Amrit AI] Received query: "${userInput.slice(0, 50)}..."`);
+
         // Guardrail: Block malicious input
         if (isBlocked(userInput)) {
+            console.warn("[Amrit AI] Blocked input detected");
             return Response.json({ error: "Invalid input" }, { status: 400 });
         }
 
         // Check for subscription/bulk queries - escalate to WhatsApp
         if (isSubscriptionQuery(userInput)) {
+            console.log("[Amrit AI] Subscription query detected - escalating to WhatsApp");
             return new Response(
                 JSON.stringify({
                     role: "assistant",
@@ -86,7 +90,10 @@ Aap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi
 
 📱 Direct WhatsApp: wa.me/918130693767`,
                 }),
-                { headers: { "Content-Type": "application/json" } }
+                { 
+                    status: 200,
+                    headers: { "Content-Type": "application/json" } 
+                }
             );
         }
 
@@ -133,12 +140,11 @@ Always represent the purity and traditional values of Amrit Milk.`;
                 role: m.role as "user" | "assistant" | "system",
                 content: m.content,
             })),
-            maxTokens: 500,
             temperature: 0.5, // Lower temperature for more factual responses from KB
         });
 
         console.log("[Amrit AI] streamText success");
-        return result.toDataStreamResponse();
+        return result.toTextStreamResponse();
     } catch (error: any) {
         console.error("[Amrit AI] Error details:", {
             message: error.message,

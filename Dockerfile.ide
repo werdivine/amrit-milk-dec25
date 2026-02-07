@@ -1,0 +1,47 @@
+# Use the official code-server image as the base image
+FROM codercom/code-server:latest
+
+# Set environment variables
+ENV PASSWORD=amrit123
+ENV SUDO_PASSWORD=amrit123
+
+# Set working directory in the container
+WORKDIR /home/coder/project
+
+# Update system and install additional dependencies needed for the project
+RUN sudo apt-get update && \
+    sudo apt-get install -y \
+    git \
+    curl \
+    wget \
+    python3 \
+    python3-pip \
+    build-essential \
+    && sudo rm -rf /var/lib/apt/lists/*
+
+# Install Node.js and npm (ensure compatible version)
+RUN curl -sL https://deb.nodesource.com/setup_18.x | sudo -E bash - && \
+    sudo apt-get install -y nodejs
+
+# Install Playwright for browser automation (used in the project)
+RUN npm install -g playwright && \
+    npx playwright install chromium firefox webkit
+
+# Install project dependencies
+COPY package*.json ./
+RUN npm ci
+
+# Copy the project files
+COPY . .
+
+# Generate Prisma client
+RUN npx prisma generate
+
+# Change ownership to the coder user
+RUN sudo chown -R coder:coder /home/coder
+
+# Expose port for code-server (default is 8080)
+EXPOSE 8080
+
+# Start code-server
+CMD ["code-server", "--bind-addr", "0.0.0.0:8080", "--auth", "password", "."]

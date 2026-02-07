@@ -1,11 +1,15 @@
 import { syncGoogleReviewsToSanity } from "@/lib/services/google";
 import { NextResponse } from "next/server";
+import { revalidateTag } from "next/cache";
 
 export const dynamic = "force-dynamic";
 
 export async function GET(request: Request) {
     try {
         const results = await syncGoogleReviewsToSanity();
+
+        // Trigger revalidation for the UI
+        revalidateTag("googleReview");
 
         return NextResponse.json({
             success: true,

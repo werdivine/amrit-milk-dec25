@@ -10,6 +10,7 @@ import {
     useState,
 } from "react";
 import { type CartItem } from "./cart-utils";
+import { trackAddToCart } from "./analytics";
 
 interface CartContextType {
     cart: CartItem[];
@@ -60,6 +61,15 @@ export function CartProvider({ children }: { children: ReactNode }) {
     }, [cart, mounted]);
 
     const addToCart = useCallback((item: Omit<CartItem, "quantity">) => {
+        // Track add to cart conversion
+        trackAddToCart({
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            category: item.category,
+            quantity: 1,
+        });
+
         setCart((prevCart) => {
             const existing = prevCart.find((i) => i.id === item.id);
             if (existing) {
