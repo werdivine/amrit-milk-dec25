@@ -18,27 +18,27 @@ export async function getInstagramPosts() {
     }`;
 
         const dynamicPosts = await client.fetch(query, {}, {
-            next: { 
+            next: {
                 revalidate: 60,
                 tags: ["instagramPost", "all"]
             }
         });
-        
+
         // Combine dynamic with static
         // Prioritize dynamic posts (real content from Sanity)
         const dynamicPostsList = dynamicPosts || [];
-        
+
         // Remove duplicates by URL
         const combined = [...dynamicPostsList, ...staticInstagramPosts];
         const unique = Array.from(new Map(combined.map(p => [p.url, p])).values());
-        
+
         // If we have dynamic posts, show them first
         if (dynamicPostsList.length > 0) {
             // Return unique posts, prioritizing dynamic ones
             // We take the latest 12 dynamic posts for a nice grid
             return unique.slice(0, 12);
         }
-        
+
         // Fallback to static, maybe slightly randomized but keep latest first if possible
         return unique.slice(0, 12);
     } catch (error) {
@@ -53,8 +53,8 @@ export async function getGoogleReviews() {
             return staticGoogleReviews;
         }
 
-        // Fetch more reviews
-        const query = `*[_type == "googleReview"] | order(date desc) [0...50] {
+        // Fetch more reviews with strict 4+ star rating filter
+        const query = `*[_type == "googleReview" && rating >= 4] | order(date desc) [0...50] {
       "id": _id,
       "authorName": authorName,
       "rating": rating,
@@ -63,17 +63,17 @@ export async function getGoogleReviews() {
     }`;
 
         const dynamicReviews = await client.fetch(query, {}, {
-            next: { 
+            next: {
                 revalidate: 60,
                 tags: ["googleReview", "all"]
             }
         });
-        
+
         // Combine dynamic with static
         const dynamicReviewsList = dynamicReviews || [];
         const combined = [...dynamicReviewsList, ...staticGoogleReviews];
         const unique = Array.from(new Map(combined.map(r => [`${r.authorName}-${r.text.slice(0, 20)}`, r])).values());
-        
+
         // Return latest reviews
         return unique.slice(0, 20);
     } catch (error) {
