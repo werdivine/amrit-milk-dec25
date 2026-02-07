@@ -11,27 +11,11 @@ interface GoogleReviewsProps {
     reviews: GoogleReview[];
 }
 
-// Fisher-Yates shuffle algorithm
-function shuffleArray<T>(array: T[]): T[] {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-        const j = Math.floor(Math.random() * (i + 1));
-        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-}
+// Fisher-Yates shuffle algorithm removed to prevent hydration mismatch
 
 export function GoogleReviews({ reviews }: GoogleReviewsProps) {
-    // Combine dynamic reviews with static ones, remove duplicates
-    const allReviews = useMemo(() => {
-        const combined = [
-            ...(reviews || []),
-            ...staticGoogleReviews.filter(sr => !(reviews || []).some(r => r.id === sr.id || r.authorName === sr.authorName))
-        ];
-        // Shuffle and take 15-18 random reviews
-        const shuffled = shuffleArray(combined);
-        return shuffled.slice(0, Math.min(18, shuffled.length));
-    }, [reviews]);
+    // Use reviews directly from props to avoid hydration mismatch (shuffling must happen on server or inside useEffect)
+    const allReviews = reviews || [];
 
     // Split reviews into two rows for the marquee
     const firstRow = allReviews.slice(0, Math.ceil(allReviews.length / 2));
