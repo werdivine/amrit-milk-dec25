@@ -44,7 +44,7 @@ export async function generateMetadata({
     const title = `${product.title} | Amrit Milk Organic`;
     const description = product.description;
     // Check for optimized smaller variants for WhatsApp/Social (<300KB)
-    let socialImageUrl = product.image;
+    let socialImageUrl = product.image || "";
     if (socialImageUrl.includes("gir_1l_v2.png")) {
         socialImageUrl = "/assets/img/products/amrit_milk_gir_1l_single.png";
     } else if (socialImageUrl.includes("sahiwal_1l_v2.png")) {
@@ -102,7 +102,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
     // Get specific content based on category or slug
     let contentKey = basicProduct.category;
-    if (basicProduct.title.toLowerCase().includes("ghee")) contentKey = "ghee"; // Force ghee if title has it
+    if ((basicProduct.title || "").toLowerCase().includes("ghee")) contentKey = "ghee"; // Force ghee if title has it
     const content = getContentForProduct(contentKey);
 
     // Recommended products (same category, excluding current)
@@ -114,8 +114,8 @@ export default async function ProductPage({ params }: { params: { slug: string }
     const bestSellingProducts = products
         .filter(
             (p: any) =>
-                p.badge?.toLowerCase().includes("seller") ||
-                p.badge?.toLowerCase().includes("value") ||
+                (p.badge || "").toLowerCase().includes("seller") ||
+                (p.badge || "").toLowerCase().includes("value") ||
                 p.featured
         )
         .slice(0, 4);
@@ -292,17 +292,17 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                 basicProduct.ingredients ||
                                 basicProduct.benefits ||
                                 basicProduct.howToUse) && (
-                                <div className="space-y-8 p-6 rounded-2xl bg-gradient-to-br from-theme-elevated to-theme-secondary/30 border border-theme-light">
-                                    <ProductHighlightsSection
-                                        highlights={basicProduct.highlights || []}
-                                    />
-                                    <IngredientsSection
-                                        ingredients={basicProduct.ingredients || []}
-                                    />
-                                    <BenefitsSection benefits={basicProduct.benefits || []} />
-                                    <HowToUseSection steps={basicProduct.howToUse || []} />
-                                </div>
-                            )}
+                                    <div className="space-y-8 p-6 rounded-2xl bg-gradient-to-br from-theme-elevated to-theme-secondary/30 border border-theme-light">
+                                        <ProductHighlightsSection
+                                            highlights={basicProduct.highlights || []}
+                                        />
+                                        <IngredientsSection
+                                            ingredients={basicProduct.ingredients || []}
+                                        />
+                                        <BenefitsSection benefits={basicProduct.benefits || []} />
+                                        <HowToUseSection steps={basicProduct.howToUse || []} />
+                                    </div>
+                                )}
                         </div>
                     </div>
                 </div>
