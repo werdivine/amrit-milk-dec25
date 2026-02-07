@@ -5,7 +5,7 @@
 
 import { products } from "@/lib/products";
 import { KNOWLEDGE_BASE } from "@/lib/ai/knowledge-base";
-import { google } from "@ai-sdk/google";
+import { createGoogleGenerativeAI } from "@ai-sdk/google";
 import { streamText } from "ai";
 
 // Simple guardrails
@@ -136,6 +136,11 @@ Always represent the purity and traditional values of Amrit Milk.`;
 
         console.log("[Amrit AI] Request Body:", JSON.stringify({ messages }, null, 2));
 
+        // Initialize Google Provider with explicit API key
+        const google = createGoogleGenerativeAI({
+            apiKey: apiKey
+        });
+
         const result = await streamText({
             model: google("gemini-1.5-flash"), // Use Gemini via Google AI SDK
             system: systemPrompt,
@@ -144,7 +149,6 @@ Always represent the purity and traditional values of Amrit Milk.`;
                 content: m.content,
             })),
             temperature: 0.5, // Lower temperature for more factual responses from KB
-            apiKey: apiKey // Explicitly pass API key if not picked up by env default
         });
 
         console.log("[Amrit AI] streamText success");
