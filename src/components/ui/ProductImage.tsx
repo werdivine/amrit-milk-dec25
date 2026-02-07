@@ -46,6 +46,9 @@ const productThemeMap: Record<string, { gradient: string; icon: any; glow: strin
 };
 
 export function ProductImage({ src, alt, category, className, id }: ProductImageProps) {
+    // Ensure src is never null/undefined
+    const safeSrc = src || "";
+
     // Determine the visual theme based on ID or category
     let theme = productThemeMap["Other"];
 
@@ -59,9 +62,9 @@ export function ProductImage({ src, alt, category, className, id }: ProductImage
 
     // Use actual image if it's not a known duplicate/placeholder
     const isPlaceholder =
-        (src.includes("paneer.png") && id?.includes("curd")) ||
-        (src.includes("oil-bottle.png") && !id?.includes("mustard")) ||
-        (src.includes("sweets.png") &&
+        (safeSrc.includes("paneer.png") && id?.includes("curd")) ||
+        (safeSrc.includes("oil-bottle.png") && !id?.includes("mustard")) ||
+        (safeSrc.includes("sweets.png") &&
             (id?.includes("jaggery") || id?.includes("turmeric") || id?.includes("balm")));
 
     if (!isPlaceholder && src) {

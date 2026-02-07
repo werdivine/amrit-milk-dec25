@@ -153,7 +153,7 @@ export function ProductSchema({
         "@context": "https://schema.org",
         "@type": "Product",
         name,
-        image: image.startsWith("http") ? image : `https://amritmilkorganic.com${image}`,
+        image: (image || "").startsWith("http") ? image : `https://amritmilkorganic.com${image}`,
         description,
         sku,
         brand: {
@@ -164,7 +164,7 @@ export function ProductSchema({
             "@type": "Offer",
             url: `https://amritmilkorganic.com/products/${sku.toLowerCase().replace(/\s+/g, "-")}`,
             priceCurrency: currency,
-            price: price.replace(/[^0-9.]/g, ""),
+            price: (price || "0").replace(/[^0-9.]/g, ""),
             availability,
             seller: {
                 "@type": "Organization",
@@ -261,7 +261,7 @@ export function BreadcrumbListSchema({ items }: BreadcrumbListSchemaProps) {
             "@type": "ListItem",
             position: index + 1,
             name: item.name,
-            item: item.item.startsWith("http")
+            item: (item.item || "").startsWith("http")
                 ? item.item
                 : `https://amritmilkorganic.com${item.item}`,
         })),
@@ -295,7 +295,7 @@ export function ArticleSchema({
         "@type": "Article",
         headline,
         description,
-        image: image.startsWith("http") ? image : `https://amritmilkorganic.com${image}`,
+        image: (image || "").startsWith("http") ? image : `https://amritmilkorganic.com${image}`,
         datePublished,
         dateModified: dateModified || datePublished,
         author: {

@@ -118,12 +118,12 @@ export const productContent: Record<string, any> = {
 };
 
 export function getContentForProduct(category: string) {
-    const key = category.toLowerCase();
+    const key = (category || "").toLowerCase();
     if (key === 'dairy') return productContent.dairy;
     if (key.includes('ghee') || key === 'dairy' && false) return productContent.ghee; // Ghee is usually under dairy, need specific check
     if (key === 'oils') return productContent.oils;
     if (key === 'sweets' || key === 'jaggery') return productContent.sweets;
     if (key === 'honey') return { ...productContent.default, whatItIs: "Raw wild forest honey." };
-    
+
     return productContent.default;
 }
