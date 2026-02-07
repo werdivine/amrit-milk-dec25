@@ -5,7 +5,7 @@
 
 import { products } from "@/lib/products";
 import { KNOWLEDGE_BASE } from "@/lib/ai/knowledge-base";
-import { openai } from "@ai-sdk/openai";
+import { google } from "@ai-sdk/google";
 import { streamText } from "ai";
 
 // Simple guardrails
@@ -57,12 +57,13 @@ function findProductPricing(query: string): string {
 
 export async function POST(req: Request) {
     try {
-        // Check for OpenAI API Key
-        if (!process.env.OPENAI_API_KEY) {
-            console.error("[Amrit AI] Missing OPENAI_API_KEY environment variable");
-            return Response.json({ 
+        // Check for Google AI API Key
+        const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
+        if (!apiKey) {
+            console.error("[Amrit AI] Missing Google AI API Key environment variable");
+            return Response.json({
                 error: "Technical issue: AI configuration missing.",
-                details: "OPENAI_API_KEY is not configured on the server."
+                details: "GOOGLE_GENERATIVE_AI_API_KEY is not configured on the server."
             }, { status: 500 });
         }
 
@@ -90,9 +91,9 @@ Aap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi
 
 📱 Direct WhatsApp: wa.me/918130693767`,
                 }),
-                { 
+                {
                     status: 200,
-                    headers: { "Content-Type": "application/json" } 
+                    headers: { "Content-Type": "application/json" }
                 }
             );
         }
@@ -116,6 +117,8 @@ Do NOT hallucinate or make up details not present in the Knowledge Base.
 ## Knowledge Base (THE SOURCE OF TRUTH)
 ${kbContext}
 
+${pricingContext}
+
 ## Your Personality
 - Tone: "Premium Calm + Desi Warmth" (Friendly, respectful, and deeply knowledgeable about traditional Indian farming).
 - Language: Primary Hindi/Hinglish. Use "Aap" and "Ji" to show respect.
@@ -134,13 +137,14 @@ Always represent the purity and traditional values of Amrit Milk.`;
         console.log("[Amrit AI] Request Body:", JSON.stringify({ messages }, null, 2));
 
         const result = await streamText({
-            model: openai("gpt-4o-mini"),
+            model: google("gemini-1.5-flash"), // Use Gemini via Google AI SDK
             system: systemPrompt,
             messages: messages.map((m: { role: string; content: string }) => ({
                 role: m.role as "user" | "assistant" | "system",
                 content: m.content,
             })),
             temperature: 0.5, // Lower temperature for more factual responses from KB
+            apiKey: apiKey // Explicitly pass API key if not picked up by env default
         });
 
         console.log("[Amrit AI] streamText success");
@@ -152,9 +156,9 @@ Always represent the purity and traditional values of Amrit Milk.`;
             cause: error.cause,
             name: error.name
         });
-        return Response.json({ 
-            error: "Internal server error", 
-            details: error.message 
+        return Response.json({
+            error: "Internal server error",
+            details: error.message
         }, { status: 500 });
     }
 }

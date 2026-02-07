@@ -17,7 +17,15 @@ function SuccessContent() {
     useEffect(() => {
         console.log("SuccessContent: mounted, clearing cart");
         clearCart();
-    }, [clearCart]);
+
+        // Google Ads Conversion Event
+        if (typeof window !== "undefined" && (window as any).gtag) {
+            (window as any).gtag('event', 'conversion', {
+                'send_to': 'AW-17921700565/XnTpCLG5r_AbENXl3eFC',
+                'transaction_id': trackingId || orderId || '', // Use available ID
+            });
+        }
+    }, [clearCart, trackingId, orderId]);
 
     return (
         <main className="bg-creme dark:bg-midnight min-h-screen flex items-center justify-center transition-colors duration-500">
