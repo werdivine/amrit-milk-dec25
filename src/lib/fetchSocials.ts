@@ -72,7 +72,7 @@ export async function getGoogleReviews() {
         // Combine dynamic with static
         const dynamicReviewsList = dynamicReviews || [];
         const combined = [...dynamicReviewsList, ...staticGoogleReviews];
-        const unique = Array.from(new Map(combined.map(r => [`${r.authorName}-${r.text.slice(0, 20)}`, r])).values());
+        const unique = Array.from(new Map(combined.map(r => [`${r?.authorName || "user"}-${(r?.text || "").slice(0, 20)}`, r])).values());
 
         // Return latest reviews
         return unique.slice(0, 20);

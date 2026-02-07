@@ -48,24 +48,24 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
             <div className="flex-grow">
                 <Quote className="w-12 h-12 text-blue-500/10 mb-6 group-hover:text-blue-500/20 transition-colors" />
                 <p className="text-espresso dark:text-ivory/90 text-lg md:text-xl leading-relaxed mb-10 font-serif italic line-clamp-4">
-                    &quot;{review.text}&quot;
+                    &quot;{review?.text || ""}&quot;
                 </p>
             </div>
 
             <div className="flex items-center gap-5 mt-auto pt-10 border-t border-espresso/5 dark:border-white/5">
                 <div className="w-16 h-16 rounded-[1.5rem] bg-gradient-to-br from-blue-500 via-blue-600 to-indigo-700 flex items-center justify-center text-white font-bold text-2xl shadow-xl transform -rotate-3 group-hover:rotate-0 transition-all duration-500">
-                    {review.authorName.charAt(0)}
+                    {review?.authorName ? review.authorName.charAt(0) : "A"}
                 </div>
                 <div>
                     <div className="flex items-center gap-2 mb-1">
                         <p className="font-bold text-espresso dark:text-white text-xl">
-                            {review.authorName}
+                            {review?.authorName || "Anonymous"}
                         </p>
                         <CheckCircle2 className="w-4 h-4 text-green-500" />
                     </div>
                     <div className="flex items-center gap-3">
                         <p className="text-espresso/40 dark:text-ivory/40 text-xs font-bold uppercase tracking-wider">
-                            {review.date || "Verified Customer"}
+                            {review?.date || "Verified Customer"}
                         </p>
                         <div className="px-2 py-0.5 bg-green-500/10 rounded-full">
                             <span className="text-green-600 dark:text-green-400 text-[9px] font-black uppercase tracking-widest">Verified Purchase</span>
@@ -75,6 +75,8 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
             </div>
         </motion.div>
     );
+
+    if (!allReviews || allReviews.length === 0) return null;
 
     return (
         <Section className="bg-[#FDFBF7] dark:bg-midnight py-32 border-t border-espresso/5 dark:border-white/5 overflow-hidden">

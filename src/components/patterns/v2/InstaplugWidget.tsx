@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import { Section } from "@/components/ui/section";
 import { Instagram, ExternalLink } from "lucide-react";
 import Script from "next/script";
+import { cn } from "@/lib/utils";
 
 const INSTAPLUG_CONTAINER_ID = "b7572c48-53c9-4ace-ae3c-32e92f1c8441";
 
@@ -31,13 +32,10 @@ export function InstaplugWidget() {
         return () => observer.disconnect();
     }, []);
 
-    // Load Instaplug script when visible - now handled by Script component
-    useEffect(() => {
-        if (!isVisible || isLoaded) return;
-
-        // Check if script already exists (e.g. from previous navigation)
-        if (typeof window !== "undefined" && (window as any).renderApp && document.getElementById("instaplug-script")) {
-            try {
+    // Function to safely render or re-render the app
+    const renderInstaplug = () => {
+        try {
+            if (typeof window !== "undefined" && (window as any).renderApp) {
                 (window as any).renderApp({
                     containerId: INSTAPLUG_CONTAINER_ID,
                     domain: "https://app.instaplug.app/",
@@ -49,42 +47,33 @@ export function InstaplugWidget() {
                     colorLinkHover: "",
                 });
                 setIsLoaded(true);
-            } catch (e) {
-                console.error("Instaplug manual render failed:", e);
             }
+        } catch (e) {
+            console.error("Instaplug render failed:", e);
+        }
+    };
+
+    // Re-render if script is already loaded but widget becomes visible later
+    useEffect(() => {
+        if (isVisible && !isLoaded && typeof window !== "undefined" && (window as any).renderApp) {
+            renderInstaplug();
         }
     }, [isVisible, isLoaded]);
 
     return (
-        <Section className="bg-gradient-to-b from-white to-[#FDFBF7] dark:from-midnight-light to-midnight py-32 overflow-hidden">
+        <Section className="bg-gradient-to-b from-white to-[#FDFBF7] dark:from-midnight-light to-midnight py-24 md:py-32 overflow-hidden">
             {/* Google Fonts - Loaded safely */}
             <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Caveat:wght@400..700&family=Comfortaa:wght@300..700&family=EB+Garamond:ital,wght@0,400..800;1,400..800&family=Lexend:wght@100..900&family=Lobster&family=Lora:ital,wght@0,400..700;1,400..700&family=Merriweather:ital,wght@0,300;0,400;0,700;0,900;1,300;1,400;1,700;1,900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Oswald:wght@200..700&family=Pacifico&family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Roboto+Mono:ital,wght@0,100..700;1,100..700&family=Roboto+Serif:ital,opsz,wght@0,8..144,100..900;1,8..144,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&family=Spectral:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap" />
 
-            <Script
-                src="https://app.instaplug.app/platform/instaplug.js"
-                strategy="lazyOnload"
-                onLoad={() => {
-                    try {
-                        if (typeof window !== "undefined" && (window as any).renderApp) {
-                            (window as any).renderApp({
-                                containerId: INSTAPLUG_CONTAINER_ID,
-                                domain: "https://app.instaplug.app/",
-                                widgetClass: "",
-                                fontFamily: "",
-                                color: "",
-                                colorLink: "",
-                                colorLinkActive: "",
-                                colorLinkHover: "",
-                            });
-                            setIsLoaded(true);
-                        }
-                    } catch (e) {
-                        console.error("Instaplug render failed:", e);
-                    }
-                }}
-            />
+            {isVisible && (
+                <Script
+                    src="https://app.instaplug.app/platform/instaplug.js"
+                    strategy="afterInteractive"
+                    onLoad={renderInstaplug}
+                />
+            )}
 
-            <div className="container mx-auto px-4">
+            <div className="container mx-auto px-4" ref={containerRef}>
                 <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-20">
                     <div className="max-w-2xl">
                         <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-pink-500/10 text-pink-600 dark:text-pink-400 rounded-full text-xs font-bold uppercase tracking-widest border border-pink-500/20 mb-6">
@@ -113,23 +102,24 @@ export function InstaplugWidget() {
                     </div>
                 </div>
 
-                {/* Instaplug Container */}
-                <div
-                    ref={containerRef}
-                    id={INSTAPLUG_CONTAINER_ID}
-                    className="min-h-[400px] w-full"
-                >
+                {/* Instaplug Wrapper - Skeleton and Container are now siblings to avoid collision */}
+                <div className="relative min-h-[400px]">
                     {!isLoaded && (
-                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6">
+                        <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 animate-pulse">
                             {[...Array(10)].map((_, i) => (
                                 <div
                                     key={i}
-                                    className={`aspect-square bg-neutral-200 dark:bg-neutral-800 animate-pulse rounded-3xl ${i === 0 ? "md:col-span-2 md:row-span-2" : ""
+                                    className={`aspect-square bg-neutral-200 dark:bg-neutral-800 rounded-3xl ${i === 0 ? "md:col-span-2 md:row-span-2" : ""
                                         }`}
                                 />
                             ))}
                         </div>
                     )}
+                    {/* The specialized ID'd div is kept EMPTY for Instaplug to control safely */}
+                    <div
+                        id={INSTAPLUG_CONTAINER_ID}
+                        className={cn("w-full transition-opacity duration-1000", isLoaded ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none")}
+                    />
                 </div>
 
                 <div className="flex flex-col items-center mt-20">
