@@ -9,7 +9,7 @@ import {
     useMemo,
     useState,
 } from "react";
-import { type CartItem } from "./cart-utils";
+import { type CartItem, parsePrice } from "./cart-utils";
 import { trackAddToCart } from "./analytics";
 
 interface CartContextType {
@@ -64,8 +64,8 @@ export function CartProvider({ children }: { children: ReactNode }) {
         // Track add to cart conversion
         trackAddToCart({
             id: item.id,
-            name: item.name,
-            price: item.price,
+            name: item.title || "Product",
+            price: parsePrice(item.price || "0"),
             category: item.category,
             quantity: 1,
         });
