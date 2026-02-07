@@ -3,6 +3,7 @@
 import { Section } from "@/components/ui/section";
 import { ExternalLink, MapPin, Quote, Star, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
+import { useMemo } from "react";
 
 import { GoogleReview, googleReviews as staticGoogleReviews } from "@/data/reviews";
 
@@ -10,17 +11,31 @@ interface GoogleReviewsProps {
     reviews: GoogleReview[];
 }
 
+// Fisher-Yates shuffle algorithm
+function shuffleArray<T>(array: T[]): T[] {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+}
+
 export function GoogleReviews({ reviews }: GoogleReviewsProps) {
-    // Combine dynamic reviews with static ones
-    // We prioritize dynamic reviews (from Sanity) and keep them at the start
-    const displayReviews = [
-        ...(reviews || []),
-        ...staticGoogleReviews.filter(sr => !(reviews || []).some(r => r.id === sr.id || r.authorName === sr.authorName))
-    ].slice(0, 15); // Keep the latest ones at the front
+    // Combine dynamic reviews with static ones, remove duplicates
+    const allReviews = useMemo(() => {
+        const combined = [
+            ...(reviews || []),
+            ...staticGoogleReviews.filter(sr => !(reviews || []).some(r => r.id === sr.id || r.authorName === sr.authorName))
+        ];
+        // Shuffle and take 15-18 random reviews
+        const shuffled = shuffleArray(combined);
+        return shuffled.slice(0, Math.min(18, shuffled.length));
+    }, [reviews]);
 
     // Split reviews into two rows for the marquee
-    const firstRow = displayReviews.slice(0, Math.ceil(displayReviews.length / 2));
-    const secondRow = displayReviews.slice(Math.ceil(displayReviews.length / 2));
+    const firstRow = allReviews.slice(0, Math.ceil(allReviews.length / 2));
+    const secondRow = allReviews.slice(Math.ceil(allReviews.length / 2));
 
     const ReviewCard = ({ review, index }: { review: GoogleReview, index: number }) => (
         <motion.div
@@ -30,9 +45,9 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
             <div className="flex items-center justify-between mb-10">
                 <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
-                        <Star 
-                            key={i} 
-                            className={`w-5 h-5 md:w-6 md:h-6 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'}`} 
+                        <Star
+                            key={i}
+                            className={`w-5 h-5 md:w-6 md:h-6 ${i < review.rating ? 'fill-yellow-400 text-yellow-400' : 'text-gray-200'}`}
                         />
                     ))}
                 </div>
@@ -89,7 +104,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                         <Star className="w-3.5 h-3.5 fill-current" />
                         5.0 Excellence Rating
                     </motion.div>
-                    <motion.h2 
+                    <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         className="text-4xl md:text-7xl font-serif font-bold text-espresso dark:text-ivory mb-8"
@@ -141,7 +156,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                 </div>
             </div>
 
-            <motion.div 
+            <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
                 className="flex flex-col items-center mt-24"
@@ -153,9 +168,9 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                     </span>
                     <div className="h-px w-16 bg-blue-500/20" />
                 </div>
-                <a 
-                    href="https://g.page/r/Cb_v-W6U7V_vEAE" 
-                    target="_blank" 
+                <a
+                    href="https://g.page/r/Cb_v-W6U7V_vEAE"
+                    target="_blank"
                     rel="noopener noreferrer"
                     className="text-espresso/40 dark:text-ivory/40 text-xs font-medium hover:text-blue-500 transition-colors flex items-center gap-2"
                 >
