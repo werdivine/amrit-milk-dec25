@@ -32,17 +32,17 @@ export function InstagramFeed({ initialPosts }: InstagramFeedProps) {
                 // Ensure we have a good number of posts (at least 10)
                 let combined = [...validData];
 
-                // If we have fewer than 10 posts, add from static to reach 10
-                if (combined.length < 10) {
+                // If we have fewer than 20 posts, add from static to reach 20
+                if (combined.length < 20) {
                     staticInstagramPosts.forEach(p => {
-                        if (combined.length < 10 && !combined.find(cp => cp.id === p.id || cp.url === p.url)) {
+                        if (combined.length < 20 && !combined.find(cp => cp.id === p.id || cp.url === p.url)) {
                             combined.push(p);
                         }
                     });
                 }
 
                 // No more randomization here, keep the order from getInstagramPosts
-                setPosts(combined.slice(0, 10));
+                setPosts(combined.slice(0, 20));
             } catch (error) {
                 console.error("Failed to fetch Instagram posts", error);
                 setPosts(staticInstagramPosts.slice(0, 10));

@@ -12,7 +12,7 @@ import type { Metadata } from "next";
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
 import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
-import { InstagramCarousel } from "@/components/patterns/v2/InstagramCarousel";
+import { InstagramFeed } from "@/components/patterns/v2/InstagramFeed";
 import { MissionBridge } from "@/components/patterns/v2/MissionBridge";
 import { OurMission } from "@/components/patterns/v2/OurMission";
 import { SustainabilityStory } from "@/components/patterns/v2/SustainabilityStory";
@@ -239,7 +239,7 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <InstagramCarousel posts={instagramPosts} />
+            <InstagramFeed initialPosts={instagramPosts} />
             <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 

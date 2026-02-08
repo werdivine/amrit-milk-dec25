@@ -54,12 +54,12 @@ export function AddToCartButton({
             {added ? (
                 <>
                     <Check className="w-5 h-5 mr-2" />
-                    Added to Cart!
+                    Purity added to Cart!
                 </>
             ) : (
                 <>
                     <ShoppingCart className="w-5 h-5 mr-2" />
-                    Add to Cart
+                    Give Your Family Health
                 </>
             )}
         </Button>

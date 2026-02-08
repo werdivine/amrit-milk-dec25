@@ -155,7 +155,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                     <div className="h-px w-16 bg-blue-500/20" />
                 </div>
                 <a
-                    href="https://g.page/r/Cb_v-W6U7V_vEAE"
+                    href="https://share.google/0qteuIjm84bSxZWD7"
                     target="_blank"
                     rel="noopener noreferrer"
                     className="text-espresso/40 dark:text-ivory/40 text-xs font-medium hover:text-blue-500 transition-colors flex items-center gap-2"

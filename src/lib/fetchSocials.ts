@@ -35,12 +35,12 @@ export async function getInstagramPosts() {
         // If we have dynamic posts, show them first
         if (dynamicPostsList.length > 0) {
             // Return unique posts, prioritizing dynamic ones
-            // We take the latest 12 dynamic posts for a nice grid
-            return unique.slice(0, 12);
+            // We take up to 20 posts for a rich grid/carousel
+            return unique.slice(0, 20);
         }
 
         // Fallback to static, maybe slightly randomized but keep latest first if possible
-        return unique.slice(0, 12);
+        return unique.slice(0, 20);
     } catch (error) {
         console.error("Error fetching Instagram posts:", error);
         return staticInstagramPosts.slice(0, 12);

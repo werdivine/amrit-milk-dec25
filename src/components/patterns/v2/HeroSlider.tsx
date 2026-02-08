@@ -9,33 +9,33 @@ const slides = [
     {
         id: 1,
         title: "Vedic Bilona Ghee",
-        subtitle: "20,000+ Jars Dispatched",
+        subtitle: "20,000+ Jars of Purity",
         description:
-            "Churned from curd using the ancient Bilona method. 100% Pure, A2, and lab-tested for perfection.",
+            "Churned from curd using the ancient Bilona method. A sacred ritual of health for your family.",
         image: "/assets/img/products/a2desicowgheeglassjarbilonamethod.png",
-        cta: "Buy Now",
+        cta: "Bring Home Purity",
         link: "/products/a2-cow-ghee-1kg",
     },
     {
         id: 2,
-        title: "Pure A2 Milk & Kitchen Essential Agro Products",
-        subtitle: "12+ years of trusted farm-to-home dairy",
+        title: "The Heart of Lonapur",
+        subtitle: "12+ Years of Trusted Farming",
         description:
-            "Farm-fresh A2 milk, bilona ghee, cold-pressed oils, grains, flours, rice & essential oils — crafted for children, families & conscious living.",
+            "Pure A2 Milk, Bilona Ghee, and Organic Grains — crafted with love for the children of the Amrit Family.",
         image: "/assets/img/hero-luxe-bg.png",
-        cta: "ORDER FOR YOUR FAMILY",
+        cta: "Gift Your Family Health",
         link: "/products",
-        secondaryCta: "KNOW OUR FARM & PROCESS",
+        secondaryCta: "BEHOLD THE FARM",
         secondaryLink: "/the-farm",
     },
     {
         id: 3,
         title: "Wild Forest Honey",
-        subtitle: "Nectar of the Wild",
+        subtitle: "Nature's Purest Healing",
         description:
-            "Raw, Unfiltered, and Sourced from the deep forests by tribal communities. Pure healing in every drop.",
+            "Raw and Unfiltered. Sourced from deep forests to bring nature's ancient medicine to your table.",
         image: "/assets/img/products/amrit_honey_premium_v7.png",
-        cta: "Taste Purity",
+        cta: "Discover the Magic",
         link: "/products?category=honey",
     },
 ];
@@ -158,11 +158,10 @@ export function HeroSlider() {
                     <button
                         key={index}
                         onClick={() => setCurrentSlide(index)}
-                        className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                            index === currentSlide
+                        className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
                                 ? "bg-terracotta w-8"
                                 : "bg-white/50 hover:bg-white"
-                        }`}
+                            }`}
                         aria-label={`Go to slide ${index + 1}`}
                     />
                 ))}

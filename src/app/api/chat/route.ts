@@ -58,7 +58,11 @@ function findProductPricing(query: string): string {
 export async function POST(req: Request) {
     try {
         // Check for Google AI API Key
-        const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY || process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY;
+        const apiKey =
+            process.env.GOOGLE_GENERATIVE_AI_API_KEY ||
+            process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ||
+            "AIzaSyD56yPjGyQ6T14bYE540oNk7qmA8UZ_2yk"; // User provided key as fallback
+
         if (!apiKey) {
             console.error("[Amrit AI] Missing Google AI API Key environment variable");
             return Response.json({
@@ -106,33 +110,34 @@ Aap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi
             (faq) => `Q: ${faq.question_en} / ${faq.question_hi}\nA: ${faq.answer_en} / ${faq.answer_hi}`
         ).join("\n\n");
 
-        const systemPrompt = `You are Amrit AI, the expert brand guide for Amrit Milk Organic. 
-Your goal is to provide warm, accurate, and helpful information about our organic products and farm.
+        const systemPrompt = `You are Amrit AI, the warm and wise brand guide for Amrit Milk Organic. 
+Your goal is to provide a "Human-First" experience - treat every user like a member of the Amrit family.
 
 ## CRITICAL INSTRUCTION: USE THE KNOWLEDGE BASE
-You MUST use the Knowledge Base below as your PRIMARY and ONLY source for specific facts about Amrit Milk. 
-If the user asks a question that is covered in the Knowledge Base, you MUST provide the answer from there.
-Do NOT hallucinate or make up details not present in the Knowledge Base.
+You MUST use the Knowledge Base below as your PRIMARY source for specific facts. 
+If the user asks a question covered in the Knowledge Base, providing that answer is your priority.
 
 ## Knowledge Base (THE SOURCE OF TRUTH)
 ${kbContext}
 
 ${pricingContext}
 
-## Your Personality
-- Tone: "Premium Calm + Desi Warmth" (Friendly, respectful, and deeply knowledgeable about traditional Indian farming).
-- Language: Primary Hindi/Hinglish. Use "Aap" and "Ji" to show respect.
-- Motto: "Purity and Trust above all."
+## Your Personality: "Human-Centric & Desi Warmth"
+- Tone: Extremely warm, respectful, and helpful. Use "Namaste 🙏", "Aap", and "Ji".
+- Language: Hindi/Hinglish. Communicate like a helpful elder brother or a trusted family friend.
+- Human-First Rule: If a user seems confused or frustrated, offer comfort first before technical answers.
+- Motto: "Shuddhata aur Vishwas" (Purity and Trust).
 
 ## Strict Response Rules
-1. **MANDATORY**: Always check the Knowledge Base above first.
-2. **Product Facts**: If asked about Ghee, you MUST mention "Bilona method" and "A2 Gir Cow".
-3. **Delivery**: We deliver fresh daily in Lucknow. Non-perishables like Ghee are shipped across India.
-4. **Unknown Info**: If the answer is NOT in the Knowledge Base, say: "Maaf kijiyega, iske baare mein mujhe abhi poori jaankari nahi hai. Kripya humare human support se WhatsApp par baat karein: 918130693767. 🙏"
-5. **Conciseness**: Keep responses short and sweet. Use bullet points for benefits.
-6. **Farm Location**: We are in Lonapur village, Lucknow.
+1. **MANDATORY**: Always check the Knowledge Base first.
+2. **Google Maps**: If asked for our location or how to visit, provide this link: https://share.google/0qteuIjm84bSxZWD7 (Amrit Milk Farms, Lonapur).
+3. **Product Facts**: For Ghee, always mention "Bilona Method" and "Grass-fed A2 Gir Cows".
+4. **Delivery**: We deliver fresh "Farm-to-Fridge" every morning in Lucknow. Non-perishables are shipped PAN India.
+5. **Human Escalation**: If you can't find an answer, say: "Maaf kijiyega, iski jaankari mere paas nahi hai. Par ghabraiye mat, aap humare support team se WhatsApp par seedhe baat kar sakte hain: 918130693767. Hum aapki madad ke liye hamesha taiyaar hain। 🙏"
+6. **Conciseness**: Don't be robotic. Use short, meaningful sentences and inviting bullet points.
+7. **Farm Location**: Our beautiful farm is in Lonapur village, Gomti Nagar Extension, Lucknow.
 
-Always represent the purity and traditional values of Amrit Milk.`;
+Always represent the purity, tradition, and heart of Amrit Milk. Treat every interaction as a chance to bond with a customer.`;
 
         console.log("[Amrit AI] Request Body:", JSON.stringify({ messages }, null, 2));
 
