@@ -5,14 +5,14 @@ import { ProductCollection } from "@/components/patterns/v2/ProductCollection";
 import { TrustStrip } from "@/components/patterns/v2/TrustStrip";
 import { FAQPageSchema, HowToSchema } from "@/components/seo/JsonLd";
 import { getProducts } from "@/lib/fetchProducts";
-import { getGoogleReviews } from "@/lib/fetchSocials";
+import { getGoogleReviews, getInstagramPosts } from "@/lib/fetchSocials";
 import type { Metadata } from "next";
 
 
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
 import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
-import { InstaplugWidget } from "@/components/patterns/v2/InstaplugWidget";
+import { InstagramCarousel } from "@/components/patterns/v2/InstagramCarousel";
 import { MissionBridge } from "@/components/patterns/v2/MissionBridge";
 import { OurMission } from "@/components/patterns/v2/OurMission";
 import { SustainabilityStory } from "@/components/patterns/v2/SustainabilityStory";
@@ -141,6 +141,7 @@ export default async function Home() {
         .slice(0, 12);
 
     const reviews = await getGoogleReviews();
+    const instagramPosts = await getInstagramPosts();
 
     return (
         <main className="flex min-h-screen flex-col bg-creme dark:bg-midnight transition-colors duration-500">
@@ -238,6 +239,7 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
+            <InstagramCarousel posts={instagramPosts} />
             <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 
