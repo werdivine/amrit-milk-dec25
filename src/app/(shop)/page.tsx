@@ -183,7 +183,10 @@ export default async function Home() {
             {/* Bridge CTA */}
             <MissionBridge />
 
-            {/* 4.5. SUSTAINABILITY */}
+            {/* 4.5. GOOGLE REVIEWS (Moved Up) */}
+            <GoogleReviews reviews={reviews} />
+
+            {/* 4.6. SUSTAINABILITY */}
             <SustainabilityStory />
 
             {/* 5. OUR JOURNEY - Timeline from 2015 */}
@@ -240,7 +243,6 @@ export default async function Home() {
 
             {/* 16. JOIN US */}
             <InstagramFeed initialPosts={instagramPosts} />
-            <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 
             {/* 17. SUPPORT */}
