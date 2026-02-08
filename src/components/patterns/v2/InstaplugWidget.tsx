@@ -14,8 +14,9 @@ export function InstaplugWidget() {
     const [hasError, setHasError] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const scriptInjectedRef = useRef(false);
+    const hasRenderedRef = useRef(false);
 
-    // Intersection Observer to detect when widget is in view (lazy loading per Instaplug guidelines)
+    // Intersection Observer to detect when widget is in view
     useEffect(() => {
         const observer = new IntersectionObserver(
             (entries) => {
@@ -34,60 +35,64 @@ export function InstaplugWidget() {
         return () => observer.disconnect();
     }, []);
 
-    // Following Instaplug's Next.js guidelines: Inject script dynamically when visible
+    // Main script and rendering logic
     useEffect(() => {
         if (!isVisible || scriptInjectedRef.current) return;
         if (typeof window === "undefined") return;
 
         scriptInjectedRef.current = true;
 
-        // Create and inject the script element with async attribute (per Instaplug guidelines)
+        const renderApp = () => {
+            if (hasRenderedRef.current) return;
+
+            // USE requestIdleCallback or substantial setTimeout to avoid blocking main thread
+            const scheduleRender = window.requestIdleCallback || ((cb) => setTimeout(cb, 500));
+
+            scheduleRender(() => {
+                if (typeof (window as any).renderApp === "function") {
+                    try {
+                        (window as any).renderApp({
+                            containerId: INSTAPLUG_CONTAINER_ID,
+                            domain: "https://app.instaplug.app/",
+                            widgetClass: "",
+                            fontFamily: "",
+                            color: "",
+                            colorLink: "",
+                            colorLinkActive: "",
+                            colorLinkHover: "",
+                        });
+                        setIsLoaded(true);
+                        hasRenderedRef.current = true;
+                    } catch (e) {
+                        console.error("Instaplug renderApp failed:", e);
+                        setHasError(true);
+                    }
+                } else {
+                    // Retry once more if script loaded but function not yet defined
+                    setTimeout(renderApp, 500);
+                }
+            });
+        };
+
+        // Inject script
         const script = document.createElement("script");
         script.src = INSTAPLUG_SCRIPT_URL;
         script.async = true;
-
-        script.onload = () => {
-            // Call renderApp exactly as specified in Instaplug's embed code
-            if ((window as any).renderApp) {
-                try {
-                    (window as any).renderApp({
-                        containerId: INSTAPLUG_CONTAINER_ID,
-                        domain: "https://app.instaplug.app/",
-                        widgetClass: "",
-                        fontFamily: "",
-                        color: "",
-                        colorLink: "",
-                        colorLinkActive: "",
-                        colorLinkHover: "",
-                    });
-                    setIsLoaded(true);
-                } catch (e) {
-                    console.error("Instaplug renderApp failed:", e);
-                    setHasError(true);
-                }
-            } else {
-                console.error("Instaplug: renderApp not found after script load");
-                setHasError(true);
-            }
-        };
-
+        script.onload = renderApp;
         script.onerror = () => {
-            console.error("Instaplug: Failed to load script");
+            console.error("Instaplug script load failed");
             setHasError(true);
         };
 
-        // Append to body (bottom of body as per Instaplug guidelines)
         document.body.appendChild(script);
 
-        // Cleanup on unmount
         return () => {
-            // Don't remove the script as it may be needed if component re-mounts
+            // We usually don't remove global scripts once added
         };
     }, [isVisible]);
 
     return (
         <Section className="bg-gradient-to-b from-white to-[#FDFBF7] dark:from-midnight-light to-midnight py-24 md:py-32 overflow-hidden">
-            {/* Font Preconnects as specified by Instaplug */}
             {isVisible && (
                 <>
                     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -124,9 +129,8 @@ export function InstaplugWidget() {
                     </div>
                 </div>
 
-                {/* Instaplug Container - following the div trigger pattern from guidelines */}
-                <div className="relative min-h-[400px]">
-                    {/* Skeleton loader while waiting */}
+                <div className="relative min-h-[600px] w-full">
+                    {/* Skeleton while loading */}
                     {!isLoaded && !hasError && (
                         <div className="grid grid-cols-2 md:grid-cols-5 gap-4 md:gap-6 animate-pulse">
                             {[...Array(10)].map((_, i) => (
@@ -138,31 +142,23 @@ export function InstaplugWidget() {
                         </div>
                     )}
 
-                    {/* Error state */}
                     {hasError && (
-                        <div className="flex flex-col items-center justify-center py-20 text-center">
-                            <Instagram className="w-16 h-16 text-pink-500/30 mb-6" />
-                            <p className="text-espresso/60 dark:text-ivory/60 mb-4">
-                                Unable to load Instagram feed. Please visit our profile directly.
+                        <div className="flex flex-col items-center justify-center py-20 text-center border-2 border-dashed border-espresso/10 rounded-3xl">
+                            <Instagram className="w-12 h-12 text-pink-500/30 mb-4" />
+                            <p className="text-espresso/60 dark:text-ivory/60">
+                                Instagram feed is currently unavailable.<br />
+                                <a href="https://www.instagram.com/amritmilkorganic" className="text-pink-600 font-bold underline">Visit our profile directly</a>
                             </p>
-                            <a
-                                href="https://www.instagram.com/amritmilkorganic"
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="text-pink-600 hover:text-pink-700 font-bold flex items-center gap-2"
-                            >
-                                View on Instagram <ExternalLink className="w-4 h-4" />
-                            </a>
                         </div>
                     )}
 
-                    {/* The container div that Instaplug will populate */}
                     <div
                         id={INSTAPLUG_CONTAINER_ID}
                         className={cn(
-                            "w-full transition-opacity duration-1000",
+                            "w-full transition-opacity duration-700",
                             isLoaded ? "opacity-100" : "opacity-0 absolute inset-0 pointer-events-none"
                         )}
+                        style={{ minHeight: "600px" }}
                     />
                 </div>
 
