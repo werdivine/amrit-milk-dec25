@@ -238,7 +238,6 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <InstaplugWidget />
             <GoogleReviews reviews={reviews} />
             <FarmTourCTA />
 
