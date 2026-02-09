@@ -75,9 +75,11 @@ export async function POST(req: Request) {
             return new Response("Kripya humara samman karein. Hum yahan aapki madad ke liye hain. 🙏");
         }
 
+        /* 
         if (isSubscriptionQuery(userInput)) {
             return new Response(`Subscription benefits aur bulk pricing ke liye humari team se baat karein। 🙏\n\nAap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi।\n\n📱 Direct WhatsApp: wa.me/918130693767`);
         }
+        */
 
         const pricingContext = findProductPricing(userInput);
         const kbContext = KNOWLEDGE_BASE.map(
@@ -129,7 +131,48 @@ ${pricingContext}
 
         } catch (apiError: any) {
             console.error("[Amrit AI] Gemini API Error:", apiError);
-            // Graceful fallback on API failure
+
+            // FALLBACK TO LOCAL KNOWLEDGE BASE SEARCH
+            console.log("[Amrit AI] Attempting local knowledge search...");
+            const lowerInput = userInput.toLowerCase();
+
+            // Find best match based on keywords
+            let bestMatch: any = null;
+            let maxScore = 0;
+
+            KNOWLEDGE_BASE.forEach((faq) => {
+                let score = 0;
+                // Check keywords
+                faq.keywords.forEach((k) => {
+                    if (lowerInput.includes(k.toLowerCase())) score += 2;
+                });
+                // Check question text matches
+                if (lowerInput.includes(faq.question_en.toLowerCase())) score += 5;
+                if (lowerInput.includes(faq.question_hi.toLowerCase())) score += 5;
+
+                if (score > maxScore) {
+                    maxScore = score;
+                    bestMatch = faq;
+                }
+            });
+
+            // Check for pricing query fallback
+            const pricingInfo = findProductPricing(userInput);
+            if (!bestMatch && pricingInfo) {
+                console.log("[Amrit AI] Found pricing match");
+                return new Response("Here are our latest prices:\n" + pricingInfo.replace("## Product Pricing (PUBLIC - SHARE THIS):", "").trim() + "\n\n(Note: Network slow, using offline mode 🙏)");
+            }
+
+            if (bestMatch && maxScore >= 2) {
+                console.log("[Amrit AI] Found local match:", bestMatch.id);
+                let responseText = bestMatch.answer_hi;
+                if (pricingInfo) {
+                    responseText += "\n\n" + pricingInfo.replace("## Product Pricing (PUBLIC - SHARE THIS):", "").trim();
+                }
+                return new Response(responseText + "\n\n(Note: Network slow, using offline mode 🙏)");
+            }
+
+            // If no match found, fallback to contact
             return new Response("Namaste! 🙏 Abhi network thoda slow hai. \n\nKripya humari team se WhatsApp par seedhe baat karein - wo aapki turant madad karenge: 918130693767 \n\nDhanyavaad! 🌿");
         }
 
