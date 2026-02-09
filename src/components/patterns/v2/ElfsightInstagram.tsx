@@ -21,7 +21,7 @@ export function ElfsightInstagram() {
 
                 <Script
                     src="https://elfsightcdn.com/platform.js"
-                    strategy="lazyOnload"
+                    strategy="afterInteractive"
                 />
             </div>
         </Section>

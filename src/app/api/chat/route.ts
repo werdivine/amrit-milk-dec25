@@ -55,17 +55,14 @@ export async function POST(req: Request) {
             process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ||
             "AIzaSyD56yPjGyQ6T14bYE540oNk7qmA8UZ_2yk";
 
+        console.log("[Amrit AI] Initializing Chat API");
+        console.log("[Amrit AI] API Key length:", apiKey ? apiKey.length : 0);
+
         if (!apiKey) {
             console.error("[Amrit AI] CRITICAL: Missing Google AI API Key");
-            return Response.json(
-                { error: "Configuration Error: Missing API Key" },
-                { status: 500 }
-            );
+            // Graceful fallback instead of strict error
+            return new Response("Namaste! 🙏 Hum abhi system update kar rahe hain. Kripya humari team se WhatsApp par baat karein: 918130693767.");
         }
-
-        console.log("[Amrit AI] API Key present:", !!apiKey);
-        console.log("[Amrit AI] API Key length:", apiKey.length);
-
 
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
@@ -75,17 +72,11 @@ export async function POST(req: Request) {
         const userInput = lastMessage?.content || "";
 
         if (isBlocked(userInput)) {
-            return Response.json({ error: "Invalid input" }, { status: 400 });
+            return new Response("Kripya humara samman karein. Hum yahan aapki madad ke liye hain. 🙏");
         }
 
         if (isSubscriptionQuery(userInput)) {
-            return new Response(
-                JSON.stringify({
-                    role: "assistant",
-                    content: `Subscription benefits aur bulk pricing ke liye humari team se baat karein। 🙏\n\nAap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi।\n\n📱 Direct WhatsApp: wa.me/918130693767`,
-                }),
-                { status: 200 }
-            );
+            return new Response(`Subscription benefits aur bulk pricing ke liye humari team se baat karein। 🙏\n\nAap apna **naam** aur **area** batayein - WhatsApp par team jaldi respond karegi।\n\n📱 Direct WhatsApp: wa.me/918130693767`);
         }
 
         const pricingContext = findProductPricing(userInput);
@@ -109,35 +100,42 @@ ${pricingContext}
 5. Contact: 918130693767 (WhatsApp).
 6. Be concise and helpful.`;
 
-        const chat = model.startChat({
-            history: [
-                {
-                    role: "user",
-                    parts: [{ text: systemPrompt }],
-                },
-                {
-                    role: "model",
-                    parts: [{ text: "Namaste! Main Amrit AI hoon. Main aapki kaise madad kar sakta hoon aaj? 🙏" }],
-                },
-                ...messages.slice(0, -1).map((m: any) => ({
-                    role: m.role === "user" ? "user" : "model",
-                    parts: [{ text: m.content }],
-                })),
-            ],
-        });
+        console.log("[Amrit AI] Sending request to Gemini...");
 
-        const result = await chat.sendMessage(userInput);
-        const response = result.response;
-        const text = response.text();
+        try {
+            const chat = model.startChat({
+                history: [
+                    {
+                        role: "user",
+                        parts: [{ text: systemPrompt }],
+                    },
+                    {
+                        role: "model",
+                        parts: [{ text: "Namaste! Main Amrit AI hoon. Main aapki kaise madad kar sakta hoon aaj? 🙏" }],
+                    },
+                    ...messages.slice(0, -1).map((m: any) => ({
+                        role: m.role === "user" ? "user" : "model",
+                        parts: [{ text: m.content }],
+                    })),
+                ],
+            });
 
-        // Use simple text response
-        return new Response(text);
+            const result = await chat.sendMessage(userInput);
+            const response = result.response;
+            const text = response.text();
+
+            console.log("[Amrit AI] Success! Response generated.");
+            return new Response(text);
+
+        } catch (apiError: any) {
+            console.error("[Amrit AI] Gemini API Error:", apiError);
+            // Graceful fallback on API failure
+            return new Response("Namaste! 🙏 Abhi network thoda slow hai. \n\nKripya humari team se WhatsApp par seedhe baat karein - wo aapki turant madad karenge: 918130693767 \n\nDhanyavaad! 🌿");
+        }
 
     } catch (error: any) {
-        console.error("Chat Error:", error);
-        return Response.json(
-            { error: "Kshama karein, kuch technical issue hai. Kripya thodi der baad try karein. 🙏" },
-            { status: 500 }
-        );
+        console.error("[Amrit AI] Unexpected Error:", error);
+        // Graceful fallback on crash
+        return new Response("Namaste! 🙏 Kuch takneeki samasya aa rahi hai. \n\nKripya humari team se WhatsApp par seedhe baat karein: 918130693767");
     }
 }
