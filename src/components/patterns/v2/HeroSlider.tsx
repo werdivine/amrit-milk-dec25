@@ -87,24 +87,27 @@ export function HeroSlider() {
                     {/* Background */}
                     <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10" />
 
-                    {/* 1. Background Layer (Full Width Cover - Blurred or Solid) */}
+                    {/* 1. Background Scene (Full Width - Cover) */}
                     <div
-                        className="absolute inset-0 bg-cover bg-center transition-all duration-700 blur-sm opacity-30 scale-110"
+                        className="absolute inset-0 bg-cover bg-center transition-all duration-700"
                         style={{
-                            backgroundImage: `url('${slides[currentSlide].image}')`,
+                            backgroundImage: `url('${slides[currentSlide].id === 2 ? '/assets/img/hero-luxe-bg.png' : slides[currentSlide].image}')`,
                         }}
-                    />
+                    >
+                        {/* Overlay for readability */}
+                        <div className="absolute inset-0 bg-black/30 dark:bg-black/50" />
+                    </div>
 
-                    {/* 2. Product/Main Image Layer (Contained - No crop) */}
-                    <div
-                        className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700 z-10"
-                        style={{
-                            backgroundImage: `url('${slides[currentSlide].image}')`,
-                        }}
-                    />
-
-                    {/* Gradient Overlay for Text Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
+                    {/* 2. Product/Main Image Layer (Centered Bottle for Slide 2) */}
+                    {slides[currentSlide].id === 2 && (
+                        <div className="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                            <img
+                                src={slides[currentSlide].image}
+                                alt={slides[currentSlide].title}
+                                className="h-[70vh] w-auto object-contain drop-shadow-2xl mt-10 md:mt-0 opacity-90"
+                            />
+                        </div>
+                    )}
 
                     {/* Content */}
                     <div className="absolute inset-0 z-20 flex items-center justify-center text-center px-4 pt-20">

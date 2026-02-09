@@ -79,7 +79,10 @@ export function ProductImage({ src, alt, category, className, id }: ProductImage
                     alt={alt}
                     width={500}
                     height={500}
-                    className="relative z-10 w-full h-full object-contain drop-shadow-2xl scale-115 group-hover:scale-130 transition-transform duration-700"
+                    className={`relative z-10 w-full h-full object-contain drop-shadow-2xl transition-transform duration-700
+                        ${category === 'Essential Oils' || category === 'Wellness' ? 'scale-75 group-hover:scale-90' :
+                            category === 'Honey' || category === 'Ghee' ? 'scale-125 group-hover:scale-135' :
+                                'scale-110 group-hover:scale-125'}`}
                 />
             </div>
         );
