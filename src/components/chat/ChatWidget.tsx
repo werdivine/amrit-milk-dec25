@@ -79,7 +79,7 @@ export function ChatWidget() {
             }
 
             const contentType = response.headers.get("Content-Type");
-            
+
             // Handle non-streaming JSON response (e.g., for subscription escalations or errors)
             if (contentType?.includes("application/json")) {
                 const data = await response.json();
@@ -90,6 +90,23 @@ export function ChatWidget() {
                             id: (Date.now() + 1).toString(),
                             role: "assistant",
                             content: data.content,
+                        },
+                    ]);
+                    setIsLoading(false);
+                    return;
+                }
+            }
+
+            // Handle plain text response (simple backend execution)
+            if (contentType?.includes("text/plain")) {
+                const text = await response.text();
+                if (text) {
+                    setMessages((prev) => [
+                        ...prev,
+                        {
+                            id: (Date.now() + 1).toString(),
+                            role: "assistant",
+                            content: text,
                         },
                     ]);
                     setIsLoading(false);
@@ -117,7 +134,7 @@ export function ChatWidget() {
                     if (done) break;
 
                     buffer += decoder.decode(value, { stream: true });
-                    
+
                     // If the buffer doesn't look like the Data Stream Protocol (no "0:"),
                     // treat it as raw text and update the UI immediately
                     if (!buffer.includes('0:') && !buffer.includes('e:') && !buffer.includes('1:')) {
@@ -184,9 +201,9 @@ export function ChatWidget() {
             }
         } catch (error: any) {
             console.error("Chat error:", error);
-            
+
             let errorMessage = "Kshama karein, kuch technical issue hai. Kripya thodi der baad try karein. 🙏";
-            
+
             // If it's a specific configuration error, let the user know (helpful for dev/testing)
             if (error.message?.includes("configuration missing") || error.message?.includes("API key")) {
                 errorMessage = "Amrit AI is currently in maintenance (Missing API Key). Please contact us via WhatsApp! 🙏";
@@ -232,9 +249,9 @@ export function ChatWidget() {
                         >
                             <span className="font-bold text-base tracking-tight">Hi 👋 How can I help you today?</span>
                             <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 bg-black rotate-45 border-r border-t border-white/10" />
-                            
+
                             {/* Close button for greeting */}
-                            <button 
+                            <button
                                 onClick={(e) => {
                                     e.stopPropagation();
                                     // Local state to hide bubble
@@ -294,7 +311,7 @@ export function ChatWidget() {
                                     <p className="text-[10px] uppercase tracking-wider text-neutral-500 font-bold">Online & Ready to Help</p>
                                 </div>
                             </div>
-                            
+
                             <a
                                 href="https://wa.me/918130693767"
                                 target="_blank"
@@ -324,11 +341,10 @@ export function ChatWidget() {
                                         )}
                                     </div>
                                     <div
-                                        className={`max-w-[75%] px-4 py-3 rounded-2xl ${
-                                            msg.role === "user"
+                                        className={`max-w-[75%] px-4 py-3 rounded-2xl ${msg.role === "user"
                                                 ? "bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-tr-md"
                                                 : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 rounded-tl-md"
-                                        }`}
+                                            }`}
                                     >
                                         <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                                     </div>
