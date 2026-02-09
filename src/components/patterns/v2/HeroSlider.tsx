@@ -87,29 +87,15 @@ export function HeroSlider() {
                     {/* Background */}
                     <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10" />
 
-                    {/* 1. Background Layer */}
+                    {/* Background - All slides use their image as full-screen bg-cover */}
                     <div
                         className="absolute inset-0 bg-cover bg-center transition-all duration-700"
                         style={{
-                            backgroundImage: `url('${slides[currentSlide].id === 2 ? '/assets/img/hero-luxe-bg.png' : slides[currentSlide].image}')`,
+                            backgroundImage: `url('${slides[currentSlide].image}')`,
                         }}
                     >
                         <div className="absolute inset-0 bg-black/40 dark:bg-black/60" />
                     </div>
-
-                    {/* 2. Product Overlay (Milk Slide Only - Positioned to Right on Desktop, Bottom on Mobile) */}
-                    {slides[currentSlide].id === 2 && (
-                        <div className="absolute inset-0 z-10 pointer-events-none overflow-hidden">
-                            <motion.img
-                                src={slides[currentSlide].image}
-                                alt={slides[currentSlide].title}
-                                initial={{ opacity: 0, x: 100 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                transition={{ duration: 1, delay: 0.5 }}
-                                className="absolute -bottom-10 -right-20 md:right-10 md:bottom-[-5%] h-[60vh] md:h-[85vh] w-auto object-contain drop-shadow-2xl opacity-90 rotate-[-5deg]"
-                            />
-                        </div>
-                    )}
 
                     {/* Content */}
                     <div className="absolute inset-0 z-20 flex items-center justify-center text-center px-4 pt-20">
