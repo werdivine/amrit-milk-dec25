@@ -87,17 +87,24 @@ export function HeroSlider() {
                     {/* Background */}
                     <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10" />
 
+                    {/* 1. Background Layer (Full Width Cover - Blurred or Solid) */}
                     <div
-                        className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700"
+                        className="absolute inset-0 bg-cover bg-center transition-all duration-700 blur-sm opacity-30 scale-110"
                         style={{
                             backgroundImage: `url('${slides[currentSlide].image}')`,
                         }}
-                    >
-                        {/* Fallback gradient for slide 2 if it's just a product image */}
-                        {slides[currentSlide].id === 2 && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-terracotta/20 to-espresso/20 mix-blend-overlay" />
-                        )}
-                    </div>
+                    />
+
+                    {/* 2. Product/Main Image Layer (Contained - No crop) */}
+                    <div
+                        className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700 z-10"
+                        style={{
+                            backgroundImage: `url('${slides[currentSlide].image}')`,
+                        }}
+                    />
+
+                    {/* Gradient Overlay for Text Readability */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent z-10" />
 
                     {/* Content */}
                     <div className="absolute inset-0 z-20 flex items-center justify-center text-center px-4 pt-20">
