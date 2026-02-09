@@ -80,7 +80,7 @@ export function ProductCard({
 
             {/* Image Container */}
             <Link href={`/products/${slug}`} className="block">
-                <div className="relative h-80 overflow-hidden bg-creme-light dark:bg-midnight-mid/30 flex items-center justify-center p-8 cursor-pointer">
+                <div className="relative h-80 overflow-hidden bg-creme-light dark:bg-midnight-mid/30 flex items-center justify-center p-4 cursor-pointer">
                     <ProductImage
                         src={image}
                         alt={title}
@@ -118,11 +118,10 @@ export function ProductCard({
                     </Link>
                     <button
                         onClick={handleAddToCart}
-                        className={`rounded-full p-3 transition-all duration-300 ml-4 ${
-                            added
+                        className={`rounded-full p-3 transition-all duration-300 ml-4 ${added
                                 ? "bg-green-600 text-white"
                                 : "bg-terracotta dark:bg-gold text-white dark:text-midnight hover:bg-terracotta-dark dark:hover:bg-gold/90 hover:scale-110"
-                        }`}
+                            }`}
                         title={added ? "Added to cart!" : "Add to cart"}
                     >
                         {added ? (

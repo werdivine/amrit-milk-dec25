@@ -79,7 +79,7 @@ export function ProductImage({ src, alt, category, className, id }: ProductImage
                     alt={alt}
                     width={500}
                     height={500}
-                    className="relative z-10 w-full h-full object-contain drop-shadow-2xl group-hover:scale-105 transition-transform duration-700"
+                    className="relative z-10 w-full h-full object-contain drop-shadow-2xl scale-110 group-hover:scale-125 transition-transform duration-700"
                 />
             </div>
         );

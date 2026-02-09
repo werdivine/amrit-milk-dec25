@@ -22,7 +22,7 @@ const slides = [
         subtitle: "12+ Years of Trusted Farming",
         description:
             "Pure A2 Milk, Bilona Ghee, and Organic Grains — crafted with love for the children of the Amrit Family.",
-        image: "/assets/img/hero-luxe-bg.png",
+        image: "/assets/img/products/amrit_milk_gir_1l_v2.png",
         cta: "Gift Your Family Health",
         link: "/products",
         secondaryCta: "BEHOLD THE FARM",
@@ -88,14 +88,14 @@ export function HeroSlider() {
                     <div className="absolute inset-0 bg-black/20 dark:bg-black/40 z-10" />
 
                     <div
-                        className="absolute inset-0 bg-cover bg-center"
+                        className="absolute inset-0 bg-contain bg-center bg-no-repeat transition-all duration-700"
                         style={{
                             backgroundImage: `url('${slides[currentSlide].image}')`,
                         }}
                     >
                         {/* Fallback gradient for slide 2 if it's just a product image */}
                         {slides[currentSlide].id === 2 && (
-                            <div className="absolute inset-0 bg-gradient-to-r from-terracotta/80 to-espresso/80 mix-blend-multiply" />
+                            <div className="absolute inset-0 bg-gradient-to-r from-terracotta/20 to-espresso/20 mix-blend-overlay" />
                         )}
                     </div>
 
@@ -159,8 +159,8 @@ export function HeroSlider() {
                         key={index}
                         onClick={() => setCurrentSlide(index)}
                         className={`w-3 h-3 rounded-full transition-all duration-300 ${index === currentSlide
-                                ? "bg-terracotta w-8"
-                                : "bg-white/50 hover:bg-white"
+                            ? "bg-terracotta w-8"
+                            : "bg-white/50 hover:bg-white"
                             }`}
                         aria-label={`Go to slide ${index + 1}`}
                     />

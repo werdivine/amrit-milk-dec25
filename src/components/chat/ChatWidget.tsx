@@ -247,7 +247,7 @@ export function ChatWidget() {
                             transition={{ delay: 1, duration: 0.5 }}
                             className="bg-black text-white px-6 py-3.5 rounded-[2rem] shadow-2xl flex items-center gap-2 whitespace-nowrap relative group border border-white/10"
                         >
-                            <span className="font-bold text-base tracking-tight">Hi 👋 How can I help you today?</span>
+                            <span className="font-bold text-base tracking-tight">👋 How can we help?</span>
                             <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 bg-black rotate-45 border-r border-t border-white/10" />
 
                             {/* Close button for greeting */}
@@ -278,8 +278,8 @@ export function ChatWidget() {
                     {isOpen ? (
                         <X className="w-8 h-8" />
                     ) : (
-                        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full">
-                            <SupportIcon className="w-10 h-10" />
+                        <div className="relative w-full h-full flex items-center justify-center overflow-hidden rounded-full p-1.5">
+                            <SupportIcon className="w-full h-full" />
                             <span className="absolute bottom-2 right-2 w-4 h-4 bg-green-500 border-2 border-white rounded-full"></span>
                         </div>
                     )}
@@ -342,8 +342,8 @@ export function ChatWidget() {
                                     </div>
                                     <div
                                         className={`max-w-[75%] px-4 py-3 rounded-2xl ${msg.role === "user"
-                                                ? "bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-tr-md"
-                                                : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 rounded-tl-md"
+                                            ? "bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-tr-md"
+                                            : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 rounded-tl-md"
                                             }`}
                                     >
                                         <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
