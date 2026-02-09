@@ -56,11 +56,16 @@ export async function POST(req: Request) {
             "AIzaSyD56yPjGyQ6T14bYE540oNk7qmA8UZ_2yk";
 
         if (!apiKey) {
+            console.error("[Amrit AI] CRITICAL: Missing Google AI API Key");
             return Response.json(
                 { error: "Configuration Error: Missing API Key" },
                 { status: 500 }
             );
         }
+
+        console.log("[Amrit AI] API Key present:", !!apiKey);
+        console.log("[Amrit AI] API Key length:", apiKey.length);
+
 
         const genAI = new GoogleGenerativeAI(apiKey);
         const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
