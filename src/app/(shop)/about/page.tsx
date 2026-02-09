@@ -1,7 +1,27 @@
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/ui/section";
 import { Heart, Leaf, Shield, Target } from "lucide-react";
+import type { Metadata } from "next";
 import Image from "next/image";
+
+export const metadata: Metadata = {
+    title: "About Us | Amrit Milk Organic",
+    description: "Discover the story behind Amrit Milk Organic. A journey from corporate burnout to rediscovering ancestral wisdom in pure A2 Gir cow milk.",
+    openGraph: {
+        title: "About Us | Amrit Milk Organic",
+        description: "Discover the story behind Amrit Milk Organic. A journey from corporate burnout to rediscovering ancestral wisdom in pure A2 Gir cow milk.",
+        url: "https://amritmilkorganic.com/about",
+        siteName: "Amrit Milk Organic",
+        images: [{ url: "https://amritmilkorganic.com/assets/img/farm-soul.png", width: 1200, height: 630, alt: "Amrit Farm Soul" }],
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "About Us | Amrit Milk Organic",
+        description: "Discover the story behind Amrit Milk Organic.",
+        images: ["https://amritmilkorganic.com/assets/img/farm-soul.png"],
+    },
+};
 
 export default function AboutPage() {
     return (

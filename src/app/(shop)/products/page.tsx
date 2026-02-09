@@ -1,5 +1,25 @@
 import { getProducts } from "@/lib/fetchProducts";
 import { ProductCatalog } from "@/components/shop/ProductCatalog";
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+    title: "Shop All Products | Amrit Milk Organic",
+    description: "Explore our complete collection of pure A2 milk, Bilona ghee, cold-pressed oils, raw honey, and organic grains. Farm-fresh, lab-tested, delivered daily in Lucknow.",
+    openGraph: {
+        title: "Shop All Products | Amrit Milk Organic",
+        description: "Explore our complete collection of pure A2 milk, Bilona ghee, cold-pressed oils, raw honey, and organic grains.",
+        url: "https://amritmilkorganic.com/products",
+        siteName: "Amrit Milk Organic",
+        images: [{ url: "https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png", width: 1200, height: 630, alt: "Amrit Milk Organic Products" }],
+        type: "website",
+    },
+    twitter: {
+        card: "summary_large_image",
+        title: "Shop All Products | Amrit Milk Organic",
+        description: "Explore our complete collection of pure A2 milk, Bilona ghee, and more.",
+        images: ["https://amritmilkorganic.com/assets/img/products/amrit_ghee_premium.png"],
+    },
+};
 
 export default async function ProductsPage() {
     const products = await getProducts();
