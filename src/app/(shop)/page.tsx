@@ -8,11 +8,10 @@ import { getProducts } from "@/lib/fetchProducts";
 import { getGoogleReviews } from "@/lib/fetchSocials";
 import type { Metadata } from "next";
 
-
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
 import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
-import { ElfsightInstagram } from "@/components/patterns/v2/ElfsightInstagram";
+import { FouitaInstagramWidget } from "@/components/patterns/v2/FouitaInstagramWidget";
 import { MissionBridge } from "@/components/patterns/v2/MissionBridge";
 import { OurMission } from "@/components/patterns/v2/OurMission";
 import { SustainabilityStory } from "@/components/patterns/v2/SustainabilityStory";
@@ -80,23 +79,19 @@ export async function generateMetadata(): Promise<Metadata> {
 const homePageFAQs = [
     {
         question: "What is A2 milk and why is it better?",
-        answer:
-            "A2 milk comes from indigenous Indian cows like Gir and Sahiwal breeds. It contains the A2 beta-casein protein which is easier to digest compared to A1 protein found in regular milk. A2 milk is naturally richer in nutrients and doesn't cause digestive discomfort.",
+        answer: "A2 milk comes from indigenous Indian cows like Gir and Sahiwal breeds. It contains the A2 beta-casein protein which is easier to digest compared to A1 protein found in regular milk. A2 milk is naturally richer in nutrients and doesn't cause digestive discomfort.",
     },
     {
         question: "Do you deliver A2 milk daily in Lucknow?",
-        answer:
-            "Yes, we deliver fresh A2 Gir cow milk daily across Lucknow. Our milk is milked at 4 AM and delivered by 8 AM the same morning, ensuring maximum freshness and nutritional value.",
+        answer: "Yes, we deliver fresh A2 Gir cow milk daily across Lucknow. Our milk is milked at 4 AM and delivered by 8 AM the same morning, ensuring maximum freshness and nutritional value.",
     },
     {
         question: "What is Bilona ghee and how is it different?",
-        answer:
-            "Bilona ghee is made using the traditional Vedic method where curd is churned to extract butter, which is then heated to make ghee. Unlike commercial ghee made from cream, Bilona ghee retains more nutrients and has a richer flavor.",
+        answer: "Bilona ghee is made using the traditional Vedic method where curd is churned to extract butter, which is then heated to make ghee. Unlike commercial ghee made from cream, Bilona ghee retains more nutrients and has a richer flavor.",
     },
     {
         question: "Is your milk lab tested?",
-        answer:
-            "Yes, all our products are regularly tested in certified laboratories for purity, adulteration, and nutritional content. We publish our lab reports transparently so you can verify the quality yourself.",
+        answer: "Yes, all our products are regularly tested in certified laboratories for purity, adulteration, and nutritional content. We publish our lab reports transparently so you can verify the quality yourself.",
     },
 ];
 
@@ -141,7 +136,6 @@ export default async function Home() {
         .slice(0, 12);
 
     const reviews = await getGoogleReviews();
-
 
     return (
         <main className="flex min-h-screen flex-col bg-creme dark:bg-midnight transition-colors duration-500">
@@ -242,7 +236,7 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <ElfsightInstagram />
+            <FouitaInstagramWidget />
             <FarmTourCTA />
 
             {/* 17. SUPPORT */}
