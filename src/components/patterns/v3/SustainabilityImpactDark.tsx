@@ -104,7 +104,7 @@ export function SustainabilityImpactDark() {
                         transition={{ delay: 0.2 }}
                         className="text-lg md:text-xl text-espresso/70 dark:text-ivory/60 leading-relaxed"
                     >
-                        We don't just sell milk; we steward the land. Every bottle of Amrit supports a cycle of life that heals the soil, respects the animal, and protects your family using zero plastic.
+                        We don&apos;t just sell milk; we steward the land. Every bottle of Amrit supports a cycle of life that heals the soil, respects the animal, and protects your family using zero plastic.
                     </motion.p>
                 </div>
 
@@ -148,8 +148,8 @@ export function SustainabilityImpactDark() {
                     <div className="inline-block relative">
                         <Sparkles className="w-6 h-6 text-terracotta dark:text-gold absolute -top-4 -left-6 animate-pulse" />
                         <p className="text-xl md:text-2xl font-serif text-espresso/80 dark:text-ivory/80 italic">
-                            "The earth is not a resource to be exploited,<br className="hidden md:block" />
-                            but a legacy to be preserved."
+                            &ldquo;The earth is not a resource to be exploited,<br className="hidden md:block" />
+                            but a legacy to be preserved.&rdquo;
                         </p>
                         <Sparkles className="w-6 h-6 text-terracotta dark:text-gold absolute -bottom-4 -right-6 animate-pulse delay-700" />
                     </div>

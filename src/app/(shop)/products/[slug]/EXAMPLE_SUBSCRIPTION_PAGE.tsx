@@ -3,6 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/lib/CartContext";
 import { Check, MapPin, ShoppingCart } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import { SubscriptionPlanSelector } from "@/components/shop/SubscriptionPlanSelector";
@@ -109,9 +110,11 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
                 <div className="grid md:grid-cols-2 gap-12">
                     {/* Product Image */}
                     <div className="bg-white dark:bg-midnight-mid rounded-2xl p-8 border border-creme-dark dark:border-glass-border">
-                        <img
+                        <Image
                             src={product.image}
                             alt={product.title}
+                            width={500}
+                            height={500}
                             className="w-full h-auto"
                         />
                     </div>
@@ -142,8 +145,8 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
                             <button
                                 onClick={() => setShowSubscription(false)}
                                 className={`px-4 py-2 font-semibold transition-colors border-b-2 ${!showSubscription
-                                        ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
-                                        : "border-transparent text-espresso/60 dark:text-ivory/60"
+                                    ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
+                                    : "border-transparent text-espresso/60 dark:text-ivory/60"
                                     }`}
                             >
                                 One-Time Purchase
@@ -151,8 +154,8 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
                             <button
                                 onClick={() => setShowSubscription(true)}
                                 className={`px-4 py-2 font-semibold transition-colors border-b-2 ${showSubscription
-                                        ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
-                                        : "border-transparent text-espresso/60 dark:text-ivory/60"
+                                    ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
+                                    : "border-transparent text-espresso/60 dark:text-ivory/60"
                                     }`}
                             >
                                 Subscribe & Save
