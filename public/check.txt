@@ -1,0 +1,3 @@
+
+IF YOU SEE THIS, THE SERVER IS CORRECTLY SERVING STATIC FILES FROM THE PROJECT.
+The issue is likely with Next.js dynamic routing compilation.

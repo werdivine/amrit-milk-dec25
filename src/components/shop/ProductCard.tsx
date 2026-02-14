@@ -6,6 +6,7 @@ import { useCart } from "@/lib/CartContext";
 import { ArrowRight, Check, Repeat, ShoppingCart, Star } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
+import { ProductVariantSelector, ProductVariant } from "@/components/shop/ProductVariantSelector";
 
 interface ProductCardProps {
     id: string;
@@ -18,9 +19,9 @@ interface ProductCardProps {
     badge?: string;
     subscription?: boolean;
     category: string;
-
     sku?: string;
     featured?: boolean;
+    variants?: ProductVariant[];
 }
 
 export function ProductCard({
@@ -36,16 +37,27 @@ export function ProductCard({
     category,
     sku,
     featured,
+    variants,
 }: ProductCardProps) {
     const { addToCart } = useCart();
     const [added, setAdded] = useState(false);
-    const isOnSale = regularPrice && regularPrice !== price;
+    const [selectedVariant, setSelectedVariant] = useState<ProductVariant | undefined>(
+        variants?.[0]
+    );
+
+    // Use variant price if variants exist
+    const displayPrice = selectedVariant ? `₹${selectedVariant.price}` : price;
+    const displayRegularPrice = selectedVariant?.originalPrice
+        ? `₹${selectedVariant.originalPrice}`
+        : regularPrice;
+
+    const isOnSale = displayRegularPrice && displayRegularPrice !== displayPrice;
 
     const handleAddToCart = () => {
         addToCart({
-            id,
-            title,
-            price: String(price),
+            id: selectedVariant ? `${id}-${selectedVariant.id}` : id,
+            title: selectedVariant ? `${title} - ${selectedVariant.size}` : title,
+            price: String(selectedVariant ? selectedVariant.price : price),
             image,
             slug,
             category: category || "Uncategorized",
@@ -107,11 +119,11 @@ export function ProductCard({
                         </h3>
                         <div className="flex items-baseline gap-2">
                             <p className="text-2xl font-bold text-terracotta dark:text-gold">
-                                {price}
+                                {displayPrice}
                             </p>
-                            {regularPrice && regularPrice !== price && (
+                            {displayRegularPrice && displayRegularPrice !== displayPrice && (
                                 <p className="text-sm text-espresso/40 dark:text-ivory/40 line-through">
-                                    {regularPrice}
+                                    {displayRegularPrice}
                                 </p>
                             )}
                         </div>
@@ -136,11 +148,32 @@ export function ProductCard({
                     {description}
                 </p>
 
+                {/* Variant Selector - Compact Dots Display for Grid View */}
+                {variants && variants.length > 1 && (
+                    <div className="mb-4">
+                        <ProductVariantSelector
+                            variants={variants}
+                            selectedVariant={selectedVariant}
+                            onVariantChange={setSelectedVariant}
+                            displayStyle="dots"
+                        />
+                    </div>
+                )}
+
                 {/* Subscription Indicator */}
                 {subscription && (
-                    <div className="flex items-center gap-2 mb-4 text-xs text-terracotta/80 dark:text-gold/80">
-                        <Repeat className="w-4 h-4" />
-                        <span>Available as subscription</span>
+                    <div className="mb-4 p-3 bg-terracotta/10 dark:bg-gold/10 rounded-lg border border-terracotta/20 dark:border-gold/20">
+                        <div className="flex items-start gap-2">
+                            <Repeat className="w-4 h-4 text-terracotta dark:text-gold flex-shrink-0 mt-0.5" />
+                            <div>
+                                <p className="text-xs font-bold text-terracotta dark:text-gold uppercase tracking-wide mb-1">
+                                    Subscribe & Save
+                                </p>
+                                <p className="text-xs text-espresso/70 dark:text-ivory/70">
+                                    Daily, Weekly, Monthly options available
+                                </p>
+                            </div>
+                        </div>
                     </div>
                 )}
 
@@ -152,7 +185,7 @@ export function ProductCard({
                         className="w-full group-hover:bg-terracotta/10 dark:group-hover:bg-gold/10 group-hover:border-terracotta dark:group-hover:border-gold"
                     >
                         <ArrowRight className="w-4 h-4 mr-2" />
-                        View Details
+                        {subscription ? "View Subscription Plans" : "View Details"}
                     </Button>
                 </div>
             </div>

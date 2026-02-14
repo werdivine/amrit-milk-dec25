@@ -3,6 +3,7 @@ const nextConfig = {
   experimental: {
     serverComponentsExternalPackages: ['@prisma/client', 'prisma'],
   },
+  optimizeFonts: false,
   async headers() {
     return [
       {
@@ -171,6 +172,9 @@ const nextConfig = {
         hostname: 'api.dicebear.com',
       },
     ],
+    dangerouslyAllowSVG: true,
+    contentDispositionType: 'attachment',
+    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
   },
   transpilePackages: [],
   webpack: (config, { dev, isServer }) => {

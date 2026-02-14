@@ -72,6 +72,7 @@ export function ProductCollection({ category, items, title, subtitle, descriptio
                             badge={product.badge}
                             subscription={product.subscription}
                             featured={product.featured}
+                            variants={product.variants}
                         />
                     ))}
                 </div>

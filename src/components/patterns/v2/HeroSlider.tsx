@@ -18,12 +18,12 @@ const slides = [
     },
     {
         id: 2,
-        title: "The Heart of Lonapur",
-        subtitle: "12+ Years of Trusted Farming",
+        title: "The Heart of Lucknow",
+        subtitle: "Serving 700+ Families Daily | 20M+ Bottles Sold",
         description:
-            "Pure A2 Milk, Bilona Ghee, and Organic Grains — crafted with love for the children of the Amrit Family.",
+            "Pure A2 Milk, Bilona Ghee, and Organic Grains — crafted with love for the children of the Amrit Family since 12+ years.",
         image: "/assets/img/products/amrit_milk_gir_1l_v2.png",
-        cta: "Gift Your Family Health",
+        cta: "Experience Amrit Products",
         link: "/products",
         secondaryCta: "BEHOLD THE FARM",
         secondaryLink: "/the-farm",

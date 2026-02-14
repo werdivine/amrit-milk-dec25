@@ -15,6 +15,15 @@ export interface Product {
     ingredients?: string[];
     benefits?: string[];
     howToUse?: string[];
+    variants?: Array<{
+        id: string;
+        size: string;
+        weight: string;
+        price: number;
+        originalPrice?: number;
+        inStock: boolean;
+        inventory?: number;
+    }>;
 }
 
 export const products: Product[] = [
@@ -32,6 +41,26 @@ export const products: Product[] = [
         sku: "AMRIT-DAIRY-005",
         featured: true,
         badge: "Pure Vedic",
+        variants: [
+            {
+                id: "500gm",
+                size: "500gm",
+                weight: "500 grams",
+                price: 1350,
+                originalPrice: 1400,
+                inStock: true,
+                inventory: 25
+            },
+            {
+                id: "1kg",
+                size: "1kg",
+                weight: "1 kilogram",
+                price: 2500,
+                originalPrice: 2700,
+                inStock: true,
+                inventory: 15
+            }
+        ],
         highlights: [
             "Made using traditional Bilona hand-churning method",
             "100% A2 beta-casein protein from Desi Gir cows",
@@ -195,6 +224,25 @@ export const products: Product[] = [
         sku: "AMRIT-HONEY-001",
         featured: true,
         badge: "Raw & Pure",
+        variants: [
+            {
+                id: "300gm",
+                size: "300gm",
+                weight: "300 grams",
+                price: 400,
+                inStock: true,
+                inventory: 30
+            },
+            {
+                id: "1kg",
+                size: "1kg",
+                weight: "1 kilogram",
+                price: 1200,
+                originalPrice: 1300,
+                inStock: true,
+                inventory: 20
+            }
+        ],
         highlights: [
             "100% raw, unprocessed, unpasteurized honey",
             "Collected from diverse forest wildflowers",
@@ -226,6 +274,25 @@ export const products: Product[] = [
         slug: "jamun-honey-1kg",
         sku: "AMRIT-HONEY-002",
         featured: true,
+        variants: [
+            {
+                id: "300gm",
+                size: "300gm",
+                weight: "300 grams",
+                price: 400,
+                inStock: true,
+                inventory: 28
+            },
+            {
+                id: "1kg",
+                size: "1kg",
+                weight: "1 kilogram",
+                price: 1200,
+                originalPrice: 1300,
+                inStock: true,
+                inventory: 18
+            }
+        ],
         highlights: [
             "100% raw, unprocessed Jamun (Indian Blackberry) honey",
             "Low glycemic index - Diabetes-friendly",

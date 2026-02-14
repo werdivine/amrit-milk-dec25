@@ -3,6 +3,7 @@
 import { Section } from "@/components/ui/section";
 import { Droplets, Heart, Leaf, Recycle, Sun, TreePine, Sparkles } from "lucide-react";
 import { motion } from "framer-motion";
+import Image from "next/image";
 
 const practices = [
     {
@@ -85,14 +86,14 @@ export function SustainabilityStory() {
                     <div className="lg:w-1/2 grid grid-cols-2 gap-6">
                         <div className="pt-20">
                             <div className="aspect-[3/4] rounded-[3rem] overflow-hidden relative shadow-2xl border border-espresso/10 dark:border-white/10 group">
-                                <img src="/assets/img/farm-soul.png" alt="The Farm" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                                <Image src="/assets/img/farm-soul.png" alt="The Farm" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <p className="absolute bottom-10 left-8 right-8 text-sm font-bold tracking-widest uppercase text-white">Pure Horizons</p>
                             </div>
                         </div>
                         <div>
                             <div className="aspect-[3/4] rounded-[3rem] overflow-hidden relative shadow-2xl border border-espresso/10 dark:border-white/10 group">
-                                <img src="/assets/img/products/amrit_ghee_premium.png" alt="Native Heritage" className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 group-hover:scale-110" />
+                                <Image src="/assets/img/products/amrit_ghee_premium.png" alt="Native Heritage" fill className="object-cover transition-transform duration-1000 group-hover:scale-110" />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
                                 <p className="absolute bottom-10 left-8 right-8 text-sm font-bold tracking-widest uppercase text-white">Native Heritage</p>
                             </div>
@@ -139,6 +140,6 @@ export function SustainabilityStory() {
                     </div>
                 </motion.div>
             </div>
-        </Section>
+        </Section >
     );
 }
