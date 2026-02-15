@@ -59,7 +59,7 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
         ? `${product.title} - ${selectedVariant.title}`
         : product.title;
 
-    const handleSubscribe = async (frequency: string) => {
+    const handleSubscribe = async (planId: string, totalAmount: number) => {
         const customerDetails = {
             name: "Customer Name", // Ideally from auth/form
             email: "customer@example.com",
@@ -74,8 +74,8 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
                     productId: product.id,
                     productName: currentTitle,
                     quantity: 1,
-                    price: currentPrice,
-                    frequency,
+                    price: totalAmount,
+                    planType: planId,
                     customerName: customerDetails.name,
                     customerEmail: customerDetails.email,
                     customerPhone: customerDetails.phone,
@@ -104,10 +104,10 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
                 document.body.appendChild(form);
                 form.submit();
             } else {
-                alert("Failed to initiate subscription: " + (data.error || "Unknown error"));
+                alert("Failed to initiate payment: " + (data.error || "Unknown error"));
             }
         } catch (error) {
-            console.error("Subscription error:", error);
+            console.error("Payment error:", error);
             alert("An error occurred. Please try again.");
         }
     };
@@ -208,8 +208,7 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
                         <SubscriptionPlanSelector
                             productId={product.id}
                             productName={currentTitle}
-                            price={currentPrice}
-                            onSubscribe={handleSubscribe}
+                            onSelectPlan={handleSubscribe}
                         />
                     </div>
                 )}

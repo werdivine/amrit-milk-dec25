@@ -4,7 +4,6 @@
  */
 
 import { encrypt, CCAVENUE_URLS, buildRequestData } from "@/lib/ccavenue";
-import { calculateNextDelivery } from "@/lib/ccavenue-recurring";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -20,7 +19,7 @@ export async function POST(req: NextRequest) {
             variant,
             quantity,
             price,
-            frequency,
+            planType,
             customerName,
             customerEmail,
             customerPhone,
@@ -32,7 +31,7 @@ export async function POST(req: NextRequest) {
         } = body;
 
         // Validate
-        if (!productId || !customerName || !customerEmail || !customerPhone || !frequency) {
+        if (!productId || !customerName || !customerEmail || !customerPhone || !planType) {
             return NextResponse.json({ error: "Missing required fields" }, { status: 400 });
         }
 
@@ -64,20 +63,19 @@ export async function POST(req: NextRequest) {
             billingZip: billingZip || "",
         });
 
-        // Add subscription metadata as custom parameters
+        // Add plan metadata as custom parameters
         const params = new URLSearchParams(requestData);
-        params.set("merchant_param1", "subscription"); // Type
+        params.set("merchant_param1", "milk_plan"); // Type
         params.set("merchant_param2", productId); // Product ID
-        params.set("merchant_param3", frequency); // Frequency
+        params.set("merchant_param3", planType); // Plan Type (one_time, trial_5day, monthly_30day)
         params.set("merchant_param4", productName); // Product Name
 
-        console.log(`[Subscription] Creating one-time payment subscription ${subscriptionId}`);
+        console.log(
+            `[Subscription] Creating prepaid payment ${subscriptionId} — plan: ${planType}, amount: ₹${amount}`
+        );
 
         // Encrypt for CCAvenue
         const encryptedData = encrypt(params.toString(), workingKey);
-
-        // Calculate next delivery
-        const nextDelivery = calculateNextDelivery(new Date(startDate || Date.now()), frequency);
 
         const isTestMode = process.env.CCAVENUE_TEST_MODE === "true";
         const ccavenueUrl = isTestMode ? CCAVENUE_URLS.test : CCAVENUE_URLS.production;
@@ -89,13 +87,13 @@ export async function POST(req: NextRequest) {
             encryptedData,
             accessCode,
             ccavenueUrl,
-            nextDelivery: nextDelivery.toISOString(),
             metadata: {
                 productId,
                 productName,
                 variant,
                 quantity,
-                frequency,
+                planType,
+                totalAmount: amount,
             },
         });
     } catch (error: any) {

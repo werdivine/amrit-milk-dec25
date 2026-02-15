@@ -16,7 +16,7 @@ export async function POST(req: NextRequest) {
 
         if (!encResponse) {
             console.error("[Subscription] No encrypted response from CCAvenue");
-            return NextResponse.redirect(new URL("/subscription/failed", req.url));
+            return NextResponse.redirect(new URL("/subscription/failed", req.url), 303);
         }
 
         const workingKey = "7E11E36439A6169B00EB122F6155B84A".trim();
@@ -48,7 +48,7 @@ export async function POST(req: NextRequest) {
                     price: parseFloat(responseParams.amount),
                 },
                 plan: {
-                    frequency: responseParams.merchant_param3 || "daily",
+                    planType: responseParams.merchant_param3 || "one_time",
                     startDate: new Date().toISOString().split("T")[0],
                     nextDelivery: new Date(Date.now() + 86400000).toISOString(), // +1 day
                 },
@@ -69,7 +69,8 @@ export async function POST(req: NextRequest) {
             console.log(`[Subscription] Created ${responseParams.order_id}`);
 
             return NextResponse.redirect(
-                new URL(`/subscription/success?id=${responseParams.order_id}`, req.url)
+                new URL(`/subscription/success?id=${responseParams.order_id}`, req.url),
+                303
             );
         } else {
             console.error("[Subscription] Payment failed:", responseParams.failure_message);
@@ -80,11 +81,15 @@ export async function POST(req: NextRequest) {
                         responseParams.failure_message || "Unknown error"
                     )}`,
                     req.url
-                )
+                ),
+                303
             );
         }
     } catch (error: any) {
         console.error("[Subscription] Handler error:", error);
-        return NextResponse.redirect(new URL("/subscription/failed?reason=server_error", req.url));
+        return NextResponse.redirect(
+            new URL("/subscription/failed?reason=server_error", req.url),
+            303
+        );
     }
 }
