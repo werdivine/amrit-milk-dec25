@@ -576,7 +576,7 @@ export const products: Product[] = [
     {
         id: "milk-sahiwal-1l",
         title: "Amrit Milk Organic A2 Sahiwal Cow Milk - 1 L",
-        price: "₹95",
+        price: "₹100",
         image: "/assets/img/products/amrit_milk_sahiwal_1l_v2.png",
         category: "Dairy",
         description: "Fresh A2 milk from Sahiwal breed cows.",

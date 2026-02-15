@@ -1,9 +1,8 @@
 "use client";
 
 import { Section } from "@/components/ui/section";
-import { ExternalLink, MapPin, Quote, Star, CheckCircle2 } from "lucide-react";
+import { ExternalLink, Quote, Star, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
-import { useMemo } from "react";
 
 import { GoogleReview, googleReviews as staticGoogleReviews } from "@/data/reviews";
 
@@ -11,21 +10,15 @@ interface GoogleReviewsProps {
     reviews: GoogleReview[];
 }
 
-// Fisher-Yates shuffle algorithm removed to prevent hydration mismatch
-
 export function GoogleReviews({ reviews }: GoogleReviewsProps) {
-    // Use reviews directly from props to avoid hydration mismatch (shuffling must happen on server or inside useEffect)
     const allReviews = reviews || [];
 
     // Split reviews into two rows for the marquee
     const firstRow = allReviews.slice(0, Math.ceil(allReviews.length / 2));
     const secondRow = allReviews.slice(Math.ceil(allReviews.length / 2));
 
-    const ReviewCard = ({ review, index }: { review: GoogleReview; index: number }) => (
-        <motion.div
-            whileHover={{ y: -10 }}
-            className="w-[350px] md:w-[450px] shrink-0 bg-white dark:bg-midnight-light p-8 md:p-10 rounded-[3rem] shadow-2xl border border-espresso/5 dark:border-white/5 flex flex-col h-full mx-4 transition-all duration-500 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:border-blue-500/30 group relative"
-        >
+    const ReviewCard = ({ review }: { review: GoogleReview }) => (
+        <div className="w-[350px] md:w-[450px] shrink-0 bg-white dark:bg-midnight-light p-8 md:p-10 rounded-[3rem] shadow-2xl border border-espresso/5 dark:border-white/5 flex flex-col h-full mx-4 transition-all duration-500 hover:-translate-y-2.5 hover:shadow-[0_20px_50px_rgba(0,0,0,0.1)] dark:hover:shadow-[0_20px_50px_rgba(0,0,0,0.3)] hover:border-blue-500/30 group relative will-change-transform">
             <div className="flex items-center justify-between mb-10">
                 <div className="flex items-center gap-1">
                     {[...Array(5)].map((_, i) => (
@@ -87,7 +80,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                     </div>
                 </div>
             </div>
-        </motion.div>
+        </div>
     );
 
     if (!allReviews || allReviews.length === 0) return null;
@@ -121,42 +114,28 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                 </div>
             </div>
 
-            {/* Marquee Rows */}
-            <div className="flex flex-col gap-12 overflow-x-auto pb-4 custom-scrollbar">
+            {/* CSS-only Marquee Rows - GPU accelerated, no JS animation */}
+            <div className="flex flex-col gap-12 pb-4">
                 <div className="flex overflow-hidden relative">
-                    <motion.div
-                        className="flex py-10"
-                        animate={{
-                            x: [0, -1035],
-                        }}
-                        transition={{
-                            duration: 40,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }}
+                    <div
+                        className="flex py-10 animate-marquee-left"
+                        style={{ willChange: "transform" }}
                     >
-                        {[...firstRow, ...firstRow].map((review, i) => (
-                            <ReviewCard key={`${review.id}-${i}`} review={review} index={i} />
+                        {[...firstRow, ...firstRow, ...firstRow].map((review, i) => (
+                            <ReviewCard key={`row1-${review.id}-${i}`} review={review} />
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
 
                 <div className="flex overflow-hidden relative">
-                    <motion.div
-                        className="flex py-10"
-                        animate={{
-                            x: [-1035, 0],
-                        }}
-                        transition={{
-                            duration: 45,
-                            repeat: Infinity,
-                            ease: "linear",
-                        }}
+                    <div
+                        className="flex py-10 animate-marquee-right"
+                        style={{ willChange: "transform" }}
                     >
-                        {[...secondRow, ...secondRow].map((review, i) => (
-                            <ReviewCard key={`${review.id}-${i}`} review={review} index={i} />
+                        {[...secondRow, ...secondRow, ...secondRow].map((review, i) => (
+                            <ReviewCard key={`row2-${review.id}-${i}`} review={review} />
                         ))}
-                    </motion.div>
+                    </div>
                 </div>
             </div>
 

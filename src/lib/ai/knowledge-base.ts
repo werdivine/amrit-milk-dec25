@@ -30,8 +30,10 @@ export const KNOWLEDGE_BASE: FAQEntry[] = [
         category: "Brand & Trust",
         question_hi: "Aapka farm kahan sthit hai?",
         question_en: "Where is your farm located?",
-        answer_hi: "Humara farm Lucknow mein sthit hai. Address: Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN.",
-        answer_en: "Our farm is located at Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN.",
+        answer_hi:
+            "Humara farm Lucknow mein sthit hai. Address: Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN.",
+        answer_en:
+            "Our farm is located at Amrit Milk Farms, 1, Amrit Milk Marg, Lucknow, 226028, IN.",
         keywords: ["location", "farm", "address", "kahan", "lucknow", "amrit milk marg"],
     },
     {
@@ -84,10 +86,41 @@ export const KNOWLEDGE_BASE: FAQEntry[] = [
         question_hi: "Delivery kahan-kahan hoti hai?",
         question_en: "Where do you deliver?",
         answer_hi:
-            "Fresh A2 Milk ki delivery abhi sirf Lucknow mein available hai. Ghee aur non-perishable products pure India mein deliver hote hain.",
+            "Fresh A2 Milk ki daily delivery SIRF LUCKNOW mein available hai. Ye bahut zaroori hai — milk delivery filhaal Lucknow ke baahar nahi hoti hai. Ghee, honey, oils aur non-perishable products pure India mein deliver hote hain.",
         answer_en:
-            "Fresh A2 Milk delivery is limited to Lucknow. Ghee and non-perishable products are delivered across India.",
-        keywords: ["delivery", "location", "area", "lucknow", "india", "shipping", "kahan"],
+            "Fresh A2 Milk daily delivery is available ONLY IN LUCKNOW. This is important — milk delivery is NOT available outside Lucknow. Ghee, honey, oils, and non-perishable products are delivered across India.",
+        keywords: [
+            "delivery",
+            "location",
+            "area",
+            "lucknow",
+            "india",
+            "shipping",
+            "kahan",
+            "city",
+            "available",
+        ],
+    },
+    {
+        id: "milk-pricing",
+        category: "Ordering",
+        question_hi: "Doodh ka price kya hai?",
+        question_en: "What is the milk price?",
+        answer_hi:
+            "A2 Sahiwal Cow Milk: ₹100/L. A2 Gir Cow Milk: ₹125/L (MRP ₹140). Subscription plans: 5-Day Trial ₹500 (₹100/L × 5 days), 30-Day Plan ₹3000 (₹100/L × 30 days). One-time purchase: ₹149 + delivery charges. Daily milk delivery sirf Lucknow mein available hai.",
+        answer_en:
+            "A2 Sahiwal Cow Milk: ₹100/L. A2 Gir Cow Milk: ₹125/L (MRP ₹140). Subscription plans: 5-Day Trial ₹500 (₹100/L × 5 days), 30-Day Plan ₹3000 (₹100/L × 30 days). One-time purchase: ₹149 + delivery charges. Daily milk delivery is available only in Lucknow.",
+        keywords: [
+            "price",
+            "rate",
+            "cost",
+            "kitna",
+            "doodh",
+            "milk",
+            "subscription",
+            "one time",
+            "delivery",
+        ],
     },
     {
         id: "order-process",
@@ -193,9 +226,19 @@ export const KNOWLEDGE_BASE: FAQEntry[] = [
         question_hi: "Subscription ke kya fayde hain?",
         question_en: "What are the benefits of a subscription?",
         answer_hi:
-            "Subscription lene par aapko regular delivery milti hai, koi delivery charge nahi lagta, aur price lock ho jata hai. Aap kabhi bhi pause ya resume kar sakte hain.",
+            "Subscription mein milk sirf ₹100/L milta hai (one-time mein ₹149 + delivery charge lagta hai). Plans: 5-Day Trial ₹500 (prepaid), 30-Day Plan ₹3000 (prepaid, best value). Zero delivery charge, fresh milk roz subah. Subscription sirf Lucknow mein available hai.",
         answer_en:
-            "Subscriptions offer regular delivery with zero delivery charges and price protection. You can pause or resume anytime.",
-        keywords: ["subscription", "benefits", "fayde", "delivery", "pause", "resume"],
+            "Subscribe at ₹100/L vs ₹149 + delivery for one-time. Plans: 5-Day Trial ₹500 (prepaid), 30-Day Plan ₹3000 (prepaid, best value). Zero delivery charges, fresh milk every morning. Subscription is available only in Lucknow.",
+        keywords: [
+            "subscription",
+            "benefits",
+            "fayde",
+            "delivery",
+            "pause",
+            "resume",
+            "plan",
+            "trial",
+            "monthly",
+        ],
     },
 ];

@@ -26,6 +26,8 @@ import { PremiumStats } from "@/components/patterns/PremiumStats";
 import { ToxicityAudit } from "@/components/patterns/ToxicityAudit";
 import { GheeSpotlight } from "@/components/patterns/v2/GheeSpotlight";
 
+import { LucknowOnlyBanner } from "@/components/ui/LucknowOnlyBanner";
+
 // Social Proof
 import { ExpertPanel } from "@/components/patterns/ExpertPanel";
 import { FAQSection } from "@/components/patterns/FAQSection";
@@ -171,6 +173,9 @@ export default async function Home() {
             {/* JSON-LD Schema Markup */}
             <FAQPageSchema faqs={homePageFAQs} />
             <HowToSchema {...gheeHowTo} />
+
+            {/* Lucknow-Only Delivery Banner */}
+            <LucknowOnlyBanner persistent={true} dismissible={false} />
 
             {/* 1. THE PROMISE */}
             <HeroSlider />

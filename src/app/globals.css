@@ -374,6 +374,33 @@
     animation: ping-slight 2s cubic-bezier(0, 0, 0.2, 1) infinite;
 }
 
+/* GPU-accelerated marquee animations for reviews */
+@keyframes marquee-left {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(-33.333%);
+    }
+}
+
+@keyframes marquee-right {
+    0% {
+        transform: translateX(-33.333%);
+    }
+    100% {
+        transform: translateX(0);
+    }
+}
+
+.animate-marquee-left {
+    animation: marquee-left 40s linear infinite;
+}
+
+.animate-marquee-right {
+    animation: marquee-right 45s linear infinite;
+}
+
 @layer utilities {
     .text-balance {
         text-wrap: balance;
