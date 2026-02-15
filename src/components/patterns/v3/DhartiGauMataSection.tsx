@@ -1,6 +1,8 @@
 "use client";
 
 import { motion } from "framer-motion";
+import { Sprout, Sun, Leaf, ShieldCheck, TreePine, Heart } from "lucide-react";
+import Image from "next/image";
 
 export function DhartiGauMataSection() {
     return (
@@ -55,8 +57,8 @@ export function DhartiGauMataSection() {
                             transition={{ delay: 0.3 }}
                             className="bg-white/60 dark:bg-midnight/60 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-terracotta/20 dark:border-gold/20 text-left hover:shadow-xl transition-shadow duration-500 group"
                         >
-                            <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">
-                                🌾
+                            <div className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <Sprout className="w-7 h-7 text-green-600 dark:text-green-400" />
                             </div>
                             <h3 className="text-2xl font-serif font-bold text-terracotta dark:text-gold mb-4">
                                 धरती माता
@@ -71,15 +73,15 @@ export function DhartiGauMataSection() {
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-espresso/70 dark:text-ivory/70">
                                 <li className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-terracotta dark:bg-gold rounded-full" />
+                                    <Leaf className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
                                     100% जैविक खेती — कोई कीटनाशक नहीं
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-terracotta dark:bg-gold rounded-full" />
+                                    <Sun className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
                                     पारंपरिक बीज संरक्षण
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-terracotta dark:bg-gold rounded-full" />
+                                    <TreePine className="w-3.5 h-3.5 text-green-500 flex-shrink-0" />
                                     मिट्टी की उर्वरता बढ़ाने वाली गोबर खाद
                                 </li>
                             </ul>
@@ -92,114 +94,15 @@ export function DhartiGauMataSection() {
                             transition={{ delay: 0.4 }}
                             className="bg-white/60 dark:bg-midnight/60 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-terracotta/20 dark:border-gold/20 text-left hover:shadow-xl transition-shadow duration-500 group"
                         >
-                            <div className="w-16 h-16 mb-5 group-hover:scale-110 transition-transform duration-300">
-                                <svg
-                                    viewBox="0 0 64 64"
-                                    fill="none"
-                                    xmlns="http://www.w3.org/2000/svg"
-                                    className="w-full h-full"
-                                >
-                                    {/* Desi Gir Cow with hump and curved horns */}
-                                    <ellipse
-                                        cx="32"
-                                        cy="44"
-                                        rx="18"
-                                        ry="10"
-                                        className="fill-terracotta/20 dark:fill-gold/20"
-                                    />
-                                    {/* Body */}
-                                    <path
-                                        d="M16 32 C16 26, 22 22, 30 22 C34 22, 38 24, 42 22 C46 20, 48 20, 48 24 L48 38 C48 42, 42 44, 32 44 C22 44, 16 42, 16 38 Z"
-                                        className="fill-terracotta dark:fill-gold"
-                                    />
-                                    {/* Hump - distinctive desi cow feature */}
-                                    <ellipse
-                                        cx="28"
-                                        cy="20"
-                                        rx="6"
-                                        ry="5"
-                                        className="fill-terracotta dark:fill-gold"
-                                    />
-                                    {/* Head */}
-                                    <ellipse
-                                        cx="46"
-                                        cy="24"
-                                        rx="5"
-                                        ry="4"
-                                        className="fill-terracotta/90 dark:fill-gold/90"
-                                    />
-                                    {/* Horns - curved like Gir cow */}
-                                    <path
-                                        d="M44 20 C42 14, 40 12, 38 14"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        className="text-espresso/50 dark:text-ivory/50"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                    />
-                                    <path
-                                        d="M48 20 C50 14, 52 12, 54 14"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        className="text-espresso/50 dark:text-ivory/50"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                    />
-                                    {/* Dewlap */}
-                                    <path
-                                        d="M44 28 C44 32, 46 34, 48 32"
-                                        className="fill-terracotta/70 dark:fill-gold/70"
-                                    />
-                                    {/* Legs */}
-                                    <rect
-                                        x="20"
-                                        y="42"
-                                        width="3"
-                                        height="8"
-                                        rx="1"
-                                        className="fill-terracotta/80 dark:fill-gold/80"
-                                    />
-                                    <rect
-                                        x="28"
-                                        y="42"
-                                        width="3"
-                                        height="8"
-                                        rx="1"
-                                        className="fill-terracotta/80 dark:fill-gold/80"
-                                    />
-                                    <rect
-                                        x="36"
-                                        y="42"
-                                        width="3"
-                                        height="8"
-                                        rx="1"
-                                        className="fill-terracotta/80 dark:fill-gold/80"
-                                    />
-                                    <rect
-                                        x="42"
-                                        y="42"
-                                        width="3"
-                                        height="8"
-                                        rx="1"
-                                        className="fill-terracotta/80 dark:fill-gold/80"
-                                    />
-                                    {/* Eye */}
-                                    <circle
-                                        cx="48"
-                                        cy="23"
-                                        r="1"
-                                        className="fill-espresso dark:fill-midnight"
-                                    />
-                                    {/* Tail */}
-                                    <path
-                                        d="M16 34 C12 32, 10 36, 12 38"
-                                        stroke="currentColor"
-                                        strokeWidth="1.5"
-                                        className="text-terracotta dark:text-gold"
-                                        fill="none"
-                                        strokeLinecap="round"
-                                    />
-                                </svg>
+                            {/* Desi Gir Cow image */}
+                            <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
+                                <Image
+                                    src="/assets/img/milk-gir.png"
+                                    alt="Desi Gir Cow"
+                                    width={56}
+                                    height={56}
+                                    className="w-full h-full object-cover rounded-2xl"
+                                />
                             </div>
                             <h3 className="text-2xl font-serif font-bold text-terracotta dark:text-gold mb-4">
                                 गौ माता
@@ -213,15 +116,15 @@ export function DhartiGauMataSection() {
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-espresso/70 dark:text-ivory/70">
                                 <li className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-terracotta dark:bg-gold rounded-full" />
+                                    <ShieldCheck className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
                                     कोई ऑक्सीटोसिन नहीं — प्राकृतिक दुहाई
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-terracotta dark:bg-gold rounded-full" />
+                                    <Heart className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
                                     खुले चारागाह में स्वतंत्र विचरण
                                 </li>
                                 <li className="flex items-center gap-2">
-                                    <span className="w-1.5 h-1.5 bg-terracotta dark:bg-gold rounded-full" />
+                                    <Sun className="w-3.5 h-3.5 text-amber-500 flex-shrink-0" />
                                     वैदिक गोशाला परंपरा
                                 </li>
                             </ul>

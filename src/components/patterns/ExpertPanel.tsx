@@ -3,20 +3,21 @@
 import { Section } from "@/components/ui/section";
 import { motion } from "framer-motion";
 import { Quote } from "lucide-react";
-import Image from "next/image";
 
 const experts = [
     {
         name: "Dr. Aniruddh Sharma",
         role: "Pediatrician & Nutritionist",
         quote: "For growing children, A2 milk is the only choice that ensures proper cognitive development without the inflammatory triggers of A1 milk.",
-        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dr1",
+        initials: "DA",
+        color: "bg-terracotta text-white",
     },
     {
         name: "Vaidya Rajeshwari",
         role: "Ayurvedic Practitioner",
-        quote: "Our ancient texts call Desi Cow Ghee &apos;Maha-Aushadhi&apos;. Amrit Sovereign preserves this potency by following the Bilona method strictly.",
-        image: "https://api.dicebear.com/7.x/avataaars/svg?seed=dr2",
+        quote: "Our ancient texts call Desi Cow Ghee 'Maha-Aushadhi'. Amrit preserves this potency by following the Bilona method strictly.",
+        initials: "VR",
+        color: "bg-espresso text-creme dark:bg-gold dark:text-midnight",
     },
 ];
 
@@ -34,8 +35,8 @@ export function ExpertPanel() {
                         </h2>
                     </div>
                     <p className="max-w-md text-espresso/60 dark:text-ivory/60">
-                        Top healthcare professionals and traditional healers recommend Amrit
-                        Sovereign for its uncompromising quality standards.
+                        Top healthcare professionals and traditional healers recommend Amrit for its
+                        uncompromising quality standards.
                     </p>
                 </div>
 
@@ -49,14 +50,12 @@ export function ExpertPanel() {
                             transition={{ delay: i * 0.1 }}
                             className="bg-creme-light dark:bg-white/5 p-10 rounded-[3rem] space-y-8 border border-espresso/5 dark:border-white/5 flex flex-col items-center text-center md:items-start md:text-left md:flex-row gap-10 hover:shadow-lifted dark:hover:shadow-none transition-all duration-500"
                         >
-                            <div className="w-24 h-24 rounded-full overflow-hidden border-2 border-terracotta/20 dark:border-gold/20 flex-shrink-0">
-                                <Image
-                                    src={expert.image}
-                                    alt={expert.name}
-                                    width={96}
-                                    height={96}
-                                    className="w-full h-full object-cover"
-                                />
+                            <div
+                                className={`w-20 h-20 rounded-full flex items-center justify-center flex-shrink-0 ${expert.color} shadow-lg`}
+                            >
+                                <span className="text-2xl font-serif font-bold">
+                                    {expert.initials}
+                                </span>
                             </div>
                             <div className="space-y-4">
                                 <Quote className="w-10 h-10 text-terracotta/20 dark:text-gold/20" />

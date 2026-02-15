@@ -99,6 +99,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                     <motion.div
                         initial={{ opacity: 0, scale: 0.9 }}
                         whileInView={{ opacity: 1, scale: 1 }}
+                        viewport={{ once: true }}
                         className="inline-flex items-center gap-2 px-5 py-2 bg-blue-500/10 text-blue-600 dark:text-blue-400 rounded-full text-[10px] font-black uppercase tracking-[0.2em] border border-blue-500/20 mb-8"
                     >
                         <Star className="w-3.5 h-3.5 fill-current" />
@@ -107,6 +108,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true }}
                         className="text-4xl md:text-7xl font-serif font-bold text-espresso dark:text-ivory mb-8"
                     >
                         Trusted by <span className="text-blue-600 dark:text-blue-400">20,000+</span>{" "}
@@ -161,6 +163,7 @@ export function GoogleReviews({ reviews }: GoogleReviewsProps) {
             <motion.div
                 initial={{ opacity: 0 }}
                 whileInView={{ opacity: 1 }}
+                viewport={{ once: true }}
                 className="flex flex-col items-center mt-24"
             >
                 <div className="flex items-center gap-4 mb-4">

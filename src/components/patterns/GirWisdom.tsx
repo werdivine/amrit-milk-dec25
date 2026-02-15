@@ -50,6 +50,7 @@ export function GirWisdom() {
                                 key={fact.title}
                                 initial={{ opacity: 0, x: -20 }}
                                 whileInView={{ opacity: 1, x: 0 }}
+                                viewport={{ once: true }}
                                 transition={{ delay: i * 0.1 }}
                                 className="space-y-3"
                             >
