@@ -1,4 +1,3 @@
-
 import { CategoryIconStrip } from "@/components/patterns/v2/CategoryIconStrip";
 import { ComboCarousel } from "@/components/patterns/v2/ComboCarousel";
 import { HeroSlider } from "@/components/patterns/v2/HeroSlider";
@@ -39,10 +38,27 @@ import { LucknowOnlyBanner } from "@/components/ui/LucknowOnlyBanner";
 
 export const metadata: Metadata = {
     title: "Amrit Milk Organic | Pure A2 Milk, Bilona Ghee & Organic Food — Lucknow",
-    description: "Pure A2 Gir Cow Milk delivered fresh daily in Lucknow. Bilona Ghee, Cold-Pressed Oils, Raw Honey & Organic Grains. Serving 700+ families. Lab-tested, farm-fresh, zero preservatives.",
+    description:
+        "Pure A2 Gir Cow Milk delivered fresh daily in Lucknow. Bilona Ghee, Cold-Pressed Oils, Raw Honey & Organic Grains. Serving 700+ families. Lab-tested, farm-fresh, zero preservatives.",
     robots: {
         index: false,
         follow: false,
+    },
+    openGraph: {
+        title: "Amrit Milk Organic | Pure A2 Milk, Bilona Ghee & Organic Food — Lucknow",
+        description:
+            "Pure A2 Gir Cow Milk delivered fresh daily in Lucknow. Bilona Ghee, Cold-Pressed Oils, Raw Honey & Organic Grains.",
+        siteName: "Amrit Milk Organic",
+        images: [
+            {
+                url: "https://amritmilkorganic.com/assets/img/amrit-logo-transparent.png",
+                width: 1200,
+                height: 630,
+                alt: "Amrit Milk Organic",
+            },
+        ],
+        type: "website",
+        locale: "en_IN",
     },
 };
 
@@ -66,7 +82,7 @@ const homePageFAQs = [
     },
 ];
 
-// HowTo Schema  
+// HowTo Schema
 const gheeHowTo = {
     name: "How to Use Bilona Ghee for Maximum Health Benefits",
     description:
@@ -111,7 +127,9 @@ export default async function HomeV3() {
 
     const coldPressedOils = products.filter((p) => p.category === "Cold-Pressed Oils");
     const grains = products.filter((p) => p.category === "Atta" || p.category === "Flour");
-    const wellnessProducts = products.filter((p) => p.category === "Wellness" || p.category === "Other");
+    const wellnessProducts = products.filter(
+        (p) => p.category === "Wellness" || p.category === "Other"
+    );
     const honeyProducts = products.filter((p) => p.category === "Honey");
     const riceProducts = products.filter((p) => p.category === "Rice");
     const pulses = products.filter((p) => p.category === "Pulses" || p.category === "Dal");
@@ -140,9 +158,7 @@ export default async function HomeV3() {
             />
             <ToxicityAuditDark />
 
-            <StoryTransition
-                text="Take the test. Most Indian kitchens fail."
-            />
+            <StoryTransition text="Take the test. Most Indian kitchens fail." />
             <KitchenQuizDark />
 
             {/* ═══════════════════════════════════════════════
@@ -154,24 +170,17 @@ export default async function HomeV3() {
             />
             <DhartiGauMataSection />
 
-            <StoryTransition
-                text="It didn't start as a business. It started with 5 cows and a father's love."
-            />
+            <StoryTransition text="It didn't start as a business. It started with 5 cows and a father's love." />
             <FarmTimeline />
 
-            <StoryTransition
-                text="Not a brand. A movement."
-                theme="gradient"
-            />
+            <StoryTransition text="Not a brand. A movement." theme="gradient" />
             <OurMission />
             <MissionBridge />
 
             {/* ═══════════════════════════════════════════════
                 ACT 4: THE PROOF — Show what we built
                ═══════════════════════════════════════════════ */}
-            <StoryTransition
-                text="Purity demands responsibility. Here's ours."
-            />
+            <StoryTransition text="Purity demands responsibility. Here's ours." />
             <SustainabilityImpactDark />
             <PremiumStats />
 
@@ -196,9 +205,7 @@ export default async function HomeV3() {
             />
 
             {/* Ghee — The Flagship */}
-            <StoryTransition
-                text="Our most sacred product — churned the Vedic way."
-            />
+            <StoryTransition text="Our most sacred product — churned the Vedic way." />
             <GheeSpotlight />
 
             {/* Cold Pressed Oils — The Kitchen */}
@@ -236,9 +243,7 @@ export default async function HomeV3() {
             />
 
             {/* Honey — The Forest */}
-            <StoryTransition
-                text="Straight from wild forest beehives to your kitchen."
-            />
+            <StoryTransition text="Straight from wild forest beehives to your kitchen." />
             <ProductCollection
                 items={honeyProducts}
                 category="Honey"
@@ -259,9 +264,7 @@ export default async function HomeV3() {
             />
 
             {/* Wellness — The Healing */}
-            <StoryTransition
-                text="Ancient Ayurvedic remedies, reimagined for the modern Indian home."
-            />
+            <StoryTransition text="Ancient Ayurvedic remedies, reimagined for the modern Indian home." />
             <ProductCollection
                 items={wellnessProducts}
                 title="Essential Wellness"
@@ -283,10 +286,7 @@ export default async function HomeV3() {
             {/* ═══════════════════════════════════════════════
                 ACT 6: TRUST — Validate everything
                ═══════════════════════════════════════════════ */}
-            <StoryTransition
-                text="Don't just trust us. Verify."
-                theme="gradient"
-            />
+            <StoryTransition text="Don't just trust us. Verify." theme="gradient" />
 
             {/* Lab Reports — The Proof */}
             <LabReports />

@@ -30,20 +30,42 @@ function isSubscriptionQuery(text: string): boolean {
 
 function findProductPricing(query: string): string {
     const lower = query.toLowerCase();
-    const matched = products.filter(
-        (p) =>
-            lower.includes(p.title.toLowerCase().split(" ")[0]) ||
-            lower.includes(p.category.toLowerCase()) ||
-            (lower.includes("ghee") && p.category === "Ghee") ||
-            (lower.includes("milk") && p.category === "Milk") ||
-            (lower.includes("honey") && p.category === "Honey") ||
-            (lower.includes("oil") && p.category.includes("Oil"))
-    );
+
+    // 1. Identify intent/category
+    const isMilk = lower.includes("milk") && !lower.includes("buttermilk");
+    const isGhee = lower.includes("ghee");
+    const isHoney = lower.includes("honey");
+    const isOil = lower.includes("oil");
+    const isAtta = lower.includes("atta") || lower.includes("flour");
+    const isRice = lower.includes("rice");
+    const isSpices =
+        lower.includes("turmeric") || lower.includes("jeera") || lower.includes("mirch");
+
+    let matched = products.filter((p) => {
+        const pTitle = p.title.toLowerCase();
+        const pCat = p.category.toLowerCase();
+
+        // Exact category priority
+        if (isMilk) return pCat === "dairy" || pTitle.includes("milk");
+        if (isGhee) return pCat === "ghee" || pTitle.includes("ghee");
+        if (isHoney) return pCat === "honey" || pTitle.includes("honey");
+        if (isOil) return pCat.includes("oil") || pTitle.includes("oil");
+        if (isAtta) return pCat.includes("atta") || pTitle.includes("flour");
+        if (isRice) return pCat.includes("rice") || pTitle.includes("rice");
+        if (isSpices) return pCat.includes("other") || pTitle.includes("turmeric");
+
+        // Fallback to general keyword match
+        return pTitle.includes(lower) || pCat.includes(lower);
+    });
+
+    // Sort by relevance (shortest title match usually means main product)
+    matched.sort((a, b) => a.title.length - b.title.length);
 
     if (matched.length === 0) return "";
 
     let context = "\n\n## Product Pricing (PUBLIC - SHARE THIS):\n";
     matched.slice(0, 5).forEach((p) => {
+        // Increase limit slightly to 5 to cover variety
         context += `- ${p.title}: ${p.price}\n`;
     });
     return context;
@@ -51,7 +73,8 @@ function findProductPricing(query: string): string {
 
 export async function POST(req: Request) {
     try {
-        const apiKey = process.env.GOOGLE_GENERATIVE_AI_API_KEY ||
+        const apiKey =
+            process.env.GOOGLE_GENERATIVE_AI_API_KEY ||
             process.env.NEXT_PUBLIC_GOOGLE_MAPS_KEY ||
             "AIzaSyD56yPjGyQ6T14bYE540oNk7qmA8UZ_2yk";
 
@@ -61,7 +84,9 @@ export async function POST(req: Request) {
         if (!apiKey) {
             console.error("[Amrit AI] CRITICAL: Missing Google AI API Key");
             // Graceful fallback instead of strict error
-            return new Response("Namaste! 🙏 Hum abhi system update kar rahe hain. Kripya humari team se WhatsApp par baat karein: 918130693767.");
+            return new Response(
+                "Namaste! 🙏 Hum abhi system update kar rahe hain. Kripya humari team se WhatsApp par baat karein: 918130693767."
+            );
         }
 
         const genAI = new GoogleGenerativeAI(apiKey);
@@ -72,7 +97,9 @@ export async function POST(req: Request) {
         const userInput = lastMessage?.content || "";
 
         if (isBlocked(userInput)) {
-            return new Response("Kripya humara samman karein. Hum yahan aapki madad ke liye hain. 🙏");
+            return new Response(
+                "Kripya humara samman karein. Hum yahan aapki madad ke liye hain. 🙏"
+            );
         }
 
         /* 
@@ -83,7 +110,8 @@ export async function POST(req: Request) {
 
         const pricingContext = findProductPricing(userInput);
         const kbContext = KNOWLEDGE_BASE.map(
-            (faq) => `Q: ${faq.question_en} / ${faq.question_hi}\nA: ${faq.answer_en} / ${faq.answer_hi}`
+            (faq) =>
+                `Q: ${faq.question_en} / ${faq.question_hi}\nA: ${faq.answer_en} / ${faq.answer_hi}`
         ).join("\n\n");
 
         const systemPrompt = `You are Amrit AI, the warm and wise brand guide for Amrit Milk Organic.
@@ -113,7 +141,11 @@ ${pricingContext}
                     },
                     {
                         role: "model",
-                        parts: [{ text: "Namaste! Main Amrit AI hoon. Main aapki kaise madad kar sakta hoon aaj? 🙏" }],
+                        parts: [
+                            {
+                                text: "Namaste! Main Amrit AI hoon. Main aapki kaise madad kar sakta hoon aaj? 🙏",
+                            },
+                        ],
                     },
                     ...messages.slice(0, -1).map((m: any) => ({
                         role: m.role === "user" ? "user" : "model",
@@ -128,7 +160,6 @@ ${pricingContext}
 
             console.log("[Amrit AI] Success! Response generated.");
             return new Response(text);
-
         } catch (apiError: any) {
             console.error("[Amrit AI] Gemini API Error:", apiError);
 
@@ -160,25 +191,38 @@ ${pricingContext}
             const pricingInfo = findProductPricing(userInput);
             if (!bestMatch && pricingInfo) {
                 console.log("[Amrit AI] Found pricing match");
-                return new Response("Here are our latest prices:\n" + pricingInfo.replace("## Product Pricing (PUBLIC - SHARE THIS):", "").trim() + "\n\n(Note: Network slow, using offline mode 🙏)");
+                return new Response(
+                    "Here are our latest prices:\n" +
+                        pricingInfo
+                            .replace("## Product Pricing (PUBLIC - SHARE THIS):", "")
+                            .trim() +
+                        "\n\n(Note: Network slow, using offline mode 🙏)"
+                );
             }
 
             if (bestMatch && maxScore >= 2) {
                 console.log("[Amrit AI] Found local match:", bestMatch.id);
                 let responseText = bestMatch.answer_hi;
                 if (pricingInfo) {
-                    responseText += "\n\n" + pricingInfo.replace("## Product Pricing (PUBLIC - SHARE THIS):", "").trim();
+                    responseText +=
+                        "\n\n" +
+                        pricingInfo.replace("## Product Pricing (PUBLIC - SHARE THIS):", "").trim();
                 }
-                return new Response(responseText + "\n\n(Note: Network slow, using offline mode 🙏)");
+                return new Response(
+                    responseText + "\n\n(Note: Network slow, using offline mode 🙏)"
+                );
             }
 
             // If no match found, fallback to contact
-            return new Response("Namaste! 🙏 Abhi network thoda slow hai. \n\nKripya humari team se WhatsApp par seedhe baat karein - wo aapki turant madad karenge: 918130693767 \n\nDhanyavaad! 🌿");
+            return new Response(
+                "Namaste! 🙏 Abhi network thoda slow hai. \n\nKripya humari team se WhatsApp par seedhe baat karein - wo aapki turant madad karenge: 918130693767 \n\nDhanyavaad! 🌿"
+            );
         }
-
     } catch (error: any) {
         console.error("[Amrit AI] Unexpected Error:", error);
         // Graceful fallback on crash
-        return new Response("Namaste! 🙏 Kuch takneeki samasya aa rahi hai. \n\nKripya humari team se WhatsApp par seedhe baat karein: 918130693767");
+        return new Response(
+            "Namaste! 🙏 Kuch takneeki samasya aa rahi hai. \n\nKripya humari team se WhatsApp par seedhe baat karein: 918130693767"
+        );
     }
 }

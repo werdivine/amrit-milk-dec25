@@ -14,7 +14,7 @@ import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
 import { FouitaInstagramWidget } from "@/components/patterns/v2/FouitaInstagramWidget";
 import { MissionBridge } from "@/components/patterns/v2/MissionBridge";
 import { OurMission } from "@/components/patterns/v2/OurMission";
-import { SustainabilityStory } from "@/components/patterns/v2/SustainabilityStory";
+import { DhartiGauMataSection } from "@/components/patterns/v3/DhartiGauMataSection";
 
 // Content
 import { FarmTourCTA } from "@/components/patterns/FarmTourCTA";
@@ -52,7 +52,6 @@ export async function generateMetadata(): Promise<Metadata> {
             title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
             description:
                 "Pure A2 Gir Cow Milk with authentic bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-            url: "https://amritmilkorganic.com",
             siteName: "Amrit Milk Organic",
             images: [
                 {
@@ -116,24 +115,54 @@ const gheeHowTo = {
     ],
 };
 
-const TERMS = ["Ghee", "Oils", "Honey"];
+const GHEE_SLUG = "a2-cow-ghee-1kg";
+const HONEY_SLUG = "multiflora-honey-1kg";
+const MILK_SLUG = "a2-gir-cow-milk-1l";
+const COMBO_SLUG = "wellness-trio-pack";
+
+const COLD_PRESSED_OIL_SLUGS = [
+    "yellow-mustard-oil-1l",
+    "black-mustard-oil-1l",
+    "sesame-til-oil-1l",
+    "coconut-oil-1l-premium",
+];
 
 export default async function Home() {
     const products = await getProducts();
-    // Randomize Best Sellers
+
+    // Vedic Kitchen Treasures: Only 1 product each - Ghee, Honey, Milk, Combo
+    const gheeProduct = products.find((p) => p.slug === GHEE_SLUG);
+    const honeyProduct = products.find((p) => p.slug === HONEY_SLUG);
+    const milkProduct = products.find((p) => p.slug === MILK_SLUG);
+    const comboProduct = products.find((p) => p.slug === COMBO_SLUG);
+    const pantryEssentials = [gheeProduct, honeyProduct, milkProduct, comboProduct].filter(Boolean);
+
+    // Customer Favorites: Only 4 Cold-Pressed Oils in specific order
+    // Yellow Mustard -> Black Mustard -> Sesame -> Coconut
+    const coldPressedOils = COLD_PRESSED_OIL_SLUGS.map((slug) =>
+        products.find((p) => p.slug === slug)
+    ).filter(Boolean);
+
+    // Randomize Best Sellers (excluding Cold Pressed Oils which will be shown separately)
     const bestSellers = products
-        .filter((p) => p.badge || p.featured)
+        .filter((p) => (p.badge || p.featured) && p.category !== "Cold-Pressed Oils")
         .sort(() => 0.5 - Math.random())
         .slice(0, 8);
-
-    const pantryEssentials = products.filter((p) => TERMS.includes(p.category));
 
     const superfoods = products
         .filter((p) => p.category === "Wellness" || p.category === "Other")
         .slice(0, 8);
+    // Grains: Kala Jeera Low GI first, Basmati & Kala Namak at end
+    const GRAINS_LAST_SLUGS = ["premium-basmati-rice-1kg", "kala-namak-rice-1kg"];
     const grains = products
         .filter((p) => p.category === "Atta" || p.category === "Rice")
-        .slice(0, 12);
+        .sort((a, b) => {
+            const aIsLast = GRAINS_LAST_SLUGS.includes(a.slug);
+            const bIsLast = GRAINS_LAST_SLUGS.includes(b.slug);
+            if (aIsLast && !bIsLast) return 1;
+            if (!aIsLast && bIsLast) return -1;
+            return 0;
+        });
 
     const reviews = await getGoogleReviews();
 
@@ -149,23 +178,32 @@ export default async function Home() {
             {/* 2. QUICK NAVIGATION */}
             <CategoryIconStrip />
 
-            {/* 3. IMMEDIATE VALUE - Pantry Essentials (Ghee, Oils, Honey) */}
+            {/* 3. VEDIC KITCHEN TREASURES - Ordered: Ghee, Honey, Milk, Combo */}
             <ProductCollection
                 items={pantryEssentials}
                 category="Oils"
                 title="Vedic Kitchen Treasures"
-                subtitle="Ghee • Oils • Honey"
-                description="Pure Bilona Ghee, Cold-Pressed Oils, and Raw Honey. The foundation of a healthy kitchen."
+                subtitle="Ghee • Honey • Milk • Combos"
+                description="Pure Bilona Ghee, Raw Honey, Fresh A2 Milk, and Combo Packs. The foundation of a healthy kitchen."
                 backgroundTheme="light"
             />
 
-            {/* 3.1. BEST SELLERS */}
+            {/* 3.1. CUSTOMER FAVORITES - Cold Pressed Oils: Yellow Mustard, Black Mustard, Sesame, Coconut */}
             <ProductCollection
-                items={bestSellers}
+                items={coldPressedOils}
                 title="Customer Favorites"
-                subtitle="Best Sellers"
-                description="The most loved products from our collection. Trusted by thousands of families."
+                subtitle="Cold-Pressed Oils"
+                description="Traditional wood-pressed oils for authentic Indian cooking. Yellow Mustard, Black Mustard, Sesame, and Coconut oils."
                 backgroundTheme="light"
+            />
+
+            {/* 3.2. PREMIUM GRAINS - All Atta & Rice products */}
+            <ProductCollection
+                items={grains}
+                title="Premium Grains"
+                subtitle="Traditional Staples"
+                description="Stone-ground wheat, organic rice, millets, and heritage grains. Farm-fresh and nutrient-rich."
+                backgroundTheme="creme"
             />
 
             {/* 3.5. CINEMATIC GHEE SPOTLIGHT */}
@@ -180,8 +218,8 @@ export default async function Home() {
             {/* 4.5. GOOGLE REVIEWS (Moved Up) */}
             <GoogleReviews reviews={reviews} />
 
-            {/* 4.6. SUSTAINABILITY */}
-            <SustainabilityStory />
+            {/* 4.6. DHARTI MATA & GAU MATA - Sacred Commitment */}
+            <DhartiGauMataSection />
 
             {/* 5. OUR JOURNEY - Timeline from 2015 */}
             <FarmTimeline />
@@ -218,11 +256,12 @@ export default async function Home() {
                 backgroundTheme="creme"
             />
 
+            {/* 3.2. BEST SELLERS (Other products) */}
             <ProductCollection
-                items={grains}
-                title="Stone-Ground Grains"
-                subtitle="Traditional Atta & Rice"
-                description="Wheat, Multigrain, Bajra, Besan, Millet, Kala Jeera, Basmati - freshly milled."
+                items={bestSellers}
+                title="More Favorites"
+                subtitle="Trending Now"
+                description="Other popular products loved by our customers."
                 backgroundTheme="light"
             />
 

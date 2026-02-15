@@ -112,6 +112,28 @@ export default {
             initialValue: false,
         },
         {
+            name: "variants",
+            title: "Product Variants (Size/Weight)",
+            type: "array",
+            of: [
+                {
+                    type: "object",
+                    fields: [
+                        { name: "title", title: "Variant Title (e.g., 500ml)", type: "string" },
+                        { name: "price", title: "Price", type: "number" },
+                        { name: "regularPrice", title: "Regular Price", type: "number" },
+                        { name: "sku", title: "SKU", type: "string" },
+                        {
+                            name: "subscription",
+                            title: "Available for Subscription?",
+                            type: "boolean",
+                            initialValue: true,
+                        },
+                    ],
+                },
+            ],
+        },
+        {
             name: "featured",
             title: "Featured Product",
             type: "boolean",

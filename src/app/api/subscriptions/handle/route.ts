@@ -16,9 +16,7 @@ export async function POST(req: NextRequest) {
 
         if (!encResponse) {
             console.error("[Subscription] No encrypted response from CCAvenue");
-            return NextResponse.redirect(
-                new URL("/subscription/failed", req.url)
-            );
+            return NextResponse.redirect(new URL("/subscription/failed", req.url));
         }
 
         const workingKey = "7E11E36439A6169B00EB122F6155B84A".trim();
@@ -44,22 +42,22 @@ export async function POST(req: NextRequest) {
                     address: `${responseParams.billing_address}, ${responseParams.billing_city}, ${responseParams.billing_zip}`,
                 },
                 product: {
-                    // These would come from the order metadata
-                    productId: "extracted-from-metadata",
-                    name: "Product Name",
+                    productId: responseParams.merchant_param2 || "unknown",
+                    name: responseParams.merchant_param4 || "Product Name",
                     quantity: 1,
                     price: parseFloat(responseParams.amount),
                 },
                 plan: {
-                    frequency: "daily", // Extract from metadata
+                    frequency: responseParams.merchant_param3 || "daily",
                     startDate: new Date().toISOString().split("T")[0],
                     nextDelivery: new Date(Date.now() + 86400000).toISOString(), // +1 day
                 },
-                status: "active",
-                paymentMethod: "ccavenue_recurring",
+                status: "active", // Active immediately after payment
+                paymentMethod: "prepaid_one_time",
                 ccavenueData: {
-                    subscriptionRefNo: responseParams.sub_reference_no || responseParams.tracking_id,
-                    mandateId: responseParams.mandate_id,
+                    // Store tracking ID for the initial payment
+                    subscriptionRefNo: responseParams.tracking_id,
+                    mandateId: "N/A", // No mandate for one-time
                     cardToken: responseParams.card_name,
                 },
                 createdAt: new Date().toISOString(),
@@ -71,10 +69,7 @@ export async function POST(req: NextRequest) {
             console.log(`[Subscription] Created ${responseParams.order_id}`);
 
             return NextResponse.redirect(
-                new URL(
-                    `/subscription/success?id=${responseParams.order_id}`,
-                    req.url
-                )
+                new URL(`/subscription/success?id=${responseParams.order_id}`, req.url)
             );
         } else {
             console.error("[Subscription] Payment failed:", responseParams.failure_message);
@@ -90,8 +85,6 @@ export async function POST(req: NextRequest) {
         }
     } catch (error: any) {
         console.error("[Subscription] Handler error:", error);
-        return NextResponse.redirect(
-            new URL("/subscription/failed?reason=server_error", req.url)
-        );
+        return NextResponse.redirect(new URL("/subscription/failed?reason=server_error", req.url));
     }
 }

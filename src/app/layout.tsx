@@ -1,11 +1,7 @@
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CartProvider } from "@/lib/CartContext";
-import {
-    LocalBusinessSchema,
-    OrganizationSchema,
-    WebsiteSchema,
-} from "@/components/seo/JsonLd";
+import { LocalBusinessSchema, OrganizationSchema, WebsiteSchema } from "@/components/seo/JsonLd";
 import type { Metadata } from "next";
 import { Inter, Playfair_Display } from "next/font/google";
 import Script from "next/script";
@@ -55,7 +51,6 @@ export const metadata: Metadata = {
         title: "Amrit Milk Organic | Pure A2 Gir Cow Milk & Bilona Ghee",
         description:
             "Pure A2 Gir Cow Milk with authentic bilona ghee, cold-pressed oils, grains, and farm foods. Fresh, lab-tested, and delivered from our own farm.",
-        url: "https://amritmilkorganic.com",
         locale: "en_IN",
         images: [
             {
@@ -101,11 +96,7 @@ export const metadata: Metadata = {
     },
 };
 
-export default function RootLayout({
-    children,
-}: {
-    children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
     return (
         <html lang="en" suppressHydrationWarning>
             <head>
@@ -123,7 +114,9 @@ export default function RootLayout({
                     `}
                 </Script>
             </head>
-            <body className={`${inter.variable} ${playfair.variable} font-sans bg-midnight text-ivory antialiased`}>
+            <body
+                className={`${inter.variable} ${playfair.variable} font-sans bg-midnight text-ivory antialiased`}
+            >
                 <ThemeProvider>
                     <CartProvider>
                         <OrganizationSchema />

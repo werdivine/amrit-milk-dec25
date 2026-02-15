@@ -3,8 +3,8 @@
  * Initiates recurring payment with CCAvenue
  */
 
-import { encrypt, CCAVENUE_URLS } from "@/lib/ccavenue";
-import { buildRecurringRequestData, calculateNextDelivery } from "@/lib/ccavenue-recurring";
+import { encrypt, CCAVENUE_URLS, buildRequestData } from "@/lib/ccavenue";
+import { calculateNextDelivery } from "@/lib/ccavenue-recurring";
 import { NextRequest, NextResponse } from "next/server";
 
 export const dynamic = "force-dynamic";
@@ -49,7 +49,7 @@ export async function POST(req: NextRequest) {
         const amount = price * quantity;
 
         // Build recurring payment request
-        const requestData = buildRecurringRequestData({
+        const requestData = buildRequestData({
             orderId: subscriptionId,
             amount: amount,
             merchantId,
@@ -62,15 +62,19 @@ export async function POST(req: NextRequest) {
             billingCity: billingCity || "",
             billingState: billingState || "",
             billingZip: billingZip || "",
-            recurringFrequency: frequency,
-            recurringAmount: amount,
-            recurringStartDate: startDate || new Date().toISOString().split("T")[0],
         });
 
-        console.log(`[Subscription] Creating subscription ${subscriptionId} for ${customerEmail}`);
+        // Add subscription metadata as custom parameters
+        const params = new URLSearchParams(requestData);
+        params.set("merchant_param1", "subscription"); // Type
+        params.set("merchant_param2", productId); // Product ID
+        params.set("merchant_param3", frequency); // Frequency
+        params.set("merchant_param4", productName); // Product Name
+
+        console.log(`[Subscription] Creating one-time payment subscription ${subscriptionId}`);
 
         // Encrypt for CCAvenue
-        const encryptedData = encrypt(requestData, workingKey);
+        const encryptedData = encrypt(params.toString(), workingKey);
 
         // Calculate next delivery
         const nextDelivery = calculateNextDelivery(new Date(startDate || Date.now()), frequency);

@@ -36,7 +36,9 @@ export function DhartiGauMataSection() {
                 >
                     {/* The Main Quote */}
                     <blockquote className="relative">
-                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-7xl text-terracotta/20 dark:text-gold/20 font-serif leading-none">&ldquo;</div>
+                        <div className="absolute -top-6 left-1/2 -translate-x-1/2 text-7xl text-terracotta/20 dark:text-gold/20 font-serif leading-none">
+                            &ldquo;
+                        </div>
                         <p className="text-xl md:text-2xl lg:text-3xl font-serif italic text-espresso/90 dark:text-ivory/90 leading-relaxed max-w-4xl mx-auto pt-8">
                             धरती माँ की सेवा और गौ माता का संरक्षण ही हमारा असली उद्देश्य है।
                             <br />
@@ -53,13 +55,19 @@ export function DhartiGauMataSection() {
                             transition={{ delay: 0.3 }}
                             className="bg-white/60 dark:bg-midnight/60 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-terracotta/20 dark:border-gold/20 text-left hover:shadow-xl transition-shadow duration-500 group"
                         >
-                            <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">🌾</div>
+                            <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">
+                                🌾
+                            </div>
                             <h3 className="text-2xl font-serif font-bold text-terracotta dark:text-gold mb-4">
                                 धरती माता
                             </h3>
                             <p className="text-base text-espresso/80 dark:text-ivory/80 leading-relaxed">
-                                जैविक खेती, रासायनिक मुक्त ज़मीन, और पारंपरिक तरीकों से उगाए गए अनाज।
-                                हम धरती को नहीं लूटते — <strong className="text-espresso dark:text-ivory">हम उसकी सेवा करते हैं</strong> ताकि वो हमें संभाल सके।
+                                जैविक खेती, रासायनिक मुक्त ज़मीन, और पारंपरिक तरीकों से उगाए गए
+                                अनाज। हम धरती को नहीं लूटते —{" "}
+                                <strong className="text-espresso dark:text-ivory">
+                                    हम उसकी सेवा करते हैं
+                                </strong>{" "}
+                                ताकि वो हमें संभाल सके।
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-espresso/70 dark:text-ivory/70">
                                 <li className="flex items-center gap-2">
@@ -84,13 +92,124 @@ export function DhartiGauMataSection() {
                             transition={{ delay: 0.4 }}
                             className="bg-white/60 dark:bg-midnight/60 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-terracotta/20 dark:border-gold/20 text-left hover:shadow-xl transition-shadow duration-500 group"
                         >
-                            <div className="text-5xl mb-5 group-hover:scale-110 transition-transform duration-300">🐄</div>
+                            <div className="w-16 h-16 mb-5 group-hover:scale-110 transition-transform duration-300">
+                                <svg
+                                    viewBox="0 0 64 64"
+                                    fill="none"
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="w-full h-full"
+                                >
+                                    {/* Desi Gir Cow with hump and curved horns */}
+                                    <ellipse
+                                        cx="32"
+                                        cy="44"
+                                        rx="18"
+                                        ry="10"
+                                        className="fill-terracotta/20 dark:fill-gold/20"
+                                    />
+                                    {/* Body */}
+                                    <path
+                                        d="M16 32 C16 26, 22 22, 30 22 C34 22, 38 24, 42 22 C46 20, 48 20, 48 24 L48 38 C48 42, 42 44, 32 44 C22 44, 16 42, 16 38 Z"
+                                        className="fill-terracotta dark:fill-gold"
+                                    />
+                                    {/* Hump - distinctive desi cow feature */}
+                                    <ellipse
+                                        cx="28"
+                                        cy="20"
+                                        rx="6"
+                                        ry="5"
+                                        className="fill-terracotta dark:fill-gold"
+                                    />
+                                    {/* Head */}
+                                    <ellipse
+                                        cx="46"
+                                        cy="24"
+                                        rx="5"
+                                        ry="4"
+                                        className="fill-terracotta/90 dark:fill-gold/90"
+                                    />
+                                    {/* Horns - curved like Gir cow */}
+                                    <path
+                                        d="M44 20 C42 14, 40 12, 38 14"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        className="text-espresso/50 dark:text-ivory/50"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                    />
+                                    <path
+                                        d="M48 20 C50 14, 52 12, 54 14"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        className="text-espresso/50 dark:text-ivory/50"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                    />
+                                    {/* Dewlap */}
+                                    <path
+                                        d="M44 28 C44 32, 46 34, 48 32"
+                                        className="fill-terracotta/70 dark:fill-gold/70"
+                                    />
+                                    {/* Legs */}
+                                    <rect
+                                        x="20"
+                                        y="42"
+                                        width="3"
+                                        height="8"
+                                        rx="1"
+                                        className="fill-terracotta/80 dark:fill-gold/80"
+                                    />
+                                    <rect
+                                        x="28"
+                                        y="42"
+                                        width="3"
+                                        height="8"
+                                        rx="1"
+                                        className="fill-terracotta/80 dark:fill-gold/80"
+                                    />
+                                    <rect
+                                        x="36"
+                                        y="42"
+                                        width="3"
+                                        height="8"
+                                        rx="1"
+                                        className="fill-terracotta/80 dark:fill-gold/80"
+                                    />
+                                    <rect
+                                        x="42"
+                                        y="42"
+                                        width="3"
+                                        height="8"
+                                        rx="1"
+                                        className="fill-terracotta/80 dark:fill-gold/80"
+                                    />
+                                    {/* Eye */}
+                                    <circle
+                                        cx="48"
+                                        cy="23"
+                                        r="1"
+                                        className="fill-espresso dark:fill-midnight"
+                                    />
+                                    {/* Tail */}
+                                    <path
+                                        d="M16 34 C12 32, 10 36, 12 38"
+                                        stroke="currentColor"
+                                        strokeWidth="1.5"
+                                        className="text-terracotta dark:text-gold"
+                                        fill="none"
+                                        strokeLinecap="round"
+                                    />
+                                </svg>
+                            </div>
                             <h3 className="text-2xl font-serif font-bold text-terracotta dark:text-gold mb-4">
                                 गौ माता
                             </h3>
                             <p className="text-base text-espresso/80 dark:text-ivory/80 leading-relaxed">
                                 देसी गिर गायों का प्राकृतिक चारा, खुली चराई, और प्यार भरी देखभाल।
-                                <strong className="text-espresso dark:text-ivory"> गाय की खुशी में ही A2 दूध की पवित्रता है।</strong>
+                                <strong className="text-espresso dark:text-ivory">
+                                    {" "}
+                                    गाय की खुशी में ही A2 दूध की पवित्रता है।
+                                </strong>
                             </p>
                             <ul className="mt-4 space-y-2 text-sm text-espresso/70 dark:text-ivory/70">
                                 <li className="flex items-center gap-2">
@@ -117,7 +236,8 @@ export function DhartiGauMataSection() {
                         transition={{ delay: 0.5 }}
                         className="mt-10 text-base md:text-lg text-espresso/70 dark:text-ivory/70"
                     >
-                        हम सिर्फ दूध नहीं बेचते — हम धरती और गाय के प्रति अपनी जिम्मेदारी निभाते हैं।
+                        हम सिर्फ दूध नहीं बेचते — हम धरती और गाय के प्रति अपनी जिम्मेदारी निभाते
+                        हैं।
                         <br />
                         <span className="font-bold text-terracotta dark:text-gold text-lg md:text-xl">
                             यही है अमृत की असली ताकत।
