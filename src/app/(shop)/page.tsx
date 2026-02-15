@@ -11,7 +11,7 @@ import type { Metadata } from "next";
 // Sustainability & Story
 import { FarmTimeline } from "@/components/patterns/v2/FarmTimeline";
 import { GoogleReviews } from "@/components/patterns/v2/GoogleReviews";
-import { FouitaInstagramWidget } from "@/components/patterns/v2/FouitaInstagramWidget";
+import { InstagramFeed } from "@/components/patterns/v2/InstagramFeed";
 import { MissionBridge } from "@/components/patterns/v2/MissionBridge";
 import { OurMission } from "@/components/patterns/v2/OurMission";
 import { DhartiGauMataSection } from "@/components/patterns/v3/DhartiGauMataSection";
@@ -280,7 +280,7 @@ export default async function Home() {
             <WallOfLove />
 
             {/* 16. JOIN US */}
-            <FouitaInstagramWidget />
+            <InstagramFeed />
             <FarmTourCTA />
 
             {/* 17. SUPPORT */}
