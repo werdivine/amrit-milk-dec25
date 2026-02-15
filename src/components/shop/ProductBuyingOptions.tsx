@@ -115,15 +115,14 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
     const isSubscriptionEligible =
         selectedVariant?.subscription === true || // Trust variant flag if present
         (selectedVariant?.subscription !== false && // Otherwise check category defaults
-            (product.category === "Dairy" || product.title.toLowerCase().includes("milk")));
+            product.category === "Dairy");
     // Temporarily disabled for other categories until specific plans are defined
     // || product.title.toLowerCase().includes("bilona ghee")
     // || product.category === "Vedic Kitchen Treasures"
     // ...
 
     // Detect if this is a milk product specifically
-    const isMilkProduct =
-        product.category === "Dairy" || product.title.toLowerCase().includes("milk");
+    const isMilkProduct = product.category === "Dairy";
 
     // Default to subscription for eligible products
     useEffect(() => {
