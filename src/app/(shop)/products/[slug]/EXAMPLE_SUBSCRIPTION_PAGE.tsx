@@ -24,7 +24,7 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
         subscription: true,
     };
 
-    const handleSubscribe = async (frequency: string) => {
+    const handleSubscribe = async (planId: string, totalAmount: number) => {
         // Get customer details (from checkout or user profile)
         const customerDetails = {
             name: "Customer Name", // Get from auth/form
@@ -43,8 +43,8 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
                 productId: product.id,
                 productName: product.title,
                 quantity: 1,
-                price: product.price,
-                frequency,
+                price: totalAmount,
+                planType: planId,
                 customerName: customerDetails.name,
                 customerEmail: customerDetails.email,
                 customerPhone: customerDetails.phone,
@@ -144,19 +144,21 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
                         <div className="flex gap-2 mb-6 border-b border-creme-dark dark:border-glass-border">
                             <button
                                 onClick={() => setShowSubscription(false)}
-                                className={`px-4 py-2 font-semibold transition-colors border-b-2 ${!showSubscription
-                                    ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
-                                    : "border-transparent text-espresso/60 dark:text-ivory/60"
-                                    }`}
+                                className={`px-4 py-2 font-semibold transition-colors border-b-2 ${
+                                    !showSubscription
+                                        ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
+                                        : "border-transparent text-espresso/60 dark:text-ivory/60"
+                                }`}
                             >
                                 One-Time Purchase
                             </button>
                             <button
                                 onClick={() => setShowSubscription(true)}
-                                className={`px-4 py-2 font-semibold transition-colors border-b-2 ${showSubscription
-                                    ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
-                                    : "border-transparent text-espresso/60 dark:text-ivory/60"
-                                    }`}
+                                className={`px-4 py-2 font-semibold transition-colors border-b-2 ${
+                                    showSubscription
+                                        ? "border-terracotta dark:border-gold text-terracotta dark:text-gold"
+                                        : "border-transparent text-espresso/60 dark:text-ivory/60"
+                                }`}
                             >
                                 Subscribe & Save
                             </button>
@@ -167,8 +169,7 @@ export default function MilkProductPage({ params }: { params: { slug: string } }
                             <SubscriptionPlanSelector
                                 productId={product.id}
                                 productName={product.title}
-                                price={product.price}
-                                onSubscribe={handleSubscribe}
+                                onSelectPlan={handleSubscribe}
                             />
                         ) : (
                             <Button
