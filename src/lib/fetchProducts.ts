@@ -18,7 +18,8 @@ const productQuery = `*[_type == "product"] | order(_createdAt desc) {
   ingredients,
   benefits,
   howToUse,
-  "longDescription": longDescription
+  "longDescription": longDescription,
+  variants
 }`;
 
 function formatPrice(price: any): string {
@@ -92,7 +93,8 @@ export async function getProductBySlug(slug: string): Promise<any | null> {
             ingredients,
             benefits,
             howToUse,
-            "longDescription": longDescription
+            "longDescription": longDescription,
+            variants
         }`;
 
         const product = await client.fetch(
@@ -114,8 +116,20 @@ export async function getProductBySlug(slug: string): Promise<any | null> {
             if (localMatch) {
                 return {
                     ...localMatch, // Local data defaults
-                    ...result, // Sanity data overrides (The latest info)
-                    // Ensure prices are formatted correctly from whichever source we use
+                    ...result, // Sanity data overrides basic fields
+                    // FORCE Title from local if available (to remove "500ml" etc.)
+                    title: localMatch.title || result.title,
+                    // Preserved Rich Content: Use local data if Sanity data is missing
+                    highlights: result.highlights || localMatch.highlights || [],
+                    ingredients: result.ingredients || localMatch.ingredients || [],
+                    benefits: result.benefits || localMatch.benefits || [],
+                    howToUse: result.howToUse || localMatch.howToUse || [],
+                    // Variants: PRIORITIZE LOCAL if available to ensure correct structure/titles
+                    variants:
+                        localMatch.variants && localMatch.variants.length > 0
+                            ? localMatch.variants
+                            : result.variants || [],
+                    // Ensure prices are formatted correctly
                     price: formatPrice(result.price || localMatch.price),
                     regularPrice:
                         result.regularPrice || localMatch.regularPrice

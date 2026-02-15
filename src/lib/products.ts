@@ -17,6 +17,7 @@ export interface Product {
     howToUse?: string[];
     variants?: Array<{
         id: string;
+        title?: string;
         size: string;
         weight: string;
         price: number;
@@ -32,7 +33,7 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "ghee-cow-1kg",
-        title: "Amrit Milk Organic A2 Cow Ghee - 1 kg",
+        title: "Amrit Milk Organic A2 Cow Ghee",
         price: "₹2500",
         image: "/assets/img/products/amrit_ghee_premium.png",
         category: "Ghee",
@@ -43,23 +44,25 @@ export const products: Product[] = [
         badge: "Pure Vedic",
         variants: [
             {
-                id: "500gm",
-                size: "500gm",
-                weight: "500 grams",
-                price: 1350,
-                originalPrice: 1400,
-                inStock: true,
-                inventory: 25
-            },
-            {
                 id: "1kg",
+                title: "1 L",
                 size: "1kg",
                 weight: "1 kilogram",
                 price: 2500,
                 originalPrice: 2700,
                 inStock: true,
-                inventory: 15
-            }
+                inventory: 15,
+            },
+            {
+                id: "500gm",
+                title: "500 ml",
+                size: "500gm",
+                weight: "500 grams",
+                price: 1350,
+                originalPrice: 1400,
+                inStock: true,
+                inventory: 25,
+            },
         ],
         highlights: [
             "Made using traditional Bilona hand-churning method",
@@ -84,13 +87,35 @@ export const products: Product[] = [
     },
     {
         id: "ghee-cow-500ml",
-        title: "Amrit Milk Organic A2 Cow Ghee - 500ml",
+        title: "Amrit Milk Organic A2 Cow Ghee",
         price: "₹1350",
         image: "/assets/img/products/amrit_ghee_premium.png",
         category: "Ghee",
         description: "Traditional Bilona method A2 Cow Ghee. Pure gold for health.",
         slug: "a2-cow-ghee-500ml",
         sku: "AMRIT-DAIRY-005-SM",
+        variants: [
+            {
+                id: "500gm",
+                title: "500 ml",
+                size: "500gm",
+                weight: "500 grams",
+                price: 1350,
+                originalPrice: 1400,
+                inStock: true,
+                inventory: 25,
+            },
+            {
+                id: "1kg",
+                title: "1 L",
+                size: "1kg",
+                weight: "1 kilogram",
+                price: 2500,
+                originalPrice: 2700,
+                inStock: true,
+                inventory: 15,
+            },
+        ],
         highlights: [
             "Made using traditional Bilona hand-churning method",
             "100% A2 beta-casein protein from Desi Gir cows",
@@ -215,8 +240,8 @@ export const products: Product[] = [
     // ═══════════════════════════════════════════════════════════
     {
         id: "honey-multiflora-1kg",
-        title: "Amrit Organic Multiflora Honey - 1 kg",
-        price: "₹1200",
+        title: "Amrit Organic Multiflora Honey",
+        price: "₹400",
         image: "/assets/img/products/amrit_honey_premium_v7.png",
         category: "Honey",
         description: "Pure Multiflora honey collected from diverse forest flowers.",
@@ -227,21 +252,23 @@ export const products: Product[] = [
         variants: [
             {
                 id: "300gm",
+                title: "300 gm",
                 size: "300gm",
                 weight: "300 grams",
                 price: 400,
                 inStock: true,
-                inventory: 30
+                inventory: 30,
             },
             {
                 id: "1kg",
+                title: "1 kg",
                 size: "1kg",
                 weight: "1 kilogram",
                 price: 1200,
                 originalPrice: 1300,
                 inStock: true,
-                inventory: 20
-            }
+                inventory: 20,
+            },
         ],
         highlights: [
             "100% raw, unprocessed, unpasteurized honey",
@@ -266,8 +293,8 @@ export const products: Product[] = [
     },
     {
         id: "honey-jamun-1kg",
-        title: "Amrit Organic Jamun Honey - 1 kg",
-        price: "₹1200",
+        title: "Amrit Organic Jamun Honey",
+        price: "₹400",
         image: "/assets/img/products/amrit_jamun_honey_v3.png",
         category: "Honey",
         description: "Medicinal honey from Jamun flower nectar. Good for diabetics.",
@@ -277,21 +304,23 @@ export const products: Product[] = [
         variants: [
             {
                 id: "300gm",
+                title: "300 gm",
                 size: "300gm",
                 weight: "300 grams",
                 price: 400,
                 inStock: true,
-                inventory: 28
+                inventory: 28,
             },
             {
                 id: "1kg",
+                title: "1 kg",
                 size: "1kg",
                 weight: "1 kilogram",
                 price: 1200,
                 originalPrice: 1300,
                 inStock: true,
-                inventory: 18
-            }
+                inventory: 18,
+            },
         ],
         highlights: [
             "100% raw, unprocessed Jamun (Indian Blackberry) honey",

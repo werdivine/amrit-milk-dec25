@@ -1,4 +1,5 @@
 import { AddToCartButton } from "@/components/shop/AddToCartButton";
+import { ProductBuyingOptions } from "@/components/shop/ProductBuyingOptions";
 import { BenefitsSection } from "@/components/shop/BenefitsSection";
 import { HowToUseSection } from "@/components/shop/HowToUseSection";
 import { IngredientsSection } from "@/components/shop/IngredientsSection";
@@ -111,7 +112,9 @@ export default async function ProductPage({ params }: { params: { slug: string }
 
         // Recommended products (same category, excluding current)
         const recommendedProducts = products
-            .filter((p: any) => p.category === basicProduct.category && p.slug !== basicProduct.slug)
+            .filter(
+                (p: any) => p.category === basicProduct.category && p.slug !== basicProduct.slug
+            )
             .slice(0, 4);
 
         // Best selling products (those with Best Seller badge or first 4)
@@ -163,7 +166,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                     {basicProduct.badge}
                                 </span>
                             )}
-                            <h1 className="text-4xl font-serif font-bold text-theme-primary mb-4 leading-tight">
+                            <h1 className="text-2xl font-serif font-bold text-theme-primary mb-4 leading-tight">
                                 {basicProduct.title}
                             </h1>
                             <div className="flex items-center justify-center gap-4 mb-2">
@@ -222,7 +225,7 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                         </span>
                                     )}
 
-                                    <h1 className="hidden lg:block text-5xl md:text-6xl font-serif font-bold text-theme-primary mb-4 leading-tight">
+                                    <h1 className="hidden lg:block text-3xl md:text-4xl font-serif font-bold text-theme-primary mb-4 leading-tight">
                                         {basicProduct.title}
                                     </h1>
 
@@ -237,43 +240,14 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                         </span>
                                     </div>
 
-                                    <div className="flex items-baseline gap-4">
-                                        <p className="text-5xl font-bold text-theme-accent">
-                                            {basicProduct.price}
-                                        </p>
-                                        {basicProduct.regularPrice &&
-                                            basicProduct.regularPrice !== basicProduct.price && (
-                                                <p className="text-2xl text-theme-muted line-through font-light">
-                                                    {basicProduct.regularPrice}
-                                                </p>
-                                            )}
-                                    </div>
+                                    {/* Price moved to ProductBuyingOptions for dynamic updates */}
                                 </div>
 
                                 <p className="text-xl text-theme-secondary leading-relaxed font-light">
                                     {basicProduct.description}
                                 </p>
 
-                                <div className="flex flex-wrap gap-4 pt-4">
-                                    <AddToCartButton
-                                        id={basicProduct.id}
-                                        title={basicProduct.title}
-                                        price={basicProduct.price}
-                                        image={basicProduct.image}
-                                        slug={basicProduct.slug}
-                                        category={basicProduct.category}
-                                        description={basicProduct.description}
-                                        sku={basicProduct.sku}
-                                    />
-                                    <ShareButton
-                                        title={basicProduct.title}
-                                        text={basicProduct.description}
-                                        url={`https://amritmilkorganic.com/products/${basicProduct.slug}`}
-                                    />
-                                    <button className="w-16 h-16 flex items-center justify-center bg-theme-elevated border border-theme-light rounded-full hover:bg-terracotta/10 dark:hover:bg-gold/10 hover:border-terracotta/30 dark:hover:border-gold/30 transition-all group">
-                                        <Heart className="w-6 h-6 text-theme-primary group-hover:text-theme-accent transition-colors" />
-                                    </button>
-                                </div>
+                                <ProductBuyingOptions product={basicProduct} />
 
                                 {/* Delivery Info */}
                                 <div className="p-6 rounded-2xl bg-theme-elevated border border-theme-light space-y-4">
@@ -296,17 +270,17 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                     basicProduct.ingredients ||
                                     basicProduct.benefits ||
                                     basicProduct.howToUse) && (
-                                        <div className="space-y-8 p-6 rounded-2xl bg-gradient-to-br from-theme-elevated to-theme-secondary/30 border border-theme-light">
-                                            <ProductHighlightsSection
-                                                highlights={basicProduct.highlights || []}
-                                            />
-                                            <IngredientsSection
-                                                ingredients={basicProduct.ingredients || []}
-                                            />
-                                            <BenefitsSection benefits={basicProduct.benefits || []} />
-                                            <HowToUseSection steps={basicProduct.howToUse || []} />
-                                        </div>
-                                    )}
+                                    <div className="space-y-8 p-6 rounded-2xl bg-gradient-to-br from-theme-elevated to-theme-secondary/30 border border-theme-light">
+                                        <ProductHighlightsSection
+                                            highlights={basicProduct.highlights || []}
+                                        />
+                                        <IngredientsSection
+                                            ingredients={basicProduct.ingredients || []}
+                                        />
+                                        <BenefitsSection benefits={basicProduct.benefits || []} />
+                                        <HowToUseSection steps={basicProduct.howToUse || []} />
+                                    </div>
+                                )}
                             </div>
                         </div>
                     </div>
@@ -548,8 +522,12 @@ export default async function ProductPage({ params }: { params: { slug: string }
         console.error(`Error rendering product page for ${params?.slug}:`, error);
         return (
             <main className="min-h-screen pt-32 px-6 text-center bg-theme-primary flex flex-col items-center justify-center">
-                <h1 className="text-2xl font-bold text-theme-primary mb-4">Product Temporarily Unavailable</h1>
-                <p className="text-theme-secondary mb-8">We are having trouble loading this product. Please try again later.</p>
+                <h1 className="text-2xl font-bold text-theme-primary mb-4">
+                    Product Temporarily Unavailable
+                </h1>
+                <p className="text-theme-secondary mb-8">
+                    We are having trouble loading this product. Please try again later.
+                </p>
                 <Button href="/products">Back to Shop</Button>
             </main>
         );
