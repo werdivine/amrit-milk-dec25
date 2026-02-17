@@ -9,33 +9,13 @@ const FOUITA_WIDGET_ID = "ft6pvb87w";
 const FOUITA_SCRIPT_URL = "https://wdg.fouita.com/widgets/0x3cc1c6.js";
 
 export function FouitaInstagramWidget() {
-    const [isVisible, setIsVisible] = useState(false);
     const [isLoaded, setIsLoaded] = useState(false);
     const containerRef = useRef<HTMLDivElement>(null);
     const scriptInjectedRef = useRef(false);
 
-    // Intersection Observer to detect when widget is in view
+    // Load Fouita widget script immediately
     useEffect(() => {
-        const observer = new IntersectionObserver(
-            (entries) => {
-                if (entries[0].isIntersecting) {
-                    setIsVisible(true);
-                    observer.disconnect();
-                }
-            },
-            { threshold: 0.01, rootMargin: "400px" }
-        );
-
-        if (containerRef.current) {
-            observer.observe(containerRef.current);
-        }
-
-        return () => observer.disconnect();
-    }, []);
-
-    // Load Fouita widget script
-    useEffect(() => {
-        if (!isVisible || scriptInjectedRef.current) return;
+        if (scriptInjectedRef.current) return;
         if (typeof window === "undefined") return;
 
         scriptInjectedRef.current = true;
@@ -56,7 +36,7 @@ export function FouitaInstagramWidget() {
         return () => {
             // Cleanup if needed
         };
-    }, [isVisible]);
+    }, []);
 
     return (
         <Section className="bg-gradient-to-b from-white to-[#FDFBF7] dark:from-midnight-light to-midnight py-24 md:py-32 overflow-hidden">
