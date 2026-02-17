@@ -7,16 +7,20 @@ import { Section } from "@/components/ui/section";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 
-export function ComboCarousel() {
+interface ComboCarouselProps {
+    items?: any[];
+}
+
+export function ComboCarousel({ items }: ComboCarouselProps) {
     const scrollRef = useRef<HTMLDivElement>(null);
-    const comboProducts = products.filter(p => p.category === "Combos");
+    const comboProducts = items ? items : products.filter((p) => p.category === "Combos");
 
     const scroll = (direction: "left" | "right") => {
         if (scrollRef.current) {
             const scrollAmount = 400;
             scrollRef.current.scrollBy({
                 left: direction === "left" ? -scrollAmount : scrollAmount,
-                behavior: "smooth"
+                behavior: "smooth",
             });
         }
     };
@@ -53,10 +57,13 @@ export function ComboCarousel() {
                 <div
                     ref={scrollRef}
                     className="flex gap-6 overflow-x-auto no-scrollbar pb-10 -mx-4 px-4 snap-x snap-mandatory"
-                    style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+                    style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
                 >
                     {comboProducts.map((product) => (
-                        <div key={product.id} className="min-w-[300px] md:min-w-[350px] snap-center">
+                        <div
+                            key={product.id}
+                            className="min-w-[300px] md:min-w-[350px] snap-center"
+                        >
                             <ProductCard
                                 id={product.id}
                                 title={product.title}
@@ -75,7 +82,11 @@ export function ComboCarousel() {
 
                     {/* View All Card */}
                     <div className="min-w-[250px] flex items-center justify-center snap-center">
-                        <Button href="/combos" variant="outline" className="h-full w-full border-dashed border-2 flex flex-col gap-4 border-espresso/20 dark:border-white/20 text-espresso dark:text-ivory hover:bg-espresso/5">
+                        <Button
+                            href="/combos"
+                            variant="outline"
+                            className="h-full w-full border-dashed border-2 flex flex-col gap-4 border-espresso/20 dark:border-white/20 text-espresso dark:text-ivory hover:bg-espresso/5"
+                        >
                             <span className="font-serif text-2xl">View All</span>
                             <ArrowRight className="w-6 h-6" />
                         </Button>

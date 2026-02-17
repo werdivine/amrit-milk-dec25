@@ -275,7 +275,7 @@ export default async function Home() {
 
             {/* 15. TRUST & SOCIAL PROOF */}
             <TrustStrip />
-            <ComboCarousel />
+            <ComboCarousel items={products.filter((p) => p.category === "Combos")} />
             <ExpertPanel />
             <WallOfLove />
 
