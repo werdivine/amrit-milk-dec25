@@ -1692,6 +1692,32 @@ export const products: Product[] = [
             "Complete family wellness solution",
         ],
     },
+    {
+        id: "combo-panchamrit-custom",
+        title: "Panchamrit Custom Combo",
+        price: "₹3,900", // Base price estimate
+        regularPrice: "₹4,500",
+        image: "/assets/img/products/panchamrit_combo.jpg",
+        category: "Combos",
+        description:
+            "Build your own Panchamrit bundle. Choose your A2 Ghee, Oils, Honey, Grains, and extras.",
+        slug: "panchamrit-custom-combo",
+        sku: "AMRIT-COMBO-006",
+        featured: true,
+        badge: "Customizable",
+        highlights: [
+            "Fully customizable wellness bundle",
+            "Select your preferred Ghee, Oils, Honey & Grains",
+            "Includes options for Jaggery & Sirka",
+            "Perfect for gifting or monthly groceries",
+        ],
+        benefits: [
+            "Tailored to your family's needs",
+            "All organic and chemical-free products",
+            "Save with bundle pricing",
+            "Complete kitchen solution",
+        ],
+    },
 ];
 
 export const categories = [

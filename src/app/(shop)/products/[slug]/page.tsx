@@ -1,4 +1,5 @@
 import { AddToCartButton } from "@/components/shop/AddToCartButton";
+import { ComboBuilder } from "@/components/shop/ComboBuilder";
 import { ProductBuyingOptions } from "@/components/shop/ProductBuyingOptions";
 import { BenefitsSection } from "@/components/shop/BenefitsSection";
 import { HowToUseSection } from "@/components/shop/HowToUseSection";
@@ -247,7 +248,11 @@ export default async function ProductPage({ params }: { params: { slug: string }
                                     {basicProduct.description}
                                 </p>
 
-                                <ProductBuyingOptions product={basicProduct} />
+                                {slug === "panchamrit-custom-combo" ? (
+                                    <ComboBuilder product={basicProduct} />
+                                ) : (
+                                    <ProductBuyingOptions product={basicProduct} />
+                                )}
 
                                 {/* Delivery Info */}
                                 <div className="p-6 rounded-2xl bg-theme-elevated border border-theme-light space-y-4">

@@ -120,7 +120,7 @@ const gheeHowTo = {
 const GHEE_SLUG = "a2-cow-ghee-1kg";
 const HONEY_SLUG = "multiflora-honey-1kg";
 const MILK_SLUG = "a2-gir-cow-milk-1l";
-const COMBO_SLUG = "wellness-trio-pack";
+const COMBO_SLUG = "panchamrit-custom-combo";
 
 const COLD_PRESSED_OIL_SLUGS = [
     "yellow-mustard-oil-1l",
@@ -188,8 +188,8 @@ export default async function Home() {
                 items={pantryEssentials}
                 category="Oils"
                 title="Vedic Kitchen Treasures"
-                subtitle="Ghee • Honey • Milk • Combos"
-                description="Pure Bilona Ghee, Raw Honey, Fresh A2 Milk, and Combo Packs. The foundation of a healthy kitchen."
+                subtitle="Ghee • Honey • Milk • Panchamrit"
+                description="Pure Bilona Ghee, Raw Honey, Fresh A2 Milk, and our new Customizable Panchamrit Combo. The foundation of a healthy kitchen."
                 backgroundTheme="light"
             />
 
