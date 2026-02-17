@@ -50,7 +50,14 @@ export async function getProducts(): Promise<any[]> {
         // Only use static products as fallback if Sanity has ZERO products
         if (sanityProducts && sanityProducts.length > 0) {
             console.log(`[fetchProducts] Loaded ${sanityProducts.length} products from Sanity`);
-            return sanityProducts.map((p: any) => ({
+
+            // Merge Strategy: Add static products that are NOT in Sanity (by slug)
+            // This ensures new local-only products (like Dals) appear immediately
+            const sanitySlugs = new Set(sanityProducts.map((p: any) => p.slug));
+            const missingStaticProducts = staticProducts.filter((p) => !sanitySlugs.has(p.slug));
+            const allProducts = [...sanityProducts, ...missingStaticProducts];
+
+            return allProducts.map((p: any) => ({
                 ...p,
                 price: formatPrice(p.price),
                 regularPrice: p.regularPrice ? formatPrice(p.regularPrice) : undefined,

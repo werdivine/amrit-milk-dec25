@@ -211,6 +211,15 @@ export default async function Home() {
                 backgroundTheme="creme"
             />
 
+            {/* 3.3. FARM-FRESH DALS */}
+            <ProductCollection
+                items={products.filter((p) => p.category === "Lentils/Dals")}
+                title="Farm-Fresh Dals"
+                subtitle="Organic Lentils"
+                description="Unpolished, protein-rich dals. Toor, Chana, Urad, and Moong directly from the farm."
+                backgroundTheme="light"
+            />
+
             {/* 3.5. CINEMATIC GHEE SPOTLIGHT */}
             <GheeSpotlight />
 
