@@ -19,10 +19,10 @@ export function DhartiGauMataSection() {
                     transition={{ duration: 0.8 }}
                     className="mb-14"
                 >
-                    <span className="inline-block px-5 py-2 bg-terracotta/10 dark:bg-gold/10 border border-terracotta/30 dark:border-gold/30 rounded-full text-terracotta dark:text-gold font-bold text-xs tracking-[0.3em] uppercase mb-6">
+                    <span className="inline-block px-5 py-2 bg-terracotta/10 dark:bg-gold/10 border border-terracotta/30 dark:border-gold/30 rounded-full text-terracotta dark:text-gold font-bold text-sm md:text-base tracking-widest uppercase mb-6">
                         हमारा संकल्प
                     </span>
-                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-espresso dark:text-ivory mb-6 leading-tight">
+                    <h2 className="text-4xl md:text-6xl lg:text-7xl font-serif font-bold text-espresso dark:text-ivory mb-6 leading-snug md:leading-relaxed lg:leading-relaxed">
                         धरती माता। गौ माता।
                         <br />
                         <span className="text-terracotta dark:text-gold">यही हमारी नींव है।</span>
