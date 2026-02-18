@@ -136,7 +136,7 @@ const JAGGERY_OPTIONS: ComboOption[] = [
         id: "jaggery-powder-1kg",
         category: "Sweetener",
         title: "Organic Jaggery Powder (1kg)",
-        image: "/assets/img/products/jaggery.png", // Placeholder if needed
+        image: "/assets/img/products/premium_jaggery_bites.png",
         price: 120,
         description: "Chemical-free sweetener.",
     },
@@ -144,7 +144,7 @@ const JAGGERY_OPTIONS: ComboOption[] = [
         id: "jaggery-block-1kg",
         category: "Sweetener",
         title: "Organic Jaggery Block (1kg)",
-        image: "/assets/img/products/jaggery.png",
+        image: "/assets/img/products/premium_jaggery_bites.png",
         price: 100,
         description: "Traditional gud.",
     },
@@ -166,53 +166,86 @@ const SIRKA_OPTIONS: ComboOption[] = [
 
 export function ComboBuilder({ product }: { product: any }) {
     const { addToCart } = useCart();
+
+    // State now holds arrays of selected options
     const [selections, setSelections] = useState<{
-        ghee: ComboOption;
-        oil: ComboOption;
-        honey: ComboOption;
-        grain: ComboOption;
-        jaggery: ComboOption | null;
-        sirka: ComboOption | null;
+        ghee: ComboOption[];
+        oil: ComboOption[];
+        honey: ComboOption[];
+        grain: ComboOption[];
+        jaggery: ComboOption[];
+        sirka: ComboOption[];
     }>({
-        ghee: GHEE_OPTIONS[0],
-        oil: OIL_OPTIONS[0],
-        honey: HONEY_OPTIONS[0],
-        grain: GRAIN_OPTIONS[0],
-        jaggery: null, // Optional
-        sirka: null, // Optional
+        ghee: [GHEE_OPTIONS[0]],
+        oil: [OIL_OPTIONS[0]],
+        honey: [HONEY_OPTIONS[0]],
+        grain: [GRAIN_OPTIONS[0]],
+        jaggery: [], // Optional
+        sirka: [], // Optional
     });
 
     const [isAdded, setIsAdded] = useState(false);
 
     const toggleSelection = (category: keyof typeof selections, item: ComboOption) => {
-        setSelections((prev) => ({
-            ...prev,
-            [category]:
-                prev[category]?.id === item.id && (category === "jaggery" || category === "sirka")
-                    ? null
-                    : item,
-        }));
+        setSelections((prev) => {
+            const currentSelections = prev[category];
+            const isSelected = currentSelections.some((i) => i.id === item.id);
+
+            let newSelections;
+            if (isSelected) {
+                // Remove item
+                newSelections = currentSelections.filter((i) => i.id !== item.id);
+            } else {
+                // Add item
+                newSelections = [...currentSelections, item];
+            }
+
+            // Enforce at least one selection for mandatory categories (unless we want to allow deselecting all?)
+            // Requirement says "USER CAN SELECT MULTIPLE PRODUCTS", implying they can also just select 1.
+            // But for mandatory categories, we usually want at least 1.
+            // However, typical multi-select UX allows deselecting all.
+            // For now, let's allow empty for flexibility, but `isFullBundle` check will handle the "complete" logic.
+
+            // Actually, for better UX on mandatory fields, if they try to deselect the *last* item, maybe we should prevent it?
+            // Or just let them empty it and the bundle validation handles it. Let's stick to consistent toggle logic.
+
+            return {
+                ...prev,
+                [category]: newSelections,
+            };
+        });
     };
 
     // Calculate total price
     const totalPrice = Object.values(selections)
-        .filter(Boolean)
-        .reduce((sum, item) => sum + (item?.price || 0), 0);
+        .flat()
+        .reduce((sum, item) => sum + item.price, 0);
 
-    // Calculate discount (Bundle discount logic: 10% off for full bundle?)
+    // Calculate discount (Bundle discount logic: 10% off if at least one item from EACH mandatory category is selected)
     const isFullBundle =
-        selections.ghee &&
-        selections.oil &&
-        selections.honey &&
-        selections.grain &&
-        selections.jaggery &&
-        selections.sirka;
+        selections.ghee.length > 0 &&
+        selections.oil.length > 0 &&
+        selections.honey.length > 0 &&
+        selections.grain.length > 0;
+    // jaggery and sirka are optional
+
     const discount = isFullBundle ? Math.round(totalPrice * 0.1) : 0;
     const finalPrice = totalPrice - discount;
 
     const handleAddToCart = () => {
-        const selectedItems = Object.values(selections).filter(Boolean) as ComboOption[];
-        const description = selectedItems.map((i) => i.title).join(", ");
+        const selectedItems = Object.values(selections).flat();
+
+        if (selectedItems.length === 0) return; // Don't add empty
+
+        // Create a summary description
+        const description = Object.entries(selections)
+            .filter(([_, items]) => items.length > 0)
+            .map(([key, items]) => {
+                const categoryTitle = key.charAt(0).toUpperCase() + key.slice(1);
+                const itemTitles = items.map((i) => i.title).join(", ");
+                return `${categoryTitle}: ${itemTitles}`;
+            })
+            .join(" | ");
 
         addToCart({
             id: `panchamrit-combo-${Date.now()}`,
@@ -220,7 +253,7 @@ export function ComboBuilder({ product }: { product: any }) {
             price: String(finalPrice),
             image: product.image,
             category: "Combos",
-            description: `Includes: ${description}`,
+            description: description,
             slug: product.slug,
             sku: "COMBO-PANCHAMRIT",
         });
@@ -234,82 +267,90 @@ export function ComboBuilder({ product }: { product: any }) {
         category: keyof typeof selections,
         options: ComboOption[],
         optional = false
-    ) => (
-        <div className="space-y-4 mb-8">
-            <div className="flex justify-between items-center">
-                <h3 className="font-serif font-bold text-xl text-theme-primary flex items-center gap-2">
-                    {title}
-                    {optional && (
-                        <span className="text-sm font-normal text-theme-muted bg-theme-elevated px-2 py-0.5 rounded-full">
-                            Optional
+    ) => {
+        const selectedItems = selections[category];
+        const selectedTotal = selectedItems.reduce((sum, item) => sum + item.price, 0);
+
+        return (
+            <div className="space-y-4 mb-8">
+                <div className="flex justify-between items-center">
+                    <h3 className="font-serif font-bold text-xl text-theme-primary flex items-center gap-2">
+                        {title}
+                        {optional && (
+                            <span className="text-sm font-normal text-theme-muted bg-theme-elevated px-2 py-0.5 rounded-full">
+                                Optional
+                            </span>
+                        )}
+                        {!optional && selectedItems.length === 0 && (
+                            <span className="text-xs text-red-500 font-normal">* Required</span>
+                        )}
+                    </h3>
+                    {selectedTotal > 0 && (
+                        <span className="text-terracotta dark:text-gold font-bold">
+                            + ₹{selectedTotal}
                         </span>
                     )}
-                </h3>
-                {selections[category] && (
-                    <span className="text-terracotta dark:text-gold font-bold">
-                        + ₹{selections[category]?.price}
-                    </span>
-                )}
-            </div>
+                </div>
 
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {options.map((option) => {
-                    const isSelected = selections[category]?.id === option.id;
-                    return (
-                        <div
-                            key={option.id}
-                            onClick={() => toggleSelection(category, option)}
-                            className={`
-                                relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300
-                                flex items-start gap-4 overflow-hidden group
-                                ${
-                                    isSelected
-                                        ? "border-terracotta dark:border-gold bg-terracotta/5 dark:bg-gold/5 shadow-md"
-                                        : "border-theme-light hover:border-terracotta/50 dark:hover:border-gold/50 bg-white dark:bg-white/5"
-                                }
-                            `}
-                        >
-                            <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-white">
-                                <Image
-                                    src={option.image}
-                                    alt={option.title}
-                                    fill
-                                    className="object-contain p-1"
-                                />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                                <h4
-                                    className={`font-bold text-sm mb-1 ${isSelected ? "text-terracotta dark:text-gold" : "text-theme-primary"}`}
-                                >
-                                    {option.title}
-                                </h4>
-                                <p className="text-xs text-theme-secondary line-clamp-2">
-                                    {option.description}
-                                </p>
-                                <p className="text-sm font-bold mt-2 text-theme-primary">
-                                    ₹{option.price}
-                                </p>
-                            </div>
-
-                            {/* Selection Indicator */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    {options.map((option) => {
+                        const isSelected = selectedItems.some((i) => i.id === option.id);
+                        return (
                             <div
+                                key={option.id}
+                                onClick={() => toggleSelection(category, option)}
                                 className={`
-                                absolute top-3 right-3 w-6 h-6 rounded-full border-2 flex items-center justify-center transition-colors
-                                ${
-                                    isSelected
-                                        ? "bg-terracotta dark:bg-gold border-terracotta dark:border-gold text-white dark:text-midnight"
-                                        : "border-theme-light text-transparent"
-                                }
-                            `}
+                                    relative p-4 rounded-xl border-2 cursor-pointer transition-all duration-300
+                                    flex items-start gap-4 overflow-hidden group
+                                    ${
+                                        isSelected
+                                            ? "border-terracotta dark:border-gold bg-terracotta/5 dark:bg-gold/5 shadow-md"
+                                            : "border-theme-light hover:border-terracotta/50 dark:hover:border-gold/50 bg-white dark:bg-white/5"
+                                    }
+                                `}
                             >
-                                <Check className="w-3.5 h-3.5 stroke-[3]" />
+                                <div className="relative w-16 h-16 rounded-lg overflow-hidden flex-shrink-0 bg-white">
+                                    <Image
+                                        src={option.image}
+                                        alt={option.title}
+                                        fill
+                                        className="object-contain p-1"
+                                    />
+                                </div>
+                                <div className="flex-1 min-w-0">
+                                    <h4
+                                        className={`font-bold text-sm mb-1 ${isSelected ? "text-terracotta dark:text-gold" : "text-theme-primary"}`}
+                                    >
+                                        {option.title}
+                                    </h4>
+                                    <p className="text-xs text-theme-secondary line-clamp-2">
+                                        {option.description}
+                                    </p>
+                                    <p className="text-sm font-bold mt-2 text-theme-primary">
+                                        ₹{option.price}
+                                    </p>
+                                </div>
+
+                                {/* Selection Indicator */}
+                                <div
+                                    className={`
+                                    absolute top-3 right-3 w-6 h-6 rounded border-2 flex items-center justify-center transition-colors
+                                    ${
+                                        isSelected
+                                            ? "bg-terracotta dark:bg-gold border-terracotta dark:border-gold text-white dark:text-midnight"
+                                            : "border-theme-light text-transparent"
+                                    }
+                                `}
+                                >
+                                    <Check className="w-4 h-4" />
+                                </div>
                             </div>
-                        </div>
-                    );
-                })}
+                        );
+                    })}
+                </div>
             </div>
-        </div>
-    );
+        );
+    };
 
     return (
         <div className="bg-theme-secondary/5 rounded-2xl p-6 md:p-8 border border-theme-light">
@@ -319,7 +360,11 @@ export function ComboBuilder({ product }: { product: any }) {
                     Customise Your Panchamrit
                 </h3>
                 <p className="text-sm text-theme-secondary">
-                    Select one item from each category to build your perfect wellness bundle.
+                    Select your items to build your perfect wellness bundle.
+                    <br />
+                    <span className="text-xs mt-1 inline-block opacity-80">
+                        Tip: You can select multiple items in each category!
+                    </span>
                     {isFullBundle && (
                         <span className="font-bold text-green-600 block mt-1">
                             Full bundle discount (10%) applied!
@@ -343,7 +388,7 @@ export function ComboBuilder({ product }: { product: any }) {
             <div className="mt-8 pt-6 border-t border-theme-light sticky bottom-0 bg-white dark:bg-midnight shadow-lg md:shadow-none p-4 -mx-4 md:mx-0 md:bg-transparent rounded-t-2xl md:rounded-none z-20">
                 <div className="flex flex-col gap-4">
                     <div className="flex justify-between items-end">
-                        <div>
+                        <div className="flex-1">
                             <p className="text-sm text-theme-secondary mb-1">Total Bundle Price</p>
                             <div className="flex items-baseline gap-2">
                                 <span className="text-3xl font-bold text-theme-primary">
@@ -356,8 +401,14 @@ export function ComboBuilder({ product }: { product: any }) {
                                 )}
                             </div>
                             {discount > 0 && (
-                                <p className="text-xs text-green-600 font-bold">
+                                <p className="text-xs text-green-600 font-bold mb-1">
                                     You save ₹{discount}
+                                </p>
+                            )}
+                            {!isFullBundle && (
+                                <p className="text-xs text-terracotta dark:text-gold">
+                                    Select at least one option from first 4 categories for 10%
+                                    discount
                                 </p>
                             )}
                         </div>
@@ -367,6 +418,7 @@ export function ComboBuilder({ product }: { product: any }) {
                         onClick={handleAddToCart}
                         size="lg"
                         className={`w-full text-lg font-bold py-6 ${isAdded ? "bg-green-600 hover:bg-green-700" : ""}`}
+                        disabled={totalPrice === 0}
                     >
                         {isAdded ? (
                             <>

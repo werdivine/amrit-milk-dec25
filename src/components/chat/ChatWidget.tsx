@@ -40,6 +40,31 @@ export function ChatWidget() {
     ]);
     const [isLoading, setIsLoading] = useState(false);
     const messagesEndRef = useRef<HTMLDivElement>(null);
+    const [isInitialized, setIsInitialized] = useState(false);
+
+    // Load from local storage on mount
+    useEffect(() => {
+        const saved = localStorage.getItem("amrit-chat-history");
+        if (saved) {
+            try {
+                const parsed = JSON.parse(saved);
+                if (Array.isArray(parsed) && parsed.length > 0) {
+                    setMessages(parsed);
+                }
+            } catch (e) {
+                console.error("Failed to parse chat history", e);
+            }
+        }
+        setIsInitialized(true);
+    }, []);
+
+    // Save to local storage whenever messages change
+    useEffect(() => {
+        if (!isInitialized) return;
+        if (messages.length === 1 && messages[0].id === "welcome") return; // Don't save just welcome message
+
+        localStorage.setItem("amrit-chat-history", JSON.stringify(messages));
+    }, [messages, isInitialized]);
 
     useEffect(() => {
         messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -137,7 +162,11 @@ export function ChatWidget() {
 
                     // If the buffer doesn't look like the Data Stream Protocol (no "0:"),
                     // treat it as raw text and update the UI immediately
-                    if (!buffer.includes('0:') && !buffer.includes('e:') && !buffer.includes('1:')) {
+                    if (
+                        !buffer.includes("0:") &&
+                        !buffer.includes("e:") &&
+                        !buffer.includes("1:")
+                    ) {
                         assistantContent += buffer;
                         buffer = ""; // Clear buffer since we consumed it all
                         hasReceivedContent = true;
@@ -146,11 +175,11 @@ export function ChatWidget() {
                     }
 
                     // Process the buffer line by line for Data Stream Protocol
-                    let boundary = buffer.indexOf('\n');
+                    let boundary = buffer.indexOf("\n");
                     while (boundary !== -1) {
                         const line = buffer.slice(0, boundary).trim();
                         buffer = buffer.slice(boundary + 1);
-                        boundary = buffer.indexOf('\n');
+                        boundary = buffer.indexOf("\n");
 
                         if (!line) continue;
 
@@ -163,28 +192,33 @@ export function ChatWidget() {
                         // 9: metadata
                         // e: error (legacy/custom)
                         // d: data (legacy/custom)
-                        if (line.startsWith('0:')) {
+                        if (line.startsWith("0:")) {
                             try {
                                 const jsonStr = line.slice(2);
                                 const text = JSON.parse(jsonStr);
-                                if (typeof text === 'string') {
+                                if (typeof text === "string") {
                                     assistantContent += text;
                                     hasReceivedContent = true;
                                     updateAssistantMessage(assistantMessage.id, assistantContent);
                                 }
                             } catch (e) {
                                 // Fallback for raw text
-                                const rawText = line.slice(2).replace(/^"(.*)"$/, '$1');
+                                const rawText = line.slice(2).replace(/^"(.*)"$/, "$1");
                                 assistantContent += rawText;
                                 hasReceivedContent = true;
                                 updateAssistantMessage(assistantMessage.id, assistantContent);
                             }
-                        } else if (line.startsWith('e:') || line.startsWith('2:') || line.startsWith('3:')) {
+                        } else if (
+                            line.startsWith("e:") ||
+                            line.startsWith("2:") ||
+                            line.startsWith("3:")
+                        ) {
                             // Error chunk
                             try {
                                 const errorData = JSON.parse(line.slice(2));
                                 console.error("Stream error:", errorData);
-                                assistantContent = "Maaf kijiyega, abhi server se connect karne mein samasya ho rahi hai. Kripya WhatsApp par contact karein. 🙏";
+                                assistantContent =
+                                    "Maaf kijiyega, abhi server se connect karne mein samasya ho rahi hai. Kripya WhatsApp par contact karein. 🙏";
                                 updateAssistantMessage(assistantMessage.id, assistantContent);
                                 break;
                             } catch (e) {
@@ -196,17 +230,25 @@ export function ChatWidget() {
 
                 // If no content was received after the stream ends, show a fallback
                 if (!hasReceivedContent && !assistantContent) {
-                    updateAssistantMessage(assistantMessage.id, "Maaf kijiyega, main abhi samajh nahi pa raha hoon. Kripya WhatsApp par contact karein। 🙏");
+                    updateAssistantMessage(
+                        assistantMessage.id,
+                        "Maaf kijiyega, main abhi samajh nahi pa raha hoon. Kripya WhatsApp par contact karein। 🙏"
+                    );
                 }
             }
         } catch (error: any) {
             console.error("Chat error:", error);
 
-            let errorMessage = "Kshama karein, kuch technical issue hai. Kripya thodi der baad try karein. 🙏";
+            let errorMessage =
+                "Kshama karein, kuch technical issue hai. Kripya thodi der baad try karein. 🙏";
 
             // If it's a specific configuration error, let the user know (helpful for dev/testing)
-            if (error.message?.includes("configuration missing") || error.message?.includes("API key")) {
-                errorMessage = "Amrit AI is currently in maintenance (Missing API Key). Please contact us via WhatsApp! 🙏";
+            if (
+                error.message?.includes("configuration missing") ||
+                error.message?.includes("API key")
+            ) {
+                errorMessage =
+                    "Amrit AI is currently in maintenance (Missing API Key). Please contact us via WhatsApp! 🙏";
             }
 
             setMessages((prev) => [
@@ -223,11 +265,7 @@ export function ChatWidget() {
     };
 
     const updateAssistantMessage = (id: string, content: string) => {
-        setMessages((prev) =>
-            prev.map((m) =>
-                m.id === id ? { ...m, content } : m
-            )
-        );
+        setMessages((prev) => prev.map((m) => (m.id === id ? { ...m, content } : m)));
     };
 
     const handleQuickReply = (value: string) => {
@@ -247,7 +285,9 @@ export function ChatWidget() {
                             transition={{ delay: 1, duration: 0.5 }}
                             className="bg-black text-white px-6 py-3.5 rounded-[2rem] shadow-2xl flex items-center gap-2 whitespace-nowrap relative group border border-white/10"
                         >
-                            <span className="font-bold text-base tracking-tight">👋 How can we help?</span>
+                            <span className="font-bold text-base tracking-tight">
+                                👋 How can we help?
+                            </span>
                             <div className="absolute right-[-6px] top-1/2 -translate-y-1/2 w-4 h-4 bg-black rotate-45 border-r border-t border-white/10" />
 
                             {/* Close button for greeting */}
@@ -256,7 +296,7 @@ export function ChatWidget() {
                                     e.stopPropagation();
                                     // Local state to hide bubble
                                     const bubble = e.currentTarget.parentElement;
-                                    if (bubble) bubble.style.display = 'none';
+                                    if (bubble) bubble.style.display = "none";
                                 }}
                                 className="absolute -top-2 -right-2 bg-white text-black rounded-full p-1 shadow-lg opacity-0 group-hover:opacity-100 transition-opacity border border-black/10 hover:bg-neutral-100"
                             >
@@ -308,7 +348,23 @@ export function ChatWidget() {
                                         Amrit Support
                                         <span className="w-2.5 h-2.5 bg-green-500 rounded-full animate-pulse"></span>
                                     </h3>
-                                    <p className="text-[10px] uppercase tracking-wider text-neutral-500 font-bold">Online & Ready to Help</p>
+                                    <button
+                                        onClick={() => {
+                                            if (window.confirm("Clear chat history?")) {
+                                                setMessages([
+                                                    {
+                                                        id: "welcome",
+                                                        role: "assistant",
+                                                        content: WELCOME_MESSAGE,
+                                                    },
+                                                ]);
+                                                localStorage.removeItem("amrit-chat-history");
+                                            }
+                                        }}
+                                        className="text-[10px] uppercase tracking-wider text-neutral-500 hover:text-red-500 font-bold transition-colors"
+                                    >
+                                        Clear Chat
+                                    </button>
                                 </div>
                             </div>
 
@@ -319,7 +375,9 @@ export function ChatWidget() {
                                 className="flex flex-col items-center gap-1 group bg-[#25D366] hover:bg-[#20bd5a] px-3 py-2 rounded-2xl transition-all shadow-md hover:shadow-lg"
                             >
                                 <MessageCircle className="w-5 h-5 text-white fill-current" />
-                                <span className="text-[9px] font-black text-white uppercase tracking-tighter">WhatsApp</span>
+                                <span className="text-[9px] font-black text-white uppercase tracking-tighter">
+                                    WhatsApp
+                                </span>
                             </a>
                         </div>
 
@@ -341,10 +399,11 @@ export function ChatWidget() {
                                         )}
                                     </div>
                                     <div
-                                        className={`max-w-[75%] px-4 py-3 rounded-2xl ${msg.role === "user"
-                                            ? "bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-tr-md"
-                                            : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 rounded-tl-md"
-                                            }`}
+                                        className={`max-w-[75%] px-4 py-3 rounded-2xl ${
+                                            msg.role === "user"
+                                                ? "bg-gradient-to-br from-amber-500 to-amber-600 text-white rounded-tr-md"
+                                                : "bg-neutral-100 dark:bg-neutral-800 text-neutral-800 dark:text-neutral-100 rounded-tl-md"
+                                        }`}
                                     >
                                         <p className="text-sm whitespace-pre-wrap">{msg.content}</p>
                                     </div>
@@ -391,8 +450,12 @@ export function ChatWidget() {
                                         <MessageCircle className="w-4 h-4 fill-current" />
                                     </div>
                                     <div className="text-left">
-                                        <p className="text-xs font-bold text-neutral-800 dark:text-white">Talk to a Human</p>
-                                        <p className="text-[10px] text-neutral-500">Fast response on WhatsApp</p>
+                                        <p className="text-xs font-bold text-neutral-800 dark:text-white">
+                                            Talk to a Human
+                                        </p>
+                                        <p className="text-[10px] text-neutral-500">
+                                            Fast response on WhatsApp
+                                        </p>
                                     </div>
                                 </div>
                                 <ArrowRight className="w-4 h-4 text-[#25D366] group-hover:translate-x-1 transition-transform" />
