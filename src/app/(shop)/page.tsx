@@ -202,13 +202,22 @@ export default async function Home() {
                 backgroundTheme="light"
             />
 
-            {/* 3.2. PREMIUM GRAINS - All Atta & Rice products */}
+            {/* 3.2. PREMIUM GRAINS - Atta & Flours */}
             <ProductCollection
-                items={grains}
+                items={products.filter((p) => p.category === "Atta")}
                 title="Premium Grains"
-                subtitle="Traditional Staples"
-                description="Stone-ground wheat, organic rice, millets, and heritage grains. Farm-fresh and nutrient-rich."
+                subtitle="Traditional Flours"
+                description="Stone-ground wheat, multigrain atta, and heritage violet wheat flour. Fresh-milled."
                 backgroundTheme="creme"
+            />
+
+            {/* 3.3. ORGANIC RICE */}
+            <ProductCollection
+                items={products.filter((p) => p.category === "Rice")}
+                title="Aromatic Rice"
+                subtitle="Basmati & Heritage"
+                description="Premium Basmati, Sona Masoori, and Kala Namak Rice. Aged to perfection."
+                backgroundTheme="light"
             />
 
             {/* 3.3. FARM-FRESH DALS */}

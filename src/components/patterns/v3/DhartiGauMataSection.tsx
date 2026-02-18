@@ -58,7 +58,13 @@ export function DhartiGauMataSection() {
                             className="bg-white/60 dark:bg-midnight/60 backdrop-blur-sm p-8 md:p-10 rounded-3xl border border-terracotta/20 dark:border-gold/20 text-left hover:shadow-xl transition-shadow duration-500 group"
                         >
                             <div className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
-                                <Sprout className="w-7 h-7 text-green-600 dark:text-green-400" />
+                                <Image
+                                    src="/assets/img/dharti_mata.png"
+                                    alt="Dharti Mata"
+                                    width={32}
+                                    height={32}
+                                    className="w-8 h-8 object-contain"
+                                />
                             </div>
                             <h3 className="text-2xl font-serif font-bold text-terracotta dark:text-gold mb-4">
                                 धरती माता
@@ -97,7 +103,7 @@ export function DhartiGauMataSection() {
                             {/* Desi Gir Cow image */}
                             <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                                 <Image
-                                    src="/assets/img/milk-gir.png"
+                                    src="/assets/img/gau_mata.png"
                                     alt="Desi Gir Cow"
                                     width={56}
                                     height={56}
