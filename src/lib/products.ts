@@ -704,7 +704,7 @@ export const products: Product[] = [
         description: "Thick, probiotic-rich Curd made from A2 milk.",
         slug: "a2-curd-1kg",
         sku: "AMRIT-DAIRY-007",
-        subscription: true,
+
         highlights: [
             "Freshly made daily from A2 Desi Gir cow milk",
             "Thick, creamy texture with live probiotic cultures",
@@ -769,7 +769,7 @@ export const products: Product[] = [
         description: "Stone-ground whole wheat flour.",
         slug: "whole-wheat-atta-1kg",
         sku: "AMRIT-ATTA-001",
-        subscription: true,
+
         highlights: [
             "Stone-ground (chakki-ground) traditional method",
             "Retains bran, germ, and endosperm for nutrition",

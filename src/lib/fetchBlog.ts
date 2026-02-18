@@ -1,4 +1,7 @@
 import { client } from "./sanity";
+import { getWordPressPosts } from "./wordpress/blog";
+
+const USE_WORDPRESS = process.env.NEXT_PUBLIC_USE_WORDPRESS === "true";
 
 export interface SanityBlogPost {
     id: string;
@@ -12,15 +15,22 @@ export interface SanityBlogPost {
     categories?: string[];
 }
 
-export async function getSanityBlogPosts(params: {
-    page?: number;
-    perPage?: number;
-    category?: string;
-} = {}) {
+export async function getSanityBlogPosts(
+    params: {
+        page?: number;
+        perPage?: number;
+        category?: string;
+    } = {}
+) {
     try {
         const { page = 1, perPage = 12, category } = params;
         const start = (page - 1) * perPage;
         const end = start + perPage;
+
+        if (USE_WORDPRESS) {
+            const { posts, total } = await getWordPressPosts(page, perPage);
+            return { posts, total };
+        }
 
         let filter = '*[_type == "blog"]';
         if (category) {
@@ -38,25 +48,33 @@ export async function getSanityBlogPosts(params: {
             categories
         }`;
 
-        const posts = await client.fetch(query, {}, {
-            next: { 
-                revalidate: 60,
-                tags: ["blog", "all"]
+        const posts = await client.fetch(
+            query,
+            {},
+            {
+                next: {
+                    revalidate: 60,
+                    tags: ["blog", "all"],
+                },
             }
-        });
+        );
 
         // Get total count
         const countQuery = `count(${filter})`;
-        const total = await client.fetch(countQuery, {}, {
-            next: { tags: ["blog", "all"] }
-        });
+        const total = await client.fetch(
+            countQuery,
+            {},
+            {
+                next: { tags: ["blog", "all"] },
+            }
+        );
 
         return {
             posts: posts || [],
-            total: total || 0
+            total: total || 0,
         };
     } catch (error) {
-        console.error('Error fetching blog posts from Sanity:', error);
+        console.error("Error fetching blog posts from Sanity:", error);
         return { posts: [], total: 0 };
     }
 }
@@ -75,12 +93,16 @@ export async function getSanityBlogPost(slug: string): Promise<SanityBlogPost | 
             categories
         }`;
 
-        const post = await client.fetch(query, { slug }, {
-            next: { 
-                revalidate: 60,
-                tags: ["blog", `blog:${slug}`, "all"]
+        const post = await client.fetch(
+            query,
+            { slug },
+            {
+                next: {
+                    revalidate: 60,
+                    tags: ["blog", `blog:${slug}`, "all"],
+                },
             }
-        });
+        );
 
         return post || null;
     } catch (error) {
@@ -92,10 +114,14 @@ export async function getSanityBlogPost(slug: string): Promise<SanityBlogPost | 
 export async function getSanityBlogCategories() {
     try {
         const query = `*[_type == "blog"] { categories }`;
-        const results = await client.fetch(query, {}, {
-            next: { tags: ["blog"] }
-        });
-        
+        const results = await client.fetch(
+            query,
+            {},
+            {
+                next: { tags: ["blog"] },
+            }
+        );
+
         const categoriesMap = new Map();
         results.forEach((post: any) => {
             if (post.categories) {
@@ -108,11 +134,11 @@ export async function getSanityBlogCategories() {
 
         return Array.from(categoriesMap.entries()).map(([name, count]) => ({
             name,
-            slug: name.toLowerCase().replace(/ /g, '-'),
-            count
+            slug: name.toLowerCase().replace(/ /g, "-"),
+            count,
         }));
     } catch (error) {
-        console.error('Error fetching blog categories from Sanity:', error);
+        console.error("Error fetching blog categories from Sanity:", error);
         return [];
     }
 }

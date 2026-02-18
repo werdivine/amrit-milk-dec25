@@ -27,6 +27,7 @@ interface ProductBuyingOptionsProps {
         description: string;
         sku?: string;
         variants?: Variant[];
+        subscription?: boolean; // Add subscription flag to product interface
     };
 }
 
@@ -114,15 +115,15 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
 
     const isSubscriptionEligible =
         selectedVariant?.subscription === true || // Trust variant flag if present
-        (selectedVariant?.subscription !== false && // Otherwise check category defaults
-            product.category === "Dairy");
-    // Temporarily disabled for other categories until specific plans are defined
-    // || product.title.toLowerCase().includes("bilona ghee")
-    // || product.category === "Vedic Kitchen Treasures"
-    // ...
+        (selectedVariant?.subscription !== false && // Otherwise check product flag
+            product.subscription === true);
 
-    // Detect if this is a milk product specifically
-    const isMilkProduct = product.category === "Dairy";
+    // Detect if this is a milk product specifically (for pricing display and badges)
+    // STRICT check to ensure we don't show milk pricing for other dairy items
+    const isMilkProduct =
+        product.category === "Dairy" &&
+        product.slug.includes("milk") &&
+        !product.slug.includes("colostrum");
 
     // Default to subscription for eligible products
     useEffect(() => {

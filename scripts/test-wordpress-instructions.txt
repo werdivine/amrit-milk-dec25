@@ -1,0 +1,17 @@
+
+const { getWordPressProducts, getWordPressProductBySlug } = require('../src/lib/wordpress/products');
+const { getWordPressPosts } = require('../src/lib/wordpress/blog');
+
+// Mock fetch for Node.js environment if needed, or rely on Node 18+ global fetch
+// In this specific environment, we might need to use a distinct test approach if ts-node is not available
+// However, the project seems to use standard Next.js.
+// Let's make a simple standalone script that uses the same logic but adapted for direct execution if possible.
+// Actually, since the source is TS, running it directly via node might feature import issues.
+// A better approach for the user is a simple manual verification or a dedicated API route.
+
+// Let's create an API route for testing instead, which uses the app's environment.
+console.log("To test the WordPress connection:");
+console.log("1. Add your WordPress URL to .env.local: NEXT_PUBLIC_WORDPRESS_URL=https://your-site.com");
+console.log("2. Set NEXT_PUBLIC_USE_WORDPRESS=true");
+console.log("3. Restart the dev server");
+console.log("4. Visit the products or blog page.");

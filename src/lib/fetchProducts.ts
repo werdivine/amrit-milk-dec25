@@ -1,5 +1,8 @@
 import { products as staticProducts } from "./products";
 import { client, projectId } from "./sanity";
+import { getWordPressProducts, getWordPressProductBySlug } from "./wordpress/products";
+
+const USE_WORDPRESS = process.env.NEXT_PUBLIC_USE_WORDPRESS === "true";
 
 const productQuery = `*[_type == "product"] | order(_createdAt desc) {
   "id": _id,
@@ -30,6 +33,15 @@ function formatPrice(price: any): string {
 
 export async function getProducts(): Promise<any[]> {
     try {
+        if (USE_WORDPRESS) {
+            console.log("[fetchProducts] Fetching from WordPress...");
+            const wpProducts = await getWordPressProducts();
+            if (wpProducts.length > 0) {
+                return wpProducts;
+            }
+            console.log("[fetchProducts] WordPress empty, falling back...");
+        }
+
         if (!projectId) {
             console.log("[fetchProducts] No Sanity project ID, using static products");
             return staticProducts;
@@ -79,6 +91,11 @@ export async function getProducts(): Promise<any[]> {
 
 export async function getProductBySlug(slug: string): Promise<any | null> {
     try {
+        if (USE_WORDPRESS) {
+            const wpProduct = await getWordPressProductBySlug(slug);
+            if (wpProduct) return wpProduct;
+        }
+
         if (!projectId) {
             return staticProducts.find((p) => p.slug === slug) || null;
         }
