@@ -76,7 +76,8 @@ interface WooProduct {
         position: number;
         visible: boolean;
         variation: boolean;
-        options: string[];
+        options?: string[];
+        option?: string;
     }[];
     default_attributes: any[];
     variations: number[];
@@ -131,7 +132,9 @@ function mapWooProductToProduct(p: WooProduct, variations: WooProduct[] = []): a
             const sizeAttr = v.attributes.find(
                 (a) => a.name.toLowerCase() === "size" || a.name.toLowerCase() === "weight"
             );
-            const sizeVal = sizeAttr ? sizeAttr.option : "Standard";
+            const sizeVal = sizeAttr
+                ? sizeAttr.option || (sizeAttr.options && sizeAttr.options[0]) || "Standard"
+                : "Standard";
 
             return {
                 id: String(v.id),
