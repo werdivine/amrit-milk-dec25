@@ -136,7 +136,7 @@ const JAGGERY_OPTIONS: ComboOption[] = [
         id: "jaggery-powder-1kg",
         category: "Sweetener",
         title: "Organic Jaggery Powder (1kg)",
-        image: "/assets/img/products/premium_jaggery_bites.png",
+        image: "/assets/img/products/premium_jaggery_bites.png?v=2",
         price: 120,
         description: "Chemical-free sweetener.",
     },
@@ -144,7 +144,7 @@ const JAGGERY_OPTIONS: ComboOption[] = [
         id: "jaggery-block-1kg",
         category: "Sweetener",
         title: "Organic Jaggery Block (1kg)",
-        image: "/assets/img/products/premium_jaggery_bites.png",
+        image: "/assets/img/products/premium_jaggery_bites.png?v=2",
         price: 100,
         description: "Traditional gud.",
     },
@@ -357,7 +357,7 @@ export function ComboBuilder({ product }: { product: any }) {
             <div className="mb-8 p-4 bg-terracotta/10 dark:bg-gold/10 rounded-xl border border-terracotta/20 dark:border-gold/20">
                 <h3 className="flex items-center gap-2 font-bold text-terracotta dark:text-gold mb-2">
                     <Info className="w-5 h-5" />
-                    Customise Your Panchamrit
+                    Customise Your Panchamrit (v2.1)
                 </h3>
                 <p className="text-sm text-theme-secondary">
                     Select your items to build your perfect wellness bundle.
