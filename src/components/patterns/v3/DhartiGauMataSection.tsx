@@ -59,7 +59,7 @@ export function DhartiGauMataSection() {
                         >
                             <div className="w-14 h-14 rounded-2xl bg-green-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300">
                                 <Image
-                                    src="/assets/img/dharti_mata.png"
+                                    src="/assets/img/dharti_mata.png?v=2"
                                     alt="Dharti Mata"
                                     width={32}
                                     height={32}
@@ -103,7 +103,7 @@ export function DhartiGauMataSection() {
                             {/* Desi Gir Cow image */}
                             <div className="w-14 h-14 rounded-2xl bg-amber-500/10 flex items-center justify-center mb-5 group-hover:scale-110 transition-transform duration-300 overflow-hidden">
                                 <Image
-                                    src="/assets/img/gau_mata.png"
+                                    src="/assets/img/gau_mata.png?v=2"
                                     alt="Desi Gir Cow"
                                     width={56}
                                     height={56}
