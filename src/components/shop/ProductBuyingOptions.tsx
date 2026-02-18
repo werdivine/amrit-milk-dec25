@@ -113,17 +113,19 @@ export function ProductBuyingOptions({ product }: ProductBuyingOptionsProps) {
         }
     };
 
-    const isSubscriptionEligible =
-        selectedVariant?.subscription === true || // Trust variant flag if present
-        (selectedVariant?.subscription !== false && // Otherwise check product flag
-            product.subscription === true);
-
-    // Detect if this is a milk product specifically (for pricing display and badges)
+    // Detect if this is a milk product specifically
     // STRICT check to ensure we don't show milk pricing for other dairy items
+    // Also used as the GATEKEEPER for subscription eligibility
     const isMilkProduct =
         product.category === "Dairy" &&
         product.slug.includes("milk") &&
         !product.slug.includes("colostrum");
+
+    const isSubscriptionEligible =
+        isMilkProduct && // 🔥 CRITICAL: ONLY MILK PRODUCTS CAN BE SUBSCRIBED
+        (selectedVariant?.subscription === true || // Trust variant flag if present
+            (selectedVariant?.subscription !== false && // Otherwise check product flag
+                product.subscription === true));
 
     // Default to subscription for eligible products
     useEffect(() => {
