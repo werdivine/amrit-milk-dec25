@@ -1,0 +1,32 @@
+Loading env from: C:\CLIENT-WORK\amrit-nextjs\.env.local
+Setting env var: [DATABASE_URL]
+Setting env var: [NEXT_PUBLIC_SANITY_PROJECT_ID]
+Setting env var: [NEXT_PUBLIC_SANITY_DATASET]
+Setting env var: [NEXT_PUBLIC_SANITY_API_VERSION]
+Setting env var: [SANITY_WRITE_TOKEN]
+Setting env var: [CCAVENUE_MERCHANT_ID]
+Setting env var: [CCAVENUE_ACCESS_CODE]
+Setting env var: [CCAVENUE_WORKING_KEY]
+Setting env var: [CCAVENUE_REDIRECT_URL]
+Setting env var: [CCAVENUE_CANCEL_URL]
+Setting env var: [CCAVENUE_TEST_MODE]
+Setting env var: [RESEND_API_KEY]
+Setting env var: [MERCHANT_EMAIL]
+Setting env var: [MERCHANT_WHATSAPP]
+Setting env var: [CALLMEBOT_API_KEY]
+Setting env var: [BLUEDART_CLIENT_ID]
+Setting env var: [BLUEDART_CLIENT_SECRET]
+Setting env var: [BLUEDART_API_URL]
+Importing BlueDart service...
+Testing BlueDart Authentication...
+Using API URL: https://apigateway.bluedart.com/in/transportation/token/v1/login
+Client ID Present: true
+Authenticating with BlueDart...
+BlueDart Authentication Error: Error: BlueDart Authentication Failed: 401 Unauthorized - {"status":401,"title":"Unauthorized","error-response":[{"msg":"Access to the method is not allowed."}]}
+    at BlueDartService.authenticate (C:\CLIENT-WORK\amrit-nextjs\src\lib\services\bluedart.ts:55:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async testBlueDartAuth (C:\CLIENT-WORK\amrit-nextjs\scripts\test-bluedart.ts:44:27)
+Authentication failed: Error: BlueDart Authentication Failed: 401 Unauthorized - {"status":401,"title":"Unauthorized","error-response":[{"msg":"Access to the method is not allowed."}]}
+    at BlueDartService.authenticate (C:\CLIENT-WORK\amrit-nextjs\src\lib\services\bluedart.ts:55:23)
+    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)
+    at async testBlueDartAuth (C:\CLIENT-WORK\amrit-nextjs\scripts\test-bluedart.ts:44:27)
