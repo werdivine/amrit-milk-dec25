@@ -19,7 +19,7 @@ export function ChatWidget() {
            Using a standard img tag or Next.js Image. 
            Assuming the user puts the image at public/assets/img/whatsapp-button.png 
         */}
-                <div className="relative w-[200px] h-auto drop-shadow-2xl hover:drop-shadow-3xl transition-all duration-300">
+                <div className="relative w-[280px] h-auto drop-shadow-2xl hover:drop-shadow-3xl transition-all duration-300">
                     <Image
                         src="/assets/img/whatsapp-button-transparent.png"
                         alt="Talk to Us Before You Order"
