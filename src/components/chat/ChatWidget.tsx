@@ -20,10 +20,13 @@ export function ChatWidget() {
            Assuming the user puts the image at public/assets/img/whatsapp-button.png 
         */}
                 <div className="relative w-[200px] h-auto drop-shadow-2xl hover:drop-shadow-3xl transition-all duration-300">
-                    <img
-                        src="/assets/img/whatsapp-button.png"
+                    <Image
+                        src="/assets/img/whatsapp-button.svg"
                         alt="Talk to Us Before You Order"
+                        width={280}
+                        height={60}
                         className="w-full h-auto object-contain"
+                        priority
                     />
                 </div>
             </motion.a>

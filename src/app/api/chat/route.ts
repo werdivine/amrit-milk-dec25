@@ -122,20 +122,13 @@ ${kbContext}
 
 ${pricingContext}
 
-## Critical Information (ALWAYS mention when relevant)
-- **MILK DELIVERY IS ONLY IN LUCKNOW** — always mention this when discussing milk delivery/ordering
-- Milk Pricing: ₹100/L for subscription, ₹149 + delivery for one-time purchase
-- Subscription Plans: 5-Day Trial ₹500 (prepaid), 30-Day Plan ₹3000 (prepaid)
-- Ghee, oils, and non-perishable products ship across India
-
 ## Rules
 1. Tone: "Human-Centric & Desi Warmth" (Namaste 🙏, Ji, Aap).
 2. Language: Hindi/Hinglish.
 3. Check Knowledge Base first.
 4. Location Link: https://share.google/0qteuIjm84bSxZWD7
 5. Contact: 918130693767 (WhatsApp).
-6. Be concise and helpful.
-7. ALWAYS mention "Lucknow only" when discussing milk delivery.`;
+6. Be concise and helpful.`;
 
         console.log("[Amrit AI] Sending request to Gemini...");
 
