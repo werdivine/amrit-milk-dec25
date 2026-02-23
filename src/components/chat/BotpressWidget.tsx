@@ -5,19 +5,17 @@ import { useEffect } from "react";
 
 export function BotpressWidget() {
     useEffect(() => {
-        // We use a cheap interval because Botpress destroys and recreates DOM nodes when opening/closing the chat window.
-        // This ensures the WhatsApp button and label are always present when the widget is open.
+        // We use a check interval because Botpress v2 dynamically recreates the shadow DOM UI
         const checkInterval = setInterval(() => {
-            const bpContainer = document.getElementById("bp-web-widget");
-            if (bpContainer && bpContainer.shadowRoot) {
-                const shadow = bpContainer.shadowRoot;
+            // In Botpress V2 (fab configuration), the root element hosting the shadow DOM is #fab-root
+            const fabHost =
+                document.getElementById("fab-root") || document.getElementById("bp-web-widget");
+            if (fabHost && fabHost.shadowRoot) {
+                const shadow = fabHost.shadowRoot;
 
-                // 1. Inject "Talk to Us" text if not present under the trigger button
+                // 1. Inject "Talk to Us" text under the trigger bubble (the .bpFab container)
                 const triggerBtn =
-                    shadow.querySelector(".bpTrigger") ||
-                    shadow.querySelector('button[aria-label="Open chat"]') ||
-                    shadow.querySelector(".bp-widget-trigger") ||
-                    shadow.querySelector("button");
+                    shadow.querySelector(".bpFab") || shadow.querySelector(".bpTrigger");
 
                 if (triggerBtn && !shadow.getElementById("bp-custom-label")) {
                     const triggerHtmlBtn = triggerBtn as HTMLElement;
@@ -32,10 +30,10 @@ export function BotpressWidget() {
                     triggerHtmlBtn.appendChild(label);
                 }
 
-                // 2. Inject WhatsApp button into header if chat window is open
+                // 2. Inject WhatsApp button dynamically under the newly rendered Chat Header
                 const header =
-                    shadow.querySelector(".bpContainer .bpHeader") ||
-                    shadow.querySelector("header");
+                    shadow.querySelector(".bpHeaderContainer") ||
+                    shadow.querySelector(".bpContainer .bpHeader");
 
                 if (header && !shadow.getElementById("custom-wa-btn")) {
                     const waBtn = document.createElement("a");
@@ -51,9 +49,7 @@ export function BotpressWidget() {
             }
         }, 500);
 
-        return () => {
-            clearInterval(checkInterval);
-        };
+        return () => clearInterval(checkInterval);
     }, []);
 
     return (
