@@ -1,3 +1,4 @@
+import { BotpressWidget } from "@/components/chat/BotpressWidget";
 import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CartProvider } from "@/lib/CartContext";
@@ -124,6 +125,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         <WebsiteSchema />
                         {children}
                         <ChatWidget />
+                        <BotpressWidget />
                     </CartProvider>
                 </ThemeProvider>
             </body>
