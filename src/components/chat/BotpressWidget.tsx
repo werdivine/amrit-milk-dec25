@@ -1,32 +1,12 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import Script from "next/script";
+import { useEffect } from "react";
 
 export function BotpressWidget() {
-    const initialized = useRef(false);
-
     useEffect(() => {
-        if (initialized.current) return;
-        initialized.current = true;
-
-        // Force sequential loading: Inject core FIRST, then configuration SECOND.
-        // This is THE core reason why the bot was showing up as "plain" and losing customizations:
-        // Next.js <Script> tags handle files asynchronously and their order isn't guaranteed natively,
-        // causing the config to apply before the core bot engine was ready!
-        if (!document.getElementById("botpress-inject")) {
-            const s1 = document.createElement("script");
-            s1.src = "https://cdn.botpress.cloud/webchat/v3.6/inject.js";
-            s1.id = "botpress-inject";
-            s1.onload = () => {
-                const s2 = document.createElement("script");
-                s2.src = "https://files.bpcontent.cloud/2026/02/22/09/20260222093937-NW811GDC.js";
-                document.body.appendChild(s2);
-            };
-            document.body.appendChild(s1);
-        }
-
-        // We use a cheap interval instead of brittle Event Listeners or Mutation Observers
-        // because Botpress destroys and recreates DOM nodes when opening/closing the chat window.
+        // We use a cheap interval because Botpress destroys and recreates DOM nodes when opening/closing the chat window.
+        // This ensures the WhatsApp button and label are always present when the widget is open.
         const checkInterval = setInterval(() => {
             const bpContainer = document.getElementById("bp-web-widget");
             if (bpContainer && bpContainer.shadowRoot) {
@@ -69,12 +49,23 @@ export function BotpressWidget() {
                     header.insertAdjacentElement("afterend", waBtn);
                 }
             }
-        }, 300);
+        }, 500);
 
         return () => {
             clearInterval(checkInterval);
         };
     }, []);
 
-    return null;
+    return (
+        <>
+            <Script
+                src="https://cdn.botpress.cloud/webchat/v3.6/inject.js"
+                strategy="beforeInteractive"
+            />
+            <Script
+                src="https://files.bpcontent.cloud/2026/02/22/09/20260222093937-NW811GDC.js"
+                strategy="lazyOnload"
+            />
+        </>
+    );
 }
