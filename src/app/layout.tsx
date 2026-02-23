@@ -1,5 +1,4 @@
 import { BotpressWidget } from "@/components/chat/BotpressWidget";
-import { ChatWidget } from "@/components/chat/ChatWidget";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { CartProvider } from "@/lib/CartContext";
 import { LocalBusinessSchema, OrganizationSchema, WebsiteSchema } from "@/components/seo/JsonLd";
@@ -124,7 +123,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
                         <LocalBusinessSchema />
                         <WebsiteSchema />
                         {children}
-                        <ChatWidget />
                         <BotpressWidget />
                     </CartProvider>
                 </ThemeProvider>
