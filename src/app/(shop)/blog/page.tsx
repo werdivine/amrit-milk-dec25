@@ -44,21 +44,17 @@ export const metadata: Metadata = {
 const blogListSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
-    "name": "The Sovereign Journal — Amrit Milk",
-    "description": "Articles about A2 dairy, Bilona Ghee, Ayurveda, and farm-fresh nutrition.",
-    "url": "https://amritmilkorganic.com/blog",
-    "publisher": {
+    name: "The Sovereign Journal — Amrit Milk",
+    description: "Articles about A2 dairy, Bilona Ghee, Ayurveda, and farm-fresh nutrition.",
+    url: "https://amritmilkorganic.com/blog",
+    publisher: {
         "@type": "Organization",
-        "name": "Amrit Milk Organic",
-        "url": "https://amritmilkorganic.com",
+        name: "Amrit Milk Organic",
+        url: "https://amritmilkorganic.com",
     },
 };
 
-export default async function BlogPage({
-    searchParams,
-}: {
-    searchParams?: { category?: string };
-}) {
+export default async function BlogPage({ searchParams }: { searchParams?: { category?: string } }) {
     const activeCategory = searchParams?.category || "";
 
     const sanityData = await getSanityBlogPosts({
@@ -81,7 +77,7 @@ export default async function BlogPage({
     }
 
     return (
-        <main className="bg-midnight min-h-screen">
+        <main className="bg-creme dark:bg-midnight min-h-screen text-midnight dark:text-ivory transition-colors duration-500">
             {/* JSON-LD */}
             <script
                 type="application/ld+json"
@@ -91,20 +87,20 @@ export default async function BlogPage({
             {/* Hero */}
             <section className="pt-40 pb-20 text-center relative overflow-hidden">
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full bg-radial-gradient from-gold/10 via-transparent to-transparent pointer-events-none" />
-                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/3 blur-[180px] rounded-full pointer-events-none" />
+                <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gold/5 dark:bg-gold/3 blur-[180px] rounded-full pointer-events-none" />
 
                 <div className="max-w-4xl mx-auto px-6 relative z-10">
-                    <span className="inline-block px-8 py-3 bg-midnight/80 backdrop-blur-md border border-gold/30 rounded-full text-gold font-bold tracking-[0.25em] text-xs uppercase shadow-2xl mb-6">
+                    <span className="inline-block px-8 py-3 bg-white/80 dark:bg-midnight/80 backdrop-blur-md border border-gold/30 rounded-full text-gold font-bold tracking-[0.25em] text-xs uppercase shadow-2xl mb-6">
                         Knowledge Hub
                     </span>
                     <h1 className="text-6xl md:text-8xl font-serif font-bold mb-8 leading-tight">
                         The{" "}
-                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-ivory via-gold to-ivory">
+                        <span className="text-transparent bg-clip-text bg-gradient-to-r from-midnight via-gold to-midnight dark:from-ivory dark:via-gold dark:to-ivory">
                             Sovereign
                         </span>{" "}
                         Blog
                     </h1>
-                    <p className="text-xl md:text-2xl text-ivory/60 max-w-2xl mx-auto font-light leading-relaxed">
+                    <p className="text-xl md:text-2xl text-midnight/60 dark:text-ivory/60 max-w-2xl mx-auto font-light leading-relaxed">
                         Discover the wisdom of nature, traditional recipes, and the science of
                         farm-fresh nutrition.
                     </p>
@@ -117,10 +113,11 @@ export default async function BlogPage({
                     <div className="flex gap-3 flex-wrap justify-center mb-16">
                         <Link
                             href="/blog"
-                            className={`px-7 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 ${!activeCategory
-                                ? "bg-gold text-midnight shadow-xl shadow-gold/20"
-                                : "bg-white/5 backdrop-blur-md border border-white/10 text-ivory/80 hover:border-gold/40"
-                                }`}
+                            className={`px-7 py-3 rounded-full font-bold text-sm transition-all hover:scale-105 ${
+                                !activeCategory
+                                    ? "bg-gold text-midnight shadow-xl shadow-gold/20"
+                                    : "bg-midnight/5 dark:bg-white/5 backdrop-blur-md border border-midnight/10 dark:border-white/10 text-midnight/80 dark:text-ivory/80 hover:border-gold/40"
+                            }`}
                         >
                             All Insights
                         </Link>
@@ -128,10 +125,11 @@ export default async function BlogPage({
                             <Link
                                 key={cat.slug}
                                 href={`/blog?category=${cat.slug}`}
-                                className={`px-7 py-3 rounded-full font-medium text-sm transition-all ${activeCategory === cat.slug
-                                    ? "bg-gold text-midnight font-bold shadow-xl shadow-gold/20"
-                                    : "bg-white/5 backdrop-blur-md border border-white/10 text-ivory/80 hover:border-gold/40 hover:text-gold"
-                                    }`}
+                                className={`px-7 py-3 rounded-full font-medium text-sm transition-all ${
+                                    activeCategory === cat.slug
+                                        ? "bg-gold text-midnight font-bold shadow-xl shadow-gold/20"
+                                        : "bg-midnight/5 dark:bg-white/5 backdrop-blur-md border border-midnight/10 dark:border-white/10 text-midnight/80 dark:text-ivory/80 hover:border-gold/40 hover:text-gold"
+                                }`}
                             >
                                 {cat.name}{" "}
                                 <span
@@ -155,12 +153,17 @@ export default async function BlogPage({
                             ))}
                         </div>
                     ) : (
-                        <div className="text-center py-40 bg-white/3 rounded-[3rem] border border-white/8">
-                            <p className="text-2xl text-ivory/30 font-serif italic mb-4">
-                                {activeCategory ? `No articles in "${activeCategory}" yet.` : "Our scribes are crafting new wisdom. Check back soon!"}
+                        <div className="text-center py-40 bg-midnight/3 dark:bg-white/3 rounded-[3rem] border border-midnight/8 dark:border-white/8">
+                            <p className="text-2xl text-midnight/30 dark:text-ivory/30 font-serif italic mb-4">
+                                {activeCategory
+                                    ? `No articles in "${activeCategory}" yet.`
+                                    : "Our scribes are crafting new wisdom. Check back soon!"}
                             </p>
                             {activeCategory && (
-                                <Link href="/blog" className="text-gold hover:underline font-bold text-sm uppercase tracking-widest">
+                                <Link
+                                    href="/blog"
+                                    className="text-gold hover:underline font-bold text-sm uppercase tracking-widest"
+                                >
                                     View All Articles →
                                 </Link>
                             )}
@@ -192,10 +195,10 @@ function BlogCard({ post, index }: { post: any; index: number }) {
         <div>
             <Link
                 href={`/blog/${slug}`}
-                className="group block bg-midnight-light/40 backdrop-blur-xl border border-white/5 rounded-[2.5rem] overflow-hidden hover:border-gold/30 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-gold/5"
+                className="group block bg-white/40 dark:bg-midnight-light/40 backdrop-blur-xl border border-midnight/5 dark:border-white/5 rounded-[2.5rem] overflow-hidden hover:border-gold/30 transition-all duration-500 hover:-translate-y-3 hover:shadow-2xl hover:shadow-gold/5"
             >
                 {/* Featured Image */}
-                <div className="aspect-[16/10] overflow-hidden bg-midnight-mid relative">
+                <div className="aspect-[16/10] overflow-hidden bg-creme-dark dark:bg-midnight-mid relative">
                     {image ? (
                         <Image
                             src={image}
@@ -221,16 +224,16 @@ function BlogCard({ post, index }: { post: any; index: number }) {
 
                 {/* Content */}
                 <div className="p-10">
-                    <div className="flex items-center gap-5 mb-6 text-ivory/40 text-xs font-medium uppercase tracking-widest">
+                    <div className="flex items-center gap-5 mb-6 text-midnight/40 dark:text-ivory/40 text-xs font-medium uppercase tracking-widest">
                         <div className="flex items-center gap-2">
                             <Calendar className="w-3.5 h-3.5 text-gold/50" />
                             <span>
                                 {date
                                     ? new Date(date).toLocaleDateString("en-US", {
-                                        month: "short",
-                                        day: "numeric",
-                                        year: "numeric",
-                                    })
+                                          month: "short",
+                                          day: "numeric",
+                                          year: "numeric",
+                                      })
                                     : "Recent"}
                             </span>
                         </div>
@@ -244,13 +247,13 @@ function BlogCard({ post, index }: { post: any; index: number }) {
                         </div>
                     </div>
 
-                    <h3 className="text-2xl font-serif font-bold mb-6 text-ivory group-hover:text-gold transition-colors leading-tight line-clamp-2">
+                    <h3 className="text-2xl font-serif font-bold mb-6 text-midnight dark:text-ivory group-hover:text-gold transition-colors leading-tight line-clamp-2">
                         {title}
                     </h3>
 
                     {excerpt && (
                         <p
-                            className="text-ivory/55 leading-relaxed mb-8 line-clamp-3 font-light text-base"
+                            className="text-midnight/55 dark:text-ivory/55 leading-relaxed mb-8 line-clamp-3 font-light text-base"
                             dangerouslySetInnerHTML={{ __html: excerpt }}
                         />
                     )}

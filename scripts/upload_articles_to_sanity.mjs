@@ -277,13 +277,6 @@ async function uploadAllArticles() {
     for (const articleMeta of ARTICLE_DATA) {
         console.log(`\n📖 Processing: ${articleMeta.file}`);
 
-        // Skip if already exists
-        if (existingSlugs.has(articleMeta.slug)) {
-            console.log(`  ⚠️  Already exists, skipping: ${articleMeta.slug}`);
-            skipped++;
-            continue;
-        }
-
         const filePath = path.join(ARTICLES_DIR, articleMeta.file);
         if (!fs.existsSync(filePath)) {
             console.log(`  ❌ File not found: ${filePath}`);
@@ -311,9 +304,13 @@ async function uploadAllArticles() {
             console.log(`  ⚠️  Image not found for: ${articleMeta.imageName}`);
         }
 
-        // Create the Sanity document
+        // Prepare the Sanity document
+        // First check if it exists so we can get its ID
+        const existing = await client.fetch('*[_type == "blog" && slug.current == $slug][0]', { slug: articleMeta.slug });
+
         const doc = {
             _type: 'blog',
+            ...(existing ? { _id: existing._id } : {}),
             title,
             slug: {
                 _type: 'slug',
@@ -328,15 +325,20 @@ async function uploadAllArticles() {
         };
 
         try {
-            const result = await client.create(doc);
-            console.log(`  ✅ Created article: "${title}" (${result._id})`);
+            if (existing) {
+                const result = await client.createOrReplace(doc);
+                console.log(`  ✅ Updated article: "${title}" (${result._id})`);
+            } else {
+                const result = await client.create(doc);
+                console.log(`  ✅ Created article: "${title}" (${result._id})`);
+            }
             created++;
         } catch (err) {
-            console.error(`  ❌ Failed to create article: ${err.message}`);
+            console.error(`  ❌ Failed to process article: ${err.message}`);
         }
     }
 
-    console.log(`\n🎉 Done! Created: ${created} articles, Skipped: ${skipped} (already exist)`);
+    console.log(`\n🎉 Done! Processed: ${created} articles.`);
 }
 
 uploadAllArticles().catch(err => {

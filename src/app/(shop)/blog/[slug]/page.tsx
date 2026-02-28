@@ -61,12 +61,12 @@ export async function generateMetadata({
 const ptComponents = {
     block: {
         h2: ({ children }: any) => (
-            <h2 className="text-4xl font-serif font-bold text-ivory mt-16 mb-6 leading-tight">
+            <h2 className="text-4xl font-serif font-bold text-midnight dark:text-ivory mt-16 mb-6 leading-tight">
                 {children}
             </h2>
         ),
         h3: ({ children }: any) => (
-            <h3 className="text-2xl font-serif font-bold text-ivory/90 mt-12 mb-4 leading-tight">
+            <h3 className="text-2xl font-serif font-bold text-midnight/90 dark:text-ivory/90 mt-12 mb-4 leading-tight">
                 {children}
             </h3>
         ),
@@ -74,10 +74,12 @@ const ptComponents = {
             <h4 className="text-xl font-serif font-semibold text-gold mt-8 mb-3">{children}</h4>
         ),
         normal: ({ children }: any) => (
-            <p className="text-ivory/75 leading-relaxed text-lg font-light mb-6">{children}</p>
+            <p className="text-midnight/75 dark:text-ivory/75 leading-relaxed text-lg font-light mb-6">
+                {children}
+            </p>
         ),
         blockquote: ({ children }: any) => (
-            <blockquote className="border-l-4 border-gold pl-6 my-8 italic text-ivory/60 text-xl font-serif">
+            <blockquote className="border-l-4 border-gold pl-6 my-8 italic text-midnight/60 dark:text-ivory/60 text-xl font-serif">
                 {children}
             </blockquote>
         ),
@@ -87,22 +89,26 @@ const ptComponents = {
             <ul className="list-none space-y-3 my-6 ml-4">{children}</ul>
         ),
         number: ({ children }: any) => (
-            <ol className="list-decimal list-inside space-y-3 my-6 ml-4 text-ivory/75">
+            <ol className="list-decimal list-inside space-y-3 my-6 ml-4 text-midnight/75 dark:text-ivory/75">
                 {children}
             </ol>
         ),
     },
     listItem: {
         bullet: ({ children }: any) => (
-            <li className="flex items-start gap-3 text-ivory/75 text-lg font-light">
+            <li className="flex items-start gap-3 text-midnight/75 dark:text-ivory/75 text-lg font-light">
                 <span className="text-gold mt-1.5 shrink-0">✦</span>
                 <span>{children}</span>
             </li>
         ),
     },
     marks: {
-        strong: ({ children }: any) => <strong className="font-bold text-ivory">{children}</strong>,
-        em: ({ children }: any) => <em className="italic text-ivory/90">{children}</em>,
+        strong: ({ children }: any) => (
+            <strong className="font-bold text-midnight dark:text-ivory">{children}</strong>
+        ),
+        em: ({ children }: any) => (
+            <em className="italic text-midnight/90 dark:text-ivory/90">{children}</em>
+        ),
         link: ({ value, children }: any) => (
             <a
                 href={value?.href}
@@ -194,7 +200,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
     };
 
     return (
-        <main className="min-h-screen bg-midnight pt-40 pb-32">
+        <main className="min-h-screen bg-creme dark:bg-midnight text-midnight dark:text-ivory pt-40 pb-32 transition-colors duration-500">
             {/* Article JSON-LD */}
             <script
                 type="application/ld+json"
@@ -228,14 +234,22 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                         </div>
                     )}
 
-                    <h1 className="text-4xl md:text-6xl font-serif font-bold text-ivory mb-10 leading-tight">
+                    <h1 className="text-4xl md:text-6xl font-serif font-bold text-midnight dark:text-ivory mb-10 leading-tight">
                         {title}
                     </h1>
 
-                    <div className="flex flex-wrap items-center gap-6 md:gap-8 text-ivory/40 text-sm uppercase tracking-[0.2em] font-medium pb-10 border-b border-white/5">
+                    <div className="flex flex-wrap items-center gap-6 md:gap-8 text-midnight/40 dark:text-ivory/40 text-sm uppercase tracking-[0.2em] font-medium pb-10 border-b border-midnight/5 dark:border-white/5">
                         <div className="flex items-center gap-2">
                             <Calendar className="w-4 h-4 text-gold/50" />
-                            <span>{date ? new Date(date).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) : 'Recent'}</span>
+                            <span>
+                                {date
+                                    ? new Date(date).toLocaleDateString("en-US", {
+                                          month: "long",
+                                          day: "numeric",
+                                          year: "numeric",
+                                      })
+                                    : "Recent"}
+                            </span>
                         </div>
                         <div className="flex items-center gap-2">
                             <User className="w-4 h-4 text-gold/50" />
@@ -249,7 +263,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                 </header>
 
                 {image && (
-                    <div className="relative aspect-[16/9] w-full rounded-[3rem] overflow-hidden mb-16 shadow-2xl border border-white/5">
+                    <div className="relative aspect-[16/9] w-full rounded-[3rem] overflow-hidden mb-16 shadow-2xl border border-midnight/5 dark:border-white/5">
                         <Image src={image} alt={title} fill className="object-cover" priority />
                         {/* Subtle gradient overlay at bottom */}
                         <div className="absolute inset-0 bg-gradient-to-t from-midnight/40 via-transparent to-transparent" />
@@ -258,8 +272,8 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
                 {/* Excerpt / Lead */}
                 {post.excerpt && (
-                    <div className="bg-white/3 border border-white/8 rounded-3xl p-8 md:p-10 mb-12">
-                        <p className="text-xl md:text-2xl text-ivory/80 font-light leading-relaxed italic font-serif">
+                    <div className="bg-midnight/3 dark:bg-white/3 border border-midnight/8 dark:border-white/8 rounded-3xl p-8 md:p-10 mb-12">
+                        <p className="text-xl md:text-2xl text-midnight/80 dark:text-ivory/80 font-light leading-relaxed italic font-serif">
                             {post.excerpt}
                         </p>
                     </div>
@@ -271,7 +285,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                         <PortableText value={content} components={ptComponents} />
                     ) : (
                         <div
-                            className="font-light leading-relaxed text-ivory/80 space-y-8 text-lg"
+                            className="font-light leading-relaxed text-midnight/80 dark:text-ivory/80 space-y-8 text-lg"
                             dangerouslySetInnerHTML={{ __html: content }}
                         />
                     )}
@@ -279,15 +293,15 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
                 {/* Category Tags Footer */}
                 {post.categories && post.categories.length > 0 && (
-                    <div className="mt-16 pt-10 border-t border-white/5 flex flex-wrap gap-3">
-                        <span className="text-ivory/30 text-sm uppercase tracking-widest font-medium mr-2">
+                    <div className="mt-16 pt-10 border-t border-midnight/5 dark:border-white/5 flex flex-wrap gap-3">
+                        <span className="text-midnight/30 dark:text-ivory/30 text-sm uppercase tracking-widest font-medium mr-2">
                             Tags:
                         </span>
                         {post.categories.map((cat: string) => (
                             <Link
                                 key={cat}
                                 href={`/blog?category=${cat.toLowerCase().replace(/ /g, "-")}`}
-                                className="px-4 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs font-medium text-ivory/60 hover:border-gold/30 hover:text-gold transition-all"
+                                className="px-4 py-1.5 bg-midnight/5 dark:bg-white/5 border border-midnight/10 dark:border-white/10 rounded-full text-xs font-medium text-midnight/60 dark:text-ivory/60 hover:border-gold/30 hover:text-gold transition-all"
                             >
                                 {cat}
                             </Link>
@@ -298,16 +312,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
 
             {/* CTA Section */}
             <Section className="mt-32">
-                <div className="max-w-4xl mx-auto bg-gradient-to-br from-midnight-light/50 to-midnight border border-white/10 rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden">
-                    <div className="absolute top-0 right-0 w-64 h-64 bg-gold/5 blur-[100px] rounded-full" />
-                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/3 blur-[80px] rounded-full" />
+                <div className="max-w-4xl mx-auto bg-gradient-to-br from-white/50 dark:from-midnight-light/50 to-creme dark:to-midnight border border-midnight/10 dark:border-white/10 rounded-[4rem] p-12 md:p-20 text-center relative overflow-hidden">
+                    <div className="absolute top-0 right-0 w-64 h-64 bg-gold/10 dark:bg-gold/5 blur-[100px] rounded-full" />
+                    <div className="absolute bottom-0 left-0 w-48 h-48 bg-gold/5 dark:bg-gold/3 blur-[80px] rounded-full" />
                     <p className="text-gold font-bold text-xs uppercase tracking-[0.3em] mb-4 relative z-10">
                         The Sovereign Community
                     </p>
-                    <h2 className="text-4xl md:text-5xl font-serif font-bold mb-8 relative z-10">
+                    <h2 className="text-4xl md:text-5xl font-serif font-bold text-midnight dark:text-ivory mb-8 relative z-10">
                         Experience the <span className="text-gold italic">Amrit</span> Difference
                     </h2>
-                    <p className="text-xl text-ivory/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed relative z-10">
+                    <p className="text-xl text-midnight/60 dark:text-ivory/60 mb-12 max-w-2xl mx-auto font-light leading-relaxed relative z-10">
                         Pure A2 Gir Cow Milk, traditional Bilona Ghee, and farm-fresh products —
                         delivered to your door.
                     </p>
@@ -320,7 +334,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
                         </Link>
                         <Link
                             href="/blog"
-                            className="px-10 py-4 bg-white/5 border border-white/10 text-ivory font-medium rounded-full hover:border-gold/30 hover:text-gold transition-all"
+                            className="px-10 py-4 bg-midnight/5 dark:bg-white/5 border border-midnight/10 dark:border-white/10 text-midnight dark:text-ivory font-medium rounded-full hover:border-gold/30 hover:text-gold transition-all"
                         >
                             Read More Articles
                         </Link>
