@@ -1,0 +1,30 @@
+window.botpress.init({
+  "botId": "2f028d79-c00a-4347-a8b7-a8e0e842542b",
+  "configuration": {
+    "version": "v2",
+    "botName": "Amrit Support",
+    "botAvatar": "https://files.bpcontent.cloud/2026/02/23/14/20260223144512-V2B07R1Y.jpeg",
+    "botDescription": "Connect with Amrit Milk Team",
+    "fabImage": "https://files.bpcontent.cloud/2026/02/23/14/20260223144407-R6Y4I0JZ.jpeg",
+    "website": {},
+    "email": {},
+    "phone": {},
+    "termsOfService": {},
+    "privacyPolicy": {},
+    "color": "#b6970b",
+    "variant": "solid",
+    "headerVariant": "solid",
+    "themeMode": "dark",
+    "fontFamily": "inter",
+    "radius": 2.6,
+    "feedbackEnabled": false,
+    "footer": "[⚡ by Botpress](https://botpress.com/?from=webchat)",
+    "soundEnabled": false,
+    "proactiveMessageEnabled": false,
+    "proactiveBubbleMessage": "Hi! 👋 Need help?",
+    "proactiveBubbleTriggerType": "afterDelay",
+    "proactiveBubbleDelayTime": 10,
+    "conversationHistory": false
+  },
+  "clientId": "18b8b86c-97c8-4e34-ac78-cd76802ea410"
+});

@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Botpress Test</title>
+</head>
+<body>
+    <script>
+        // Ensure sequential load as Next.js does
+        const s1 = document.createElement("script");
+        s1.src = "https://cdn.botpress.cloud/webchat/v3.6/inject.js";
+        s1.onload = () => {
+            const s2 = document.createElement("script");
+            s2.src = "https://files.bpcontent.cloud/2026/02/22/09/20260222093937-NW811GDC.js";
+            document.body.appendChild(s2);
+        };
+        document.body.appendChild(s1);
+    </script>
+</body>
+</html>

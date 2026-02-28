@@ -28,6 +28,9 @@ import { GheeSpotlight } from "@/components/patterns/v2/GheeSpotlight";
 
 import { LucknowOnlyBanner } from "@/components/ui/LucknowOnlyBanner";
 
+// Blog — Recent Articles
+import { RecentArticlesServer } from "@/components/patterns/v2/RecentArticlesServer";
+
 // Social Proof
 import { ExpertPanel } from "@/components/patterns/ExpertPanel";
 import { FAQSection } from "@/components/patterns/FAQSection";
@@ -297,11 +300,14 @@ export default async function Home() {
             <ExpertPanel />
             <WallOfLove />
 
-            {/* 16. JOIN US */}
+            {/* 16. FROM THE JOURNAL — Recent Articles */}
+            <RecentArticlesServer />
+
+            {/* 17. JOIN US */}
             <FouitaInstagramWidget />
             <FarmTourCTA />
 
-            {/* 17. SUPPORT */}
+            {/* 18. SUPPORT */}
             <FAQSection />
             <Newsletter />
         </main>
